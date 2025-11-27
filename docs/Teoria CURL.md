@@ -2,7 +2,7 @@
 
 ### ¿Qué es `curl`?
 
-`curl` =Client URL. Es una herramienta de línea de comandos para transferir datos con URLs. Soporta múltiples protocolos (HTTP, HTTPS, FTP, SFTP, SCP, LDAP, etc.), pero normalmente lo usamos con HTTP/HTTPS.
+`curl` =Client URL. Es una herramienta de línea de comandos para transferir datos con URLs. Soporta múltiples protocolos (HTTP, HTTPS, FTP, SFTP, SCP, LDAP, etc.), pero normalmente lo usamos con HTTP/HTTPS
 
 ### Sintaxis básica
 

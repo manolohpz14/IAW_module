@@ -210,14 +210,19 @@ echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
 
 #### Práctica PT1. Clase básica con propiedades públicas 
 
-Crea un archivo llamado **coches_1.php**. En este archivo define una clase **Coche** con:
+-Crea un archivo llamado **coches_1.php**. En este archivo define una clase Coche con:
 
 - Propiedades públicas:
-  - **marca** (string)
-  - **modelo** (string)
-  - **velocidad** (int)
-- Una propiedad estática pública llamada **contador**, que registre cuántos coches se han creado.
+  
+  - marca (string)
+  - modelo (string)
+  - velocidad (int)
+  
+- Una propiedad estática pública llamada contador, que registre cuántos coches se han creado.
+
 - Un constructor que reciba los valores de marca, modelo y velocidad inicial.
+
+  
 
 **Se pide:**
 
@@ -225,26 +230,27 @@ Crea un archivo llamado **coches_1.php**. En este archivo define una clase **Coc
 
 #### Práctica PT2. Clase básica con propiedades públicas 
 
-Crea un archivo **coches_3.php**. En este archivo define una clase **Coche** con:
+-Crea un archivo **coches_2.php**. En este archivo define una clase Coche con:
 
 - Todas las propiedades serán privadas:
-  - **marca (string)**
-  - **modelo (string)**
-  - **velocidad(int)**
-
-- La propiedad estática **contador** será privada y tendrá un **getter** (getContador) para ver su valor.
-- En el constructor, asigna marca y modelo usando **setters** (definidos más abajo) y no directamente en el constructor.
+  - marca (string)
+  - modelo (string)
+  - velocidad(int)
+- La propiedad estática contador será privada y tendrá un getter (getContador) para ver su valor.
+- En el constructor, asigna marca y modelo usando setters (definidos más abajo) y no directamente en el constructor.
 - La velocidad inicial debe ser siempre 0, independientemente de lo que se pase y se pondrá así en el constructor.
 - Crea getters para ver los valores de las tres propiedades mencionadas
 
-Reglas del setter de marca y modelo (setModelo, setMarca):
+-Reglas del setter de marca y modelo (setModelo, setMarca):
 
 - No pueden estar vacíos y deben ser cadenas de texto.
 - Además, un coche no puede cambair de marca y modelo luego deben ser setter privados y no se pueden acceder desde fuera.
 
-Crear el metodo velocidad (addVelocidad) que suma o resta velocidad a un coche:
+-Crear el metodo velocidad (addVelocidad) que suma o resta velocidad a un coche:
 
 - La velocidad resultante no puede ser negativa y no puede superar los 250 km/h
+
+  
 
 **Se pide:**
 
@@ -314,7 +320,7 @@ Para aplciar los privilegios anteriores:
 FLUSH PRIVILEGES;
 ```
 
-### 2-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)
+### 3-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)
 
 Vamos a aprovechar el formulario de la pŕactica anterior (este):
 
@@ -507,7 +513,7 @@ $conn->close();
 
 ```
 
-### 3-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)
+### 4-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)
 
 Ya sabemos un poco sobre conexión a base de datos según lo visto en el punto anterior. Ahora vamos al revés, os doy el script entero de (Register.php) y lo que haremos será desmenuzar los puntos que no comprendamos.
 
@@ -606,7 +612,7 @@ y no el if directamente sobre el método execute.
 
 
 
-### 4-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)
+### 5-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)
 
 En este caso, no hace falta explciar tanto ya que hemos visto muchas cosas, este formulario es el ejemplo vivo de un get en el que no se envía ninguna información. A continuación os dejo el código. Recordar que en un formulario html que use get, los parámetros se envían por query-param:
 
@@ -664,7 +670,7 @@ Ojo cuidado, una cosa importante es que en este coso tenemos que recorrer fetch_
 
 
 
-### 5- Esquema del HTML
+### 6- Esquema del HTML
 
 A modo esquematico, el body html hará las peticiones así (el put y el delete siguen haciendo lo que debían hacer en la práctica anterior utilizando los fetch en JS). En primer lugar, el HTML  (El primer POST y el segundo POST) harán las peticiones así:
 
@@ -763,7 +769,7 @@ A modo esquematico, el body html hará las peticiones así (el put y el delete s
 
 En las prácticas siguientes veremos como utilzar el PUT y el DELETE de forma práctica y real, borrando registros de la BD y editando cuestiones de la BD.
 
-### **6- Práctica**
+### **7- Práctica**
 
 1-Realiza la práctica guiada anterior e intenta que por cada usuario que se registre suba una foto del usuario dentro de la carpeta uploads.
 

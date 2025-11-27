@@ -1,0 +1,2109 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../3%20primera_practica_PHP/">
+      
+      
+        <link rel="next" href="../5-Pr%C3%A1ctica.%20Conexiones_bd/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Métodos avanzados. Peticiones fetch y HTML. Práctica 4 - Módulo IAW</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-4-php-continuacion-de-lo-anterior" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Módulo IAW" class="md-header__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Módulo IAW
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Métodos avanzados. Peticiones fetch y HTML. Práctica 4
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Módulo IAW" class="md-nav__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Módulo IAW
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 1. Introducción a HTTP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 1. Introducción a HTTP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Teoria%20CURL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría CURL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pr%C3%A1ctica%201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CURL y POSTMAN. Practica 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Teor%C3%ADa-Pr%C3%A1ctica-Guiada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion a APACHE e instalacion. Practica 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20primera_practica_PHP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sintaxis, ejecución y estructuras de datos. Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos avanzados. Peticiones fetch y HTML. Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos avanzados. Peticiones fetch y HTML. Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-valores-truthy-y-falsy-importantisimo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Valores truthy y falsy (importantísimo)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Valores truthy y falsy (importantísimo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-truthy_falsyphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (truthy_falsy.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-bucle-dowhile-uso-debreak-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Bucle: do...while, Uso de:break, continue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Bucle: do...while, Uso de:break, continue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-otros_buclesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (otros_bucles.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-funciones-nombradas-anonimas-flecha-uso-de-callbacks-en-funciones-de-orden-superior-como-array_filter-array_map-y-array_reduce-nuevo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Funciones nombradas, anónimas, flecha. Uso de callbacks en funciones de orden superior como: array_filter, array_map y array_reduce (nuevo!!)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Funciones nombradas, anónimas, flecha. Uso de callbacks en funciones de orden superior como: array_filter, array_map y array_reduce (nuevo!!)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-mis_callbacksphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (mis_callbacks.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-metodos-utiles-para-arrays-desectructuracion-de-arrays-tanto-normales-como-asocitativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Métodos útiles para Arrays. Desectructuración de Arrays (tanto normales como asocitativos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Métodos útiles para Arrays. Desectructuración de Arrays (tanto normales como asocitativos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-mas_metodos_arraysphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (mas_metodos_arrays.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-metodos-importantes-para-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Métodos importantes para Strings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Métodos importantes para Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-metodos_stringsphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (metodos_strings.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-manejo-de-errores-try-catch-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Manejo de errores: try, catch, finally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Manejo de errores: try, catch, finally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-mi_ipphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (mi_ip.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atencion-exception-vs-error-y-uso-de-throwable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atención: Exception vs Error y uso de Throwable.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-parametros-de-ruta-continuacion-de-query-params-peticiones-desde-clientes-html-y-fetch-con-javascript-inline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Parámetros de ruta (continuación de Query Params). Peticiones desde clientes HTML y fetch con JavaScript (inline)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Parámetros de ruta (continuación de Query Params). Peticiones desde clientes HTML y fetch con JavaScript (inline)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-indexphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (index.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-preparar-una-ruta-para-recoger-informacion-que-envia-el-cliente-manejar-el-content-type-para-recoger-los-datos-que-envia-el-cliente-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Preparar una ruta para recoger información que envía el cliente. Manejar el Content-Type para recoger los datos que envía el cliente. (Opcional)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Preparar una ruta para recoger información que envía el cliente. Manejar el Content-Type para recoger los datos que envía el cliente. (Opcional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-recoger-contenido-de-un-form-data-x-www-form-urlencoded-o-multipartform-data-para-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Recoger contenido de un Form Data (x-www-form-urlencoded o multipart/form-data para archivos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-recoger-applicationjson-o-textraw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Recoger application/json o text/raw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-ejemplo-combinado-de-lo-anterior-emjemplo_final_practica4php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Ejemplo combinado de lo anterior (emjemplo_final_practica4.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practica-indexphp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (index.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Pr%C3%A1ctica.%20Conexiones_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-valores-truthy-y-falsy-importantisimo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Valores truthy y falsy (importantísimo)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Valores truthy y falsy (importantísimo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-truthy_falsyphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (truthy_falsy.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-bucle-dowhile-uso-debreak-continue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Bucle: do...while, Uso de:break, continue
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Bucle: do...while, Uso de:break, continue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-otros_buclesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (otros_bucles.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-funciones-nombradas-anonimas-flecha-uso-de-callbacks-en-funciones-de-orden-superior-como-array_filter-array_map-y-array_reduce-nuevo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Funciones nombradas, anónimas, flecha. Uso de callbacks en funciones de orden superior como: array_filter, array_map y array_reduce (nuevo!!)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Funciones nombradas, anónimas, flecha. Uso de callbacks en funciones de orden superior como: array_filter, array_map y array_reduce (nuevo!!)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-mis_callbacksphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (mis_callbacks.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-metodos-utiles-para-arrays-desectructuracion-de-arrays-tanto-normales-como-asocitativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Métodos útiles para Arrays. Desectructuración de Arrays (tanto normales como asocitativos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Métodos útiles para Arrays. Desectructuración de Arrays (tanto normales como asocitativos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-mas_metodos_arraysphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (mas_metodos_arrays.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-metodos-importantes-para-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Métodos importantes para Strings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Métodos importantes para Strings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-metodos_stringsphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (metodos_strings.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-manejo-de-errores-try-catch-finally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Manejo de errores: try, catch, finally
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Manejo de errores: try, catch, finally">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-mi_ipphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (mi_ip.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atencion-exception-vs-error-y-uso-de-throwable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Atención: Exception vs Error y uso de Throwable.
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-parametros-de-ruta-continuacion-de-query-params-peticiones-desde-clientes-html-y-fetch-con-javascript-inline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Parámetros de ruta (continuación de Query Params). Peticiones desde clientes HTML y fetch con JavaScript (inline)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Parámetros de ruta (continuación de Query Params). Peticiones desde clientes HTML y fetch con JavaScript (inline)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-indexphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (index.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-preparar-una-ruta-para-recoger-informacion-que-envia-el-cliente-manejar-el-content-type-para-recoger-los-datos-que-envia-el-cliente-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Preparar una ruta para recoger información que envía el cliente. Manejar el Content-Type para recoger los datos que envía el cliente. (Opcional)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Preparar una ruta para recoger información que envía el cliente. Manejar el Content-Type para recoger los datos que envía el cliente. (Opcional)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-recoger-contenido-de-un-form-data-x-www-form-urlencoded-o-multipartform-data-para-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Recoger contenido de un Form Data (x-www-form-urlencoded o multipart/form-data para archivos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-recoger-applicationjson-o-textraw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Recoger application/json o text/raw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-ejemplo-combinado-de-lo-anterior-emjemplo_final_practica4php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Ejemplo combinado de lo anterior (emjemplo_final_practica4.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practica-indexphp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (index.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="practica-4-php-continuacion-de-lo-anterior">Práctica 4: PHP (Continuación de lo anterior)</h1>
+<p>Esta práctica continúa con el aprendizaje de PHP centrándose en pequeños detalle intermedias necesarios para el desarrollo web que veremos, en especial en el punto 8 veremos como trabajar sobre los disntitos datos que envia el cliente. Al igual que en la práctica anterior, cada bloque incluye explicación, ejemplos y práctica que deberás resolver.</p>
+<p>Ojo, para resolver esta práctica debes haber resuelto la anterior porque hay conceptos previos que debes saber, por ejemplo, en el apartado 1, deberás saber cómo recorrer un array asociativo...</p>
+<hr />
+<h2 id="1-valores-truthy-y-falsy-importantisimo">1. Valores <em>truthy</em> y <em>falsy</em> (importantísimo)</h2>
+<p>En PHP, ciertos valores se consideran falsos incluso si no son literalmente <code>false</code>. Esto tiene que ver mucho con los dos tipos de comparaciones que tenemos: <code>==</code>y <code>===</code>.</p>
+<p>Esto es muy importante al usar condicionales y seguro que en algún punto os trae problemas si no lo hacéis correctamente. El siguiente código muestra para cada uno de los elementos del array si son truly o falsy.</p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$valores</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;hola&quot;</span><span class="p">];</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$valores</span> <span class="k">as</span> <span class="nv">$v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//if($v==true)</span>
+        <span class="k">echo</span> <span class="nb">var_export</span><span class="p">(</span><span class="nv">$v</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot; es TRUTHY&lt;br&gt;&quot;</span><span class="p">;</span> <span class="c1">//al poner true devuelve como un string. var_export es silimar a print_r($v, true), que de igual forma, con el true al final, devuelve un strning</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nb">var_export</span><span class="p">(</span><span class="nv">$v</span><span class="p">,</span> <span class="k">true</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot; es FALSY&lt;br&gt;&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+Debéis saber que, si ejecutáis el código anterior:</p>
+<ul>
+<li>Falsy: <code>0</code>, <code>"0"</code>, <code>""</code>, <code>[]</code>, <code>null</code>, <code>false</code>  </li>
+<li>Truthy: cualquier otro valor.</li>
+</ul>
+<p>Veamos donde puede causar esto problemas en un código, aunque primero vamos a repasar como afecta los truthy y falsy en operadores ternarios. En la práctica anterior visteis como usar <code>??</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$nombre</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span> <span class="o">??</span> <span class="s2">&quot;invitado&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>que significa:  usa valor si no es null ni está sin definir (variable no declarada todavía), si no usa el de la derecha. Pero muchas veces veréis esto en otros códigos.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$nombre</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span> <span class="o">?:</span> <span class="s1">&#39;inivitado&#39;</span><span class="p">;</span>
+<span class="nv">$nombre</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span> <span class="o">?</span> <span class="s2">&quot;trhuthy&quot;</span><span class="o">:</span> <span class="s2">&quot;falsy&quot;</span>
+</code></pre></div>
+<p>que significa algo completamente distinto:</p>
+<p>Si $GET["nombre"] es truthy : <code>$_GET["nombre"]</code>
+Si $GET["nombre"] es falsy : <code>'inivitado</code></p>
+<p>Ahora, vamos a ver un ejemplo de código que pone de manifiesto la importancia de manejar bien valores truthy y falsy:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$amigos</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;numero_amigos&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span> 
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$amigos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;El usuario está activo y tiene </span><span class="si">{</span><span class="nv">$amigos</span><span class="si">}</span><span class="s2"> amigos&quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;El usuario NO tiene definido el número de amigos&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Si imaginamos que el valor de <code>$_GET['numero_amigos']</code> es el string <code>"0"</code>, y en PHP <code>"0"</code> es falsy.  Así que para este valor, el código entra en el else aunque el parámetro está "presente", es decir, valga "0". En general, tenéis que tener mucho cuidado con la forma de comparar, lo anterior en la parte del if es equivalente a usar:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$amigos</span><span class="o">==</span><span class="k">true</span><span class="p">)</span>
+</code></pre></div>
+<p>Por lo visto anteriormente "0" es un valor falsy en php, es decir:<code>"0"==false</code> pero <code>"0"===false</code>no es cierto. De hecho se puede ver con este bloque de código:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="s2">&quot;0&quot;</span> <span class="o">==</span> <span class="k">false</span><span class="p">);</span>   <span class="c1">// bool(true). Comparación laxa (convierte tipos)</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="s2">&quot;0&quot;</span> <span class="o">===</span> <span class="k">false</span><span class="p">);</span>  <span class="c1">// bool(false). Comparación estricta</span>
+</code></pre></div>
+<h3 id="practica-truthy_falsyphp">Práctica (truthy_falsy.php)</h3>
+<p>Crea <code>truthy_falsy.php</code> . Este script recorre todas las claves del array asocitativo <code>$_GET</code> (mirar el punto de los bucles de la práctica anterior para saber como recorrer un array asociativo) y printea si sus valores son trulys o falsys (con los operadores ternarios <code>?</code>o <code>??</code>según te convenga y sin usar if), para ello, prueba a hacer la petición con los siguiente queryparams: </p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="p">[</span><span class="s2">&quot;sin_animo_de_lucro&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;hola&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;i_love_iaw&quot;</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="2-bucle-dowhile-uso-debreak-continue">2. Bucle: <code>do...while</code>, Uso de:<code>break</code>, <code>continue</code></h2>
+<p>PHP ofrece un bucle que no vimos en la práctica pasada, el <code>do while</code>, además, los bucles poseen las claúsulas <code>break</code> y <code>continue</code>.</p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">do</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;do...while: </span><span class="si">$j</span><span class="s2">&lt;br&gt;&quot;</span><span class="p">;</span>
+  <span class="nv">$j</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">);</span>
+
+<span class="nv">$frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span> <span class="s2">&quot;pera&quot;</span><span class="p">,</span> <span class="s2">&quot;uva&quot;</span><span class="p">,</span> <span class="s2">&quot;plátano&quot;</span><span class="p">];</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$frutas</span> <span class="k">as</span> <span class="nv">$f</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$f</span> <span class="o">===</span> <span class="s2">&quot;pera&quot;</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> <span class="c1">// salta</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$f</span> <span class="o">===</span> <span class="s2">&quot;uva&quot;</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>    <span class="c1">// rompe</span>
+  <span class="k">echo</span> <span class="s2">&quot;Fruta: </span><span class="si">$f</span><span class="s2">&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<code>continue</code> salta a la siguiente iteración, <code>break</code> rompe el bucle.</p>
+<h3 id="practica-otros_buclesphp">Práctica (otros_bucles.php)</h3>
+<ol>
+<li>Crea un script que <u>imprima los números del 1 hasta infinito,</u> pero salte los múltiplos de 3 y termine al llegar a 8.  </li>
+<li>Hazlo con un do while con la condición true en el while, usa un break cundo el número valga 8 y un continue cuando sea divisible entre 3, recuerda que el resto de números debe imprimirlos.</li>
+<li>Después, haz lo mismo con un bucle for con un break cuando llegue a 8 y un continue cuando sea divisible entre 3, recuerda que el resto de números debe imprimirlos.</li>
+</ol>
+<h2 id="3-funciones-nombradas-anonimas-flecha-uso-de-callbacks-en-funciones-de-orden-superior-como-array_filter-array_map-y-array_reduce-nuevo">3. Funciones nombradas, anónimas, flecha. Uso de callbacks en funciones de orden superior como: array_filter, array_map y array_reduce (nuevo!!)</h2>
+<p>Antes de explicar este punto, que puede ser un poco confuso, me gustaría comentar algunas cosas potencialmente importante de <strong>array_filter:</strong></p>
+<p>PHP no distingue entre “arrays normales” y “asociativos” como otros lenguajes (por ejemplo, JavaScript o Python). Internamente, todo array es un mapa clave–valor, es decir:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">];</span>
+</code></pre></div>
+<p>es en realidad:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$nums</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">0</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="mi">1</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="mi">2</span> <span class="o">=&gt;</span> <span class="mi">30</span>
+<span class="p">];</span>
+</code></pre></div>
+<p>Esto puede suponer problemas a la hora de realziar un array filter:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$nums</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+
+<span class="k">function</span> <span class="nf">esPar</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$soloPares</span> <span class="o">=</span> <span class="nb">array_filter</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="s1">&#39;esPar&#39;</span><span class="p">);</span>
+
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$soloPares</span><span class="p">);</span>
+</code></pre></div>
+<p>cuya salida es:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">Array</span>
+<span class="p">(</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="o">-</span><span class="mi">2</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="mi">0</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="mi">2</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="mi">4</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>Si quisieramos tener los indices normales de un array, es decir, empezando en 0, deberíamos hacer lo siguiente:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$soloPares</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span><span class="nb">array_filter</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="s1">&#39;esPar&#39;</span><span class="p">));</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$soloPares</span><span class="p">)</span>
+</code></pre></div>
+<p>si guardas los valores, por defecto se indexará en 0.</p>
+<div class="highlight"><pre><span></span><code><span class="x">Array</span>
+<span class="x">(</span>
+<span class="x">    [0] =&gt; -2</span>
+<span class="x">    [1] =&gt; 0</span>
+<span class="x">    [2] =&gt; 2</span>
+<span class="x">    [3] =&gt; 4</span>
+<span class="x">)</span>
+</code></pre></div>
+<p>Dicho esto sobre array_filter, vamos a ver la diferencia entre funciones nombradas, anónimas, flecha y el uso de callbacks. empezamos por los tipos de funciones que tenemos:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="c1">//------------1) TIPOS DE FUNCIONES: nombradas o definidas, anónimas y flecha------------</span>
+<span class="c1">// Función definida (con nombre)</span>
+<span class="k">function</span> <span class="nf">esPar2</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">duplicar</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$n</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Función anónima (closure), almacenada en variable, para poder ser usada más tarde</span>
+<span class="nv">$esPositivo</span> <span class="o">=</span> <span class="k">function</span> <span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Función flecha (arrow function), también la guardamos en variable para poder ser usada más tarde</span>
+<span class="nv">$triplicar</span> <span class="o">=</span> <span class="nx">fn</span> <span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$n</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="c1">//Definimos un array para utilizarlo</span>
+<span class="nv">$nums</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+</code></pre></div>
+<p>Uso de array_filter con los tres tipos de funciones pasadas como "callbacks"</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">//2) vamos a ver como usar array_filter con los tres tipos de funciones definidad</span>
+
+<span class="c1">// a) Con función definida (named)</span>
+<span class="nv">$soloPares</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span><span class="nb">array_filter</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="s1">&#39;esPar&#39;</span><span class="p">));</span> <span class="c1">// [&#39;-2&#39;,&#39;0&#39;,&#39;2&#39;,&#39;4&#39;] pero manteniendo claves originales</span>
+
+<span class="c1">// b) Con función anónima</span>
+<span class="nv">$soloPositivos</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span><span class="nb">array_filter</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}));</span> <span class="c1">// [1,2,3,4]</span>
+
+<span class="c1">// c) Con función f$soloPares = array_values(array_filter($nums, &#39;esPar2&#39;)); // [&#39;-2&#39;,&#39;0&#39;,&#39;2&#39;,&#39;4&#39;] pero manteniendo claves originales</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$soloPares</span><span class="p">);</span>
+
+<span class="c1">// b) Con función anónima</span>
+<span class="nv">$soloPositivos</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span><span class="nb">array_filter</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="nv">$esPositivo</span><span class="p">));</span> <span class="c1">// [1,2,3,4]</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$soloPositivos</span><span class="p">);</span>
+
+<span class="c1">// c) Con función flecha (p.ej. mayores que 1)</span>
+<span class="nv">$mayoresQueUno</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span><span class="nb">array_filter</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="o">=&gt;</span> <span class="nv">$n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">));</span> <span class="c1">// [2,3,4]</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$mayoresQueUno</span><span class="p">);</span>
+<span class="nx">lecha</span> <span class="p">(</span><span class="nx">p</span><span class="o">.</span><span class="nx">ej</span><span class="o">.</span> <span class="nx">mayores</span> <span class="nx">que</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nv">$mayoresQueUno</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span><span class="nb">array_filter</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span> <span class="o">=&gt;</span> <span class="nv">$n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">));</span> <span class="c1">// [2,3,4]</span>
+</code></pre></div>
+<p>Uso de array_map con los tres tipos de funciones pasadas como "callbacks"</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">//3) vamos a ver como usar array_map con los tres tipos</span>
+
+<span class="c1">// a) Con función definida</span>
+<span class="nv">$duplicados</span> <span class="o">=</span> <span class="nb">array_map</span><span class="p">(</span><span class="s1">&#39;duplicar&#39;</span><span class="p">,</span> <span class="nv">$nums</span><span class="p">);</span> <span class="c1">// [-4,-2,0,2,4,6,8]</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$duplicados</span><span class="p">);</span>
+
+<span class="c1">// b) Con función anónima</span>
+<span class="nv">$alCuadrado</span> <span class="o">=</span> <span class="nb">array_map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nv">$n</span><span class="p">;</span>
+<span class="p">},</span> <span class="nv">$nums</span><span class="p">);</span> <span class="c1">// [4,1,0,1,4,9,16]</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$alCuadrado</span><span class="p">);</span>
+
+<span class="c1">// c) Con función flecha</span>
+<span class="nv">$triplicados</span> <span class="o">=</span> <span class="nb">array_map</span><span class="p">(</span><span class="nv">$triplicar</span><span class="p">,</span> <span class="nv">$nums</span><span class="p">);</span> <span class="c1">// [-6,-3,0,3,6,9,12]</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$triplicados</span><span class="p">);</span>
+</code></pre></div>
+<p>Uso de array_reduce con los tres tipos de funciones pasadas como "callbacks"</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">//3) vamos a ver como usar array_reduce con los tres tipos</span>
+
+<span class="nv">$nums</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+
+<span class="c1">// a) Con función definida</span>
+<span class="k">function</span> <span class="nf">sumarSiPar</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$acc</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">esPar</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="o">?</span> <span class="nv">$acc</span> <span class="o">+</span> <span class="nv">$n</span> <span class="o">:</span> <span class="nv">$acc</span><span class="p">;</span> <span class="c1">//ojo, debe ser truly para que acumule!!</span>
+<span class="p">}</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nv">$sumaDePares1</span> <span class="o">=</span> <span class="nb">array_reduce</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="s1">&#39;sumarSiPar&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//El último parámetro es el alcumulador e indica por donde comenzamos</span>
+<span class="k">echo</span> <span class="s2">&quot;Suma de pares (función nombrada): </span><span class="si">{</span><span class="nv">$sumaDePares1</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// 4</span>
+
+<span class="c1">// b) Con función anónima (tipada en este caso)</span>
+<span class="nv">$sumaDePares2</span> <span class="o">=</span> <span class="nb">array_reduce</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">int</span> <span class="nv">$acc</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nv">$acc</span> <span class="o">+</span> <span class="nv">$n</span> <span class="o">:</span> <span class="nv">$acc</span><span class="p">;</span>
+<span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s2">&quot;Suma de pares (función anónima): </span><span class="si">{</span><span class="nv">$sumaDePares2</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// 4</span>
+
+<span class="c1">// c) array_reduce con callback (acumulador)</span>
+<span class="nv">$sumaDePares3</span> <span class="o">=</span> <span class="nb">array_reduce</span><span class="p">(</span>
+    <span class="nv">$nums</span><span class="p">,</span>
+    <span class="nx">fn</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$acc</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$n</span><span class="p">)</span><span class="o">:</span> <span class="nx">int</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nv">$n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nv">$acc</span> <span class="o">+</span> <span class="nv">$n</span> <span class="o">:</span> <span class="nv">$acc</span><span class="p">,</span>
+    <span class="mi">0</span>
+<span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s2">&quot;Suma de pares (arrow function): </span><span class="si">{</span><span class="nv">$sumaDePares3</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Ojo: tanto <code>array_map()</code> como <code>array_filter()</code> funcionan perfectamente con arrays asociativos,
+ pero por defecto usan solo los valores, ignorando las claves (a menos que se indique lo contrario).</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$precios</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pan&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;leche&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;queso&quot;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">];</span>
+
+<span class="nv">$iva</span> <span class="o">=</span> <span class="nb">array_map</span><span class="p">(</span><span class="nx">fn</span><span class="p">(</span><span class="nv">$p</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$p</span> <span class="o">*</span> <span class="mf">1.21</span><span class="p">,</span> <span class="nv">$precios</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$iva</span><span class="p">);</span>
+<span class="sd">/**</span>
+<span class="sd">    Array</span>
+<span class="sd">(</span>
+<span class="sd">    [0] =&gt; 1.21</span>
+<span class="sd">    [1] =&gt; 2.42</span>
+<span class="sd">    [2] =&gt; 3.63</span>
+<span class="sd">)</span>
+<span class="sd">    */</span>
+</code></pre></div>
+<p>Para mantenerlas, habría que utilizar <code>array_combine</code></p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$iva2</span> <span class="o">=</span> <span class="nb">array_combine</span><span class="p">(</span><span class="nb">array_keys</span><span class="p">(</span><span class="nv">$precios</span><span class="p">),</span> <span class="nv">$iva</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$iva2</span><span class="p">);</span>
+<span class="sd">/**</span>
+<span class="sd">    Array</span>
+<span class="sd">(</span>
+<span class="sd">    [pan] =&gt; 1.21</span>
+<span class="sd">    [leche] =&gt; 2.42</span>
+<span class="sd">    [queso] =&gt; 3.63</span>
+<span class="sd">)</span>
+<span class="sd">    */</span>
+</code></pre></div>
+<h3 id="practica-mis_callbacksphp">Práctica (mis_callbacks.php)</h3>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$nums</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+</code></pre></div>
+<p>Dado el array anterior:</p>
+<ul>
+<li>Usa <code>array_filter</code> para quedarte solo con los números positivos e impares y reindixa</li>
+<li>Usa <code>array_map</code> para elevarlos al cuadrado</li>
+<li>Usa <code>array_reduce</code> para obtener la suma total de esos cuadrados.</li>
+<li>Muestra cada resultado (<code>print_r</code> o <code>echo</code> según el caso).</li>
+</ul>
+<p>El array_filter lo harás con una función anónima, el array_map con una funcion nombrada definida previamente y el array_reduce con una función flecha.</p>
+<h2 id="4-metodos-utiles-para-arrays-desectructuracion-de-arrays-tanto-normales-como-asocitativos">4. Métodos útiles para Arrays. Desectructuración de Arrays (tanto normales como asocitativos)</h2>
+<p>Además de <code>array_map</code> y <code>array_filter</code>, vistos en la práctica y en el punto anterior existen funciones muy prácticas para el manejo de arrays. Además, veremos el concepto de "desectructurar un array", importantísimo.</p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">//------ordenar arrays------------------</span>
+<span class="nv">$nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">];</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$nums</span><span class="p">);</span>
+<span class="nb">sort</span><span class="p">(</span><span class="nv">$nums</span><span class="p">);</span> <span class="c1">// ordena ascendente</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$nums</span><span class="p">);</span>
+<span class="nb">rsort</span><span class="p">(</span><span class="nv">$nums</span><span class="p">);</span> <span class="c1">// descendente</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$nums</span><span class="p">);</span>
+
+<span class="c1">//----haciendo slices--------------------</span>
+
+<span class="nv">$parte</span> <span class="o">=</span> <span class="nb">array_slice</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span> <span class="c1">//cogemos tres elementos a partir del indicie 1 incluyendolo</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$parte</span><span class="p">);</span>
+
+
+<span class="nv">$parte</span> <span class="o">=</span> <span class="nb">array_slice</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span> <span class="c1">//cogemos todos los elementos a partir del índice 3</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$parte</span><span class="p">);</span>
+
+
+<span class="cm">/*</span>
+<span class="cm">Array</span>
+<span class="cm">(</span>
+<span class="cm">    [1] =&gt; 20</span>
+<span class="cm">    [2] =&gt; 30</span>
+<span class="cm">    [3] =&gt; 40</span>
+<span class="cm">)</span>
+
+<span class="cm">*/</span>
+
+
+<span class="nv">$nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">];</span>
+<span class="nv">$ultimos</span> <span class="o">=</span> <span class="nb">array_slice</span><span class="p">(</span><span class="nv">$nums</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// últimos 2 elementos</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$ultimos</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">Array</span>
+<span class="cm">(</span>
+<span class="cm">    [0] =&gt; 40</span>
+<span class="cm">    [1] =&gt; 50</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+
+<span class="nv">$ultimo</span> <span class="o">=</span> <span class="nb">end</span><span class="p">(</span><span class="nv">$nums</span><span class="p">);</span> <span class="c1">// devuelve 50</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$ultimo</span><span class="p">;</span>
+
+
+<span class="c1">//----mergear arrays-----------------------------</span>
+<span class="nv">$mix</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="nv">$otros</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">];</span>
+<span class="nv">$combinado</span> <span class="o">=</span> <span class="nb">array_merge</span><span class="p">(</span><span class="nv">$mix</span><span class="p">,</span> <span class="nv">$otros</span><span class="p">);</span> <span class="c1">// une arrays</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$combinado</span><span class="p">);</span>
+
+
+<span class="c1">//------destructuración, defino tres variables de forma rapidísima</span>
+<span class="nv">$valores</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">];</span>
+<span class="k">list</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span><span class="p">,</span> <span class="nv">$c</span><span class="p">)</span> <span class="o">=</span> <span class="nv">$valores</span><span class="p">;</span> 
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$a</span><span class="p">;</span> <span class="c1">// x</span>
+
+<span class="c1">//-----------------Buscar y verificar en arrays</span>
+<span class="nv">$colores</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rojo&quot;</span><span class="p">,</span> <span class="s2">&quot;verde&quot;</span><span class="p">,</span> <span class="s2">&quot;azul&quot;</span><span class="p">];</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="s2">&quot;verde&quot;</span><span class="p">,</span> <span class="nv">$colores</span><span class="p">))</span> <span class="k">echo</span> <span class="s2">&quot;Verde está&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">array_search</span><span class="p">(</span><span class="s2">&quot;azul&quot;</span><span class="p">,</span> <span class="nv">$colores</span><span class="p">);</span> <span class="c1">// devuelve índice. Solo devuelve la primera clave</span>
+</code></pre></div>
+Para arrays-asociativos:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">//--------------------slices</span>
+<span class="nv">$animales</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;a&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;perro&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;b&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;gato&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;pez&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;loro&quot;</span>
+<span class="p">];</span>
+
+<span class="nv">$trozo</span> <span class="o">=</span> <span class="nb">array_slice</span><span class="p">(</span><span class="nv">$animales</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$trozo</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">Array de salida</span>
+<span class="cm">(</span>
+<span class="cm">    [b] =&gt; gato</span>
+<span class="cm">    [c] =&gt; pez</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+
+<span class="nv">$ultimo</span> <span class="o">=</span> <span class="nb">end</span><span class="p">(</span><span class="nv">$animales</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$ultimo</span><span class="p">;</span> <span class="c1">// loro</span>
+
+<span class="nv">$ultimos</span> <span class="o">=</span> <span class="nb">array_slice</span><span class="p">(</span><span class="nv">$animales</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$ultimos</span><span class="p">);</span>
+<span class="cm">/*</span>
+<span class="cm">Array de salida</span>
+<span class="cm">(</span>
+<span class="cm">    [c] =&gt; pez</span>
+<span class="cm">    [d] =&gt; loro</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+</code></pre></div>
+<p>También ordenamos</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$personas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;juan&quot;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;ana&quot;</span> <span class="o">=&gt;</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;pedro&quot;</span> <span class="o">=&gt;</span> <span class="mi">35</span><span class="p">];</span>
+<span class="nb">sort</span><span class="p">(</span><span class="nv">$personas</span><span class="p">);</span> <span class="c1">// pierde las claves</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$personas</span><span class="p">);</span>
+</code></pre></div>
+<p>resultado</p>
+<div class="highlight"><pre><span></span><code><span class="x">Array</span>
+<span class="x">(</span>
+<span class="x">    [0] =&gt; 25</span>
+<span class="x">    [1] =&gt; 30</span>
+<span class="x">    [2] =&gt; 35</span>
+<span class="x">)</span>
+</code></pre></div>
+<p>El merge funciona sin problemas también para arrays asociativos</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$personas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;juan&quot;</span> <span class="o">=&gt;</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;ana&quot;</span> <span class="o">=&gt;</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;pedro&quot;</span> <span class="o">=&gt;</span> <span class="mi">35</span><span class="p">];</span>
+<span class="nb">sort</span><span class="p">(</span><span class="nv">$personas</span><span class="p">);</span> <span class="c1">// pierde las claves</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$personas</span><span class="p">);</span>
+
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">];</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;z&quot;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">];</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nb">array_merge</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span><span class="p">));</span>
+
+<span class="cm">/*</span>
+
+<span class="cm">Array</span>
+<span class="cm">(</span>
+<span class="cm">    [x] =&gt; 1</span>
+<span class="cm">    [y] =&gt; 2</span>
+<span class="cm">    [z] =&gt; 3</span>
+<span class="cm">)</span>
+<span class="cm">*/</span>
+</code></pre></div>
+<p>desectructuración de arrays_asocitavos:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">];</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;z&quot;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">];</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nb">array_merge</span><span class="p">(</span><span class="nv">$a</span><span class="p">,</span> <span class="nv">$b</span><span class="p">));</span>
+</code></pre></div>
+<p>in_array y array_search funcionan igual también</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$colores</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rojo&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;#f00&quot;</span><span class="p">,</span> <span class="s2">&quot;verde&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;#0f0&quot;</span><span class="p">];</span>
+<span class="k">echo</span> <span class="nb">in_array</span><span class="p">(</span><span class="s2">&quot;#0f0&quot;</span><span class="p">,</span> <span class="nv">$colores</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nb">array_search</span><span class="p">(</span><span class="s2">&quot;#0f0&quot;</span><span class="p">,</span> <span class="nv">$colores</span><span class="p">);</span> 
+</code></pre></div>
+<h3 id="practica-mas_metodos_arraysphp">Práctica (mas_metodos_arrays.php)</h3>
+<p>Crea un array con los números <code>[9, 1, 5, 2, 7]</code>.</p>
+<ul>
+<li>Ordénalos en orden ascendente.</li>
+<li>Muestra el primer (menor) y el último (mayor) valor del array.</li>
+<li>Luego ordénalos en descendente y muestra el nuevo orden.</li>
+</ul>
+<p>Crea dos arrays:</p>
+<ul>
+<li><code>$frutas = ["manzana", "pera", "kiwi"];</code></li>
+<li><code>$bebidas = ["agua", "zumo"];</code></li>
+<li>Combínalos con <code>array_merge()</code> en un único array llamado <code>$lista</code>,
+   y muestra su contenido con <code>print_r()</code>.</li>
+</ul>
+<p>Dado el array $colores = ["rojo", "verde", "azul"];</p>
+<ul>
+<li>Desestructura los tres valores en variables individuales <code>$a</code>, <code>$b</code>, <code>$c</code> usando <code>list()</code>,
+   y muestra una frase como: <code>Los colores primarios son rojo, verde y azul</code></li>
+</ul>
+<p>Crea el array: <code>$animales = ["perro", "gato", "pez", "loro"]</code></p>
+<ul>
+<li>
+<p>Verifica si <code>"gato"</code> está dentro del array con <code>in_array()</code>.</p>
+</li>
+<li>
+<p>Busca el índice o posición de <code>"loro"</code> con <code>array_search()</code>.</p>
+</li>
+</ul>
+<p>Crea el siguiente array asociativo con nombres y edades  <code>$personas = [
+    "juan" =&gt; 30,
+    "ana" =&gt; 25,
+    "pedro" =&gt; 35,
+    "marta" =&gt; 28
+];</code></p>
+<ul>
+<li>Muestra todas las personas y sus edades.</li>
+<li>Ordena el array por edad ascendente manteniendo las claves si usar la función predefinida que no veremos <code>asort</code></li>
+<li>Muestra el índice del más joven y el más mayor. Te recomiendo buscar en el array de valores el número más alto y después buscar el indice. Ambo está hecho en ejemplos en esta práctica.</li>
+<li>Verifica si existe la persona <code>"ana"</code> con en el array de keys.</li>
+</ul>
+<h2 id="5-metodos-importantes-para-strings">5. Métodos importantes para Strings</h2>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$texto</span> <span class="o">=</span> <span class="s2">&quot;  Hola Mundo desde PHP  &quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">strlen</span><span class="p">(</span><span class="nv">$texto</span><span class="p">);</span> <span class="c1">// longitud</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$texto</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">strtoupper</span><span class="p">(</span><span class="nv">$texto</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$texto</span><span class="p">);</span> <span class="c1">// elimina espacios</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">str_replace</span><span class="p">(</span><span class="s2">&quot;PHP&quot;</span><span class="p">,</span> <span class="s2">&quot;el servidor&quot;</span><span class="p">,</span> <span class="nv">$texto</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">strpos</span><span class="p">(</span><span class="nv">$texto</span><span class="p">,</span> <span class="s2">&quot;Mundo&quot;</span><span class="p">);</span> <span class="c1">// posición</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">substr</span><span class="p">(</span><span class="nv">$texto</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span> <span class="c1">// subcadena</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+
+<span class="c1">//Aceder yb recorrer strings</span>
+<span class="nv">$texto</span> <span class="o">=</span> <span class="s2">&quot;Hola Mundo&quot;</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nv">$texto</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// H</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$texto</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// o</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$texto</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span> <span class="c1">// M</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+
+<span class="nv">$texto</span> <span class="o">=</span> <span class="s2">&quot;Hola&quot;</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">strlen</span><span class="p">(</span><span class="nv">$texto</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="nv">$texto</span><span class="p">[</span><span class="nv">$i</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$texto</span> <span class="o">=</span> <span class="s2">&quot;Hola&quot;</span><span class="p">;</span>
+<span class="nv">$texto</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;M&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$texto</span><span class="p">;</span> <span class="c1">// Mola</span>
+</code></pre></div>
+También puedes dividir y unir cadenas:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$frase</span> <span class="o">=</span> <span class="s2">&quot;uno,dos,tres&quot;</span><span class="p">;</span>
+<span class="nv">$partes</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="nv">$frase</span><span class="p">);</span> <span class="c1">// [&quot;uno&quot;,&quot;dos&quot;,&quot;tres&quot;]</span>
+<span class="k">echo</span> <span class="nb">implode</span><span class="p">(</span><span class="s2">&quot; - &quot;</span><span class="p">,</span> <span class="nv">$partes</span><span class="p">);</span> <span class="c1">// uno - dos - tres</span>
+</code></pre></div>
+<h3 id="practica-metodos_stringsphp">Práctica (metodos_strings.php)</h3>
+<ol>
+<li>Crea <code>strings.php</code> y crea una funcion llamada prueba que sobre una cadena prueba e imprime todos los métodos anteriores.  </li>
+<li>Añade un <code>$_GET["texto"]</code> después de  y realiza: longitud, conversión a mayúsculas, y búsqueda de una palabra concreta ("comida"). Esto se hará realizando un explode y un array_search normalizando cada elemento del array pasandolo a mayúsculas y haciendole un trim.</li>
+</ol>
+<h2 id="6-manejo-de-errores-try-catch-finally">6. Manejo de errores: <code>try</code>, <code>catch</code>, <code>finally</code></h2>
+<p>Esto es fundamental de muchos lenguajes y permite manejar excepciones sin detener el script.</p>
+<p>Cuando el código dentro de un bloque <code>try</code> puede generar un error, se encierra dentro el codigo dentro de <code>try { ... }</code>.
+ Si dentro de ese bloque ocurre una excepción, PHP interrumpe la ejecución normal del <code>try</code> y salta directamente al bloque <code>catch</code>, donde se puede capturar y manejar ese error de manera segura.El bloque <code>finally</code> se ejecuta siempre, ocurra o no una excepción.</p>
+<p><strong>También vemos como: throw new Exception("No se puede dividir entre 0");</strong>  que significa que el programa está generando (lanzando) una excepción de forma intencional cuando ocurre una situación que consideramos un error, en este caso intentar dividir entre cero.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$divisor</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;divisor&quot;</span><span class="p">]</span> <span class="o">??</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$divisor</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;No se puede dividir entre 0&quot;</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="mi">10</span> <span class="o">/</span> <span class="nv">$divisor</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;Error: &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span> <span class="c1">//ojo e-&gt;getMessage() es la ejecución de un objeto.</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;Bloque finally ejecutado siempre.&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="practica-mi_ipphp">Práctica (mi_ip.php)</h3>
+<p>Crea una funcion en PHP que:</p>
+<ol>
+<li>Reciba un parámetro <code>ip</code> por la URL (<code>?ip=192.168.1.10</code>).</li>
+<li>Separe la IP en 4 bloques usando <code>explode(".")</code>.</li>
+<li>Verifique que haya exactamente 4 partes.</li>
+<li>Compruebe que cada bloque sea numérico (utiliza is_digit) y esté entre 0 y 255.</li>
+<li>Si falla alguna validación, lance <code>throw new Exception("mensaje de error")</code> y recoja la excepción con un catch y dejando claro que la ip, no es correcta.</li>
+<li>En conclusión, usa: <code>try</code>, <code>catch</code> y <code>finally</code> para que el script no se detenga nunca.</li>
+</ol>
+<h3 id="atencion-exception-vs-error-y-uso-de-throwable">Atención: Exception vs Error y uso de Throwable.</h3>
+<p>Fijémonos el en siguiete código:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">try</span> <span class="p">{</span>
+ <span class="nv">$divisor</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;divisor&quot;</span><span class="p">]</span> <span class="o">??</span> <span class="mi">0</span><span class="p">;</span>
+
+ <span class="k">if</span> <span class="p">(</span><span class="nv">$divisor</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;No se puede dividir entre 0&quot;</span><span class="p">);</span>
+ <span class="p">}</span>
+
+ <span class="nv">$resultado</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;esto genera un error&quot;</span><span class="p">];</span>
+ <span class="k">echo</span> <span class="mi">10</span> <span class="o">/</span> <span class="nv">$divisor</span><span class="p">;</span>
+
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+ <span class="k">echo</span> <span class="s2">&quot;Excepción: &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Error</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+ <span class="k">echo</span> <span class="s2">&quot;Error del motor PHP: &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+
+<span class="p">}</span>
+
+<span class="k">finally</span> <span class="p">{</span>
+ <span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;Bloque finally ejecutado siempre.&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div>
+<p>En PHP, una Exception representa errores <em>controlables</em> dentro de la lógica de la aplicación: condiciones que tú esperas y decides manejar, como validar datos o evitar divisiones por cero. En cambio, un Error representa fallos del <em>motor de PHP</em>, cosas que no se pueden hacer a nivel de lenguaje, como sumar un número con un array o llamar a una función inexistente. Las excepciones las lanzas tú para controlar el flujo; los errores los genera PHP cuando detecta algo imposible o inválido en tiempo de ejecución.</p>
+<h2 id="7-parametros-de-ruta-continuacion-de-query-params-peticiones-desde-clientes-html-y-fetch-con-javascript-inline">7. Parámetros de ruta (continuación de Query Params). Peticiones desde clientes HTML y fetch con JavaScript (inline)</h2>
+<p><u>Lo que vas a ver la forma básica y manual de manejar rutas en PHP usando Apache, sin frameworks.</u></p>
+<p>Hasta ahora usamos query params (<code>?nombre=Juan</code>).<br />
+También podemos pasar parámetros en la ruta, por ejemplo:<br />
+<code>http://localhost/usuario/juan</code></p>
+<p>Para que esto funcione, el servidor (Apache) debe tener habilitado <code>mod_rewrite</code> y un archivo <code>.htaccess</code> que redirija todas las peticiones al archivo principal (<code>index.php</code> ) tal y como hicimos en la práctica 2.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// index.php</span>
+<span class="nv">$path</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">];</span> <span class="c1">//url solicitada</span>
+<span class="nv">$partes</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">));</span> <span class="c1">// [&quot;usuario&quot;, &quot;ana&quot;] pensadlo, ambas funciones vistas antes</span>
+<span class="nv">$ultimo</span> <span class="o">=</span> <span class="nb">end</span><span class="p">(</span><span class="nv">$partes</span><span class="p">);</span> <span class="c1">// &quot;ana&quot;</span>
+
+<span class="nv">$metodo</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">];</span> <span class="c1">// GET, POST, PUT, DELETE...</span>
+
+<span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Ruta accedida: &quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$path</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;&lt;/h2&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Último segmento: &lt;strong&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$ultimo</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;&lt;/strong&gt;&lt;/p&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Método HTTP: &lt;strong&gt;</span><span class="si">$metodo</span><span class="s2">&lt;/strong&gt;&lt;/p&gt;&quot;</span><span class="p">;</span>
+
+<span class="c1">// Ejemplo interesante: comportamiento distinto según método que se pida</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$metodo</span> <span class="o">===</span> <span class="s2">&quot;GET&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Mostrando información del usuario &lt;strong&gt;</span><span class="si">$ultimo</span><span class="s2">&lt;/strong&gt;.&lt;/p&gt;&quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$metodo</span> <span class="o">===</span> <span class="s2">&quot;POST&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Creando un nuevo recurso llamado &lt;strong&gt;</span><span class="si">$ultimo</span><span class="s2">&lt;/strong&gt;.&lt;/p&gt;&quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Método no manejado.&lt;/p&gt;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">?&gt;</span>
+</code></pre></div>
+<h3 id="practica-indexphp">Práctica (index.php)</h3>
+<p>Ejecuta el código anterior con GET POST PUT y DELETE mediante postman y haz capturas de pantalla, prueba a enviar información a ver si la recibe correctamente. Importa que envíes información o da igual la info que envíes (por ejemplo en un post) .</p>
+<p>Después de hacer las peticiones con postman, elabora un formulario llamdo "formulario.html" que mediante 4 formularios html's (dentro de formulario.html) haga las peticiones al script anterior con GET POST PUT Y DELETE, (resuelto en el siguiente script.) Qué problema encuentras con PUT Y DELETE? (Pues que no deja como action en el HTML)</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">justify-content</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">contenedor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">carta</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">252</span><span class="p">);</span>
+<span class="w">            </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">height</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease-in-out</span><span class="p">;</span>
+<span class="w">            </span><span class="k">overflow</span><span class="p">:</span><span class="w"> </span><span class="kc">hidden</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nt">form</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nt">input</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="kt">rem</span><span class="p">;</span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">fetch_put</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">carta</span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;carta_put&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">div_put</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;resultado_put&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">boton_put</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;button_put&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">div_put</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">div_put</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">                </span><span class="nx">boton_put</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Enviar PUT&quot;</span>
+<span class="w">                </span><span class="nx">carta</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;15rem&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">put_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;put-msg&quot;</span><span class="p">).</span><span class="nx">value</span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;usuario/ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;PUT&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="s2">&quot;mensaje&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">put_value</span><span class="w"> </span><span class="p">})</span>
+<span class="w">                    </span><span class="p">})</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">respuesta_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">()</span>
+<span class="w">                    </span><span class="nx">div_put</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">respuesta_text</span>
+<span class="w">                    </span><span class="nx">boton_put</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Borrar salida PUT&quot;</span>
+<span class="w">                    </span><span class="nx">carta</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span><span class="o">=</span><span class="w"> </span><span class="nx">carta</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;px&quot;</span><span class="w">   </span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">div_put</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">error</span>
+<span class="w">                    </span><span class="nx">boton_put</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Borrar salida PUT&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+
+<span class="w">        </span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">fetch_delete</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">carta</span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;carta_delete&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">div_delete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;resultado_delete&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">boton_delete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;button_delete&quot;</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">div_delete</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">div_delete</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">                </span><span class="nx">boton_delete</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Enviar DELETE&quot;</span>
+<span class="w">                </span><span class="nx">carta</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;15rem&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="nx">delete_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;delete-msg&quot;</span><span class="p">).</span><span class="nx">value</span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;usuario/ana&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;DELETE&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">                        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="s2">&quot;mensaje&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">delete_value</span><span class="w"> </span><span class="p">})</span>
+<span class="w">                    </span><span class="p">})</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">respuesta_text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">()</span>
+<span class="w">                    </span><span class="nx">div_delete</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">respuesta_text</span>
+<span class="w">                    </span><span class="nx">boton_delete</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Borrar salida DELETE&quot;</span>
+<span class="w">                    </span><span class="nx">carta</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span><span class="o">=</span><span class="w"> </span><span class="nx">carta</span><span class="p">.</span><span class="nx">scrollHeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;px&quot;</span><span class="w">  </span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">div_delete</span><span class="p">.</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">error</span>
+<span class="w">                    </span><span class="nx">boton_delete</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Borrar salida PUT&quot;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;contenedor&quot;</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;carta&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/usuario/ana&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Esto sería un GET<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;mensaje&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Pon tus datos&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;carta&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;ejemplo_post.php&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&quot;multipart/form-data&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Esto sería un POST<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;usuario&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Pon tus datos&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;clave&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Pon tus datos&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;foto&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;carta&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;carta_put&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Esto sería un PUT<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;put-msg&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Pon tus datos&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;button_put&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;fetch_put()&quot;</span><span class="p">&gt;</span>Enviar PUT <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;resultado_put&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;carta&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;carta_delete&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Esto sería un DELETE<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;delete-msg&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Pon tus datos&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;button_delete&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;fetch_delete()&quot;</span><span class="p">&gt;</span>Enviar DELETE <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;resultado_delete&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<h2 id="8-preparar-una-ruta-para-recoger-informacion-que-envia-el-cliente-manejar-el-content-type-para-recoger-los-datos-que-envia-el-cliente-opcional">8. Preparar una ruta para recoger información que envía el cliente. Manejar el Content-Type para recoger los datos que envía el cliente. (Opcional)</h2>
+<p>Una vez hemos visto los conceptos más básicos de php, lo que vemos ahora es cómo configurar el servidor para poder recibir distintos tipos de datos.</p>
+<h3 id="81-recoger-contenido-de-un-form-data-x-www-form-urlencoded-o-multipartform-data-para-archivos">8.1 Recoger contenido de un Form Data (x-www-form-urlencoded o multipart/form-data para archivos)</h3>
+<p>Cuando los datos se envían mediante un formulario HTML tradicional, se usan los tipos de contenido <code>application/x-www-form-urlencoded</code> o <code>multipart/form-data</code> (si se incluyen archivos). Por ejemplo, un formulario podría ser:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;api.php&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;usuario&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;pepe&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;clave&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;1234&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>En el servidor PHP, en el <code>script api.php</code>se pueden leer los datos de la siguiente forma:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$usuario = $_POST[&#39;usuario&#39;];</span>
+<span class="x">$clave = $_POST[&#39;clave&#39;];</span>
+<span class="x">echo &quot;usuario $usuario con clave $clave logueado correctamente&quot; //simulo que hago un loggin con los datos, como todavía no tenemos bases de datos no tiene mucho sentido, pero ya sabemos como recoger la info que envía el cliente.</span>
+</code></pre></div>
+<p>Cuando el formulario HTML del cliente se envía con una foto (ejemplo siguiente), PHP crea automáticamente un arreglo especial llamado <code>$_FILES</code> con la información del archivo. Por ejemplo, imagina que el cliente envía lo siguiente:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">form</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;api.php&quot;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&quot;multipart/form-data&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;usuario&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;pepe&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;foto&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Subir archivo<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Si en el servidor (script <code>subir.php</code> en este caso) ejecutas lo siguiente</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">);</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">);</span>
+</code></pre></div>
+<p>Verás algo así:</p>
+<div class="highlight"><pre><span></span><code>Array
+(
+    [usuario] =&gt; pepe
+)
+Array
+(
+    [foto] =&gt; Array
+        (
+            [name] =&gt; selfie.jpg
+            [type] =&gt; image/jpeg
+            [tmp_name] =&gt; /tmp/php8F3.tmp
+            [error] =&gt; 0
+            [size] =&gt; 123456
+        )
+)
+</code></pre></div>
+<p>Donde <code>$_FILES</code> también es un array, pero contiene otro array dentro (porque puede haber varios archivos aunque aquí sólo hay 1). En este ejemplo, el campo del formulario html se llamaba <code>foto</code>, por eso aparece una sección <code>[foto]</code>. Dentro de esa sección hay otra lista con la información del archivo que se crea de forma predeterminada:</p>
+<ul>
+<li><code>name</code>: el nombre original del archivo (<code>selfie.jpg</code>)</li>
+<li><code>type</code>: el tipo de archivo (<code>image/jpeg</code>)</li>
+<li><code>tmp_name</code>: la ubicación temporal donde PHP lo guarda automáticamente</li>
+<li><code>error</code>: código de error (0 significa que no hubo error)</li>
+<li><code>size</code>: el tamaño en bytes (por ejemplo 123456)</li>
+</ul>
+<p>Podríamos guardar el archivo enviado en el html en una carpeta del servidor de la siguiente forma añadiendo un poco más de código al script <code>subir.php</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">);</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">);</span>
+<span class="nv">$archivo_temporal</span> <span class="o">=</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;foto&#39;</span><span class="p">][</span><span class="s1">&#39;tmp_name&#39;</span><span class="p">];</span>
+<span class="nv">$nombre_final</span> <span class="o">=</span> <span class="s1">&#39;uploads/&#39;</span> <span class="o">.</span> <span class="nv">$_FILES</span><span class="p">[</span><span class="s1">&#39;foto&#39;</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">];</span> <span class="c1">//ruta relativa luego carpeta uploads de var/www/html (ninguna seguridad y cualquier cliente puede acceder)</span>
+<span class="nb">move_uploaded_file</span><span class="p">(</span><span class="nv">$archivo_temporal</span><span class="p">,</span> <span class="nv">$nombre_final</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="82-recoger-applicationjson-o-textraw">8.2 Recoger application/json o text/raw</h3>
+<p>Cuando una aplicación o un cliente envía datos en formato JSON , se usa el tipo de contenido <code>application/json</code>. Este tipo de envío es común en APIs modernas o peticiones AJAX. Por ejemplo, desde JavaScript se puede enviar algo así, tal y como hicimos en el punto 7.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;api.php&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;Content-Type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">usuario</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pepe&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">clave</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;1234&quot;</span><span class="w"> </span><span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>En el servidor PHP no se usa <code>$_POST</code> en este caso, porque PHP no interpreta automáticamente el JSON. En su lugar, se debe leer el cuerpo crudo de la petición con <code>php://input</code> y luego decodificarlo con <code>json_decode</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$raw</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$raw</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span> <span class="c1">#con true devuelve un array asociativo, ponedlo.</span>
+<span class="nv">$usuario</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;usuario&#39;</span><span class="p">];</span>
+<span class="nv">$clave</span> <span class="o">=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;clave&#39;</span><span class="p">];</span>
+</code></pre></div>
+<p>Si el usuario enviase text/raw, el contenido se recogería así:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$raw</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>es decir, no haría falta decodificarlo a JSON (ya que se envía texto, nada más)</p>
+<h3 id="83-ejemplo-combinado-de-lo-anterior-emjemplo_final_practica4php">8.3 Ejemplo combinado de lo anterior (emjemplo_final_practica4.php)</h3>
+<p>El siguiente código estará también en index.php ya que está elaborado para detectar incluso rutas que no existen. Este script presenta muchas formas de trabajar con las peticiones que llegan por el body, ya sean GET por query-param, POST por formularios o JSON's, que envía el cliente, archivos que envía el cleinte o incluso texto plano.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// ------------------------------------------------------------</span>
+<span class="c1">// CONFIGURACIÓN BÁSICA</span>
+<span class="c1">// ------------------------------------------------------------</span>
+
+<span class="c1">// Siempre estableceremos la codificación de salida ya que en este caso, enviaremos texto plano al cliente, para que el navegador sepa exactamente lo que se envía.</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: text/plain; charset=utf-8&quot;</span><span class="p">);</span>
+
+<span class="c1">// ------------------------------------------------------------</span>
+<span class="c1">// VARIABLES DE ENTORNO DEL SERVIDOR</span>
+<span class="c1">// ------------------------------------------------------------</span>
+<span class="nv">$path</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_URI&quot;</span><span class="p">];</span>
+<span class="nv">$metodo</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;REQUEST_METHOD&quot;</span><span class="p">];</span>
+<span class="nv">$tipoContenido</span> <span class="o">=</span> <span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;CONTENT_TYPE&quot;</span><span class="p">]</span> <span class="o">??</span> <span class="s1">&#39;no especificado&#39;</span><span class="p">;</span>
+
+<span class="c1">// Variables para la respuesta que enviaremos en el texto de la respuesta</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="nv">$resultado</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="c1">// ------------------------------------------------------------</span>
+<span class="c1">// LÓGICA PRINCIPAL DE PROCESAMIENTO</span>
+<span class="c1">// ------------------------------------------------------------</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$metodo</span> <span class="o">===</span> <span class="s2">&quot;GET&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ----------------- PETICIÓN GET, recoger query-params -----------------</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">;</span>
+        <span class="nv">$resultado</span> <span class="o">=</span> <span class="s2">&quot;Datos recibidos por método GET.&quot;</span><span class="p">;</span>
+
+    <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nb">in_array</span><span class="p">(</span><span class="nv">$metodo</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;POST&quot;</span><span class="p">,</span> <span class="s2">&quot;PUT&quot;</span><span class="p">,</span> <span class="s2">&quot;DELETE&quot;</span><span class="p">]))</span> <span class="p">{</span>
+
+        <span class="c1">// ----------------- recoger application/json del cliente -----------------</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">str_contains</span><span class="p">(</span><span class="nv">$tipoContenido</span><span class="p">,</span> <span class="s2">&quot;application/json&quot;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$raw</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
+            <span class="nv">$data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$raw</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+<span class="c1">#Ojo aqui a las funcines json_last_error() yjson_last_error_msg(), muy importantes.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">json_last_error</span><span class="p">()</span> <span class="o">!==</span> <span class="nx">JSON_ERROR_NONE</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;JSON inválido: &quot;</span> <span class="o">.</span> <span class="nb">json_last_error_msg</span><span class="p">());</span> <span class="c1">#Es una función interna de  PHP que te dice si la última llamada a json_decode() tuvo algún error.</span>
+            <span class="p">}</span>
+
+            <span class="nv">$resultado</span> <span class="o">=</span> <span class="s2">&quot;Datos recibidos en formato JSON.&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// ----------------- recoger application/x-www-form-urlencoded del cliente -----------------</span>
+        <span class="k">elseif</span> <span class="p">(</span><span class="nb">str_contains</span><span class="p">(</span><span class="nv">$tipoContenido</span><span class="p">,</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="p">)){</span> <span class="c1">#empty devuelve true si $data es falsy o no existe</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;No se recibieron datos del formulario.&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nv">$resultado</span> <span class="o">=</span> <span class="s2">&quot;Datos recibidos desde un formulario (x-www-form-urlencoded).&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// ----------------- recoger multipart/form-data (con archivos) -----------------</span>
+        <span class="k">elseif</span> <span class="p">(</span><span class="nb">str_contains</span><span class="p">(</span><span class="nv">$tipoContenido</span><span class="p">,</span> <span class="s2">&quot;multipart/form-data&quot;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$data</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$_FILES</span><span class="p">))</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;No se recibió ningún archivo.&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">foreach</span> <span class="p">(</span><span class="nv">$_FILES</span> <span class="k">as</span> <span class="nv">$nombre</span> <span class="o">=&gt;</span> <span class="nv">$archivo</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nv">$archivo</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;Error al subir&#39;</span><span class="si">{</span><span class="nv">$archivo</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;. Código: </span><span class="si">{</span><span class="nv">$archivo</span><span class="p">[</span><span class="s1">&#39;error&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="nv">$destinoCarpeta</span> <span class="o">=</span> <span class="s1">&#39;uploads/&#39;</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">is_dir</span><span class="p">(</span><span class="nv">$destinoCarpeta</span><span class="p">))</span> <span class="p">{</span> <span class="c1">//¿que hace is_dir?</span>
+                    <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot; &#39;uploads/&#39; no existe. Créala con permisos de escritura.&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="nv">$dest</span> <span class="o">=</span> <span class="nv">$destinoCarpeta</span> <span class="o">.</span> <span class="nb">basename</span><span class="p">(</span><span class="nv">$archivo</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]);</span> <span class="c1">//¿que hace basename?</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">move_uploaded_file</span><span class="p">(</span><span class="nv">$archivo</span><span class="p">[</span><span class="s1">&#39;tmp_name&#39;</span><span class="p">],</span> <span class="nv">$dest</span><span class="p">))</span> <span class="p">{</span>
+                    <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;No se pudo mover el archivo a la carpeta de destino.&quot;</span><span class="p">);</span>
+                <span class="p">}</span>
+
+                <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;archivo_subido&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Archivo &#39;</span><span class="si">{</span><span class="nv">$archivo</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39; guardado correctamente en &#39;</span><span class="si">$dest</span><span class="s2">&#39;.&quot;</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="nv">$resultado</span> <span class="o">=</span> <span class="s2">&quot;Datos recibidos desde un formulario con archivo (multipart/form-data).&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// ----------------- recoger text/plain del cliente -----------------</span>
+        <span class="k">elseif</span> <span class="p">(</span><span class="nb">str_contains</span><span class="p">(</span><span class="nv">$tipoContenido</span><span class="p">,</span> <span class="s2">&quot;text/plain&quot;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nv">$raw</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="nv">$raw</span><span class="p">)</span> <span class="o">===</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;El cuerpo del texto está vacío.&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="nv">$data</span><span class="p">[</span><span class="s2">&quot;texto&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$raw</span><span class="p">;</span>
+            <span class="nv">$resultado</span> <span class="o">=</span> <span class="s2">&quot;Texto plano recibido (text/plain).&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// ----------------- Tipo desconocido -----------------</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;Formato de contenido no admitido: </span><span class="si">$tipoContenido</span><span class="s2">&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;Método HTTP no soportado por este ejemplo.&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$resultado</span> <span class="o">=</span> <span class="s2">&quot;Error: &quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="k">echo</span> <span class="nv">$resultado</span> <span class="o">.</span> <span class="s2">&quot; &quot;</span> <span class="o">.</span> <span class="nv">$data</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="practica-indexphp_1">Práctica (index.php)</h3>
+<p>Todavía no tienes que saber como programar esto, así que ejecuta el código anterior con GET POST PUT y DELETE mediante postman y haz capturas de pantalla, prueba a enviar información a ver si la recibe correctamente con los tres tipos de datos distintos: urlencoded, queryparams y fotos con form/data (crea la carpeta uploads en www/var/html con los permisos adecuados). </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

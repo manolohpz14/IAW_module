@@ -1,21 +1,5 @@
 ## Práctica Guiada 5. Conexiones a BD
 
-## -Índice
-
-1-Breve introducción a la programación orientada a objetos en PHP (nuevo)
-
-2-Instalación MySQL (server), creación de usuarios y privilegios
-
-2-Conexión a la BD en un script. Login de un usuario en la BBDD. (POST Login.php)
-
-3-Conexión a la BD en un script. Registrar usuario para probar login anterior (POST Register.php)
-
-4-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)
-
-5- HTML que realiza las peticiones. (Peticiones_form.html)
-
-6- Práctica
-
 ### 1-Breve introducción a la programación orientada a objetos en PHP
 
 La Programación Orientada a Objetos (POO) es un paradigma de programación , es decir, una forma de organizar y estructurar el código, que se basa en el uso de objetos. Un objeto es una entidad que agrupa datos (propiedades o atributos) y comportamientos (métodos o funciones) que pertenecen a esa entidad. La idea principal es modelar partes del mundo real usando estructuras de código más cercanas a cómo pensamos las cosas.
@@ -33,7 +17,7 @@ En POO combinamos ambas cosas dentro de una estructura llamada clase. A continua
 **- Objeto**
  Un objeto es una instancia real creada a partir de una clase. Ejemplo: Un coche concreto, como un Seat Ibiza de 2018, es un objeto creado a partir de la clase Coche, es decir, una instancia.
 
-<img src="/home/manolo/.config/Typora/typora-user-images/image-20251127105113973.png" alt="image-20251127105113973" style="zoom:50%;" />
+<img src="/home/manolo/Escritorio/IAW/materia/docs/img/image-20251127105113973.png" alt="image-20251127105113973" style="zoom:50%;" />
 
 **- Propiedades**
  Son variables que representan la información que guarda un objeto. Ejemplo: Un coche tiene propiedades como color='rojo' o kilómetros=120000 o velocidad=40km/h.

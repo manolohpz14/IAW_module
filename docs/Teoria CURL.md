@@ -1,4 +1,4 @@
-# -Teoría de `curl` (Previo práctica)
+## -Teoría de `curl` (Previo práctica)
 
 ### ¿Qué es `curl`?
 

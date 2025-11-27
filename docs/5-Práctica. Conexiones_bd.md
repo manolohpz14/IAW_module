@@ -40,7 +40,7 @@ En este script, vemos el concepto de: Clase, Objeto (Instancia de la clase), Pro
 - Los objetos serán las personas que se crean a partir de la plantilla clase. Al crear una persona deberemos asignar un valor a las propiedades nombre y edad
 - Además, la plantilla (la clase) tendrá una propiedad común a todas las personas, que será el número de personas creadas.
 
-Os recomiendo ejecutar el siguiente código en el intérprete de php.
+Os recomiendo ejecutar el siguiente código en el intérprete de php. PHP necesita saber qué propiedades tiene la clase antes de crear el objeto. El constructor no crea propiedades, solo les da valores.
 
 ```php
 <?php
@@ -50,7 +50,7 @@ class Persona
     public string $nombre;
     public int $edad;
 
-    // Contador de instancias de objeto, cada vez que creeemos a una persona subiremos en 1
+    // contador de instancias de objeto, cada vez que creeemos a una persona subiremos en 1
     public static int $contador = 0;
 
     public function __construct(string $nombre, int $edad)
@@ -60,30 +60,31 @@ class Persona
         self::$contador++;
     }
 }
+```
 
+Con lo anterior, tenemos la plantilla de los objetos que vamos a crear, la idea ahora es ver como creamos los objetos de dicha clase, lo vemos aqui:
+
+##### **Instanciando objetos**
+
+```php
 $persona1 = new Persona("Carlos", 30);
 $persona2 = new Persona("Ana", 25);
 $persona3 = new Persona("Luis", 40);
 
-echo $persona1->nombre . ", " . $persona1->edad . "\n"; // Carlos, 30
-echo $persona2->nombre . ", " . $persona2->edad . "\n"; // Ana, 25
-echo $persona3->nombre . ", " . $persona3->edad . "\n"; // Luis, 40
+echo $persona1->nombre . ", " . $persona1->edad . "\n";
+echo $persona2->nombre . ", " . $persona2->edad . "\n";
+echo $persona3->nombre . ", " . $persona3->edad . "\n";
 
-echo Persona::$contador  . "\n"; // 3 → se crearon tres objetos
+echo Persona::$contador  . "\n"; // resultado es 3
 
-//Por desgracia, podemos cambiar el nombre a Paco, cosa que no deberíamos poder hacer.
 $persona1->nombre="Paco";
-echo $persona1->nombre . ", " . $persona1->edad . "\n"; // Carlos, 30
-
-//Por desgracia, podemos cambiar el numero de personas, cosa que no deberíamos poder hacer porque tampoco tiene ningun sentido
+echo $persona1->nombre . ", " . $persona1->edad . "\n";
 
 Persona::$contador=28;
-echo Persona::$contador .  "\n"; // 28 -> No tiene sentido porque tenemos sólo 3 personas`
+echo Persona::$contador . "\n";
 ```
 
-Como podemos observar el código anterior tiene ciertos problemas
-
-Se puede instanciar un objeto y posteriormente cambiar las propiedades del objeto sin piedad (como el nombre y la edad), incluso también podría cambiar la propiedad estática de la clase,  propiedad que como hemos comentado antes,  es compartida entre todos los objetos instanciados.
+Como podemos observar el código anterior tiene ciertos problemas. Se puede instanciar un objeto y posteriormente cambiar las propiedades del objeto sin piedad (como el nombre y la edad), incluso también podría cambiar la propiedad estática de la clase,  propiedad que como hemos comentado antes,  es compartida entre todos los objetos instanciados.
 
 #### 1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.
 
@@ -101,7 +102,6 @@ class Persona
 {
     public string $nombre;
     public int $edad;
-    // Ponemos la propiedad como estática.
     private static int $contador = 0;
 
     public function __construct(string $nombre, int $edad)
@@ -111,25 +111,23 @@ class Persona
         self::$contador++;
     }
 
-    // Getter de contador
     public static function getContador(): int
     {
         return self::$contador;
     }
 }
 
-
 $persona1 = new Persona("Carlos", 30);
 $persona2 = new Persona("Ana", 25);
 $persona3 = new Persona("Luis", 40);
 
-echo $persona1->nombre . ", " . $persona1->edad . "\n"; //La salida será: Carlos, 30
-echo $persona2->nombre . ", " . $persona2->edad . "\n"; //La salida será: Ana, 25
-echo $persona3->nombre . ", " . $persona3->edad . "\n"; //La salida será: Luis, 40
+echo $persona1->nombre . ", " . $persona1->edad . "\n";
+echo $persona2->nombre . ", " . $persona2->edad . "\n";
+echo $persona3->nombre . ", " . $persona3->edad . "\n";
 
 try {echo Persona::$contador . "\n";} //ya no podemos acceder ni editar así, hay que utilizar el getter
 catch (Throwable $e) {echo $e->getMessage() . "\n";}
-echo Persona::getContador() . "\n"; //Forma correcta de usar el getter
+echo Persona::getContador() . "\n";
 
 //Por desgracia, podemos cambiar el nombre a Paco, cosa que no deberíamos poder hacer.
 $persona1->nombre="Paco";
@@ -139,6 +137,12 @@ echo $persona1->nombre . ", " . $persona1->edad . "\n"; // Carlos, 30
 
 Como vemos al final del script siguen habiendo inconsistencias, como que se pueda cambiar el nombre de la persona (o incluso la edad). Esto se debe a que son propiedades públicas.
 
+##### This vs self
+
+$this se usa cuando quieres trabajar con un objeto específico. Representa a la instancia actual de la clase, es decir, al objeto que se creó con new. En cambio, self se usa cuando quieres trabajar con algo que pertenece a la clase en general, no a cada objeto. 
+
+
+
 #### 1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento
 
 En este último ejemplo, rizamos un poco más el rizo, lo que vemos ahora es encapsulación. Es decir, vamos a arreglar lo anterior. Para ello, no expondremos directamente al público las propiedades "edad" y "nombre" si no que estas se podrán editar u obtener únicamente a través de getters y setters.
@@ -146,15 +150,15 @@ En este último ejemplo, rizamos un poco más el rizo, lo que vemos ahora es enc
 **- Getters y Setters**
  Son métodos que permiten leer o modificar propiedades privadas de forma controlada. Ejemplo: Para saber la edad de una persona usamos getEdad(), y para cambiarla usamos setEdad(), que comprueba que sea un número válido.
 
+Cuando un getter o un setter es privado, no puede ser accedido desde una instancia, si no que solo se puede acceder desde la propia clase
+
 ```php
 <?php
 class Persona
 {
-    // Todas las propiedades son privadas
+    // ahora todas las propiedades son privadas
     private string $nombre;
     private int $edad;
-
-    // Contador de instancias (estático y privado)
     private static int $contador = 0;
 
     public function __construct(string $nombre, int $edad)
@@ -164,13 +168,12 @@ class Persona
         self::$contador++;
     }
 
-    // Getter y setter de nombre
     public function getNombre(): string
     {
         return $this->nombre;
     }
 
-    public function setNombre(string $nombre): void
+    private function setNombre(string $nombre): void
     {
         if (empty($nombre)) {
             throw new Exception("El nombre no puede estar vacío.");
@@ -178,13 +181,12 @@ class Persona
         $this->nombre = $nombre;
     }
 
-    // Getter y setter de edad
     public function getEdad(): int
     {
         return $this->edad;
     }
 
-    public function setEdad(int $edad): void
+    private function setEdad(int $edad): void
     {
         if ($edad < 0) {
             throw new Exception("La edad no puede ser negativa.");
@@ -192,8 +194,6 @@ class Persona
         $this->edad = $edad;
     }
 
-    // Método estático
-    
     public static function getContador(): int
     {
         return self::$contador;
@@ -203,8 +203,6 @@ class Persona
 $persona1 = new Persona("Carlos", 30);
 $persona2 = new Persona("Ana", 25);
 $persona3 = new Persona("Luis", 40);
-
-// Mostrar datos usando saltos de línea (\n)
 echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
 ```
 
@@ -417,31 +415,28 @@ $result = $stmt->get_result();
 
 ```
 
-Si quisieramos mandar el resultado al cliente, se lo mnandaríamos mediante un array asociativo, usando;
-
-> [!IMPORTANT]
->
-> `fetch_assoc()` devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:
->
-> ```php
-> while ($usuario = $result->fetch_assoc()) {
->     echo $usuario["nombre"] . "<br>";
-> }
-> ```
->
-> De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso.
+Si quisieramos mandar el resultado al cliente, se lo mandaríamos mediante un array asociativo, usando;
 
 ```bash
 $userData = $result->fetch_assoc();
 ```
 
-que hace lo siguiente, si mi tabla tiene:
+`fetch_assoc()` devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:
+
+```php
+while ($usuario = $result->fetch_assoc()) {
+ echo $usuario["nombre"] . "<br>";
+}
+```
+
+De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: 
 
 | id   | nombre | email                                       |
 | ---- | ------ | ------------------------------------------- |
-| 5    | Juan   | [test@mail.com](mailto:test@mail.com)<br /> |
+| 5    | Juan   | [Juan@mail.com](mailto:test@mail.com)<br /> |
+| 7    | Pepa   | [Pepa@mail.com](mailto:test@mail.com)<br /> |
 
-Convierte esto en un array asociativo que podremos manejar sin problemas en php;
+Al usar $result->fetch_assoc(), cada llamada se convierte esto en un array asociativo que podremos manejar sin problemas en php (es decir, tendríamos algo tal que así:)
 
 ```text
 [
@@ -476,7 +471,6 @@ if (!$email || !$pass_input) {
     die("Faltan datos");
 }
 
-// Consulta usando prepared statement
 $sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
 
 $stmt = $conn->prepare($sql);
@@ -521,9 +515,9 @@ Ya sabemos un poco sobre conexión a base de datos según lo visto en el punto a
 <?php
 header("Content-Type: application/json");
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 $host = getenv("DB_HOST");
 $db   = getenv("DB_NAME");

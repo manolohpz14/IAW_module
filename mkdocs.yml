@@ -1,0 +1,23 @@
+site_name: Módulo IAW
+theme:
+  name: material
+
+nav:
+  - Tema 1. Introducción a HTTP:
+      - Teoría CURL: Teoria CURL.md
+      - CURL y POSTMAN. Practica 1: Práctica 1.md
+      - Introduccion a APACHE e instalacion. Practica 2 : 2 Teoría-Práctica-Guiada.md
+
+  - Tema 2. Lenguajes de entorno sevidor PHP:
+      - Sintaxis, ejecución y estructuras de datos. Práctica 3: 3 primera_practica_PHP.md
+      - Métodos avanzados. Peticiones fetch y HTML. Práctica 4: practica4_php.md
+      - Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5: 5-Práctica. Conexiones_bd.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde

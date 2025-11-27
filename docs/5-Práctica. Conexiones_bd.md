@@ -67,6 +67,7 @@ Con lo anterior, tenemos la plantilla de los objetos que vamos a crear, la idea 
 ##### **Instanciando objetos**
 
 ```php
+<?php
 $persona1 = new Persona("Carlos", 30);
 $persona2 = new Persona("Ana", 25);
 $persona3 = new Persona("Luis", 40);

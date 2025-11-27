@@ -606,6 +606,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1.1-Primer ejemplo de POO en PHP.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instanciando-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instanciando objetos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -616,6 +633,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#this-vs-self" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        This vs self
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -829,6 +863,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="1.1-Primer ejemplo de POO en PHP.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instanciando-objetos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Instanciando objetos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -839,6 +890,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#this-vs-self" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        This vs self
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1026,7 +1094,7 @@
 <li>Los objetos serán las personas que se crean a partir de la plantilla clase. Al crear una persona deberemos asignar un valor a las propiedades nombre y edad</li>
 <li>Además, la plantilla (la clase) tendrá una propiedad común a todas las personas, que será el número de personas creadas.</li>
 </ul>
-<p>Os recomiendo ejecutar el siguiente código en el intérprete de php.</p>
+<p>Os recomiendo ejecutar el siguiente código en el intérprete de php. PHP necesita saber qué propiedades tiene la clase antes de crear el objeto. El constructor no crea propiedades, solo les da valores.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="k">class</span> <span class="nc">Persona</span>
 <span class="p">{</span>
@@ -1034,7 +1102,7 @@
     <span class="k">public</span> <span class="nx">string</span> <span class="nv">$nombre</span><span class="p">;</span>
     <span class="k">public</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">;</span>
 
-    <span class="c1">// Contador de instancias de objeto, cada vez que creeemos a una persona subiremos en 1</span>
+    <span class="c1">// contador de instancias de objeto, cada vez que creeemos a una persona subiremos en 1</span>
     <span class="k">public</span> <span class="k">static</span> <span class="nx">int</span> <span class="nv">$contador</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span>
@@ -1044,28 +1112,26 @@
         <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-
-<span class="nv">$persona1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
-<span class="nv">$persona2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
-<span class="nv">$persona3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
-
-<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Carlos, 30</span>
-<span class="k">echo</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Ana, 25</span>
-<span class="k">echo</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Luis, 40</span>
-
-<span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span>  <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// 3 → se crearon tres objetos</span>
-
-<span class="c1">//Por desgracia, podemos cambiar el nombre a Paco, cosa que no deberíamos poder hacer.</span>
-<span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span><span class="o">=</span><span class="s2">&quot;Paco&quot;</span><span class="p">;</span>
-<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Carlos, 30</span>
-
-<span class="c1">//Por desgracia, podemos cambiar el numero de personas, cosa que no deberíamos poder hacer porque tampoco tiene ningun sentido</span>
-
-<span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span><span class="o">=</span><span class="mi">28</span><span class="p">;</span>
-<span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span> <span class="o">.</span>  <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// 28 -&gt; No tiene sentido porque tenemos sólo 3 personas`</span>
 </code></pre></div>
-<p>Como podemos observar el código anterior tiene ciertos problemas</p>
-<p>Se puede instanciar un objeto y posteriormente cambiar las propiedades del objeto sin piedad (como el nombre y la edad), incluso también podría cambiar la propiedad estática de la clase,  propiedad que como hemos comentado antes,  es compartida entre todos los objetos instanciados.</p>
+<p>Con lo anterior, tenemos la plantilla de los objetos que vamos a crear, la idea ahora es ver como creamos los objetos de dicha clase, lo vemos aqui:</p>
+<h5 id="instanciando-objetos"><strong>Instanciando objetos</strong></h5>
+<div class="highlight"><pre><span></span><code><span class="x">$persona1 = new Persona(&quot;Carlos&quot;, 30);</span>
+<span class="x">$persona2 = new Persona(&quot;Ana&quot;, 25);</span>
+<span class="x">$persona3 = new Persona(&quot;Luis&quot;, 40);</span>
+
+<span class="x">echo $persona1-&gt;nombre . &quot;, &quot; . $persona1-&gt;edad . &quot;\n&quot;;</span>
+<span class="x">echo $persona2-&gt;nombre . &quot;, &quot; . $persona2-&gt;edad . &quot;\n&quot;;</span>
+<span class="x">echo $persona3-&gt;nombre . &quot;, &quot; . $persona3-&gt;edad . &quot;\n&quot;;</span>
+
+<span class="x">echo Persona::$contador  . &quot;\n&quot;; // resultado es 3</span>
+
+<span class="x">$persona1-&gt;nombre=&quot;Paco&quot;;</span>
+<span class="x">echo $persona1-&gt;nombre . &quot;, &quot; . $persona1-&gt;edad . &quot;\n&quot;;</span>
+
+<span class="x">Persona::$contador=28;</span>
+<span class="x">echo Persona::$contador . &quot;\n&quot;;</span>
+</code></pre></div>
+<p>Como podemos observar el código anterior tiene ciertos problemas. Se puede instanciar un objeto y posteriormente cambiar las propiedades del objeto sin piedad (como el nombre y la edad), incluso también podría cambiar la propiedad estática de la clase,  propiedad que como hemos comentado antes,  es compartida entre todos los objetos instanciados.</p>
 <h4 id="12-segundo-ejemplo-de-poo-en-php-uso-de-propiedades-privadas">1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.</h4>
 <p>En la segunda versión del código (ver más abajo), haremos que nadie pueda cambiar el valor de la propiedad estática (el número de personas), pasándola a privada. Además, al ser privada, ya nadie podrá acceder a ella haciendo:</p>
 <div class="highlight"><pre><span></span><code><span class="x">Persona::$contador</span>
@@ -1076,7 +1142,6 @@
 <span class="p">{</span>
     <span class="k">public</span> <span class="nx">string</span> <span class="nv">$nombre</span><span class="p">;</span>
     <span class="k">public</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">;</span>
-    <span class="c1">// Ponemos la propiedad como estática.</span>
     <span class="k">private</span> <span class="k">static</span> <span class="nx">int</span> <span class="nv">$contador</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span>
@@ -1086,43 +1151,42 @@
         <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">// Getter de contador</span>
     <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getContador</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-
 <span class="nv">$persona1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
 <span class="nv">$persona2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
 <span class="nv">$persona3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
 
-<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">//La salida será: Carlos, 30</span>
-<span class="k">echo</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">//La salida será: Ana, 25</span>
-<span class="k">echo</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">//La salida será: Luis, 40</span>
+<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 
 <span class="k">try</span> <span class="p">{</span><span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;}</span> <span class="c1">//ya no podemos acceder ni editar así, hay que utilizar el getter</span>
 <span class="k">catch</span> <span class="p">(</span><span class="nx">Throwable</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span><span class="k">echo</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;}</span>
-<span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="na">getContador</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">//Forma correcta de usar el getter</span>
+<span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="na">getContador</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 
 <span class="c1">//Por desgracia, podemos cambiar el nombre a Paco, cosa que no deberíamos poder hacer.</span>
 <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span><span class="o">=</span><span class="s2">&quot;Paco&quot;</span><span class="p">;</span>
 <span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Carlos, 30</span>
 </code></pre></div>
 <p>Como vemos al final del script siguen habiendo inconsistencias, como que se pueda cambiar el nombre de la persona (o incluso la edad). Esto se debe a que son propiedades públicas.</p>
+<h5 id="this-vs-self">This vs self</h5>
+<p>$this se usa cuando quieres trabajar con un objeto específico. Representa a la instancia actual de la clase, es decir, al objeto que se creó con new. En cambio, self se usa cuando quieres trabajar con algo que pertenece a la clase en general, no a cada objeto. </p>
 <h4 id="13-tercer-ejemplo-de-poo-en-php-getters-y-setters-encapsulamiento">1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento</h4>
 <p>En este último ejemplo, rizamos un poco más el rizo, lo que vemos ahora es encapsulación. Es decir, vamos a arreglar lo anterior. Para ello, no expondremos directamente al público las propiedades "edad" y "nombre" si no que estas se podrán editar u obtener únicamente a través de getters y setters.</p>
 <p><strong>- Getters y Setters</strong>
  Son métodos que permiten leer o modificar propiedades privadas de forma controlada. Ejemplo: Para saber la edad de una persona usamos getEdad(), y para cambiarla usamos setEdad(), que comprueba que sea un número válido.</p>
+<p>Cuando un getter o un setter es privado, no puede ser accedido desde una instancia, si no que solo se puede acceder desde la propia clase</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="k">class</span> <span class="nc">Persona</span>
 <span class="p">{</span>
-    <span class="c1">// Todas las propiedades son privadas</span>
+    <span class="c1">// ahora todas las propiedades son privadas</span>
     <span class="k">private</span> <span class="nx">string</span> <span class="nv">$nombre</span><span class="p">;</span>
     <span class="k">private</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">;</span>
-
-    <span class="c1">// Contador de instancias (estático y privado)</span>
     <span class="k">private</span> <span class="k">static</span> <span class="nx">int</span> <span class="nv">$contador</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span>
@@ -1132,13 +1196,12 @@
         <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">// Getter y setter de nombre</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">getNombre</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nombre</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">setNombre</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">setNombre</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;El nombre no puede estar vacío.&quot;</span><span class="p">);</span>
@@ -1146,21 +1209,18 @@
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">=</span> <span class="nv">$nombre</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">// Getter y setter de edad</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">getEdad</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
     <span class="p">{</span>
         <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">edad</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">public</span> <span class="k">function</span> <span class="nf">setEdad</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">setEdad</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
     <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nv">$edad</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;La edad no puede ser negativa.&quot;</span><span class="p">);</span>
         <span class="p">}</span>
         <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">=</span> <span class="nv">$edad</span><span class="p">;</span>
     <span class="p">}</span>
-
-    <span class="c1">// Método estático</span>
 
     <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getContador</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
     <span class="p">{</span>
@@ -1171,8 +1231,6 @@
 <span class="nv">$persona1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
 <span class="nv">$persona2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
 <span class="nv">$persona3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
-
-<span class="c1">// Mostrar datos usando saltos de línea (\n)</span>
 <span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">getNombre</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">getEdad</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 </code></pre></div>
 <h4 id="practica-pt1-clase-basica-con-propiedades-publicas">Práctica PT1. Clase básica con propiedades públicas</h4>
@@ -1327,19 +1385,15 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="x">#No tienes que mandar otra vez la consulta ni los valores: ya están “dentro” del $stmt aplicando el método get_result.</span>
 <span class="x">$result = $stmt-&gt;get_result();</span>
 </code></pre></div>
-<p>Si quisieramos mandar el resultado al cliente, se lo mnandaríamos mediante un array asociativo, usando;</p>
-<blockquote>
-<p>[!IMPORTANT]</p>
-<p><code>fetch_assoc()</code> devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:</p>
-<div class="highlight"><pre><span></span><code><span class="x">while ($usuario = $result-&gt;fetch_assoc()) {</span>
-<span class="x">    echo $usuario[&quot;nombre&quot;] . &quot;&lt;br&gt;&quot;;</span>
-<span class="x">}</span>
-</code></pre></div>
-<p>De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso.</p>
-</blockquote>
+<p>Si quisieramos mandar el resultado al cliente, se lo mandaríamos mediante un array asociativo, usando;</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$userData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$result</span>-&gt;fetch_assoc<span class="o">()</span><span class="p">;</span>
 </code></pre></div>
-<p>que hace lo siguiente, si mi tabla tiene:</p>
+<p><code>fetch_assoc()</code> devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:</p>
+<div class="highlight"><pre><span></span><code><span class="x">while ($usuario = $result-&gt;fetch_assoc()) {</span>
+<span class="x"> echo $usuario[&quot;nombre&quot;] . &quot;&lt;br&gt;&quot;;</span>
+<span class="x">}</span>
+</code></pre></div>
+<p>De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: </p>
 <table>
 <thead>
 <tr>
@@ -1352,11 +1406,16 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <tr>
 <td>5</td>
 <td>Juan</td>
-<td><a href="mailto:test@mail.com">test@mail.com</a><br /></td>
+<td><a href="mailto:test@mail.com">Juan@mail.com</a><br /></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Pepa</td>
+<td><a href="mailto:test@mail.com">Pepa@mail.com</a><br /></td>
 </tr>
 </tbody>
 </table>
-<p>Convierte esto en un array asociativo que podremos manejar sin problemas en php;</p>
+<p>Al usar $result-&gt;fetch_assoc(), cada llamada se convierte esto en un array asociativo que podremos manejar sin problemas en php (es decir, tendríamos algo tal que así:)</p>
 <div class="highlight"><pre><span></span><code>[
     &quot;id&quot; =&gt; 5,
     &quot;nombre&quot; =&gt; &quot;Juan&quot;,
@@ -1384,7 +1443,6 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
     <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Faltan datos&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="c1">// Consulta usando prepared statement</span>
 <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id, nombre, email, password FROM usuarios WHERE email = ?&quot;</span><span class="p">;</span>
 
 <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
@@ -1424,9 +1482,9 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
-<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_startup_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-<span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+<span class="c1">//ini_set(&#39;display_errors&#39;, 1);</span>
+<span class="c1">//ini_set(&#39;display_startup_errors&#39;, 1);</span>
+<span class="c1">//error_reporting(E_ALL);</span>
 
 <span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
 <span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>

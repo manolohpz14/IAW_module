@@ -930,7 +930,7 @@
  Una clase es una <u>plantilla</u> que define cómo serán los objetos creados a partir de ella. Ejemplo: La clase Coche describe qué datos tiene un coche (propiedades) como la marca, el modelo o el año, y qué puede hacer (métodos) como arrancar y frenar.</p>
 <p><strong>- Objeto</strong>
  Un objeto es una instancia real creada a partir de una clase. Ejemplo: Un coche concreto, como un Seat Ibiza de 2018, es un objeto creado a partir de la clase Coche, es decir, una instancia.</p>
-<p><img src="/home/manolo/Escritorio/IAW/materia/docs/img/image-20251127105113973.png" alt="image-20251127105113973" style="zoom:50%;" /></p>
+<p><img src="./img/image-20251127105113973.png" alt="image-20251127105113973" style="zoom:50%;" /></p>
 <p><strong>- Propiedades</strong>
  Son variables que representan la información que guarda un objeto. Ejemplo: Un coche tiene propiedades como color='rojo' o kilómetros=120000 o velocidad=40km/h.</p>
 <p><strong>- Métodos</strong>
@@ -1174,7 +1174,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </code></pre></div>
 <h3 id="2-conexion-a-la-bd-en-un-script-login-de-un-usuario-en-la-bbdd-loginphp">2-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)</h3>
 <p>Vamos a aprovechar el formulario de la pŕactica anterior (este):</p>
-<p><img alt="image-20251121105609040" src="/home/manolo/.config/Typora/typora-user-images/image-20251121105609040.png" /></p>
+<p><img alt="image-20251121105609040" src="../img/image-20251121105609040.png" /></p>
 <p>y vamos a hacer que dos formularios (dos POST's y un GET quitamos el resto) se conecten a scripts que hagan cosas interesantes. En primer lugar, el primer POST se conecta al primer script, que llamaremos (Login.php) que nos devuelve información del usuario (en el siguiente punto veremos como registar a un usuario), la primera parte del script contendrá esto:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
@@ -1200,7 +1200,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <p>En concreto, estas variables las ponéis en:
 /etc/apache2/envvars</p>
 <p>y escribís:</p>
-<p><img alt="image-20251121180114532" src="/home/manolo/.config/Typora/typora-user-images/image-20251121180114532.png" /></p>
+<p><img alt="image-20251121180114532" src="../img/image-20251121180114532.png" /></p>
 <p>Seguimos rellenando el script con la parte de la consulta:</p>
 <div class="highlight"><pre><span></span><code><span class="x">$sql = &quot;SELECT id, nombre, email, password FROM usuarios WHERE email = ?&quot;;</span>
 <span class="x">$stmt = $conn-&gt;prepare($sql);</span>

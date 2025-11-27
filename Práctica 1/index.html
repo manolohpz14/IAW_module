@@ -1,0 +1,1035 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Teoria%20CURL/">
+      
+      
+        <link rel="next" href="../2%20Teor%C3%ADa-Pr%C3%A1ctica-Guiada/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>CURL y POSTMAN. Practica 1 - Módulo IAW</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-practica-recuperar-el-muro-maria" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Módulo IAW" class="md-header__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Módulo IAW
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CURL y POSTMAN. Practica 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Módulo IAW" class="md-nav__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Módulo IAW
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 1. Introducción a HTTP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 1. Introducción a HTTP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Teoria%20CURL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría CURL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CURL y POSTMAN. Practica 1
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CURL y POSTMAN. Practica 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parte-1-de-la-practica-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte 1 de la práctica (POSTMAN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 1 de la práctica (POSTMAN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-registrar-un-recluta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Registrar un recluta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ver-info-de-un-recluta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ver info de un recluta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-obtener-mision-aleatoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Obtener misión aleatoria
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-preguntar-al-comandante-erwin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Preguntar al Comandante Erwin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-hablar-a-otro-personaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Hablar a otro personaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-unirte-a-una-tropa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Unirte a una Tropa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-analizar-titan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Analizar Titan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-cumplir-anos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cumplir años
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-retirar-a-un-recluta-del-frente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Retirar a un recluta del frente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-enviar-mapa-de-datos-png" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Enviar mapa de datos (png)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-2-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte 2 (CURL)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Teor%C3%ADa-Pr%C3%A1ctica-Guiada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion a APACHE e instalacion. Practica 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20primera_practica_PHP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sintaxis, ejecución y estructuras de datos. Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica4_php/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos avanzados. Peticiones fetch y HTML. Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Pr%C3%A1ctica.%20Conexiones_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parte-1-de-la-practica-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte 1 de la práctica (POSTMAN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parte 1 de la práctica (POSTMAN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-registrar-un-recluta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Registrar un recluta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ver-info-de-un-recluta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ver info de un recluta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-obtener-mision-aleatoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Obtener misión aleatoria
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-preguntar-al-comandante-erwin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Preguntar al Comandante Erwin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-hablar-a-otro-personaje" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Hablar a otro personaje
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-unirte-a-una-tropa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Unirte a una Tropa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-analizar-titan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Analizar Titan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-cumplir-anos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Cumplir años
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-retirar-a-un-recluta-del-frente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Retirar a un recluta del frente
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-enviar-mapa-de-datos-png" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Enviar mapa de datos (png)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parte-2-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parte 2 (CURL)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="-practica-recuperar-el-muro-maria">-Práctica: <em>Recuperar el Muro María</em></h1>
+<p>Eres un recluta recién graduado del <strong>104º Cuerpo de Entrenamiento</strong>. Tu misión es demostrar tus habilidades técnicas (en Postman o con <code>curl</code>) para unirte a una legión y luchar contra los titanes. Cada endpoint de esta API representa un reto. <strong>Sigue el orden y usa el formato correcto</strong>, o fallarás en la misión. Para poder ejecutar esta práctica necesitas instalar:</p>
+<ol>
+<li>Docker</li>
+<li>Postman</li>
+<li>Tener el paquete curl instalado en tu distribución debian (por defecto en Ubuntu)</li>
+</ol>
+<h2 id="parte-1-de-la-practica-postman">Parte 1 de la práctica (POSTMAN)</h2>
+<h3 id="1-registrar-un-recluta">1. Registrar un recluta</h3>
+<p>Verbo:<strong>?¿ </strong>ruta<strong>:<code>/register</code></strong> </p>
+<p>Envia los datos en el body y en JSON. El siguiente ejemplo muestra los datos que debes enviar para que un recluta se pueda alistar.</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;username&quot;: &quot;eren&quot;,
+  &quot;password&quot;: &quot;1234&quot;,
+  &quot;legion&quot;: &quot;Exploradores&quot;,
+  &quot;mentor&quot;: &quot;Erwin&quot;,
+  &quot;edad&quot;: 15
+}
+</code></pre></div>
+<p>Respuesta esperada:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;mensaje&quot;: &quot;Recluta eren registrado en la legión Exploradores, bajo la inspiración de Erwin&quot;
+}
+</code></pre></div>
+<p>Pregunta: ¿Qué verbo http debes usar body?</p>
+<p>Pregunta: ¿Qué debes enviar "claves" en el body?</p>
+<p>Pregunta: ¿Qué pasa si eliges <code>"legion": "Caballería"</code> o <code>"mentor": "Levi"</code>?</p>
+<p>Pregunta: ¿Qué pasa si el mentor no es ["Eren", "Erwin", "Armin", "Mikasa", "Reiner"]?</p>
+<p>Pregunta: ¿Qué pasa si la legión no es ["Exploradores", "Guarnición", "Policía Militar"]?</p>
+<p>Pregunta: ¿Qué error devuelve si la edad es menor de 14?</p>
+<p>Pregunta: ¿Qué pasa si el recluta ya existe?</p>
+<p>Imprime todas las respuestas!</p>
+<h3 id="2-ver-info-de-un-recluta">2. Ver info de un recluta</h3>
+<p>Verbo:<strong>POST </strong>ruta<strong>:<code>/login</code></strong> 
+Prueba distintos formatos de datos para enviar la información de login y así ver la información confidencial de dicho recluta. Deberás enviar usuario y contraseña.</p>
+<p>Respuesta esperada sobre del endpoint en caso de usar contraseña correcta:</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;mensaje&quot;: &quot;Acceso concedido&quot;,
+  &quot;recluta&quot;: {
+    &quot;id&quot;: &quot;...&quot;,
+    &quot;username&quot;: &quot;eren&quot;,
+    &quot;legion&quot;: &quot;Exploradores&quot;,
+    &quot;mentor&quot;: &quot;Erwin&quot;,
+    &quot;edad&quot;: 15
+  }
+}
+</code></pre></div>
+<p>¿Qué mensajes devuelve la API en los siguientes casos?</p>
+<ol>
+<li>
+<p>¿Con qué formato de datos enviaste el Post?</p>
+</li>
+<li>
+<p>Si intentas hacer login con un usuario que <strong>no existe</strong> en la base de datos.</p>
+</li>
+<li>Si el usuario existe pero introduces una <strong>contraseña incorrecta una vez</strong>.</li>
+<li>Si introduces una contraseña incorrecta <strong>dos veces seguidas</strong>.</li>
+<li>¿Qué ocurre en el <strong>tercer intento fallido</strong> de contraseña?</li>
+<li>Intenta iniciar sesión con un usuario al que han echado del cuerpo</li>
+</ol>
+<h3 id="3-obtener-mision-aleatoria">3. Obtener misión aleatoria</h3>
+<p>Verbo:<strong>¿? </strong>ruta<strong>:<code>/mission</code></strong> </p>
+<ol>
+<li>
+<p>¿Qué verbo debes usar?</p>
+</li>
+<li>
+<p>¿Qué otras misiones puede asignarte la API?</p>
+</li>
+<li>
+<p>¿Cuántas son en total?</p>
+</li>
+<li>Devuelve alguna  salida del endpoint</li>
+</ol>
+<h3 id="4-preguntar-al-comandante-erwin">4. Preguntar al Comandante Erwin</h3>
+<p><strong>GET</strong> <code>/pregunta/erwin?task=¿Que debo hacer?</code></p>
+<p>Utiliza este Get para preguntar mediante la "variable" task a Erwing una pregunta.</p>
+<ol>
+<li>¿Qué te responde Erwing? </li>
+<li>
+<p>¿Cómo se llama este envío de datos mediante un Get? </p>
+</li>
+<li>
+<p>¿Es bueno para enviar una contraseña?</p>
+</li>
+<li>Devuelve la salida del endpoint</li>
+</ol>
+<h3 id="5-hablar-a-otro-personaje">5. Hablar a otro personaje</h3>
+<p><strong>GET</strong> <code>/pregunta/:personaje</code></p>
+<p>Utiliza este GET para hablar a otro personaje algo que tu quieras, en este caso responde a las siguientes preguntas:</p>
+<ol>
+<li>¿Puedes hablar con cualquier personaje?</li>
+<li>¿Eliges la pregunta que hace o solo a quien hablas?</li>
+<li>¿Cómo se llama este envío de datos para solicitar un recurso? </li>
+<li>Devuelve la salida del endpoint</li>
+</ol>
+<h3 id="6-unirte-a-una-tropa">6. Unirte a una Tropa</h3>
+<p><strong>POST</strong> <code>/enlist</code></p>
+<p>Utiliza este POST para ir de expedición junto con un número de tropa. En el body debes enviar el número de tropa.</p>
+<ol>
+<li>¿En qué formato debes enviarlo?</li>
+<li>¿Qué rango de números puedes enviar?</li>
+<li>Devuelve la salida del endpoint</li>
+</ol>
+<h3 id="7-analizar-titan">7. Analizar Titan</h3>
+<p><strong>POST</strong> <code>/titan</code></p>
+<p>Utiliza este POST para informar de los datos de un titán. En el body puedes incluir lo que quieras mientras que sea texto</p>
+<ol>
+<li>¿En qué formato puedes enviar la información?</li>
+<li>Devuelva la salida del endpoint</li>
+</ol>
+<h3 id="8-cumplir-anos">8. Cumplir años</h3>
+<p>Verbo:<strong>¿?</strong> Endpoint:<strong><code>/recruit/:id/age</code></strong></p>
+<p>Utiliza este endpoint para hacer que un recluta que quieras cumpla un año</p>
+<ol>
+<li>
+<p>Establece una estrategia para encontrar el ID del recluta</p>
+</li>
+<li>
+<p>¿Qué verbo debe usar este endpoint?</p>
+</li>
+<li>Devuelva la salida del endpoint</li>
+<li>¿Existe body en este caso?</li>
+</ol>
+<h3 id="9-retirar-a-un-recluta-del-frente">9. Retirar a un recluta del frente</h3>
+<p>Verbo:<strong>¿?</strong> Endpoint:<strong><code>/retire/:id</code></strong></p>
+<p>El objetivo de este endpoint es que después de que ejecutarlo desaparezca por completo la info del recluta y no se pueda volver a ver su info. Para ello, deberás enviar en el body la contraseña del recluta sola en un JSON.</p>
+<ol>
+<li>Establece una estrategia para encontrar el ID del recluta</li>
+<li>¿Qué verbo debe usar este endpoint?</li>
+<li>Devuelve la salida del endpoint</li>
+<li>Prueba que, efectivamente después de borrar al recluta ya no vuelve a aparecer (intentando hacer login, por ejemplo).</li>
+</ol>
+<h2 id="10-enviar-mapa-de-datos-png">10. Enviar mapa de datos (png)</h2>
+<p>Verbo:<strong>¿?</strong> Endpoint:<strong><code>/map</code></strong></p>
+<p>El objetivo de este endpoint es enviar un png con la información a armin sobre donde se encuentran los titanes más cercanos</p>
+<p>1- ¿Qué verbo http debo usar?</p>
+<p>2- Devuelve las respuesta al enviar un png</p>
+<p>3- ¿Qué pasa si no envío un png?
+4- ¿A qué salida carpeta de tu proyecto se está guardando en caso de respuesta satisfactoria?</p>
+<p>5- ¿En qué formato de dato enviaste la petición?</p>
+<h2 id="parte-2-curl">Parte 2 (CURL)</h2>
+<p>Este apartado es el más importante. Con cada uno de los endpoints anteriores se pide que hagas un CURL vía terminal para comprobar que las cosas funcionan bien. Adjunta en markdown, junto con capturas, loes ejemplos en cada endpoints junto con sus respuestas.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

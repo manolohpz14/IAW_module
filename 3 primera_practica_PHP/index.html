@@ -1,0 +1,1725 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2%20Teor%C3%ADa-Pr%C3%A1ctica-Guiada/">
+      
+      
+        <link rel="next" href="../practica4_php/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Sintaxis, ejecución y estructuras de datos. Práctica 3 - Módulo IAW</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#programacion-en-php-usando-apache-primera-practica" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Módulo IAW" class="md-header__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Módulo IAW
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sintaxis, ejecución y estructuras de datos. Práctica 3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Módulo IAW" class="md-nav__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Módulo IAW
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 1. Introducción a HTTP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 1. Introducción a HTTP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Teoria%20CURL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría CURL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pr%C3%A1ctica%201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CURL y POSTMAN. Practica 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Teor%C3%ADa-Pr%C3%A1ctica-Guiada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion a APACHE e instalacion. Practica 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sintaxis, ejecución y estructuras de datos. Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sintaxis, ejecución y estructuras de datos. Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preambulo-1-como-ejecutar-el-codigo-php-con-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preámbulo 1. Cómo ejecutar el código php con docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preámbulo 1. Cómo ejecutar el código php con docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-ejecutar-el-codigo-php-con-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen ejecutar el código php con docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preambulo-2como-ejecutar-el-codigo-php-instalando-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preámbulo 2.Cómo ejecutar el código php instalando apache
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preámbulo 2.Cómo ejecutar el código php instalando apache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-ejecutar-el-codigo-php-con-apache-en-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen ejecutar el código php con apache en ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcional
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preambulo-3como-ejecutar-el-codigo-php-desde-interprete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preámbulo 3.Cómo ejecutar el código php desde intérprete
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-hola-mundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. “Hola, mundo”
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. “Hola, mundo”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-haz-captura-de-lo-siguiente-y-visitalo-para-ver-que-funciona-archivo-hola_mundophp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (haz captura de lo siguiente y visítalo para ver que funciona) Archivo: hola_mundo.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-php-html-en-el-mismo-archivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. PHP + HTML en el mismo archivo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. PHP + HTML en el mismo archivo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-archivo-first_htmlphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. Archivo: first_html.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comentarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Comentarios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Comentarios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-firstcommentphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. firstcomment.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-variables-y-tipos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Variables y tipos básicos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Variables y tipos básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-variablesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. variables.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-entrada-y-salida-sencillas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Entrada y salida sencillas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Entrada y salida sencillas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-saludophp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (saludo.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-operadores-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Operadores básicos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Operadores básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-operadoresphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. (operadores.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-condicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Condicionales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Condicionales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-condicionalesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. (Condicionales.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-bucles-while-for-foreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Bucles (while, for, foreach)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Bucles (while, for, foreach)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-bluchesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (bluches.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-metodos-de-arrays-y-arrays-asociativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Métodos de arrays y arrays asociativos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Métodos de arrays y arrays asociativos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-metodosphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (metodos.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Funciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-funcionesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (funciones.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica4_php/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos avanzados. Peticiones fetch y HTML. Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Pr%C3%A1ctica.%20Conexiones_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preambulo-1-como-ejecutar-el-codigo-php-con-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preámbulo 1. Cómo ejecutar el código php con docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preámbulo 1. Cómo ejecutar el código php con docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-ejecutar-el-codigo-php-con-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen ejecutar el código php con docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preambulo-2como-ejecutar-el-codigo-php-instalando-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preámbulo 2.Cómo ejecutar el código php instalando apache
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Preámbulo 2.Cómo ejecutar el código php instalando apache">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resumen-ejecutar-el-codigo-php-con-apache-en-ubuntu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen ejecutar el código php con apache en ubuntu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Opcional
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#preambulo-3como-ejecutar-el-codigo-php-desde-interprete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preámbulo 3.Cómo ejecutar el código php desde intérprete
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-hola-mundo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. “Hola, mundo”
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. “Hola, mundo”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-haz-captura-de-lo-siguiente-y-visitalo-para-ver-que-funciona-archivo-hola_mundophp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (haz captura de lo siguiente y visítalo para ver que funciona) Archivo: hola_mundo.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-php-html-en-el-mismo-archivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. PHP + HTML en el mismo archivo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. PHP + HTML en el mismo archivo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-archivo-first_htmlphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. Archivo: first_html.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comentarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Comentarios
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Comentarios">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-firstcommentphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. firstcomment.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-variables-y-tipos-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Variables y tipos básicos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Variables y tipos básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-variablesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. variables.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-entrada-y-salida-sencillas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Entrada y salida sencillas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Entrada y salida sencillas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-saludophp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (saludo.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-operadores-basicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Operadores básicos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Operadores básicos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-operadoresphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. (operadores.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-condicionales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Condicionales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Condicionales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-condicionalesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica. (Condicionales.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-bucles-while-for-foreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Bucles (while, for, foreach)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Bucles (while, for, foreach)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-bluchesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (bluches.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-metodos-de-arrays-y-arrays-asociativos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Métodos de arrays y arrays asociativos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Métodos de arrays y arrays asociativos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-metodosphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (metodos.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-funciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Funciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Funciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#practica-funcionesphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica (funciones.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="programacion-en-php-usando-apache-primera-practica">Programación en PHP Usando Apache (Primera práctica)</h1>
+<p>Este documento está pensado para que avancéis con calma, son cosas muy sencillas y explciadas muy paso a paso. Cada bloque introduce una idea, muestra un ejemplo breve y termina con práctica guiada. No hay prerequisitos.</p>
+<p>Aunque creáis que no, soy razonable :) y entiendo que docker os puede dar problemas, la práctica, está pensada para hacerla en tiempo de clase y si docker os da problema, llamadme sin miedo, por favor. En principio, los siguientes comandos de docker os deben solventar cualquier tipo de situación, los dejo por aquí y los explico.</p>
+<h3 id="preambulo-1-como-ejecutar-el-codigo-php-con-docker">Preámbulo 1. Cómo ejecutar el código php con docker</h3>
+<p><strong><u>OPCIÓN 1 (DOCKER)</u></strong> Cada vez que abráis vuestro proyecto, os recomiendo ejecutar:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>down
+sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
+<p>De esta forma, evitaréis problemas.</p>
+<p>Si habéis elegido docker, vamos ahora con los errores más comunes que os podéis encontrar. Uno de los errores más comunes es el siguiente</p>
+<div class="highlight"><pre><span></span><code>Error<span class="w"> </span>response<span class="w"> </span>from<span class="w"> </span>daemon:<span class="w"> </span>Conflict.<span class="w"> </span>The<span class="w"> </span>container<span class="w"> </span>name<span class="w"> </span><span class="s2">&quot;/&lt;nombre_del_contenedor&gt;&quot;</span><span class="w"> </span>is<span class="w"> </span>already<span class="w"> </span><span class="k">in</span><span class="w"> </span>use<span class="w"> </span>by<span class="w"> </span>container<span class="w"> </span><span class="s2">&quot;&lt;id_del_contenedor&gt;&quot;</span>.<span class="w"> </span>You<span class="w"> </span>have<span class="w"> </span>to<span class="w"> </span>remove<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>rename<span class="o">)</span><span class="w"> </span>that<span class="w"> </span>container<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>able<span class="w"> </span>to<span class="w"> </span>reuse<span class="w"> </span>that<span class="w"> </span>name.
+</code></pre></div>
+<p>Cuando ejecutáis el docker compose up, se creen tantos contenedores como servicios tenéis definidos sobre dicho archivo. En nuestro caso, se crean tres contenedores, uno de mysql, otro de apache y otro de phpmyadmin. Si alguna vez os sale ese error, tenéis dos opciones:</p>
+<p>1- Matar ese contenedor: primero lo paras (por nombre o por id) y después lo matas:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>stop<span class="w"> </span>container_name<span class="p">|</span>container_id<span class="w"> </span><span class="c1">#lo paro</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span>container_name<span class="p">|</span>container_id<span class="w"> </span><span class="c1">#lo paro</span>
+</code></pre></div>
+<p>2- Si estás en el mismo proyecto desde el cual creaste los contenedores que quieres matar, bastaría con:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
+</code></pre></div>
+<p>Esto cierra todos los contenedores creados en el docker-compose, ojo, debes tener definido un docker compose, si no, no irá</p>
+<p>3- Por último, para ver todos los contenedores que está corriendo en tu sistema, podrías hacer:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>ps
+</code></pre></div>
+<p>Esto sólo lo comento porque puede ser útil, no porque os vaya a solucionar nada.</p>
+<h4 id="resumen-ejecutar-el-codigo-php-con-docker">Resumen ejecutar el código php con docker</h4>
+<ol>
+<li>Inicia tu servidor local de Docker (Apache según práctica 2).</li>
+<li>Coloca tu scripts en una carpeta publica que pueda ser consumible (www) de la práctica anterior.</li>
+<li>Es decir, no toques nada de lo que ya hay. cada vez, que hagas un cambio, NO HACE FALTA ejecutar: <code>docker compose up --build</code>  solamente guarda los cambios en el script y después accede a `http://localhost:8080/archivo.php" o al script que quieras ejecutar-</li>
+</ol>
+<hr />
+<h3 id="preambulo-2como-ejecutar-el-codigo-php-instalando-apache">Preámbulo 2.Cómo ejecutar el código php instalando apache</h3>
+<p>Si no queréis usar docker, podéis instalar apache en ubuntu 24.04, para ello, ejecutad lo siguiente:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>apache2<span class="w"> </span>php8.3<span class="w"> </span>php8.3-mysql<span class="w"> </span><span class="c1">#instalamos 3 paquetes, apache y lo necesario para correr php junto con mysql (por ahora no usaremos mysql)</span>
+sudo<span class="w"> </span>a2enmod<span class="w"> </span>rewrite<span class="w"> </span>headers<span class="w"> </span>expires<span class="w"> </span><span class="c1">#Activamos los módulos de apache, al igual que con docker, para que puedan usarse en nuestro archivo de configuración.</span>
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>apache2<span class="w"> </span><span class="c1">#reiniciamos el servicio</span>
+</code></pre></div>
+<p>Una vez hecho esto ejecutad los siguientes comando des copiado (Ojo con las ruta relativas y absolutas): En vuestro proyecto, tenéis el archivo apache/000-default.conf, de configuración de apache, pegadlo en:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span><span class="s2">&quot;/home/manolo/Escritorio/PHP inicio/apache/000-default.conf&quot;</span><span class="w"> </span>/etc/apache2/sites-available/000-default.conf
+</code></pre></div>
+<p>Recordad también pegar el .htacces en la carpeta '/var/www/html'.</p>
+<p>Una vez habéis copiado la config, dad permisos de lectura escritura y ejecución a '/var/www/html' y abrid dicha carpeta en vscode. Con esto ya podéis desarrollar los scripts de esta práctica</p>
+<h4 id="resumen-ejecutar-el-codigo-php-con-apache-en-ubuntu">Resumen ejecutar el código php con apache en ubuntu</h4>
+<ol>
+<li>Inicia tu servidor local de Apache (systemctl start apache2).</li>
+<li>Visita el script que quieras ejecutar:`http://localhost:8080/archivo.php" </li>
+</ol>
+<h4 id="opcional">Opcional</h4>
+<p>Si no queréis trabajar directamente sobre dicha carpeta, podéis realizar enlaces simbólicos. Los siguientes comandos cumplen el cometido que se quiere.</p>
+<ul>
+<li>Pegad vuestra carpeta www dentro de /var/www/html, para ello:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span><span class="s2">&quot;/home/manolo/Escritorio/PHP inicio/www&quot;</span>/.<span class="w"> </span>/var/www/html/
+</code></pre></div>
+<ul>
+<li>Ya tenéis apache corriendo en el puerto 80!. si accedéis a http://localhost ejecutaréis directamente el index.php. Por comodidad, os recomiendo hacer enlaces simbólicos para desarrollar mas rápdido desde vscode:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/var/www/html<span class="w"> </span><span class="c1">#recursive y force</span>
+sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span><span class="s2">&quot;/home/manolo/Escritorio/PHP inicio/www&quot;</span><span class="w"> </span>/var/www/html<span class="w"> </span><span class="c1">#simbolic y force, la opción -f (force) borra el destino si ya existe (sea un archivo o un enlace, esdecir, sea lo que sea),y lo reemplaza por el nuevo enlace simbólico.</span>
+sudo<span class="w"> </span>ln<span class="w"> </span>-sf<span class="w"> </span><span class="s2">&quot;/home/manolo/Escritorio/PHP inicio/apache/000-default.conf&quot;</span><span class="w"> </span>/etc/apache2/sites-available/000-default.conf
+</code></pre></div>
+<p>Error común. Si tenéis enlaces simbólico podéis tener problemas con los permisos, recomiendo cambiarlos de la siguiente forma</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span><span class="nv">$USER</span>:www-data<span class="w"> </span><span class="s2">&quot;/home/manolo/Escritorio/PHP inicio/www&quot;</span>
+sudo<span class="w"> </span>chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">775</span><span class="w"> </span><span class="s2">&quot;/home/manolo/Escritorio/PHP inicio/www&quot;</span>
+
+sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>apache2<span class="w"> </span>
+</code></pre></div>
+<hr />
+<h3 id="preambulo-3como-ejecutar-el-codigo-php-desde-interprete">Preámbulo 3.Cómo ejecutar el código php desde intérprete</h3>
+<p>Esto sólo os servirá en algunos puntos de la práctica y no lo recomiendo, pero es conveniente que lo sepáis.</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>php
+</code></pre></div>
+<p>y posteriormente, ejecuta tu script:</p>
+<div class="highlight"><pre><span></span><code>php<span class="w"> </span>script.php
+</code></pre></div>
+<p>Así pruebas la ejecución.</p>
+<h2 id="1-hola-mundo">1. “Hola, mundo”</h2>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">echo</span> <span class="s2">&quot;Hola, mundo desde PHP&quot;</span><span class="p">;</span>
+</code></pre></div>
+Guarda esto en el archivo como <code>hola_mundo.php</code> según lo comentado antes</p>
+<h3 id="practica-haz-captura-de-lo-siguiente-y-visitalo-para-ver-que-funciona-archivo-hola_mundophp">Práctica (haz captura de lo siguiente y visítalo para ver que funciona) Archivo: hola_mundo.php</h3>
+<ol>
+<li>
+<p>Cambia el mensaje por tu nombre.</p>
+</li>
+<li>
+<p>Agrega una segunda línea adicional con <code>echo</code> que muestre la fecha actual con el comando de abajo y añade "\n" al final de "Hola, mundo desde PHP", de la siguiente forma (¿Pasa algo si no pones el punto y coma?)</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="x">echo date(&quot;Y-m-d&quot;);</span>
+</code></pre></div>
+<p>Nota: <code>date</code> es una estructura ya integrada en php que veremos más tarde, en este caso devuelve la fecha actual según el formato especificado. Recarga en el navegador y verifica los cambios o ejecuta con el interprete de php.</p>
+<ol>
+<li>Haz lo mismo pero al final de "Hola, mundo desde PHP", añade <code>&lt;br&gt;</code>, qué pasa?</li>
+</ol>
+<h2 id="2-php-html-en-el-mismo-archivo">2. PHP + HTML en el mismo archivo</h2>
+<p>Puedes mezclar HTML con PHP para generar páginas dinámicas.</p>
+<div class="highlight"><pre><span></span><code><span class="x">&lt;!DOCTYPE html&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">  &lt;meta charset=&quot;utf-8&quot;&gt;</span>
+<span class="x">  &lt;title&gt;Mi primera página PHP&lt;/title&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">  &lt;h1&gt;Bienvenido&lt;/h1&gt;</span>
+<span class="x">  &lt;p&gt;</span>
+<span class="x">    </span><span class="cp">&lt;?php</span>
+    <span class="k">echo</span> <span class="s2">&quot;Hoy es &quot;</span> <span class="o">.</span> <span class="nb">date</span><span class="p">(</span><span class="s2">&quot;d/m/Y&quot;</span><span class="p">);</span> <span class="c1">#El punto sirve para concatenar cadenas</span>
+    <span class="cp">?&gt;</span>
+<span class="x">  &lt;/p&gt;</span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+<h3 id="practica-archivo-first_htmlphp">Práctica. Archivo: first_html.php</h3>
+<p>Cambia el <code>&lt;h1&gt;</code> por tu nombre. Añade un párrafo donde pone php que diga: “Esta página fue generada por PHP”. Fijate como se inserta el código php dentro del html</p>
+<h2 id="3-comentarios">3. Comentarios</h2>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">// Comentario de una línea</span>
+<span class="c1"># Otra forma de comentar</span>
+<span class="cm">/*</span>
+<span class="cm"> Comentario de varias líneas</span>
+<span class="cm">*/</span>
+<span class="k">echo</span> <span class="s2">&quot;lo anteror eran comentarios de tres tipos distnitos&quot;</span><span class="p">;</span> <span class="c1">// fin de línea</span>
+</code></pre></div>
+<h3 id="practica-firstcommentphp">Práctica. firstcomment.php</h3>
+<p>Crea <code>sintaxis.php</code> y escribe tres líneas <code>echo</code> con distintos comentarios.</p>
+<h2 id="4-variables-y-tipos-basicos">4. Variables y tipos básicos</h2>
+<p>Las variables empiezan con <code>$</code>. PHP infiere el tipo según el valor.</p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$nombre</span> <span class="o">=</span> <span class="s2">&quot;Lucía&quot;</span><span class="p">;</span>   <span class="c1">// string</span>
+<span class="nv">$edad</span>   <span class="o">=</span> <span class="mi">21</span><span class="p">;</span>        <span class="c1">// integer</span>
+<span class="nv">$altura</span> <span class="o">=</span> <span class="mf">1.65</span><span class="p">;</span>      <span class="c1">// float</span>
+<span class="nv">$activo</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>      <span class="c1">// boolean</span>
+<span class="nv">$colores</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;rojo&quot;</span><span class="p">,</span> <span class="s2">&quot;verde&quot;</span><span class="p">,</span> <span class="s2">&quot;azul&quot;</span><span class="p">];</span>
+<span class="nv">$variable</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nb">gettype</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">);</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">gettype</span><span class="p">(</span><span class="nv">$edad</span><span class="p">);</span>  
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">gettype</span><span class="p">(</span><span class="nv">$altura</span><span class="p">);</span> 
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">gettype</span><span class="p">(</span><span class="nv">$activo</span><span class="p">);</span> 
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">gettype</span><span class="p">(</span><span class="nv">$colores</span><span class="p">);</span> 
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nb">gettype</span><span class="p">(</span><span class="nv">$variable</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="s2">&quot;Me llamo </span><span class="si">$nombre</span><span class="s2"> y tengo </span><span class="si">$edad</span><span class="s2"> años.&quot;</span><span class="p">;</span> <span class="c1">//interpolación de variables en PHP,</span>
+</code></pre></div>
+Nota: las variables distinguen mayúsculas y minúsculas (<code>$edad</code> ≠ <code>$Edad</code>).</p>
+<h3 id="practica-variablesphp">Práctica. variables.php</h3>
+<p>Crea <code>variables.php</code> y declara: <code>$nombre</code>, <code>$ciudad</code>, <code>$anioNacimiento</code>. Muestra una frase completa usando las tres variables, en vez de concatenar como en el ejemplo anterior, vas a hacer concatenación con <code>.</code> Ejemplo:</p>
+<div class="highlight"><pre><span></span><code><span class="x">echo &quot;Soy &quot; . $profesion . &quot; desde &quot; . $anio . &quot;.&quot;;</span>
+</code></pre></div>
+<p>En PHP, el operador <code>.</code> une (concatena) dos o más textos o variables en una sola cadena. En python, por ejemplo, es el "+"</p>
+<h2 id="5-entrada-y-salida-sencillas">5. Entrada y salida sencillas</h2>
+<p>En páginas web, la “entrada” suele venir de formularios ejecutados en el cliente. Por ahora, haremos una entrada mínima con query string (<code>GET</code>). Aquí usamos el operador: <code>??</code> que solo comprueba si existe y no es null.</p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$nombre</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">]</span> <span class="o">??</span> <span class="s2">&quot;invitado&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s2">&quot;Hola, &quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">);</span>
+</code></pre></div>
+Visita: <code>http://localhost/mi-primer-proyecto/saludo.php?nombre=Ana</code></p>
+<blockquote>
+<p><code>htmlspecialchars</code> evita que se ejecute HTML que el usuario pueda enviar. Es una estructura de control que conviene implementar para prevenoir ataques.</p>
+</blockquote>
+<h3 id="practica-saludophp">Práctica (saludo.php)</h3>
+<p>Agrega un segundo parámetro <code>?ciudad=Madrid</code> y muéstralo. Si <code>ciudad</code> no está, muestra “(ciudad no especificada)”. </p>
+<p>Además prueba a mandar por el query-param <code>&lt;h1&gt;PACO&lt;/h1&gt;</code>, ¿se ejecuta el html?</p>
+<h2 id="6-operadores-basicos">6. Operadores básicos</h2>
+<p>Operadores aritméticos, comparación estricta y lógicos.</p>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="k">echo</span> <span class="nv">$a</span> <span class="o">+</span> <span class="nv">$b</span> <span class="o">.</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$a</span> <span class="o">-</span> <span class="nv">$b</span> <span class="o">.</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$a</span> <span class="o">*</span> <span class="nv">$b</span> <span class="o">.</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$a</span> <span class="o">/</span> <span class="nv">$b</span> <span class="o">.</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$a</span> <span class="o">%</span> <span class="nv">$b</span> <span class="o">.</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+
+<span class="c1">//-------una comparación estricta</span>
+<span class="nv">$unoComoTexto</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="p">;</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="mi">1</span> <span class="o">===</span> <span class="nv">$unoComoTexto</span><span class="p">);</span> <span class="c1">// avanzo false</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="mi">1</span> <span class="o">==</span> <span class="nv">$unoComoTexto</span><span class="p">);</span> <span class="c1">//((¿que será))</span>
+
+<span class="c1">//------ operadores lógicos</span>
+<span class="nv">$edad</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="nv">$permisoPadres</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+<span class="k">echo</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$edad</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="o">||</span> <span class="nv">$permisoPadres</span><span class="p">);</span> <span class="c1">//Operador OR en AND es &amp;&amp;</span>
+</code></pre></div>
+<code>var_dump</code> se usa para inspeccionar valores y tipos.  Sirve para mostrar el tipo de dato y su valor exacto. No hace falta que lo pongas echo delante.</p>
+<h3 id="practica-operadoresphp">Práctica. (operadores.php)</h3>
+<p>Crea <code>operadores.php</code>: pide <code>a</code> y <code>b</code> por <code>GET</code> param, para ello, cuando los recibas los params, serán string, para ello, pásalos a float:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$a = (float)$a;</span>
+<span class="x">$b = (float)$b;</span>
+</code></pre></div>
+<p>y muestra todas las operaciones al igual que en el ejemplo. </p>
+<p>Añade una línea que diga si <code>a</code> es mayor o divisible entre <code>b</code> usando var_dump por delante.</p>
+<p>Añade otra que diga si <code>a</code> es menor que <code>b</code> o es divisible entre <code>b</code> también usando var_dump por delante de la comparativa.</p>
+<h2 id="7-condicionales">7. Condicionales</h2>
+<p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+
+<span class="nv">$nota</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;nota&quot;</span><span class="p">];</span>
+
+<span class="c1">//-----Ejemplo de negación !, la función is_numeric es importante</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">is_numeric</span><span class="p">(</span><span class="nv">$nota</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Error: el valor proporcionado no es un número válido.&lt;/p&gt;&quot;</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Ejemplo correcto:nota=7&lt;/p&gt;&quot;</span><span class="p">;</span>
+    <span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">else</span> <span class="p">{</span>
+    <span class="nv">$nota</span> <span class="o">=</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s2">&quot;nota&quot;</span><span class="p">]</span> <span class="o">??</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//LO paso a INT antes</span>
+<span class="p">}</span>
+<span class="c1">//-----Aquí vemos por primera vez un &amp;&amp;</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$nota</span> <span class="o">&gt;=</span> <span class="mi">9</span> <span class="o">&amp;&amp;</span> <span class="nv">$nota</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;Sobresaliente&quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$nota</span> <span class="o">&gt;=</span> <span class="mi">5</span> <span class="o">&amp;&amp;</span> <span class="nv">$nota</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;Aprobado&quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;Insuficiente&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+Prueba con: <code>?nota=4</code>, <code>?nota=7</code>, <code>?nota=10</code> (querystrings)</p>
+<p>Arregla el código para que cuando sea &gt;10 no ponga insuficiente.</p>
+<h3 id="practica-condicionalesphp">Práctica. (Condicionales.php)</h3>
+<p>Crea <code>Condicionales.php</code> que reciba <code>n</code> por querystring y diga si es positivo, negativo o cero. Añade un mensaje extra si <code>n</code> es par o impar y otro mensaje que diga si es mayor que 5 y menor que 10. Para ello, usa el resto del punto anterior.</p>
+<h2 id="8-bucles-while-for-foreach">8. Bucles (while, for, foreach)</h2>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">//---------while</span>
+<span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;while: </span><span class="si">$i</span><span class="s2">&lt;br&gt;&quot;</span><span class="p">;</span>
+  <span class="nv">$i</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//----------for</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">;</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;for: </span><span class="si">$j</span><span class="s2">&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//----------- foreach</span>
+<span class="nv">$frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span> <span class="s2">&quot;pera&quot;</span><span class="p">,</span> <span class="s2">&quot;uva&quot;</span><span class="p">];</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$frutas</span> <span class="k">as</span> <span class="nv">$fruta</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="s2">&quot;fruta: </span><span class="si">$fruta</span><span class="s2">&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//------------Array asociativo</span>
+<span class="nv">$persona</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;nombre&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Lucía&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;edad&quot;</span> <span class="o">=&gt;</span> <span class="mi">21</span><span class="p">,</span>
+    <span class="s2">&quot;ciudad&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Madrid&quot;</span>
+<span class="p">];</span>
+
+<span class="k">echo</span> <span class="nv">$persona</span><span class="p">[</span><span class="s2">&quot;nombre&quot;</span><span class="p">];</span> <span class="c1">// Lucía</span>
+
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$persona</span> <span class="k">as</span> <span class="nv">$clave</span> <span class="o">=&gt;</span> <span class="nv">$valor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;</span><span class="si">$clave</span><span class="s2">: </span><span class="si">$valor</span><span class="s2">&lt;br&gt;&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="practica-bluchesphp">Práctica (bluches.php)</h3>
+<ul>
+<li>Crea que muestre la tabla de multiplicar de <code>n</code> (por <code>GET</code>).</li>
+<li>Crea que recorra un array de 5 libros y los imprima usando etiquetas <code>&lt;li&gt;</code> de html.</li>
+<li>Busca o prueba si los arrays pueden tener mas de un tipo distintos dentro</li>
+</ul>
+<h2 id="9-metodos-de-arrays-y-arrays-asociativos">9. Métodos de arrays y arrays asociativos</h2>
+<div class="highlight"><pre><span></span><code><span class="x">//------------Crear y acceder</span>
+<span class="cp">&lt;?php</span>
+<span class="nv">$frutas</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span> <span class="s2">&quot;pera&quot;</span><span class="p">,</span> <span class="s2">&quot;uva&quot;</span><span class="p">];</span>
+<span class="k">echo</span> <span class="nv">$frutas</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// manzana</span>
+
+<span class="nv">$persona</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="s2">&quot;nombre&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Lucía&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;edad&quot;</span> <span class="o">=&gt;</span> <span class="mi">21</span><span class="p">,</span>
+  <span class="s2">&quot;ciudad&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Madrid&quot;</span>
+<span class="p">];</span>
+<span class="k">echo</span> <span class="nv">$persona</span><span class="p">[</span><span class="s2">&quot;edad&quot;</span><span class="p">];</span> <span class="c1">// 21</span>
+
+
+<span class="c1">//--------Añadir</span>
+<span class="nv">$frutas</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">&quot;naranja&quot;</span><span class="p">;</span> <span class="c1">// añade al final naranja</span>
+<span class="nv">$persona</span><span class="p">[</span><span class="s2">&quot;profesion&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Estudiante&quot;</span><span class="p">;</span> <span class="c1">// añade nueva clave</span>
+
+<span class="c1">//-----------eliminar</span>
+<span class="nb">unset</span><span class="p">(</span><span class="nv">$frutas</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>      <span class="c1">// elimina el segundo elemento, los indices empiezan por 0</span>
+<span class="nv">$ultima</span> <span class="o">=</span> <span class="nb">array_pop</span><span class="p">(</span><span class="nv">$frutas</span><span class="p">);</span> <span class="c1">//printea lo que devuelve</span>
+<span class="nb">unset</span><span class="p">(</span><span class="nv">$persona</span><span class="p">[</span><span class="s2">&quot;edad&quot;</span><span class="p">]);</span> <span class="c1">// elimina una clave del array asociativo</span>
+
+<span class="c1">//--------contar</span>
+<span class="k">echo</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$frutas</span><span class="p">);</span>  <span class="c1">// número total de elementos</span>
+<span class="k">echo</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$persona</span><span class="p">);</span>  <span class="c1">// número total de elementos</span>
+
+<span class="c1">//---------array de keys y valores</span>
+<span class="nv">$claves</span> <span class="o">=</span> <span class="nb">array_keys</span><span class="p">(</span><span class="nv">$persona</span><span class="p">);</span>
+<span class="nv">$valores</span> <span class="o">=</span> <span class="nb">array_values</span><span class="p">(</span><span class="nv">$persona</span><span class="p">);</span>
+<span class="c1">//------------Ojo usamos print_r para estructuras mas complejas no echo</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$claves</span><span class="p">);</span>  <span class="c1">// [&quot;nombre&quot;, &quot;ciudad&quot;, &quot;profesion&quot;]</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$valores</span><span class="p">);</span> <span class="c1">// [&quot;Lucía&quot;, &quot;Madrid&quot;, &quot;Estudiante&quot;]</span>
+</code></pre></div>
+<h3 id="practica-metodosphp">Práctica (metodos.php)</h3>
+<ol>
+<li>
+<p>Crea un array <code>$colores = ["rojo", "verde", "azul"];</code></p>
+</li>
+<li>
+<p>Añade <code>"amarillo"</code> al final</p>
+</li>
+<li>
+<p>Elimina <code>"verde"</code> usando <code>unset()</code>.</p>
+</li>
+<li>
+<p>Elimina azul con un pop y guardalo en la variable color</p>
+</li>
+<li>
+<p>Añade al final `rojo``</p>
+</li>
+<li>
+<p>Recorre el array con <code>foreach</code> e imprime cada color en una lista HTML de <code>li</code></p>
+</li>
+</ol>
+<hr />
+<ol>
+<li>Crea un array <code>$coche</code> con las claves: <code>"marca"</code>, <code>"modelo"</code>, <code>"año"</code>, <code>"color"</code>.</li>
+</ol>
+<p>y añade lkos valores que quieras</p>
+<ol>
+<li>
+<p>Añade una nueva clave <code>"precio"</code>.</p>
+</li>
+<li>
+<p>Muestra las claves con <code>array_keys()</code> y los valores con <code>array_values()</code>.</p>
+</li>
+<li>
+<p>Recorre el array original con <code>foreach</code> mostrando <code>"clave: valor"</code>.</p>
+</li>
+</ol>
+<h2 id="10-funciones">10. Funciones</h2>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="c1">//-----------------función tipada</span>
+<span class="k">function</span> <span class="nf">saludar</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="s2">&quot;Hola, </span><span class="si">$nombre</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">function</span> <span class="nf">multiplicar_2</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="nv">$n</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nx">saludar</span><span class="p">(</span><span class="s2">&quot;Marcos&quot;</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span>
+
+<span class="c1">//--------------Funciones flecha</span>
+<span class="c1">// Versión corta (arrow function)</span>
+<span class="nv">$doble</span> <span class="o">=</span> <span class="nx">fn</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$n</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// asignada correctamente</span>
+
+<span class="k">echo</span> <span class="nv">$doble</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">.</span> <span class="s2">&quot;&lt;br&gt;&quot;</span><span class="p">;</span> <span class="c1">// imprime 6</span>
+
+<span class="c1">//--------------maps y filters con funciones flecha</span>
+<span class="nv">$numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+
+<span class="nv">$dobles</span> <span class="o">=</span> <span class="nb">array_map</span><span class="p">(</span><span class="nx">fn</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$n</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="nv">$numeros</span><span class="p">);</span>
+<span class="nv">$pares</span> <span class="o">=</span> <span class="nb">array_filter</span><span class="p">(</span><span class="nv">$numeros</span><span class="p">,</span> <span class="nx">fn</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$dobles</span><span class="p">);</span> <span class="c1">// [2, 4, 6, 8, 10]</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$pares</span><span class="p">);</span>  <span class="c1">// [2, 4]</span>
+
+<span class="c1">//--------------maps y filters sin funciones flecha</span>
+<span class="nv">$dobles</span> <span class="o">=</span> <span class="nb">array_map</span><span class="p">(</span><span class="s2">&quot;multiplicar_2&quot;</span><span class="p">,</span> <span class="nv">$numeros</span><span class="p">);</span>
+
+<span class="nv">$pares</span> <span class="o">=</span> <span class="nb">array_filter</span><span class="p">(</span><span class="nv">$numeros</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$dobles</span><span class="p">);</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$pares</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="practica-funcionesphp">Práctica (funciones.php)</h3>
+<ul>
+<li>Escribe una función <code>esPar(int $n): bool</code> y pruébala con varios valores.</li>
+<li>crea una funcion que tome dos int y los sume, pruebala introducciendo dos float: ¿qué sucede?</li>
+<li>¿Es obligatorio tipar las funciones? </li>
+<li>Escribe <code>areaTriangulo(float $base, float $altura): float</code> que devuelva el área.</li>
+<li>Crea un array <code>$edades = [15, 22, 30, 17, 19, 45];</code></li>
+</ul>
+<p>Usa <code>array_filter()</code> con una función flecha para obtener solo las mayores o iguales de 18.</p>
+<p>Muestra el resultado con <code>print_r($mayores);</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

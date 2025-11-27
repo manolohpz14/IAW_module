@@ -1,0 +1,1774 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Pr%C3%A1ctica%201/">
+      
+      
+        <link rel="next" href="../3%20primera_practica_PHP/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Introduccion a APACHE e instalacion. Practica 2 - Módulo IAW</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Módulo IAW" class="md-header__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Módulo IAW
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduccion a APACHE e instalacion. Practica 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Módulo IAW" class="md-nav__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Módulo IAW
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 1. Introducción a HTTP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 1. Introducción a HTTP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Teoria%20CURL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría CURL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pr%C3%A1ctica%201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CURL y POSTMAN. Practica 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion a APACHE e instalacion. Practica 2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion a APACHE e instalacion. Practica 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Práctica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instlacion-de-apache-descentralizada-con-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Instlacion de Apache descentralizada con Docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Instlacion de Apache descentralizada con Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-11-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -1.1 docker-compose.yml:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 El Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-apache000-defaultconf-explicamos-cada-uno-de-ellos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 apache/000-default.conf: (explicamos cada uno de ellos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 apache/000-default.conf: (explicamos cada uno de ellos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-el-codigo-del-000-defaultconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 El código del 000-default.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-analizando-el-000-defaultconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Analizando el 000-default.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-archivo-htaccess-uso-de-reglas-rewritecond-y-rewriterule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Archivo .htaccess (uso de reglas RewriteCond y RewriteRule)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Archivo .htaccess (uso de reglas RewriteCond y RewriteRule)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-la-primera-condicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 La primera condición
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-la-segunda-condicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 La segunda condición
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 La segunda condición">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estudio de las Condiciones (RewriteCond) en general, con más ejemplos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-tercera-condicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Tercera condición
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Tercera condición">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estudio-de-las-rewriterule-en-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estudio de las RewriteRule en general
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-algunos-scripts-en-apache-y-su-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Algunos Scripts en apache y su ejecución
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Algunos Scripts en apache y su ejecución">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-indexphp-con-conexion-a-mysql-y-dos-endpoints-simples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 index.php con conexión a MySQL y dos endpoints simples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-productosphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 productos.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-anexo-cosas-basis-de-regexp-con-algunos-ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Anexo (Cosas básis de regexp con algunos ejemplos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20primera_practica_PHP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sintaxis, ejecución y estructuras de datos. Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica4_php/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos avanzados. Peticiones fetch y HTML. Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Pr%C3%A1ctica.%20Conexiones_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Práctica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-instlacion-de-apache-descentralizada-con-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Instlacion de Apache descentralizada con Docker
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 Instlacion de Apache descentralizada con Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-11-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -1.1 docker-compose.yml:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-el-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 El Dockerfile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-apache000-defaultconf-explicamos-cada-uno-de-ellos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 apache/000-default.conf: (explicamos cada uno de ellos)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 apache/000-default.conf: (explicamos cada uno de ellos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-el-codigo-del-000-defaultconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 El código del 000-default.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-analizando-el-000-defaultconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Analizando el 000-default.conf
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-archivo-htaccess-uso-de-reglas-rewritecond-y-rewriterule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Archivo .htaccess (uso de reglas RewriteCond y RewriteRule)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 Archivo .htaccess (uso de reglas RewriteCond y RewriteRule)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-la-primera-condicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 La primera condición
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-la-segunda-condicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 La segunda condición
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.2 La segunda condición">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estudio de las Condiciones (RewriteCond) en general, con más ejemplos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-tercera-condicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Tercera condición
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Tercera condición">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estudio-de-las-rewriterule-en-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estudio de las RewriteRule en general
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-algunos-scripts-en-apache-y-su-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Algunos Scripts en apache y su ejecución
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Algunos Scripts en apache y su ejecución">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-indexphp-con-conexion-a-mysql-y-dos-endpoints-simples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 index.php con conexión a MySQL y dos endpoints simples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-productosphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 productos.php
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-anexo-cosas-basis-de-regexp-con-algunos-ejemplos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Anexo (Cosas básis de regexp con algunos ejemplos)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Introduccion a APACHE e instalacion. Practica 2</h1>
+
+<h2 id="practica">Práctica</h2>
+<p>Esta práctica guiada consiste en ejecutar distintos bloques de código y responder a las preguntas que se plantean a lo largo del proceso. Para resolverlas, podéis apoyaros en búsquedas en internet o en herramientas de IA. La idea es que os creeis un proyecto con información que os iré pasando en cada bloque de texto. Para ello, deberás crear una carpeta y seguir las instrucciones aquí especificadas.</p>
+<p>El objetivo es que, a través de estas preguntas y de la ejecución de ejemplos, entendáis mejor cómo montar un servidor en PHP y, al mismo tiempo, adquiráis nociones básicas de Docker y Docker Compose: uso de volúmenes, bind mounts y redes bridge.</p>
+<p>A nivel personal, el objetivo es que vayáis creando vuestro propio proyecto a la vez que leéis y comprendéis la siguiente documentación técnica. Como avanzábamos antes, la primera parte de Docker Compose trata sobre la instalación. No tenéis que saber cómo funciona docker-compose desde un punto de vista demasiado técnico pero sí deberéis saber que existe Docker Hub, de donde salen las imágenes y cuáles suelen ser las claves más comunes en los YAML que permiten la creación de contenedores a partir de docker compose. En cuanto a Apache, veremos una configuración básica con las opciones más usuales.</p>
+<h3 id="1-instlacion-de-apache-descentralizada-con-docker">1 Instlacion de Apache descentralizada con Docker</h3>
+<p>En esta parte de la práctica vais a montar un entorno similar a XAMPP pero usando Docker y Docker Compose. En lugar de instalar manualmente Apache, MySQL y PHP en vuestro ordenador (como hace XAMPP), levantaréis contenedores que se comunican entre sí para daros el mismo resultado. La estrcutura del proyecto que os debeis crear es la siguiente:</p>
+<div class="highlight"><pre><span></span><code><span class="err">project/</span>
+<span class="err">│──</span><span class="w"> </span><span class="err">docker-compose.yml</span>
+<span class="err">│──</span><span class="w"> </span><span class="err">Dockerfile</span>
+<span class="err">│──</span><span class="w"> </span><span class="err">www/</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="err">index.php</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="err">.htaccess</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="err">productos.php</span>
+<span class="err">└──</span><span class="w"> </span><span class="err">apache/</span>
+<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="err">000-default.conf</span>
+</code></pre></div>
+<p>En los puntos que veremos a continuación, os daré el código necesario para la ejecución.</p>
+<h4 id="-11-docker-composeyml">-1.1 docker-compose.yml:</h4>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">apache-php</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">php:8.2-apache</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache-php</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:80&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./www:/var/www/html</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">      </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:8.0</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql-db</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rootpass</span>
+<span class="w">      </span><span class="nt">MYSQL_DATABASE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">testdb</span>
+<span class="w">      </span><span class="nt">MYSQL_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">testuser</span>
+<span class="w">      </span><span class="nt">MYSQL_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">testpass</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3306:3306&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_data:/var/lib/mysql</span>
+
+<span class="w">  </span><span class="nt">phpmyadmin</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phpmyadmin/phpmyadmin</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phpmyadmin</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8081:80&quot;</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">PMA_HOST</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rootpass</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">db_data</span><span class="p">:</span>
+</code></pre></div>
+<ol>
+<li>
+<p><strong>apache-php</strong>: Imagen base: <code>php:8.2-apache</code>. Es el servicio que actúa como servidor web y intérprete de PHP. Sirve las páginas desde la carpeta <code>./www</code> (en tu máquina) que se monta dentro del contenedor en <code>/var/www/html</code>. Tiene extensiones de PHP para conectarse a MySQL (<code>pdo_mysql</code>, <code>mysqli</code>).</p>
+</li>
+<li>
+<p><strong>db</strong>: Imagen base: <code>mysql:8.0</code>. Contenedor que levanta una base de datos MySQL. Contiene algunas variables de entorno que s epueden ver en el repo de la imagen en dockerhub (tal y como hemos visto en clase sólo utilzaremos las siguiente variables de entorno).</p>
+</li>
+<li>
+<p>Variables de entorno:</p>
+<ul>
+<li><code>MYSQL_ROOT_PASSWORD</code> : contraseña del usuario administrador.</li>
+<li><code>MYSQL_DATABASE</code> : base creada automáticamente al iniciar.</li>
+<li><code>MYSQL_USER</code> y <code>MYSQL_PASSWORD</code>: usuario adicional para que se conecte tu aplicación.</li>
+</ul>
+<p>Ojo, los datos de este servicio se guardan en un volumen (<code>db_data</code>), de manera que no se pierden al reiniciar o borrar el contenedor. Podeis investigar los comandos que tienen docker para ver qué volúmenes tenéis en vuestro ordenador y cómo visualizarlos y borrarlos, pero es opcional. Solo teneis que entender que en el momento que se asocia un volumen a una carpeta de un contenedor, los datos persisten.</p>
+</li>
+<li>
+<p><strong>phpmyadmin</strong></p>
+</li>
+<li>Imagen base: <code>phpmyadmin/phpmyadmin</code>.</li>
+<li>Es un servicio extra para tener una interfaz web de administración de MySQL. En nuestro caso, se accede desde el navegador en <code>http://localhost:8081</code>. No lo veremos por ahora pero ofrece una interfaz grafica más o menos amigable.</li>
+</ol>
+<p>Explicados los tres servicios, la instalación funciona de la siguiente manera. Con el código anterior:</p>
+<ul>
+<li>
+<p>Levantas 3 contenedores. Cada uno tiene el número estandar de puertos y cada uno ejecuta el programa correspondiente en el puerto usualmente destinado a su ejecución, por ejemplo, apache corre en el puerto 80 de su propio contenedor pero se mapea con el 8080 de mi host.</p>
+</li>
+<li>
+<p>De igual forma, el resto de contenedores correran los programas específicos en los puertos correspondientes.</p>
+</li>
+</ul>
+<p><strong>[PREGUNTA]: ¿En qué puertos internos de los contenedores corren los programas anteriores y a qué puertos del host se mapean?</strong></p>
+<ul>
+<li>Ahora bien, los programas se pueden comunicar entre sí gracias a que docker incluye a cada servicio en una interfaz red bridge que permite la comunicación entre ellos.</li>
+</ul>
+<p><strong>[PREGUNTA]: Imagina que yo instalase los programas independientemente cada uno en mi host, sin usar docker. ¿Qué puertos de qué maquinas utilzarían por defecto? ¿Mediante que interfaz de red se comunicaría unos con otros?</strong></p>
+<p><strong>[Pregunta]: Quiero que expliques que significa esto:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">apache-php</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">php:8.2-apache</span>
+<span class="w">   </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./www:/var/www/html</span>
+<span class="w">   </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.</span>
+<span class="w">      </span><span class="nt">dockerfile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dockerfile</span>
+
+<span class="w">  </span><span class="nt">db</span><span class="p">:</span><span class="w">      </span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_data:/var/lib/mysql</span>
+</code></pre></div>
+<p>Todo en docker funciona a través de una "imagen previa".  Una imagen en Docker es como una plantilla o fotografía inmutable que contiene todo lo necesario para ejecutar un programa, es decir, a partir de esa plantilla se puede ejecutar practicamente el servicio que quieras.  Habitualmente, esa plantilla se suele crear a través de un Dockerfile, que es un archivo que contiene las instrucciones de creación de la plantilla. Aunque no es siempre así, el caso más habitual es coger la imagen de Docker Hub, aplicacion web que funciona como repositorio de imagenes para los servicios más populares (como apache). De hecho, incluso en el archivo del Dockerfile, se suele empezar desde una imagen previa que se encontrará en DockerHub.</p>
+<p><strong>[PREGUNTA]: Más abajo, encontrarás el Dockerfile que se usa en esta práctica, ¿qué imagen de DockerHub está utilizando?</strong></p>
+<p>En ejemplo anterior es un caso muy raro, porque parece ser que el servicio se instala a partir de la imagen "php:8.2-apache". Esto no es cierto, porque abajo tenemos un "build", que nos indique que la imagen se construye a partir del docker file (llamado "Dockerfile"), que se encuentra en nuestro directorio actual. En el caso de que tanto image como build estén sobre un mismo "services", image será el nombre que asocia Docker internamente a la imagen.</p>
+<hr />
+<h3 id="2-el-dockerfile">2 El Dockerfile</h3>
+<p>Lo más importante es que, desde el Dockerfile, cargamos módulos de apache con a2enmod, que utilziaremos más adelante:</p>
+<p><img alt="image-20251017151111330" src="../img/image-20251017151111330.png" /></p>
+<p>En particular, el dockerfile usado en la instalación es el siguiente.</p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">php:8.2-apache</span>
+
+<span class="c"># Instalamos extensiones de PHP para MySQL. docker-php-ext-install es un script que viene incluido en las imágenes oficiales de PHP (como php:8.2-apache).</span>
+<span class="k">RUN</span><span class="w"> </span>docker-php-ext-install<span class="w"> </span>pdo<span class="w"> </span>pdo_mysql<span class="w"> </span>mysqli
+
+
+<span class="c">#Es un comando que activa módulos de Apache. rewrite Es un módulo de Apache que permite cambiar la forma en la que se interpretan las URLs. .htaccess es un archivo donde escribes las reglas que mod_rewrite ejecuta.</span>
+<span class="k">RUN</span><span class="w"> </span>a2enmod<span class="w"> </span>rewrite<span class="w"> </span>headers<span class="w"> </span>expires
+</code></pre></div>
+<p>Antes hemos comentado que los Dockerfile pueden crear por si mismos una imagen que después se ejecute como contenedor (gracias a los comandos FROM, LABEL, RUN, COPY, ADD, WORKDIR, EXPOSE, ENV, ARG, CMD, ENTRYPOINT, VOLUME) De hecho, si tenemos un Dockerfile con código en nuestro ordenador, ejecutando la siguiente linea de código, podríamos crear una imagen propia.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>nombre_imagen:tag<span class="w"> </span>-f<span class="w"> </span>Dockerfile<span class="w"> </span>.
+</code></pre></div>
+<ul>
+<li><strong><code>docker build</code></strong> : es el comando para construir una imagen.</li>
+<li><strong><code>-t nombre_imagen:tag</code></strong> : asigna un nombre y una etiqueta (tag) a la imagen.</li>
+<li><strong><code>-f Dockerfile</code></strong> : indica el archivo Dockerfile a usar. No es obligatorio si el archivo se llama exactamente <code>Dockerfile</code>.</li>
+<li><strong><code>.</code> (punto final)</strong> : ruta del <em>contexto de build</em>, normalmente la carpeta actual donde está el Dockerfile y los archivos que quieres copiar dentro de la imagen.</li>
+</ul>
+<p>En el siguiente ejemplo, crearíamos una imagen llamada miapp:1.0</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>miapp:1.0<span class="w"> </span>.
+</code></pre></div>
+<p>Volviendo al Dockerfile de nuestro proyecto, al principio tenemos: FROM php:8.2-apache. Si esta imagen la hubiera creado yo anteriormente a través de un Dockerfile, docker la sacaría de mi host. En caso de no exister, la saca de Dockerhub. Ese es el flujo normal. En el Dockerfile anterior, utilizamos algunos módulos interesantes para nuestro archivo de configuración (siguiente punto) que cargamos gracias a la funcionalidad docker-php-ext-install de apache. Os hago la siguiente pregunta de la que deberéis busca información.</p>
+<p><strong>[PREGUNTA]:</strong></p>
+<ul>
+<li><strong>¿Qué módulos cargamos?</strong></li>
+<li><strong>¿Para qué srive cada uno?</strong></li>
+<li><strong>¿Qué módulo se utilizaría (no está) para capturar y filtrar número de peticiones? (rate limit)</strong>. Si no sabes qué es el rate limit, deberás indicarlo aquí también</li>
+</ul>
+<hr />
+<h3 id="3-apache000-defaultconf-explicamos-cada-uno-de-ellos">3 apache/000-default.conf: (explicamos cada uno de ellos)</h3>
+<p>El objetivo de lo siguiente es hablar del archivo de configuración inicial de apache y de cada una de sus peculiaridades. Al igual que con la parte anterior de la práctica, os iré haciendo preguntas al respecto de lo que vaya saliendo, poco a poco.</p>
+<p><img alt="image-20251017151010293" src="/home/manolo/.config/Typora/typora-user-images/image-20251017151010293.png" /></p>
+<h4 id="31-el-codigo-del-000-defaultconf">3.1 El código del 000-default.conf</h4>
+<div class="highlight"><pre><span></span><code><span class="nf">&lt;VirtualHost *</span><span class="o">:</span>80&gt;
+<span class="w">    </span>ServerAdmin<span class="w"> </span>webmaster@localhost
+<span class="w">    </span>DocumentRoot<span class="w"> </span>/var/www/html
+
+<span class="w">    </span>&lt;Directory<span class="w"> </span>/var/www/html&gt;
+<span class="c">        # Opciones de directorio</span>
+<span class="w">        </span>Options<span class="w"> </span>-Indexes<span class="w"> </span>+FollowSymLinks
+<span class="w">        </span>AllowOverride<span class="w"> </span>All
+<span class="w">        </span>Require<span class="w"> </span>all<span class="w"> </span>granted
+<span class="w">    </span>&lt;/Directory&gt;
+
+<span class="c">    # Seguridad con cabeceras</span>
+<span class="w">    </span>Header<span class="w"> </span>always<span class="w"> </span><span class="nb">set</span><span class="w"> </span>X-Content-Type-Options<span class="w"> </span><span class="s2">&quot;nosniff&quot;</span>
+<span class="w">    </span>Header<span class="w"> </span>always<span class="w"> </span><span class="nb">set</span><span class="w"> </span>Referrer-Policy<span class="w"> </span><span class="s2">&quot;strict-origin-when-cross-origin&quot;</span>
+<span class="w">    </span>Header<span class="w"> </span>always<span class="w"> </span><span class="nb">set</span><span class="w"> </span>Content-Security-Policy<span class="w"> </span><span class="s2">&quot;default-src &#39;self&#39;; object-src &#39;none&#39;; base-uri &#39;self&#39;&quot;</span>
+
+
+<span class="c">    # Autenticación para la carpeta /admin. Ahora mismo no tenemos ni siquiera la carpeta creada y menos el fichero con</span>
+<span class="c">    #la contraseña, sería interesante (aunque no lo pido en la práctica, que probéis a hacerlo por vosotros mismos.)</span>
+<span class="w">    </span>&lt;Directory<span class="w"> </span>/var/www/html/admin&gt;
+<span class="w">        </span>AuthType<span class="w"> </span>Basic
+<span class="w">        </span>AuthName<span class="w"> </span><span class="s2">&quot;Zona restringida&quot;</span>
+<span class="w">        </span>AuthUserFile<span class="w"> </span>/etc/apache2/.htpasswd
+<span class="w">        </span>Require<span class="w"> </span>valid-user
+<span class="w">    </span>&lt;/Directory&gt;
+
+<span class="c">    # Control de caché para estáticos (mejora rendimiento)</span>
+<span class="w">    </span>&lt;FilesMatch<span class="w"> </span><span class="s2">&quot;\.(jpg|jpeg|png|gif|css|js|ico|woff2?)</span>$<span class="s2">&quot;</span>&gt;
+<span class="w">        </span>ExpiresActive<span class="w"> </span>On
+<span class="w">        </span>ExpiresDefault<span class="w"> </span><span class="s2">&quot;access plus 1 month&quot;</span>
+<span class="w">    </span>&lt;/FilesMatch&gt;
+
+<span class="c">    # Restringir carpeta sensible solo a una IP (permite solo esa IP)</span>
+<span class="w">    </span>&lt;Directory<span class="w"> </span>/var/www/html/dev-tools&gt;
+<span class="w">        </span>Require<span class="w"> </span>ip<span class="w"> </span><span class="m">192</span>.168.1.100
+<span class="w">    </span>&lt;/Directory&gt;
+
+<span class="c">    # Logs</span>
+<span class="w">    </span>ErrorLog<span class="w"> </span><span class="si">${</span><span class="nv">APACHE_LOG_DIR</span><span class="si">}</span>/app-error.log
+<span class="w">    </span>CustomLog<span class="w"> </span><span class="si">${</span><span class="nv">APACHE_LOG_DIR</span><span class="si">}</span>/app-access.log<span class="w"> </span>combined
+<span class="err">&lt;/VirtualHost&gt;</span>
+</code></pre></div>
+<h4 id="32-analizando-el-000-defaultconf">3.2 Analizando el 000-default.conf</h4>
+<ul>
+<li>
+<p>Empieza con la etiqueta <code>\&lt;VirtualHost *:80&gt;</code> y termina con su cierre  <code>\&lt;/VirtualHost&gt;</code>. Con eso Apache define un  "bloque de sitio” que escucha en el puerto 80 de <em>todas</em> las interfaces (<code>*</code>).  Dentro del contenedor, Apache escucha en el 80; fuera, tú lo ves en <code>http://localhost:8080</code> porque Docker hace el mapeo <code>8080:80</code>. Si algún día tienes más "sitios", puedes crear más bloques <code>VirtualHost</code> (incluso uno por dominio) y diferenciarlos con <code>ServerName</code>.</p>
+<p><strong>[PREGUNTA]: ¿Qué pasa si reutilizo la etiqueta VirtualHost? ¿Podría servir "dos sitios" con reglas distintas?.</strong></p>
+</li>
+<li>
+<p><code>ServerAdmin webmaster@localhost</code> es solo un correo de contacto que Apache muestra en algunas páginas de error y mete en los logs. No afecta al funcionamiento; puedes poner tu email real o ignorarlo.</p>
+</li>
+<li>
+<p><code>DocumentRoot /var/www/html</code> indica la carpeta pública desde la que Apache sirve archivos. En tu setup, esa ruta está montada desde tu máquina con <code>./www:/var/www/html</code>, así que lo que guardes en <code>./www</code> es lo que ve Apache y lo que se sirve al navegador (Esto es justo lo que vimos ayer en clase metiéndonos dentro del contenedor).  El bloque <code>\&lt;Directory /var/www/html&gt;</code> aplica reglas específicas a esa carpeta:</p>
+</li>
+<li>
+<p><code>Options -Indexes +FollowSymLinks</code> controla funcionalidades dentro del directorio.</p>
+</li>
+<li>
+<p><code>-Indexes</code> desactiva el listado de directorios. Es más seguro y profesional.</p>
+<p><strong>[PREGUNTA]: Esta explicación puede que no quede muy clara, especifica qué significa con un ejemplo. Lanza tu servidor con esta opción y sin esta y comprueba por ti mismo (adjuntando captura de pantalla) que efectivamente sucede así.</strong></p>
+</li>
+<li>
+<p><code>+FollowSymLinks</code> permite a Apache seguir enlaces simbólicos. Útil si apuntas subcarpetas a otros lugares. Si quieres ser aún más estricto, existe <code>SymLinksIfOwnerMatch</code> (solo sigue el symlink si el propietario coincide), pero <code>FollowSymLinks</code> es lo habitual.</p>
+<p><strong>[PREGUNTA]: Pon ejemplos de qué significa esto definiendo distintos propietarios: Para guiarte un poco, piensa que la carpeta /var/www/privado con propietario manolo  se crea un enlace con /var/www/html/privado. Si alguien accede por red, ¿podría ver el contenido de /var/www/html/privado? Para ello investiga con que usuario se indenficaría dicha persona al entrar a la web e intentar la redirección.</strong></p>
+</li>
+<li>
+<p><code>AllowOverride</code> es otra directiva de Apache que en este caso controla qué directivas están permitidas dentro de un <code>.htaccess</code> (archivo que veremos más tarde). Le estás diciendo a Apache en este caso: “Dentro de esta carpeta, haz caso a los archivos <code>.htaccess</code> que haya”. Significa que Apache permitirá archivos <code>.htaccess</code> en esa carpeta (en este caso:<code>/var/www/html</code>) y en cualquiera de sus subcarpetas (ojo, lo de cualquiera de sus subcarpetas es importante y más tarde veremos porqué, ya que afecta al funcionamiento de un servidor en producción y provoca que, habitualmente, no se cree el archivo .htacess. </p>
+<p>En conclusión: es muy común dejarlo en "All" durante desarrollo y como hemos dicho, en producción, por rendimiento, muchos mueven esas reglas al propio VirtualHost y ponen <code>AllowOverride None</code>. Lo veremos más tarde.</p>
+</li>
+<li>
+<p><code>Require all granted</code> es la regla de acceso (desde Apache 2.4). Significa “permite acceso a cualquiera”. Si no la pones (o niegas el acceso), podrías ver errores 403 (los códigos de errores los he comentado ya mucho en clase pero los veremos cuando generemos nuestros propios endpoints). Es la forma moderna de los antiguos <code>Allow from all</code>. Ejemplo: solo permitir a la IP <code>192.168.1.100</code> sería de la forma: Require ip 192.168.1.100.</p>
+</li>
+</ul>
+<p><strong>[PREGUNTA]: ¿Cómo se podría negar el acceso a una sola IP a nuestro servidor Apache?</strong></p>
+<p><code>/etc/apache2/envvars</code> lugar físico donde se encuentran las ENV</p>
+<ul>
+<li><code>ErrorLog ${APACHE_LOG_DIR}/app-error.log</code> </li>
+</ul>
+<p><strong>[PREGUNTA]: ¿Qué tipo de errores guarda el log app-error.log?</strong></p>
+<p><strong>[PREGUNTA]: ¿Qué significa ${APACHE_LOG_DIR} y donde se guardan dichas variables?</strong></p>
+<ul>
+<li><code>CustomLog ${APACHE_LOG_DIR}/app-access.log combined</code> </li>
+</ul>
+<p><strong>[PREGUNTA]: Durante las prácticas anteriores, has hecho peticiones http a un servidor. ¿Qué es lo que se vería en este caso en app-access.log y que relacion tiene con la práctica anterior?</strong></p>
+<ul>
+<li><code>&lt;Directory /var/www/html/admin&gt;</code> Tenemos una regla de autenticación sobre este directorio, aunque si os fijáis y tal y como pongo en el comentario encima de la regla, el directorio no existe, aunque no afecta a Apache.</li>
+</ul>
+<p>Lo que has visto en ese bloque de configuración es un ejemplo de autenticación HTTP básica en Apache. Sirve para proteger con usuario y contraseña un directorio concreto, en este caso <code>/var/www/html/admin</code>.</p>
+<ul>
+<li>
+<p>La directiva <code>AuthType Basic</code> indica que se usará el método de autenticación más sencillo, llamado <em>Basic</em>. Este funciona enviando el usuario y la contraseña codificados en base64 (debes saber qué es ya que muchas veces los servidores envía binarios en base64) en cada petición. Por eso, en la práctica, siempre se recomienda usarlo junto con HTTPS para que las credenciales viajen cifradas. </p>
+<p><strong>[PREGUNTA]  Auth Type sirve para proteger recursos. El estandar a día de hoy ha cambiado a JWT. Busca información al respecto sobre qué es. ¿Todo el mundo debe tener derecho a acceder a cualquier endpont?</strong></p>
+</li>
+<li>
+<p><code>AuthName "Zona restringida"</code> define el texto que verá el usuario cuando el navegador muestre la ventana emergente pidiéndole credenciales. No afecta a la seguridad, es simplemente informativo, pero ayuda a diferenciar distintas áreas protegidas de un mismo servidor.</p>
+</li>
+<li>
+<p>La línea <code>AuthUserFile /etc/apache2/.htpasswd</code> indica dónde está guardado el archivo que contiene los usuarios y contraseñas autorizados. E nuestro proyecto no lo tenemos definido porque, de hecho la carpeta /admin no existe. Ese archivo <code>.htpasswd</code> NO debe estar dentro de la carpeta pública del servidor web, porque si no, cualquiera podría descargarlo. En él se almacenan las credenciales en formato cifrado (normalmente con algoritmos como MD5, SHA o bcrypt).</p>
+</li>
+<li>
+<p>Finalmente, <code>Require valid-user</code> define quién puede acceder. En este caso, “valid-user” significa que cualquiera de los usuarios definidos en el archivo <code>.htpasswd</code> podrá entrar. Pero hay otras variantes: se puede especificar <code>Require user juan</code> para permitir solo a un usuario concreto, o <code>Require user juan pedro</code> para permitir únicamente a esos dos. También existe la posibilidad de trabajar con grupos de usuarios, usando <code>Require group admins</code>, donde los grupos se definen en un archivo adicional llamado <code>.htgroup</code>.</p>
+</li>
+<li>
+<p>Vamos con el siguiente cacho de código, que es muy interesante y muy práctico:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(jpg|jpeg|png|gif|css|js|ico|woff2?)$&quot;</span><span class="err">&gt;</span>
+<span class="w">    </span><span class="err">ExpiresActive</span><span class="w"> </span><span class="err">On</span>
+<span class="w">    </span><span class="err">ExpiresDefault</span><span class="w"> </span><span class="s2">&quot;access plus 1 month&quot;</span>
+<span class="err">&lt;/FilesMatch&gt;</span>
+</code></pre></div>
+<p>Esto significa: “Aplica las siguientes reglas a todos los archivos cuyo nombre termine en <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>, <code>.gif</code>, <code>.css</code>, <code>.js</code>, <code>.ico</code> o <code>.woff/woff2</code> (fuentes web)”. Es decir, cualquier recurso estático habitual de una web (con estático nos referimos a archivos que sualmente no van a cambiar y que se van a mandar tal cual). Dentro de ese bloque, <code>ExpiresActive On</code> activa el módulo de caducidad de caché. Y <code>ExpiresDefault "access plus 1 month"</code> establece que el navegador puede mantener esos archivos en caché durante un mes a partir del momento en que los descarga. Ojo, el navegador del cliente sería el que cachearía dicha información, evitando así incluso que la petición llegue al servidor. La cuestión aquí es saber cómo se le dice al navegador que cachee dicha petición, eso lo veremos ahora y avanzo que será gracias a las cabeceras http de la respuesta del servidor!</p>
+<p>Con todo esto, si un usuario entra varias veces a tu web, su navegador no volverá a pedir al servidor la imagen del logo, los estilos CSS o el JavaScript en cada carga, sino que reutilizará los que ya descargó hasta que pase un mes. Como es lógico, el resultado es que la web se siente mucho más rápida y consumes menos ancho de banda en el servidor. Lo interesante es que puedes personalizar estas reglas para diferentes tipos de archivo. Por ejemplo:</p>
+<ul>
+<li>Para <strong>imágenes y vídeos grandes</strong>, podrías poner más tiempo (Esto no viene en nuestro archivo de configuración): Fijate que la directiva es ExpiresByType </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">ExpiresByType</span><span class="w"> </span><span class="err">image/jpeg</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
+<span class="err">ExpiresByType</span><span class="w"> </span><span class="err">image/png</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
+<span class="err">ExpiresByType</span><span class="w"> </span><span class="err">video/mp4</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
+</code></pre></div>
+<ul>
+<li>Para <strong>archivos CSS y JS</strong>, quizá prefieras menos tiempo, como una semana, porque podrías actualizarlos con frecuencia durante el desarrollo (Esto no viene en nuestro archivo de configuración):</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">Para</span><span class="w"> </span><span class="err">archivos</span><span class="w"> </span><span class="err">CSS</span><span class="w"> </span><span class="err">y</span><span class="w"> </span><span class="err">JS,</span><span class="w"> </span><span class="err">quizá</span><span class="w"> </span><span class="err">prefieras</span><span class="w"> </span><span class="err">menos</span><span class="w"> </span><span class="err">tiempo,</span><span class="w"> </span><span class="err">como</span><span class="w"> </span><span class="err">una</span><span class="w"> </span><span class="err">semana,</span><span class="w"> </span><span class="err">porque</span><span class="w"> </span><span class="err">podrías</span><span class="w"> </span><span class="err">actualizarlos</span><span class="w"> </span><span class="err">con</span><span class="w"> </span><span class="err">frecuencia</span><span class="w"> </span><span class="err">durante</span><span class="w"> </span><span class="err">el</span><span class="w"> </span><span class="err">desarrollo</span>
+</code></pre></div>
+<ul>
+<li>Para <strong>documentos sensibles o que cambian mucho</strong> (como  un endpoint PHP), lo normal es directamente desactivar la caché (Esto no viene en nuestro archivo de configuración): </li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(php)$&quot;</span><span class="err">&gt;</span>
+<span class="w">    </span><span class="err">ExpiresActive</span><span class="w"> </span><span class="err">Off</span>
+<span class="w">    </span><span class="err">Header</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">Cache-Control</span><span class="w"> </span><span class="s2">&quot;no-store, no-cache, must-revalidate&quot;</span>
+<span class="err">&lt;/FilesMatch&gt;</span>
+</code></pre></div>
+<p>Al final lo que hace todo esto visto en los ejemplos anteriores es insertar una cabecera http en la respuesta, algo como esto:</p>
+<div class="highlight"><pre><span></span><code><span class="err">HTTP/1.1</span><span class="w"> </span><span class="err">200</span><span class="w"> </span><span class="err">OK</span>
+<span class="nf">Content-Type</span><span class="o">:</span><span class="w"> </span><span class="n">image</span>/<span class="n">png</span>
+<span class="nf">Content-Length</span><span class="o">:</span><span class="w"> </span>10542
+<span class="nf">Expires</span><span class="o">:</span><span class="w"> </span><span class="n">Wed</span><span class="p">,</span> 09 <span class="n">Nov</span> 2025 10:49:27 <span class="n">GMT</span>
+<span class="nf">Cache-Control</span><span class="o">:</span><span class="w"> </span><span class="n">max</span>-<span class="n">age</span>=2592000
+</code></pre></div>
+<p>El navegador que recibe la respuesta será capaz de cachearla según las opciones propuestas.</p>
+<p><strong>[PREGUNTA]</strong> <strong>¿Cual es la diferencia entre Expires y Cache-Control? Busca las distintas opciones de Cache-Control y qué singifican.</strong></p>
+<p><strong><u>Importantante</u></strong>:</p>
+<p>Dentro del contenedor, esos archivos viven en <code>/var/log/apache2/</code>. Para verlos puedes hacer <code>docker exec -it apache-php bash</code> y luego <code>tail -f /var/log/apache2/app-error.log</code>. Si prefieres tenerlos en tu host, puedes montar un volumen para <code>logs/</code> y así inspeccionarlos con tu editor. Otra opción avanzada es enviar logs a stdout/stderr para leerlos con <code>docker logs</code>, pero con ficheros sueles tener más control y lo recomiendo sobremanera. Los comandos mencionados a ejecutar dentro del contenedor son los siguientes:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>apache-php<span class="w"> </span>bash
+<span class="nb">cd</span><span class="w"> </span>/var/log/apache2
+tail<span class="w"> </span>-f<span class="w"> </span>app-access.log
+</code></pre></div>
+<p><strong>[PREGUNTA]: Ya contesta que era lo que se guardaba en app-access.log, una vez visto esto, y realizado al menos una petición al servidor, metete al contenedor y comprueba qué es lo que se guarda mediante una captura de pantalla</strong></p>
+<ul>
+<li>Sigamos viendo otras partes, como las cabeceras http, que ya hemos visto que pueden ser muy importantes en la interaccion del cliente con el servidor. Ya sabemos que cuando un navegador (cliente) habla con un servidor web, lo hace usando el protocolo HTTP. Cada petición y cada respuesta viaja en forma de texto, con varias líneas de información llamadas cabeceras (headers). </li>
+</ul>
+<p>Estas cabeceras son como <em>metadatos</em>: pequeños mensajes que acompañan a la petición o a la respuesta para dar más contexto sobre qué se envía, cómo debe interpretarse y cómo debe comportarse el navegador o el servidor. En la práctica anterior nos centramos muchísimo en la cabecera "Content-Type", pero lo normal es que haya más cabeceras que se envíen por defecto, por ejemplo, lo siguiente muestras las cabeceras http de una petición (REQUEST):</p>
+<div class="highlight"><pre><span></span><code><span class="err">GET</span><span class="w"> </span><span class="err">/</span><span class="w"> </span><span class="err">HTTP/1.1</span>
+<span class="nf">Host</span><span class="o">:</span><span class="w"> </span><span class="n">midominio</span>.<span class="n">com</span>
+<span class="nf">User-Agent</span><span class="o">:</span><span class="w"> </span><span class="n">Mozilla</span>/5.0 (<span class="n">Windows</span> <span class="n">NT</span> 10.0; <span class="n">Win</span>64; <span class="n">x</span>64)
+<span class="nf">Accept</span><span class="o">:</span><span class="w"> </span><span class="n">text</span>/<span class="n">html</span><span class="p">,</span><span class="n">application</span>/<span class="n">xhtml</span>+<span class="n">xml</span><span class="p">,</span><span class="n">application</span>/<span class="n">xml</span>;<span class="n">q</span>=0.9<span class="p">,</span>*/*;<span class="n">q</span>=0.8
+<span class="nf">Accept-Language</span><span class="o">:</span><span class="w"> </span><span class="n">es</span>-<span class="n">ES</span><span class="p">,</span><span class="n">es</span>;<span class="n">q</span>=0.9
+<span class="nf">Referer</span><span class="o">:</span><span class="w"> </span><span class="n">https</span>://<span class="n">google</span>.<span class="n">com</span>
+<span class="nf">Cookie</span><span class="o">:</span><span class="w"> </span><span class="n">sessionid</span>=<span class="n">abc</span>123 <span class="c">#Las trabajaremos mucho cuando llegue el momento. Es importante protejerlas</span>
+</code></pre></div>
+<p>Lo siguiente muestras las cabeceras de la respuesta a la petición (RESPONSE)</p>
+<div class="highlight"><pre><span></span><code><span class="err">HTTP/1.1</span><span class="w"> </span><span class="err">200</span><span class="w"> </span><span class="err">OK</span>
+<span class="nf">Date</span><span class="o">:</span><span class="w"> </span><span class="n">Wed</span><span class="p">,</span> 09 <span class="n">Oct</span> 2025 18:30:00 <span class="n">GMT</span>
+<span class="nf">Server</span><span class="o">:</span><span class="w"> </span><span class="n">Apache</span>/2.4.54 (<span class="n">Debian</span>)
+<span class="nf">Content-Type</span><span class="o">:</span><span class="w"> </span><span class="n">text</span>/<span class="n">html</span>; <span class="n">charset</span>=<span class="n">UTF</span>-8
+<span class="nf">Content-Length</span><span class="o">:</span><span class="w"> </span>4523
+<span class="nf">X-Content-Type-Options</span><span class="o">:</span><span class="w"> </span><span class="n">nosniff</span>
+<span class="nf">Content-Security-Policy</span><span class="o">:</span><span class="w"> </span><span class="n">default</span>-<span class="n">src</span> &#39;<span class="n">self</span>&#39;; <span class="n">object</span>-<span class="n">src</span> &#39;<span class="n">none</span>&#39;; <span class="n">base</span>-<span class="n">uri</span> &#39;<span class="n">self</span>&#39;
+</code></pre></div>
+<p>En nuestro codigo de configuración de Apache (en concreto la parte con el comentario # Seguridad con cabeceras) hemos colocado algunas lineas que mucho tienen que ver con las cabeceras.. Las líneas de nuestra configuración de Apache añaden cabeceras HTTP a las respuestas que el servidor envía al navegador. Estas, al igual que la parte del caché vista anteriormente, definirán distintos casos de actuación, aunque en vez de explicaroslas, quiero que busquéis información al respecto y que pongáis ejemplos en la medida de lo posible.</p>
+<ul>
+<li>
+<p><code>X-Content-Type-Options "nosniff"</code> </p>
+<p><strong>[PREGUNTA]: ¿Para qué sirve y qué tiene que ver con los Content-Type estudiados hasta ahora?</strong></p>
+</li>
+<li>
+<p>Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'</p>
+<p><strong>[PREGUNTA]: Aquí os ayudo un poco más ya que pienso que es más complejo:</strong></p>
+<p><strong>La cabecera <code>Content-Security-Policy</code> (CSP) permite al servidor indicar al navegador desde qué orígenes puede cargar recursos como scripts, imágenes o estilos. De esta forma, si en el HTML hay etiquetas que intentan cargar contenido externo no permitido, el navegador lo bloqueará automáticamente. Haciendo uso de la explicación anterior, detalla cómo funciona esta protección con algunos ejemplos además, responde a lo siguiente: qué significa que <code>default-src 'self'</code> solo deje cargar recursos del mismo dominio, qué consigue <code>object-src 'none'</code> al prohibir objetos embebidos, y cómo <code>base-uri 'self'</code> limita el uso de la etiqueta <code>&lt;base&gt;</code> en el documento. Muestra ejemplos de código HTML que serían permitidos y otros que serían bloqueados.</strong></p>
+</li>
+<li>
+<p><code>Referrer-Policy "strict-origin-when-cross-origin"</code></p>
+<p><strong>[PREGUNTA]: ¿Qué es referer en la cabecera y que hace este tipo de política?</strong></p>
+</li>
+</ul>
+<hr />
+<h3 id="4-archivo-htaccess-uso-de-reglas-rewritecond-y-rewriterule">4 Archivo <code>.htaccess</code> (uso de reglas RewriteCond y RewriteRule)</h3>
+<p>El archivo <strong><code>.htaccess</code></strong> es un archivo de configuración especial que Apache lee cada vez que recibe una petición dentro de una carpeta concreta (mirar AllowOverride explicado en el archivo de configuración). Su nombre viene de <em>hypertext access</em> y fue creado originalmente para manejar reglas de acceso, aunque hoy en día se usa para muchas otras cosas.  La idea es sencilla: si en tu servidor tienes definido un directorio raíz (por ejemplo <code>/var/www/html</code>), puedes colocar un <code>.htaccess</code> dentro de esa carpeta o en alguna subcarpeta. Como nuestro directorio raíz es <code>var/www/html</code> Apache, cuando sirve un archivo o procesa una URL, busca si en esa ruta de la siguiente forma :</p>
+<ul>
+<li>Imagina que la Carpeta raíz definida es, como en nuestro caso: <code>/var/www/html</code></li>
+<li>El cliente hace la petición: <code>http://localhost:8080/blog/posts/123</code></li>
+<li>En el servidor, la ruta real: <code>/var/www/html/blog/posts/123</code></li>
+</ul>
+<p>Si AllowOverride es "ON" como en nuestro caso, Apache revisa de la siguiente forma para ver:</p>
+<ol>
+<li><code>/var/www/html/blog/posts/.htaccess</code></li>
+<li><code>/var/www/html/blog/.htaccess</code></li>
+<li><code>/var/www/html/.htaccess</code></li>
+</ol>
+<p>No hace falta convercerse para darse cuenta de que ha nivel de rendimiento es una castaña tremenda, por eso, para desarrollo, es coherente, pero no a nivel de producción, donde se pone <code>AllowOverride none</code>...</p>
+<p>Veamos ahora qué es lo que tenemos en este archivo <code>.htaccess</code></p>
+<div class="highlight"><pre><span></span><code>RewriteEngine<span class="w"> </span>On
+
+<span class="c1"># Si la URL no apunta a un archivo real...</span>
+RewriteCond<span class="w"> </span>%<span class="o">{</span>REQUEST_FILENAME<span class="o">}</span><span class="w"> </span>!-f
+<span class="c1"># ... y no apunta a un directorio real</span>
+RewriteCond<span class="w"> </span>%<span class="o">{</span>REQUEST_FILENAME<span class="o">}</span><span class="w"> </span>!-d
+<span class="c1"># Redirigimos todo a index.php</span>
+RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class="w"> </span><span class="o">[</span>L<span class="o">]</span>
+</code></pre></div>
+<p>Vamos a estudiar las condiciones de este .htaccess, que como es dicho, podrían estar directamente sobre el archivo de configuración de Apache y no necesariamente en el .htaccess</p>
+<h4 id="41-la-primera-condicion">4.1 La primera condición</h4>
+<div class="highlight"><pre><span></span><code>RewriteCond<span class="w"> </span>%<span class="o">{</span>REQUEST_FILENAME<span class="o">}</span><span class="w"> </span>!-f
+</code></pre></div>
+<p><code>%{REQUEST_FILENAME}</code>  es la ruta física del archivo que corresponde a la URL pedida.<code>! -f</code>  significa "NO es un archivo normal existente".</p>
+<p>solo se aplicará la regla si el archivo real no existe</p>
+<p>Ejemplo:</p>
+<ul>
+<li>
+<p>URL: <code>/style.css</code> , sí existe <code>/var/www/html/style.css</code> : la condición NO se cumple.</p>
+</li>
+<li>
+<p>URL: <code>/api/usuarios</code> , no existe <code>/var/www/html/api/usuarios</code> como archivo : la condición se cumple.</p>
+</li>
+</ul>
+<h4 id="42-la-segunda-condicion">4.2 La segunda condición</h4>
+<div class="highlight"><pre><span></span><code>RewriteCond<span class="w"> </span>%<span class="o">{</span>REQUEST_FILENAME<span class="o">}</span><span class="w"> </span>!-d
+</code></pre></div>
+<p>Solo se aplicará la regla si la ruta pedida no es un directorio real.</p>
+<p>Ejemplos:</p>
+<ul>
+<li>Se ejecuta la URL: <code>/uploads/</code> , sí existe <code>/var/www/html/uploads/</code> como carpeta: la condición NO se cumple.</li>
+<li>se ejecuta la URL: <code>/api/usuarios</code> , no existe <code>/var/www/html/api/usuarios</code> como carpeta : la condición se cumple.</li>
+</ul>
+<p>¿Por qué se tienen que cumplir las dos? Porque si existe un archivo o un directorio real, nuestra configuración decide que Apache debe servirlo directamente. Este tipo de configuración suele ser común y estándar y tenéis que saber cómo funciona. En conclusión, no queremos que una petición de <code>style.css</code> acabe en <code>index.php</code> (en caso de que sí exista style.css) ni que la carpeta <code>uploads/</code> sea redirigida. Solo cuando:</p>
+<ul>
+<li>No existe dicho archivo,</li>
+<li>No existe dicha carpeta,
+   entonces aplicamos la regla final:</li>
+</ul>
+<p>Hemos visto dos ejemplos de <code>RewriteCond</code> pero, en general, las RewriteCond siguen la siguiente estructura. Estudiemos su estructura y veamos más ejemplos.</p>
+<h5 id="estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos">Estudio de las Condiciones (<code>RewriteCond</code>) en general, con más ejemplos</h5>
+<p>Sintaxis general:</p>
+<div class="highlight"><pre><span></span><code>RewriteCond<span class="w"> </span>TESTSTRING<span class="w"> </span>CONDITION
+</code></pre></div>
+<ul>
+<li><strong>TESTSTRING</strong> : es lo que se va a evaluar (ej: <code>%{REQUEST_FILENAME}</code>, <code>%{HTTP_HOST}</code>, <code>%{QUERY_STRING}</code>, etc.).</li>
+</ul>
+<p><strong>[PREGUNTA] ¿QUE OTRAS VARIABLES DE ENTORNO SE GENERAN EN APACHE CUANDO SE RECIBE UNA PETICIÓN HTTP?</strong></p>
+<ul>
+<li><strong>CONDITION</strong> : es la comparación (ej: <code>!-f</code>, regex, strings, etc.). Al final de estos apuntes hay un anexo con regex.</li>
+</ul>
+<p>Veamos muchos ejemplo, no hace faltas que los sepáis de memoria pero sí que los entendáis.</p>
+<p><u>EJEMPLOS</u></p>
+<ul>
+<li>
+<p><code>RewriteCond %{REQUEST_FILENAME} !-f</code> : se cumple si no existe archivo.</p>
+</li>
+<li>
+<p><code>RewriteCond %{REQUEST_FILENAME} -d</code> :  se cumple si sí existe directorio.</p>
+</li>
+<li>
+<p><code>RewriteCond %{HTTP_HOST} ^www\.midominio\.com$</code> : se cumple si el host pedido es exactamente <code>www.midominio.com</code>.</p>
+</li>
+<li>
+<p><code>RewriteCond %{HTTP_HOST} !^www\.</code>
+   Se cumple si el host no empieza con www.</p>
+</li>
+<li>
+<p><code>RewriteCond %{HTTPS} on</code>
+   Se cumple si la conexión es HTTPS.</p>
+</li>
+<li>
+<p><code>RewriteCond %{HTTPS} off</code>
+   Se cumple si la conexión es HTTP (no cifrada).</p>
+</li>
+<li>
+<p><code>RewriteCond %{QUERY_STRING} id=([0-9]+)</code>
+   Se cumple si la URL tiene <code>?id=algo</code> en la query string.</p>
+</li>
+<li>
+<p><code>RewriteCond %{QUERY_STRING} !id=</code>
+   Se cumple si la query string no contiene <code>id=</code>.</p>
+</li>
+</ul>
+<p><strong>TODO DE QUERY_STRING ESTO OS DEBE SONAR</strong>: En la primera práctica vimos que mi servidor montado con NodeJS no diferenciabala lo que hubiese en los queryparams, le daba exactamente igual que hubiera más o menos campos.</p>
+<ul>
+<li>
+<p><code>RewriteCond %{REMOTE_ADDR} ^192\.168\.1\.100$</code>
+   Se cumple si el cliente viene de la IP <code>192.168.1.100</code>.</p>
+</li>
+<li>
+<p><code>RewriteCond %{REMOTE_ADDR} !^192\.168\.</code>
+   Se cumple si el cliente <em><em>no está en la subred 192.168.</em>.</em>`.</p>
+</li>
+</ul>
+<p>Ojo, Puedes poner varias <code>RewriteCond</code>: todas deben cumplirse para que se ejecute la regla que viene después. Por último, nos queda desrbir la última linea del htaccess.</p>
+<h4 id="43-tercera-condicion">4.3 Tercera condición</h4>
+<div class="highlight"><pre><span></span><code><span class="err">RewriteRule</span><span class="w"> </span><span class="err">^</span><span class="w"> </span><span class="err">index.php</span><span class="w"> </span><span class="err">[L]</span>
+</code></pre></div>
+<ul>
+<li>
+<p><strong><code>^</code> en el patrón</strong>: Como ya sabéis, en expresiones regulares, <code>^</code> significa “inicio de la cadena”. Aquí el patrón es <code>^</code>, lo que equivale a decir “cualquier cosa que empiece en el principio”, o sea, todas las URLs. Normalmente se combina con las condiciones de<code>RewriteCond</code> ya explicadas para filtrar casos, como ya haces con <code>!-f</code> y <code>!-d</code>.</p>
+</li>
+<li>
+<p><strong><code>index.php</code> en el destino</strong> Significa: “reescribe la URL para que Apache sirva <code>index.php</code>”. Esto no cambia lo que el usuario ve en el navegador, simplemente Apache decide que la petición <code>/productos/42</code> en realidad la atienda el archivo <code>index.php</code> y no por un archivo o carpeta que estuviera en <code>var/www/html</code>.</p>
+</li>
+<li>
+<p><strong><code>[L]</code> (flag “Last”)</strong> Indica que esta debe ser la última regla evaluada si se cumple. Una vez que Apache aplica esta regla, deja de mirar otras reglas de reescritura en ese contexto. Es como un <code>break</code> en un bucle de programación.</p>
+</li>
+</ul>
+<p>Al igual que con las <code>RewriteCond</code> vemos la sintáxsis general de las <code>RewriteRule</code></p>
+<h5 id="estudio-de-las-rewriterule-en-general">Estudio de las <code>RewriteRule</code> en general</h5>
+<div class="highlight"><pre><span></span><code>RewriteRule<span class="w"> </span>patrón<span class="w"> </span>destino<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
+</code></pre></div>
+<ul>
+<li><strong>patrón</strong> : es una expresión regular (ver Anexo) que Apache aplica sobre la URL solicitada (normalmente sobre el <code>REQUEST_URI</code> sin el dominio inicial).</li>
+</ul>
+<p><strong>[PREGUNTA] ¿Que es request_URI?</strong></p>
+<ul>
+<li>
+<p><strong>destino</strong> : adónde se debe redirigir o reescribir la petición. Puede ser un archivo local (ej: <code>index.php</code>) o incluso una URL completa (<code>https://otro.com/</code>).</p>
+</li>
+<li>
+<p><strong>[flags]</strong> : opciones que modifican el comportamiento (como <code>L</code>, <code>R</code>, etc.).</p>
+</li>
+</ul>
+<p><strong>[PREGUNTA]: Busca información sobre otro flag que se pudiera añadir e indica qué significaría</strong>.</p>
+<hr />
+<h3 id="5-algunos-scripts-en-apache-y-su-ejecucion">5. Algunos Scripts en apache y su ejecución</h3>
+<p>Veamos algunos scripts, que podemos colocar el la carpeta www para que se puedan ejecutar</p>
+<h4 id="51-indexphp-con-conexion-a-mysql-y-dos-endpoints-simples">5.1 index.php con conexión a MySQL y dos endpoints simples</h4>
+<p>Ahora un ejemplo un poco más útil, que prueba la conexión a la base de datos con las credenciales que definiste en las variables de entorno de <code>docker-compose.yml</code> (No tienen porqué ser las mismas que yo puse).</p>
+<p><strong>[PREGUNTA] Esta pregunta es sólo para ver si estáis siguiendo la lectura ya que lo que pregunto a continuación ya ha sido explicado</strong></p>
+<ul>
+<li><strong>¿En qué casos php y bajo qué peticiones del cliente ejecutará index.php APACHE?</strong></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
+
+<span class="c1">// Parámetros de conexión (los mismos que en docker-compose.yml)</span>
+<span class="nv">$host</span> <span class="o">=</span> <span class="s2">&quot;db&quot;</span><span class="p">;</span>           <span class="c1">// nombre del servicio de MySQL en docker-compose</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="s2">&quot;testuser&quot;</span><span class="p">;</span>
+<span class="nv">$pass</span> <span class="o">=</span> <span class="s2">&quot;testpass&quot;</span><span class="p">;</span>
+<span class="nv">$dbname</span> <span class="o">=</span> <span class="s2">&quot;testdb&quot;</span><span class="p">;</span>
+
+<span class="c1">// Conectar a MySQL</span>
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$dbname</span><span class="p">);</span>
+
+<span class="c1">// Verificar conexión</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Error de conexión a la BD: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">]);</span>
+    <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Obtener la ruta solicitada</span>
+<span class="nv">$uri</span> <span class="o">=</span> <span class="nb">parse_url</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REQUEST_URI&#39;</span><span class="p">],</span> <span class="nx">PHP_URL_PATH</span><span class="p">);</span>
+
+<span class="c1">// ENDPOINT: /api/usuarios</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$uri</span> <span class="o">===</span> <span class="s1">&#39;/api/usuarios&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;CREATE TABLE IF NOT EXISTS usuarios (</span>
+<span class="s2">        id INT AUTO_INCREMENT PRIMARY KEY,</span>
+<span class="s2">        nombre VARCHAR(50) NOT NULL</span>
+<span class="s2">    )&quot;</span><span class="p">;</span>
+    <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+
+    <span class="c1">// Insertar un usuario de prueba si la tabla está vacía</span>
+    <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;INSERT INTO usuarios (nombre)</span>
+<span class="s2">                  SELECT &#39;Ana&#39;</span>
+<span class="s2">                  WHERE NOT EXISTS (SELECT 1 FROM usuarios)&quot;</span><span class="p">);</span>
+
+    <span class="nv">$result</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM usuarios&quot;</span><span class="p">);</span>
+
+<span class="c1">// Recorremos todos los resultados de la consulta SQL ($result)</span>
+<span class="c1">// fetch_assoc() devuelve cada fila como un array asociativo</span>
+<span class="c1">//   - Las claves son los nombres de las columnas de la tabla (ej: &quot;id&quot;, &quot;nombre&quot;)</span>
+<span class="c1">//   - Los valores son los datos de esa fila</span>
+    <span class="nv">$usuarios</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">())</span> <span class="p">{</span>
+        <span class="nv">$usuarios</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$row</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="c1">// Al final, $usuarios será un array de arrays asociativos</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$usuarios</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// ENDPOINT: /api/ping (solo prueba de vida)</span>
+<span class="k">elseif</span> <span class="p">(</span><span class="nv">$uri</span> <span class="o">===</span> <span class="s1">&#39;/api/ping&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;msg&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;pong&quot;</span><span class="p">]);</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Endpoint no encontrado&quot;</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</code></pre></div>
+<p>Además, este archivo tiene dos endpoints definidos. Debes de contestar a las siguientes dos preguntas:</p>
+<p><strong>[PREGUNTA]:</strong></p>
+<ul>
+<li><strong>¿Cuáles son esos dos endpoints?</strong></li>
+<li><strong>¿Cuál es el flujo que hace Apache desde la petición del cliente hasta que devuelve la respuesta del endpoint? (Mirar .htaccess)</strong></li>
+<li><strong>¿Tienen verbos http definidos estos endpoints? ¿Responderían ante cualquier tipo de verbo http?</strong></li>
+<li><strong>¿Qué tipo de "Content-Type" envían ambos al cliente?</strong></li>
+<li><strong>¿Si tuvieras que darle un verbo http, que verbo le darías a cada endpoint anterior? Justifica tu respuesta</strong></li>
+</ul>
+<h4 id="52-productosphp"><strong>5.2 productos.php</strong></h4>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
+
+<span class="c1">// Asegurar que sea POST</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;POST&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">405</span><span class="p">);</span> <span class="c1">// Method Not Allowed</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Solo se admite POST&quot;</span><span class="p">]);</span>
+    <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Asegurar que Content-Type sea application/json</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">stripos</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">&quot;CONTENT_TYPE&quot;</span><span class="p">],</span> <span class="s2">&quot;application/json&quot;</span><span class="p">)</span> <span class="o">===</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span> <span class="c1">// Bad Request</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Content-Type debe ser application/json&quot;</span><span class="p">]);</span>
+    <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Leer el cuerpo de la petición</span>
+<span class="nv">$input</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">&quot;php://input&quot;</span><span class="p">);</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$input</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+
+<span class="c1">// Validar JSON</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">json_last_error</span><span class="p">()</span> <span class="o">!==</span> <span class="nx">JSON_ERROR_NONE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;JSON inválido&quot;</span><span class="p">]);</span>
+    <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Verificar que tenga el campo &quot;nombre&quot;</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;nombre&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">400</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Falta el campo &#39;nombre&#39;&quot;</span><span class="p">]);</span>
+    <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Conectar a la BD</span>
+<span class="nv">$host</span> <span class="o">=</span> <span class="s2">&quot;db&quot;</span><span class="p">;</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="s2">&quot;testuser&quot;</span><span class="p">;</span>
+<span class="nv">$pass</span> <span class="o">=</span> <span class="s2">&quot;testpass&quot;</span><span class="p">;</span>
+<span class="nv">$dbname</span> <span class="o">=</span> <span class="s2">&quot;testdb&quot;</span><span class="p">;</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$dbname</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Error de conexión: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">]);</span>
+    <span class="k">exit</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Crear tabla si no existe</span>
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;CREATE TABLE IF NOT EXISTS productos (</span>
+<span class="s2">    id INT AUTO_INCREMENT PRIMARY KEY,</span>
+<span class="s2">    nombre VARCHAR(100) NOT NULL</span>
+<span class="s2">)&quot;</span><span class="p">);</span>
+
+<span class="c1">// Insertar el nuevo producto</span>
+<span class="nv">$nombre</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">real_escape_string</span><span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;nombre&#39;</span><span class="p">]);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;INSERT INTO productos (nombre) VALUES (&#39;</span><span class="si">$nombre</span><span class="s2">&#39;)&quot;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">201</span><span class="p">);</span> <span class="c1">// Created</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span>
+        <span class="s2">&quot;success&quot;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+        <span class="s2">&quot;id&quot;</span> <span class="o">=&gt;</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">insert_id</span><span class="p">,</span>
+        <span class="s2">&quot;nombre&quot;</span> <span class="o">=&gt;</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;nombre&#39;</span><span class="p">]</span>
+    <span class="p">]);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;error&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Error al insertar producto&quot;</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</code></pre></div>
+<p><strong>[PREGUNTA]: Tal y como esta configurado apache, el archivo php anterior representa un endpoint por si mismo.</strong></p>
+<ul>
+<li>
+<p><strong>¿Cómo se hace la petición a ese archivo? ¿Qué tipo de verbo http sería?</strong> </p>
+</li>
+<li>
+<p><strong>¿Qué tipo de formato de datos accepta la petición?</strong> <strong>¿Qué tipo de formato devuelve?</strong></p>
+</li>
+<li>
+<p><strong>Prueba a a hacer una petición con POSTMAN y otra con CURL y adjunta capturas de la respuesta.</strong></p>
+</li>
+</ul>
+<p><strong>[PREGUNTA] En esta práctica habéis configurado manualmente vuestro servidor Apache con <code>000-default.conf</code> y un <code>.htaccess</code> para redirigir (algunas) lURLs a <code>index.php</code>. Todo el control de rutas, autenticación y caché lo habéis hecho directamente en el servidor web.</strong></p>
+<ul>
+<li>
+<p><strong>¿Qué cambia cuando usamos un framework como Laravel?</strong></p>
+</li>
+<li>
+<p><strong>¿Dónde se definen las rutas en ese caso: en el servidor Apache o dentro del framework?</strong></p>
+</li>
+<li>
+<p><strong>¿Qué ventajas y desventajas tiene cada enfoque (controlarlo en Apache vs. dejarlo al framework)?</strong></p>
+</li>
+<li>
+<p><strong>¿Por qué creéis que en proyectos grandes se recomienda que Apache solo apunte a <code>public/</code> y que el framework gestione las rutas y la lógica?</strong></p>
+</li>
+</ul>
+<p><strong>[PREGUNTA] A lo largo de la práctica has visto que se ha utilizado la extensión mysqli para hacer querys.</strong></p>
+<ul>
+<li><strong>¿Qué desventaja tiene esto en un servidor Web real?</strong></li>
+<li><strong>¿Qué es un ORM y que relación tiene con lo anterior?</strong></li>
+<li><strong>¿Qué ventajas ofrecen los ORM que nos proporcionan algunos frameworks como Larabel?</strong></li>
+</ul>
+<h3 id="6-anexo-cosas-basis-de-regexp-con-algunos-ejemplos">6. Anexo (Cosas básis de regexp con algunos ejemplos)</h3>
+<ul>
+<li><strong>Caracteres literales</strong> : Un string  tal cual. Ej: <code>hola</code> encuentra “hola”.</li>
+<li><strong>Metacaracteres</strong>:</li>
+<li><code>.</code> : cualquier carácter.</li>
+<li><code>^</code> : inicio de la cadena.</li>
+<li><code>$</code> : fin de la cadena.</li>
+<li><code>*</code> : cero o más repeticiones.</li>
+<li><code>+</code> : una o más repeticiones.</li>
+<li><code>?</code> : opcional (cero o una).</li>
+<li><code>[]</code> : conjunto de caracteres. Ej: <code>[0-9]</code> = cualquier dígito.</li>
+<li><code>|</code> : alternancia (OR). Ej: <code>perro|gato</code>.</li>
+<li><code>()</code> : agrupar.</li>
+<li><code>{n}</code> : exactamente n veces.</li>
+<li><code>{n,}</code> : al menos n veces (sin límite superior).</li>
+<li>
+<p><code>{n,m}</code> : entre n y m veces.</p>
+</li>
+<li>
+<p>Ejemplos típicos (si entiendes estos ejemplos, vas bien con las regexp, si no, repásatelas por favor)</p>
+</li>
+<li>
+<p><code>^[0-9]+$</code> : solo números enteros.</p>
+</li>
+<li>
+<p><code>^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$</code> : email básico.</p>
+</li>
+<li>
+<p><code>\.(jpg|jpeg|png)$</code> : archivos que terminan en <code>.jpg</code>, <code>.jpeg</code> o <code>.png</code>.</p>
+</li>
+<li>
+<p><code>^https?://</code>: URLs que empiezan por <code>http://</code> o <code>https://</code>. (piensa que hace)</p>
+</li>
+<li>
+<p><code>^[0-9]+([.,][0-9]+)?$</code>: (piensa que hace)</p>
+</li>
+<li>
+<p><code>^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$</code>: (piensa que hace)</p>
+</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

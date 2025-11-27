@@ -1,0 +1,919 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="../Pr%C3%A1ctica%201/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Teoría CURL - Módulo IAW</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-teoria-de-curl-previo-practica" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Módulo IAW" class="md-header__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Módulo IAW
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Teoría CURL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Módulo IAW" class="md-nav__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Módulo IAW
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 1. Introducción a HTTP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 1. Introducción a HTTP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría CURL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría CURL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es curl?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sintaxis-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxis básica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flags-opciones-mas-comunes-en-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags (opciones) más comunes en HTTP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flags (opciones) más comunes en HTTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-metodo-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1- Método HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-encabezados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2- Encabezados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cuerpo-de-la-peticion-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3- Cuerpo de la petición (body)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-envio-de-datos-dentro-de-la-propia-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4- Envío de datos dentro de la propia URL.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-mostrar-respuesta-y-otras-opciones-de-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5- Mostrar respuesta y otras opciones de curl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pr%C3%A1ctica%201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CURL y POSTMAN. Practica 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Teor%C3%ADa-Pr%C3%A1ctica-Guiada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion a APACHE e instalacion. Practica 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20primera_practica_PHP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sintaxis, ejecución y estructuras de datos. Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica4_php/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos avanzados. Peticiones fetch y HTML. Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-Pr%C3%A1ctica.%20Conexiones_bd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#que-es-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es curl?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sintaxis-basica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sintaxis básica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flags-opciones-mas-comunes-en-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flags (opciones) más comunes en HTTP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flags (opciones) más comunes en HTTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-metodo-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1- Método HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-encabezados" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2- Encabezados
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cuerpo-de-la-peticion-body" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3- Cuerpo de la petición (body)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-envio-de-datos-dentro-de-la-propia-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4- Envío de datos dentro de la propia URL.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-mostrar-respuesta-y-otras-opciones-de-curl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5- Mostrar respuesta y otras opciones de curl
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="-teoria-de-curl-previo-practica">-Teoría de <code>curl</code> (Previo práctica)</h1>
+<h3 id="que-es-curl">¿Qué es <code>curl</code>?</h3>
+<p><code>curl</code> =Client URL. Es una herramienta de línea de comandos para transferir datos con URLs. Soporta múltiples protocolos (HTTP, HTTPS, FTP, SFTP, SCP, LDAP, etc.), pero normalmente lo usamos con HTTP/HTTPS.</p>
+<h3 id="sintaxis-basica">Sintaxis básica</h3>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span><span class="o">[</span>opciones<span class="o">]</span><span class="w"> </span><span class="o">[</span>URL<span class="o">]</span>
+<span class="c1">#Ejemplo simple:</span>
+curl<span class="w"> </span>https://jsonplaceholder.typicode.com/posts/1
+</code></pre></div>
+<h2 id="flags-opciones-mas-comunes-en-http">Flags (opciones) más comunes en HTTP</h2>
+<h3 id="1-metodo-http">1- Método HTTP</h3>
+<p><code>-X &lt;METHOD&gt;</code> . Especifica el método (<code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, etc.) Por defecto, si no ponemos nada usa GET.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:3000/ping
+curl<span class="w"> </span>-X<span class="w"> </span>DELETE<span class="w"> </span>http://localhost:3000/delete/1
+</code></pre></div>
+<h3 id="2-encabezados">2- Encabezados</h3>
+<p><code>-H "&lt;Header&gt;: &lt;valor&gt;"</code> . añade encabezados HTTP. Nos centramos en el encabezado "Content-Type"</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer token&quot;</span><span class="w"> </span>http://localhost:3000/json
+</code></pre></div>
+<h3 id="3-cuerpo-de-la-peticion-body">3- Cuerpo de la petición (body)</h3>
+<p>Solo nos centraremos en 4 tipos de formatos (Content-Type del Header). </p>
+<ul>
+<li>
+<p><code>application/x-www-form-urlencoded</code></p>
+</li>
+<li>
+<p><code>application/json</code></p>
+</li>
+<li>
+<p><code>text/plain</code>**, **</p>
+</li>
+<li>
+<p><code>multipart/form-data</code>.</p>
+</li>
+</ul>
+<p>Ahora bien, ¿cómo se envían este tipo de formatos a través de un CURL?</p>
+<ul>
+<li>
+<p><code>-d "campo1=valor&amp;campo2=valor"</code> → envía datos en <strong><code>application/x-www-form-urlencoded</code>.</strong> De hecho, si no pones -X POST, se sigue haciendo POST por defecto.</p>
+</li>
+<li>
+<p><code>-d @archivo.json</code> → envía el contenido de un archivo como body en formato  <strong><code>application/json</code></strong>. Está guay por si tienes el contenido del Json directamente en un archivo y no quieres escribirlo en la petición.</p>
+</li>
+<li>
+<p><code>--data-raw "texto crudo"</code> → envía datos tal cual (útil para texto plano sin necesidad de que estén en un archivo) como por ejemplo <strong><code>text/plain</code></strong>. Aunque también se puede enviar JSON si se pone en el header :<strong><code>application/json</code></strong> sin necesidad de escribir la información en un archivo.</p>
+</li>
+<li>
+<p><code>-F "campo=@archivo.txt"</code> → envía un archivo en <strong><code>multipart/form-data</code>.</strong> Útil para enviar binarios con información (justo lo que hacen los formularios de register, enviar texto junto con la foto d perfil del usuario)</p>
+</li>
+</ul>
+<p>1-Ejemplos: <code>application/x-www-form-urlencoded</code></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Enviar formulario POST URL-en (lo q hace por defecto los HTML)</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://httpbin.org/post&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/x-www-form-urlencoded&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;username=ana&amp;password=secreto&quot;</span>
+</code></pre></div>
+<p>2-Ejemplos: <code>archivo.json</code>. La ruta de <code>archivo.json</code> debe ser <strong>relativa a donde ejecutas el comando</strong> o absoluta.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># el archivo.json de ejmpl contiene {&quot;name&quot;:&quot;Ana&quot;,&quot;role&quot;:&quot;admin&quot;}</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://httpbin.org/post&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span>@archivo.json
+</code></pre></div>
+<p>3-Ejemplos: <code>--data-raw "texto crudo"</code>   ¿Por qué usar <code>--data-raw</code> en lugar de <code>-d</code>?</p>
+<ul>
+<li>
+<p><code>-d</code> también sirve, pero interpreta algunas cosas (por ejemplo <code>@archivo</code> lo trata como archivo).</p>
+</li>
+<li>
+<p><code>--data-raw</code> asegura que el string se mande tal cual (sin interpretar).</p>
+</li>
+</ul>
+<p>Si usas JSON con <code>--data-raw</code>, sí debes poner <code>-H "Content-Type: application/json"</code> porque el servidor necesita saber que lo que le mandas es JSON.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://httpbin.org/post&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: text/plain&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-raw<span class="w"> </span><span class="s2">&quot;Este es un mensaje en texto plano\nSegunda línea&quot;</span>
+
+<span class="w"> </span><span class="c1"># Enviar JSON inline sin fichero (mínimo)</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="s2">&quot;https://httpbin.org/post&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-raw<span class="w"> </span><span class="s1">&#39;{&quot;title&quot;:&quot;Hola&quot;,&quot;body&quot;:&quot;Mundo&quot;}&#39;</span>
+</code></pre></div>
+<p>4-Ejemplos:<code>-F "campo=@archivo.txt"</code> → envía un archivo en <code>multipart/form-data</code>. <code>-F "campo=valor"</code> → envía también campos normales de texto.</p>
+<ul>
+<li>file=@/ruta/a/mapa.png<code>→ adjunta el archivo (ruta relativa o absoluta, igual que con</code>@archivo.json`)</li>
+</ul>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:3000/map<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;file=@/ruta/a/mapa.png&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;mission=recuperar_muro&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-F<span class="w"> </span><span class="s2">&quot;commander=Erwin&quot;</span>
+</code></pre></div>
+<p>Ojo: Si usas <code>-d</code> sin especificar <code>-X</code>, curl automáticamente usa <code>POST</code> y así te lo ahorras.</p>
+<h3 id="4-envio-de-datos-dentro-de-la-propia-url">4- Envío de datos dentro de la propia URL.</h3>
+<p>Los query params siempre van en la URL, después del <code>?</code>. Es decir, nunca viajan en el cuerpo de la petición.  Para hacer un envío de query-params a través de un get, se hace de la siguiente forma:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>--get<span class="w"> </span><span class="s2">&quot;https://api.ejemplo.com/buscar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;q=hola mundo&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;categoria=libros usados&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;autor=Manolito&quot;</span>
+</code></pre></div>
+<p>Ojo, No uses <code>-X GET</code> cuando envías query params con <code>-d</code>. Usa <code>--get</code> . Esto es un error conceptual, porque:</p>
+<ul>
+<li><code>-d</code> (o <code>--data</code>) se utiliza para enviar cuerpo (POST/PUT)</li>
+<li><code>GET</code> no tiene cuerpo</li>
+</ul>
+<p>Poniendo <code>--get</code> o incluso <code>G</code>, obligamos a que -d se convierta en un query-param. En el caso de que se quiera enviar caractéres codificamos en UTF-8 conviene usar --data-urlencode.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-G<span class="w"> </span><span class="s2">&quot;https://api.ejemplo.com/buscar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-urlencode<span class="w"> </span><span class="s2">&quot;q=hola mundo&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-urlencode<span class="w"> </span><span class="s2">&quot;categoria=libros usados&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--data-urlencode<span class="w"> </span><span class="s2">&quot;autor=El churumbel&quot;</span>
+</code></pre></div>
+<h3 id="5-mostrar-respuesta-y-otras-opciones-de-curl">5- Mostrar respuesta y otras opciones de curl</h3>
+<ul>
+<li>Por defecto imprime la respuesta en stdout.</li>
+<li><code>-i</code> . muestra también encabezados de la respuesta.</li>
+<li><code>-s</code>. modo silencioso (no muestra barra de progreso ni errores).</li>
+<li><code>-v</code> . verbose (muestra detalles de la petición y respuesta).</li>
+<li><code>-o archivo.txt</code> . guarda la respuesta en un archivo.</li>
+<li><code>-O</code> . guarda con el mismo nombre que el archivo remoto.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

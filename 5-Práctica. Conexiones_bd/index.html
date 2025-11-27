@@ -1,0 +1,1653 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../practica4_php/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5 - Módulo IAW</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#practica-guiada-5-conexiones-a-bd" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Módulo IAW" class="md-header__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Módulo IAW
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Módulo IAW" class="md-nav__button md-logo" aria-label="Módulo IAW" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Módulo IAW
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 1. Introducción a HTTP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 1. Introducción a HTTP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Teoria%20CURL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Teoría CURL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Pr%C3%A1ctica%201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CURL y POSTMAN. Practica 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2%20Teor%C3%ADa-Pr%C3%A1ctica-Guiada/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduccion a APACHE e instalacion. Practica 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tema 2. Lenguajes de entorno sevidor PHP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3%20primera_practica_PHP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sintaxis, ejecución y estructuras de datos. Práctica 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../practica4_php/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Métodos avanzados. Peticiones fetch y HTML. Práctica 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#practica-guiada-5-conexiones-a-bd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica Guiada 5. Conexiones a BD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -Índice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="-Índice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-breve-introduccion-a-la-programacion-orientada-a-objetos-en-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-Breve introducción a la programación orientada a objetos en PHP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1-Breve introducción a la programación orientada a objetos en PHP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-primer-ejemplo-de-poo-en-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1-Primer ejemplo de POO en PHP.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-segundo-ejemplo-de-poo-en-php-uso-de-propiedades-privadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-tercer-ejemplo-de-poo-en-php-getters-y-setters-encapsulamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practica-pt1-clase-basica-con-propiedades-publicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica PT1. Clase básica con propiedades públicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practica-pt2-clase-basica-con-propiedades-publicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica PT2. Clase básica con propiedades públicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-instalacion-de-mysql-creacion-de-usuarios-y-privilegios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-Instalación de mySQL, creación de usuarios y privilegios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conexion-a-la-bd-en-un-script-login-de-un-usuario-en-la-bbdd-loginphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-conexion-a-la-bbddpost-registrar-a-un-usuario-para-probar-el-loggin-anterior-registerphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-password_default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es PASSWORD_DEFAULT?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otras-cosas-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Otras cosas importantes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-conexion-a-la-bbdd-get-que-devuelve-la-info-de-todos-los-usuarios-all_usersphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-esquema-del-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5- Esquema del HTML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6- Práctica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#practica-guiada-5-conexiones-a-bd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica Guiada 5. Conexiones a BD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-indice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        -Índice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="-Índice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-breve-introduccion-a-la-programacion-orientada-a-objetos-en-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1-Breve introducción a la programación orientada a objetos en PHP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1-Breve introducción a la programación orientada a objetos en PHP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-primer-ejemplo-de-poo-en-php" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1-Primer ejemplo de POO en PHP.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-segundo-ejemplo-de-poo-en-php-uso-de-propiedades-privadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-tercer-ejemplo-de-poo-en-php-getters-y-setters-encapsulamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practica-pt1-clase-basica-con-propiedades-publicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica PT1. Clase básica con propiedades públicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#practica-pt2-clase-basica-con-propiedades-publicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Práctica PT2. Clase básica con propiedades públicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-instalacion-de-mysql-creacion-de-usuarios-y-privilegios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-Instalación de mySQL, creación de usuarios y privilegios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-conexion-a-la-bd-en-un-script-login-de-un-usuario-en-la-bbdd-loginphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-conexion-a-la-bbddpost-registrar-a-un-usuario-para-probar-el-loggin-anterior-registerphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#que-es-password_default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ¿Qué es PASSWORD_DEFAULT?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otras-cosas-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Otras cosas importantes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-conexion-a-la-bbdd-get-que-devuelve-la-info-de-todos-los-usuarios-all_usersphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-esquema-del-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5- Esquema del HTML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6- Práctica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5</h1>
+
+<h2 id="practica-guiada-5-conexiones-a-bd">Práctica Guiada 5. Conexiones a BD</h2>
+<h2 id="-indice">-Índice</h2>
+<p>1-Breve introducción a la programación orientada a objetos en PHP (nuevo)</p>
+<p>2-Instalación MySQL (server), creación de usuarios y privilegios</p>
+<p>2-Conexión a la BD en un script. Login de un usuario en la BBDD. (POST Login.php)</p>
+<p>3-Conexión a la BD en un script. Registrar usuario para probar login anterior (POST Register.php)</p>
+<p>4-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)</p>
+<p>5- HTML que realiza las peticiones. (Peticiones_form.html)</p>
+<p>6- Práctica</p>
+<h3 id="1-breve-introduccion-a-la-programacion-orientada-a-objetos-en-php">1-Breve introducción a la programación orientada a objetos en PHP</h3>
+<p>La Programación Orientada a Objetos (POO) es un paradigma de programación , es decir, una forma de organizar y estructurar el código, que se basa en el uso de objetos. Un objeto es una entidad que agrupa datos (propiedades o atributos) y comportamientos (métodos o funciones) que pertenecen a esa entidad. La idea principal es modelar partes del mundo real usando estructuras de código más cercanas a cómo pensamos las cosas.</p>
+<p>Por ejemplo:</p>
+<ul>
+<li>Una persona tiene nombre, edad, DNI : son propiedades.</li>
+<li>Una persona camina(), habla(), saluda() : son métodos.</li>
+</ul>
+<p>En POO combinamos ambas cosas dentro de una estructura llamada clase. A continuación vemos las definciones más básicar de la POO que veramos a lo largo de esta práctica.</p>
+<p><strong>- Clase</strong>
+ Una clase es una <u>plantilla</u> que define cómo serán los objetos creados a partir de ella. Ejemplo: La clase Coche describe qué datos tiene un coche (propiedades) como la marca, el modelo o el año, y qué puede hacer (métodos) como arrancar y frenar.</p>
+<p><strong>- Objeto</strong>
+ Un objeto es una instancia real creada a partir de una clase. Ejemplo: Un coche concreto, como un Seat Ibiza de 2018, es un objeto creado a partir de la clase Coche, es decir, una instancia.</p>
+<p><img src="/home/manolo/.config/Typora/typora-user-images/image-20251127105113973.png" alt="image-20251127105113973" style="zoom:50%;" /></p>
+<p><strong>- Propiedades</strong>
+ Son variables que representan la información que guarda un objeto. Ejemplo: Un coche tiene propiedades como color='rojo' o kilómetros=120000 o velocidad=40km/h.</p>
+<p><strong>- Métodos</strong>
+ Son funciones que representan acciones que un objeto puede realizar.  Ejemplo: Un coche puede ejecutar acciones (métodos) como arrancar() o acelerar(), que afectarán a propiedades como la velocidad o los kilómetros.</p>
+<p><strong>- Propiedades estáticas</strong>
+ Son propiedades que pertenecen a la clase en general, no a cada objeto. Ejemplo (programado en lo siguiente): La clase Persona podría tener un contador de cuántas personas se han creado en total, independientemente de quiénes sean esas personas.</p>
+<h4 id="11-primer-ejemplo-de-poo-en-php">1.1-Primer ejemplo de POO en PHP.</h4>
+<p>Nombre del script: primera_clase.php</p>
+<p>En este script, vemos el concepto de: Clase, Objeto (Instancia de la clase), Propiedades de un objeto y propiedades estáticas de una clase. </p>
+<ul>
+<li>La pantilla serán las personas. Cada persona tendrá dos propiedades, nombre y edad.</li>
+<li>Los objetos serán las personas que se crean a partir de la plantilla clase. Al crear una persona deberemos asignar un valor a las propiedades nombre y edad</li>
+<li>Además, la plantilla (la clase) tendrá una propiedad común a todas las personas, que será el número de personas creadas.</li>
+</ul>
+<p>Os recomiendo ejecutar el siguiente código en el intérprete de php.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Persona</span>
+<span class="p">{</span>
+    <span class="c1">// propiedades de la clase, que se definiran cuando la instanciemos</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$nombre</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">;</span>
+
+    <span class="c1">// Contador de instancias de objeto, cada vez que creeemos a una persona subiremos en 1</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="nx">int</span> <span class="nv">$contador</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">=</span> <span class="nv">$nombre</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">=</span> <span class="nv">$edad</span><span class="p">;</span>
+        <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$persona1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+<span class="nv">$persona2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="nv">$persona3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Carlos, 30</span>
+<span class="k">echo</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Ana, 25</span>
+<span class="k">echo</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Luis, 40</span>
+
+<span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span>  <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// 3 → se crearon tres objetos</span>
+
+<span class="c1">//Por desgracia, podemos cambiar el nombre a Paco, cosa que no deberíamos poder hacer.</span>
+<span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span><span class="o">=</span><span class="s2">&quot;Paco&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Carlos, 30</span>
+
+<span class="c1">//Por desgracia, podemos cambiar el numero de personas, cosa que no deberíamos poder hacer porque tampoco tiene ningun sentido</span>
+
+<span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span><span class="o">=</span><span class="mi">28</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span> <span class="o">.</span>  <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// 28 -&gt; No tiene sentido porque tenemos sólo 3 personas`</span>
+</code></pre></div>
+<p>Como podemos observar el código anterior tiene ciertos problemas</p>
+<p>Se puede instanciar un objeto y posteriormente cambiar las propiedades del objeto sin piedad (como el nombre y la edad), incluso también podría cambiar la propiedad estática de la clase,  propiedad que como hemos comentado antes,  es compartida entre todos los objetos instanciados.</p>
+<h4 id="12-segundo-ejemplo-de-poo-en-php-uso-de-propiedades-privadas">1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.</h4>
+<p>En la segunda versión del código (ver más abajo), haremos que nadie pueda cambiar el valor de la propiedad estática (el número de personas), pasándola a privada. Además, al ser privada, ya nadie podrá acceder a ella haciendo:</p>
+<div class="highlight"><pre><span></span><code><span class="x">Persona::$contador</span>
+</code></pre></div>
+<p>y por tanto, la única forma que tendrá un usuario de ver el valor de esta propiedad estática será definiendo una función dentro de la clase que nos otorgue su valor, que se denominará <code>getter</code>, ya que nos da el valor de una propiedad (estática en este caso):</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Persona</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nx">string</span> <span class="nv">$nombre</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">;</span>
+    <span class="c1">// Ponemos la propiedad como estática.</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="nx">int</span> <span class="nv">$contador</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">=</span> <span class="nv">$nombre</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">=</span> <span class="nv">$edad</span><span class="p">;</span>
+        <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Getter de contador</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getContador</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="nv">$persona1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+<span class="nv">$persona2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="nv">$persona3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">//La salida será: Carlos, 30</span>
+<span class="k">echo</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona2</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">//La salida será: Ana, 25</span>
+<span class="k">echo</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona3</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">//La salida será: Luis, 40</span>
+
+<span class="k">try</span> <span class="p">{</span><span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;}</span> <span class="c1">//ya no podemos acceder ni editar así, hay que utilizar el getter</span>
+<span class="k">catch</span> <span class="p">(</span><span class="nx">Throwable</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span><span class="k">echo</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;}</span>
+<span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="na">getContador</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">//Forma correcta de usar el getter</span>
+
+<span class="c1">//Por desgracia, podemos cambiar el nombre a Paco, cosa que no deberíamos poder hacer.</span>
+<span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span><span class="o">=</span><span class="s2">&quot;Paco&quot;</span><span class="p">;</span>
+<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Carlos, 30</span>
+</code></pre></div>
+<p>Como vemos al final del script siguen habiendo inconsistencias, como que se pueda cambiar el nombre de la persona (o incluso la edad). Esto se debe a que son propiedades públicas.</p>
+<h4 id="13-tercer-ejemplo-de-poo-en-php-getters-y-setters-encapsulamiento">1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento</h4>
+<p>En este último ejemplo, rizamos un poco más el rizo, lo que vemos ahora es encapsulación. Es decir, vamos a arreglar lo anterior. Para ello, no expondremos directamente al público las propiedades "edad" y "nombre" si no que estas se podrán editar u obtener únicamente a través de getters y setters.</p>
+<p><strong>- Getters y Setters</strong>
+ Son métodos que permiten leer o modificar propiedades privadas de forma controlada. Ejemplo: Para saber la edad de una persona usamos getEdad(), y para cambiarla usamos setEdad(), que comprueba que sea un número válido.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Persona</span>
+<span class="p">{</span>
+    <span class="c1">// Todas las propiedades son privadas</span>
+    <span class="k">private</span> <span class="nx">string</span> <span class="nv">$nombre</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">;</span>
+
+    <span class="c1">// Contador de instancias (estático y privado)</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="nx">int</span> <span class="nv">$contador</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setNombre</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">setEdad</span><span class="p">(</span><span class="nv">$edad</span><span class="p">);</span>
+        <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Getter y setter de nombre</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getNombre</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nombre</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setNombre</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$nombre</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$nombre</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;El nombre no puede estar vacío.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">=</span> <span class="nv">$nombre</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Getter y setter de edad</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getEdad</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">edad</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">setEdad</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$edad</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;La edad no puede ser negativa.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">=</span> <span class="nv">$edad</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Método estático</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getContador</span><span class="p">()</span><span class="o">:</span> <span class="nx">int</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$contador</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$persona1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+<span class="nv">$persona2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="nv">$persona3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+
+<span class="c1">// Mostrar datos usando saltos de línea (\n)</span>
+<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">getNombre</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">getEdad</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="practica-pt1-clase-basica-con-propiedades-publicas">Práctica PT1. Clase básica con propiedades públicas</h4>
+<p>Crea un archivo llamado <strong>coches_1.php</strong>. En este archivo define una clase <strong>Coche</strong> con:</p>
+<ul>
+<li>Propiedades públicas:</li>
+<li><strong>marca</strong> (string)</li>
+<li><strong>modelo</strong> (string)</li>
+<li><strong>velocidad</strong> (int)</li>
+<li>Una propiedad estática pública llamada <strong>contador</strong>, que registre cuántos coches se han creado.</li>
+<li>Un constructor que reciba los valores de marca, modelo y velocidad inicial.</li>
+</ul>
+<p><strong>Se pide:</strong></p>
+<ul>
+<li>Crear tres objetos tipo Coche, mostrar sus propiedades, mostrar el contador de coches, modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) y modificar “a mano” la propiedad estática.</li>
+</ul>
+<h4 id="practica-pt2-clase-basica-con-propiedades-publicas">Práctica PT2. Clase básica con propiedades públicas</h4>
+<p>Crea un archivo <strong>coches_3.php</strong>. En este archivo define una clase <strong>Coche</strong> con:</p>
+<ul>
+<li>Todas las propiedades serán privadas:</li>
+<li><strong>marca (string)</strong></li>
+<li><strong>modelo (string)</strong></li>
+<li>
+<p><strong>velocidad(int)</strong></p>
+</li>
+<li>
+<p>La propiedad estática <strong>contador</strong> será privada y tendrá un <strong>getter</strong> (getContador) para ver su valor.</p>
+</li>
+<li>En el constructor, asigna marca y modelo usando <strong>setters</strong> (definidos más abajo) y no directamente en el constructor.</li>
+<li>La velocidad inicial debe ser siempre 0, independientemente de lo que se pase y se pondrá así en el constructor.</li>
+<li>Crea getters para ver los valores de las tres propiedades mencionadas</li>
+</ul>
+<p>Reglas del setter de marca y modelo (setModelo, setMarca):</p>
+<ul>
+<li>No pueden estar vacíos y deben ser cadenas de texto.</li>
+<li>Además, un coche no puede cambair de marca y modelo luego deben ser setter privados y no se pueden acceder desde fuera.</li>
+</ul>
+<p>Crear el metodo velocidad (addVelocidad) que suma o resta velocidad a un coche:</p>
+<ul>
+<li>La velocidad resultante no puede ser negativa y no puede superar los 250 km/h</li>
+</ul>
+<p><strong>Se pide:</strong></p>
+<ul>
+<li>Crear tres objetos tipo Coche, mostrar sus propiedades con los getters, mostrar el contador de coches con su getter.</li>
+</ul>
+<p>Intenta modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) ¿Qué pasa?</p>
+<p>Usar el méotodo addVelocidad para añadir 10km/h de velocidad.</p>
+<h3 id="2-instalacion-de-mysql-creacion-de-usuarios-y-privilegios">2-Instalación de mySQL, creación de usuarios y privilegios</h3>
+<p>En este apartado vamos a ver cómo podemos conectarnos a bases de datos desde nuestra aplicación.</p>
+<p>En primer lugas, instalamos mysqlserver</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mysql-server
+</code></pre></div>
+<p>Una vez instalado, abrelo como root:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>root
+</code></pre></div>
+<p>Crea una BD</p>
+<div class="highlight"><pre><span></span><code>CREATE<span class="w"> </span>DATABASE<span class="w"> </span>testdb<span class="p">;</span>
+</code></pre></div>
+<p>y úsala:</p>
+<div class="highlight"><pre><span></span><code>USE<span class="w"> </span>testdb<span class="p">;</span>
+</code></pre></div>
+<p>Crea la tabla usuarios</p>
+<div class="highlight"><pre><span></span><code>CREATE<span class="w"> </span>TABLE<span class="w"> </span>usuarios<span class="w"> </span><span class="o">(</span>
+<span class="w">    </span>id<span class="w"> </span>INT<span class="w"> </span>AUTO_INCREMENT<span class="w"> </span>PRIMARY<span class="w"> </span>KEY,
+<span class="w">    </span>nombre<span class="w"> </span>VARCHAR<span class="o">(</span><span class="m">100</span><span class="o">)</span><span class="w"> </span>NOT<span class="w"> </span>NULL,
+<span class="w">    </span>email<span class="w"> </span>VARCHAR<span class="o">(</span><span class="m">150</span><span class="o">)</span><span class="w"> </span>UNIQUE<span class="w"> </span>NOT<span class="w"> </span>NULL,
+<span class="w">    </span>password<span class="w"> </span>VARCHAR<span class="o">(</span><span class="m">255</span><span class="o">)</span><span class="w"> </span>NOT<span class="w"> </span>NULL,
+<span class="w">    </span>creado_en<span class="w"> </span>TIMESTAMP<span class="w"> </span>DEFAULT<span class="w"> </span>CURRENT_TIMESTAMP
+<span class="o">)</span><span class="p">;</span>
+</code></pre></div>
+<p>Después, vamos a crear un usuario con privilegios mínimos, ya que cuando el cliente se conecte a la BD no lo hará desde root. Además, este usuario sólo se podrá conectar desde localhost y nunca de forma remota, es decir, sólo s epodrá conectar desde el servidor, al servidor, lo que significa que sólo lo hará desde los scripts de php (en nuestro caso). Esto dependerá en gran medida de la configuración de nuestro servidor, en este caso, al ser nuestra aplicación monolítica, nos vale.</p>
+<div class="highlight"><pre><span></span><code>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;www-data&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Le damos al usuario únicamente privilegios sobre la tabla que queramos, en este caso, la tabla de usuarios</p>
+<div class="highlight"><pre><span></span><code>GRANT<span class="w"> </span>SELECT,<span class="w"> </span>INSERT,<span class="w"> </span>UPDATE,<span class="w"> </span>DELETE<span class="w"> </span>ON<span class="w"> </span>testdb.usuarios<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;www-data&#39;</span>@<span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>Para aplciar los privilegios anteriores:</p>
+<div class="highlight"><pre><span></span><code>FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
+</code></pre></div>
+<h3 id="2-conexion-a-la-bd-en-un-script-login-de-un-usuario-en-la-bbdd-loginphp">2-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)</h3>
+<p>Vamos a aprovechar el formulario de la pŕactica anterior (este):</p>
+<p><img alt="image-20251121105609040" src="/home/manolo/.config/Typora/typora-user-images/image-20251121105609040.png" /></p>
+<p>y vamos a hacer que dos formularios (dos POST's y un GET quitamos el resto) se conecten a scripts que hagan cosas interesantes. En primer lugar, el primer POST se conecta al primer script, que llamaremos (Login.php) que nos devuelve información del usuario (en el siguiente punto veremos como registar a un usuario), la primera parte del script contendrá esto:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
+<span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_USER&quot;</span><span class="p">);</span>
+<span class="nv">$pass</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_PASS&quot;</span><span class="p">);</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$db</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Error de conexión: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Recibir datos por un formulario (url-enconded)</span>
+<span class="nv">$email</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
+<span class="nv">$pass_input</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$email</span> <span class="o">||</span> <span class="o">!</span><span class="nv">$pass_input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Faltan datos&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Hasta aquí, todo entendible. Para la conexión a la BD no queremos exponer que en el script se vea el valor de user ni el valor de pass, es por eso que se recogen desde variables de entorno (un fichero donde estas variables están definidas de forma que nadie pordrá verlas)</p>
+<p>En concreto, estas variables las ponéis en:
+/etc/apache2/envvars</p>
+<p>y escribís:</p>
+<p><img alt="image-20251121180114532" src="/home/manolo/.config/Typora/typora-user-images/image-20251121180114532.png" /></p>
+<p>Seguimos rellenando el script con la parte de la consulta:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$sql = &quot;SELECT id, nombre, email, password FROM usuarios WHERE email = ?&quot;;</span>
+<span class="x">$stmt = $conn-&gt;prepare($sql);</span>
+<span class="x">$stmt-&gt;bind_param(&quot;s&quot;, $email);</span>
+<span class="x">$stmt-&gt;execute();</span>
+<span class="x">$result = $stmt-&gt;get_result();</span>
+</code></pre></div>
+<p>¿Qué singifica?</p>
+<div class="highlight"><pre><span></span><code><span class="x">$sql = &quot;SELECT id, nombre, email, password FROM usuarios WHERE email = ?&quot;;</span>
+</code></pre></div>
+<p>El <code>?</code> es un hueco en donde luego vamos a poner el valor del email del usuario. No lo ponemos directamente en el string. Lo vamos a mandar aparte, de forma segura.</p>
+<div class="highlight"><pre><span></span><code><span class="x">$stmt = $conn-&gt;prepare($sql);</span>
+</code></pre></div>
+<ul>
+<li><code>$conn</code>: es la conexión a MySQL (<code>new mysqli(...)</code>).</li>
+<li><code>prepare()</code>: es un método que le dice a MySQL: Aquí tienes una consulta con huecos (<code>?</code>), prepárala porque luego te mandaré los valores.</li>
+<li>Devuelve un objeto de tipo <code>mysqli_stmt</code> (statement = sentencia preparada). Ese objeto lo guardamos en la variable <code>$stmt</code>.</li>
+</ul>
+<p>Si fallara algo, $stmt  sería <code>false</code>. En código se comprueba:</p>
+<div class="highlight"><pre><span></span><code><span class="x">if (!$stmt) {</span>
+<span class="x">    die(&quot;Error al preparar: &quot; . $conn-&gt;error);</span>
+<span class="x">}</span>
+</code></pre></div>
+<p>Por último, falta dar valor a <code>?</code>: esto se hace así:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$stmt</span>-&gt;bind_param<span class="o">(</span><span class="s2">&quot;s&quot;</span>,<span class="w"> </span><span class="nv">$email</span><span class="o">)</span><span class="p">;</span>
+</code></pre></div>
+<p>Este es el método que más confunde, así que vamos muy lento: Pega la variable <code>$email</code> al <code>?</code> que pusimos en la consulta. O sea: el <code>?</code> ahora significa “el valor de $email”. Nos falta todavía saber qué significa la "s".</p>
+<p><strong>¿Qué significa <code>"s"</code>?</strong> : El primer parámetro "s" indica el tipo de dato del valor que vas a pasar:</p>
+<ul>
+<li>"s"  string (texto)</li>
+<li>"i" integer (entero / número)</li>
+<li>"d" double (número decimal)</li>
+<li>"b"  blob (datos binarios)</li>
+</ul>
+<p>En este caso:  <code>"s"</code> = le estamos diciendo a MySQL: el hueco <code>?</code> va a recibir texto. En el ejemplo (el del POST) siguiente veremos que podemos pasar mas de una cosa y nó solo una al mismo tiempo. Por último, ejecutamos la consulta y obtenemos el resultado:</p>
+<div class="highlight"><pre><span></span><code><span class="x">$stmt-&gt;execute();</span>
+<span class="x">#No tienes que mandar otra vez la consulta ni los valores: ya están “dentro” del $stmt aplicando el método get_result.</span>
+<span class="x">$result = $stmt-&gt;get_result();</span>
+</code></pre></div>
+<p>Si quisieramos mandar el resultado al cliente, se lo mnandaríamos mediante un array asociativo, usando;</p>
+<blockquote>
+<p>[!IMPORTANT]</p>
+<p><code>fetch_assoc()</code> devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:</p>
+<div class="highlight"><pre><span></span><code><span class="x">while ($usuario = $result-&gt;fetch_assoc()) {</span>
+<span class="x">    echo $usuario[&quot;nombre&quot;] . &quot;&lt;br&gt;&quot;;</span>
+<span class="x">}</span>
+</code></pre></div>
+<p>De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso.</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="nv">$userData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$result</span>-&gt;fetch_assoc<span class="o">()</span><span class="p">;</span>
+</code></pre></div>
+<p>que hace lo siguiente, si mi tabla tiene:</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>nombre</th>
+<th>email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>Juan</td>
+<td><a href="mailto:test@mail.com">test@mail.com</a><br /></td>
+</tr>
+</tbody>
+</table>
+<p>Convierte esto en un array asociativo que podremos manejar sin problemas en php;</p>
+<div class="highlight"><pre><span></span><code>[
+    &quot;id&quot; =&gt; 5,
+    &quot;nombre&quot; =&gt; &quot;Juan&quot;,
+    &quot;email&quot; =&gt; &quot;test@mail.com&quot;
+]
+</code></pre></div>
+<p>El código completo de (Login.php) queda así:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
+<span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_USER&quot;</span><span class="p">);</span>
+<span class="nv">$pass</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_PASS&quot;</span><span class="p">);</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$db</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Error de conexión: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Recibir datos</span>
+<span class="nv">$email</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
+<span class="nv">$pass_input</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$email</span> <span class="o">||</span> <span class="o">!</span><span class="nv">$pass_input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Faltan datos&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Consulta usando prepared statement</span>
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id, nombre, email, password FROM usuarios WHERE email = ?&quot;</span><span class="p">;</span>
+
+<span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$stmt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Error al preparar: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="nv">$email</span><span class="p">);</span>
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">();</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$result</span><span class="o">-&gt;</span><span class="na">num_rows</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Usuario no encontrado&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nv">$userData</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">();</span>
+
+<span class="c1">// Verificar contraseña hasehada, esta función es importantísima ya que mirará la contraseña hasheada de la bd</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">password_verify</span><span class="p">(</span><span class="nv">$pass_input</span><span class="p">,</span> <span class="nv">$userData</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="k">exit</span><span class="p">(</span><span class="s2">&quot;Contraseña incorrecta&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Si llega aquí, login válido.</span>
+<span class="nb">unset</span><span class="p">(</span><span class="nv">$userData</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]);</span>
+
+<span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span>
+    <span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Login exitoso&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span> <span class="o">=&gt;</span> <span class="nv">$userData</span>
+<span class="p">]);</span>
+
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre></div>
+<h3 id="3-conexion-a-la-bbddpost-registrar-a-un-usuario-para-probar-el-loggin-anterior-registerphp">3-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)</h3>
+<p>Ya sabemos un poco sobre conexión a base de datos según lo visto en el punto anterior. Ahora vamos al revés, os doy el script entero de (Register.php) y lo que haremos será desmenuzar los puntos que no comprendamos.</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
+
+<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">ini_set</span><span class="p">(</span><span class="s1">&#39;display_startup_errors&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nb">error_reporting</span><span class="p">(</span><span class="k">E_ALL</span><span class="p">);</span>
+
+<span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
+<span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_USER&quot;</span><span class="p">);</span>
+<span class="nv">$pass</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_PASS&quot;</span><span class="p">);</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$db</span><span class="p">);</span>
+
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Error de conexión&quot;</span><span class="p">]);</span>
+    <span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$nombre</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;nombre&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
+<span class="nv">$email</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
+<span class="nv">$pass_input</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$nombre</span> <span class="o">||</span> <span class="o">!</span><span class="nv">$email</span> <span class="o">||</span> <span class="o">!</span><span class="nv">$pass_input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Faltan datos&quot;</span><span class="p">]);</span>
+    <span class="k">exit</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nv">$hashedPassword</span> <span class="o">=</span> <span class="nb">password_hash</span><span class="p">(</span><span class="nv">$pass_input</span><span class="p">,</span> <span class="nx">PASSWORD_DEFAULT</span><span class="p">);</span>
+
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)&quot;</span><span class="p">;</span>
+
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;sss&quot;</span><span class="p">,</span> <span class="nv">$nombre</span><span class="p">,</span> <span class="nv">$email</span><span class="p">,</span> <span class="nv">$hashedPassword</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span>
+        <span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Usuario registrado correctamente&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;user_id&quot;</span> <span class="o">=&gt;</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">insert_id</span>
+    <span class="p">]);</span>
+
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span>
+        <span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Error al registrar usuario&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;mysql_error&quot;</span> <span class="o">=&gt;</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">error</span>
+    <span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$stmt</span><span class="p">))</span> <span class="p">{</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre></div>
+<p>Vamos la cosas que todavía pueden resultar confusas porque no se han visto antes;</p>
+<h6 id="que-es-password_default">¿Qué es PASSWORD_DEFAULT?</h6>
+<p>Es una constante predefinida por PHP cuyo valor es un número entero que identifica el algoritmo de hasehado de contraseña. No lo ves como texto porque PHP ya lo interpreta. si haces:</p>
+<div class="highlight"><pre><span></span><code><span class="x">echo PASSWORD_DEFAULT;</span>
+</code></pre></div>
+<p>obtienes
+<div class="highlight"><pre><span></span><code><span class="x">1 #metodo de hasehado por defecto. esto no se suele cambiar ni pediré que lo hagáis</span>
+</code></pre></div></p>
+<h6 id="otras-cosas-importantes">Otras cosas importantes</h6>
+<p>En el (<code>INSERT</code>) que acabamos de usar, hacemos un "if" con el execute<code>if ($stmt-&gt;execute())</code> . Esto no lo hacíamos en el punto 2 de esta práctica cuando veíamos el loggin.</p>
+<p>Esto tiene sentido en este caso y no en el del punto anterior porque <code>execute()</code> te dice si la consulta se ejecutó correctamente o falló (true o false). En este caso, si no se insertó nada, falla y devuelve false, por tanto, debemos devolver un error.</p>
+<p>Sin embargo, En el login anterior, se hacía una <code>SELECT</code> y no un <code>INSERT</code>, y en este caso, <code>execute()</code> devuelve true siempre que la consulta haya terminado correctamente, a pesar de que haya devuelto 0 registros, esto pasa porque la consulta es válida aunque NO DEVUELVA RESULTADOS.  Por eso se usa después:</p>
+<div class="highlight"><pre><span></span><code><span class="x">if ($result-&gt;num_rows === 0)</span>
+</code></pre></div>
+<p>y no el if directamente sobre el método execute.</p>
+<h3 id="4-conexion-a-la-bbdd-get-que-devuelve-la-info-de-todos-los-usuarios-all_usersphp">4-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)</h3>
+<p>En este caso, no hace falta explciar tanto ya que hemos visto muchas cosas, este formulario es el ejemplo vivo de un get en el que no se envía ninguna información. A continuación os dejo el código. Recordar que en un formulario html que use get, los parámetros se envían por query-param:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
+
+<span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
+<span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>
+<span class="nv">$user</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_USER&quot;</span><span class="p">);</span>
+<span class="nv">$pass</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_PASS&quot;</span><span class="p">);</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$db</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Error de conexión: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">]));</span>
+<span class="p">}</span>
+
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s1">&#39;REQUEST_METHOD&#39;</span><span class="p">]</span> <span class="o">!==</span> <span class="s1">&#39;GET&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">http_response_code</span><span class="p">(</span><span class="mi">405</span><span class="p">);</span>
+    <span class="k">die</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Método no permitido&quot;</span><span class="p">]));</span>
+<span class="p">}</span>
+
+<span class="c1">// Consulta</span>
+<span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT id, nombre, email FROM usuarios&quot;</span><span class="p">;</span>
+
+<span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$stmt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">([</span><span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Error al preparar consulta: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">]));</span>
+<span class="p">}</span>
+
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+<span class="nv">$result</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">();</span>
+
+<span class="nv">$usuarios</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nv">$row</span> <span class="o">=</span> <span class="nv">$result</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">())</span> <span class="p">{</span>
+    <span class="nv">$usuarios</span><span class="p">[]</span> <span class="o">=</span> <span class="nv">$row</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nb">json_encode</span><span class="p">([</span>
+    <span class="s2">&quot;status&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span> <span class="o">=&gt;</span> <span class="s2">&quot;Usuarios obtenidos correctamente&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data&quot;</span> <span class="o">=&gt;</span> <span class="nv">$usuarios</span>
+<span class="p">]);</span>
+
+<span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre></div>
+<p>Ojo cuidado, una cosa importante es que en este coso tenemos que recorrer fetch_assoc() según lo que explicamos ya en el bloque important del punto 2.</p>
+<h3 id="5-esquema-del-html">5- Esquema del HTML</h3>
+<p>A modo esquematico, el body html hará las peticiones así (el put y el delete siguen haciendo lo que debían hacer en la práctica anterior utilizando los fetch en JS). En primer lugar, el HTML  (El primer POST y el segundo POST) harán las peticiones así:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">justify-content</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">contenedor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="p">.</span><span class="nc">carta</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">            </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="nb">rgb</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">252</span><span class="p">);</span>
+<span class="w">            </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">320</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nt">form</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">            </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="nt">input</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">max-width</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-top</span><span class="p">:</span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nt">button</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">max-width</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="kt">px</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">            </span><span class="k">margin-top</span><span class="p">:</span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+
+
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;contenedor&quot;</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;carta&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;Login.php&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Esto sería un primer POST de login<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;email&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Contraseña&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;carta&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;Register.php&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span> <span class="na">enctype</span><span class="o">=</span><span class="s">&quot;multipart/form-data&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Esto sería un POST de register<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;nombre&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Nombre&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;email&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Email&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;password&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;Contraseña&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;file&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;foto&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;carta&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;All_users.php&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Esto sería un GET de todos los usuarios<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Enviar <span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>En las prácticas siguientes veremos como utilzar el PUT y el DELETE de forma práctica y real, borrando registros de la BD y editando cuestiones de la BD.</p>
+<h3 id="6-practica"><strong>6- Práctica</strong></h3>
+<p>1-Realiza la práctica guiada anterior e intenta que por cada usuario que se registre suba una foto del usuario dentro de la carpeta uploads.</p>
+<p>2-Crea dos formularios HTML (en peticiones_productos.html) <strong><u>que NO usarán javascript.</u></strong> Ambos deberán hacer una petición GET y un POST respectivamente. Usarán boton de tipo submit y la información no se recogerá dinámicamente si no que se hará directamente desde el html.</p>
+<ul>
+<li>
+<p>El POST del formulario html apuntará al script: productos_form.php. Lo que hará este script sera conectarse a la BD para registar un producto junto con su ID en una base de datos llamada productos y una breve descripcion. Deberás crear la tabla productos para ello.</p>
+</li>
+<li>
+<p>El GET recogerá la información de un producto en específico (quey -param), en este caso, no será un json si no que el script "info_productos.php" deberá devolver un echo con la información entera del producto.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

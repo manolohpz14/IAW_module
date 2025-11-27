@@ -180,7 +180,7 @@ Volviendo al Dockerfile de nuestro proyecto, al principio tenemos: FROM php:8.2-
 
 El objetivo de lo siguiente es hablar del archivo de configuración inicial de apache y de cada una de sus peculiaridades. Al igual que con la parte anterior de la práctica, os iré haciendo preguntas al respecto de lo que vaya saliendo, poco a poco.
 
-![image-20251017151010293](/home/manolo/Escritorio/IAW/materia/docs/img/image-20251017151010293.png)
+![image-20251017151010293](./img/image-20251017151010293.png)
 
 #### 3.1 El código del 000-default.conf
 

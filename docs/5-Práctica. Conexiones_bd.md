@@ -17,7 +17,7 @@ En POO combinamos ambas cosas dentro de una estructura llamada clase. A continua
 **- Objeto**
  Un objeto es una instancia real creada a partir de una clase. Ejemplo: Un coche concreto, como un Seat Ibiza de 2018, es un objeto creado a partir de la clase Coche, es decir, una instancia.
 
-<img src="/home/manolo/Escritorio/IAW/materia/docs/img/image-20251127105113973.png" alt="image-20251127105113973" style="zoom:50%;" />
+<img src="./img/image-20251127105113973.png" alt="image-20251127105113973" style="zoom:50%;" />
 
 **- Propiedades**
  Son variables que representan la información que guarda un objeto. Ejemplo: Un coche tiene propiedades como color='rojo' o kilómetros=120000 o velocidad=40km/h.
@@ -318,7 +318,7 @@ FLUSH PRIVILEGES;
 
 Vamos a aprovechar el formulario de la pŕactica anterior (este):
 
-![image-20251121105609040](/home/manolo/.config/Typora/typora-user-images/image-20251121105609040.png)
+![image-20251121105609040](./img/image-20251121105609040.png)
 
 y vamos a hacer que dos formularios (dos POST's y un GET quitamos el resto) se conecten a scripts que hagan cosas interesantes. En primer lugar, el primer POST se conecta al primer script, que llamaremos (Login.php) que nos devuelve información del usuario (en el siguiente punto veremos como registar a un usuario), la primera parte del script contendrá esto:
 
@@ -351,7 +351,7 @@ En concreto, estas variables las ponéis en:
 
 y escribís:
 
-![image-20251121180114532](/home/manolo/.config/Typora/typora-user-images/image-20251121180114532.png)
+![image-20251121180114532](./img/image-20251121180114532.png)
 
 Seguimos rellenando el script con la parte de la consulta:
 

@@ -3,6 +3,7 @@ theme:
   name: material
 
 nav:
+  - Inicio: index.md
   - Tema 1. Introducción a HTTP:
       - Teoría CURL: Teoria CURL.md
       - CURL y POSTMAN. Practica 1: Práctica 1.md

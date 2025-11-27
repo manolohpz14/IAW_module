@@ -17,7 +17,7 @@ En POO combinamos ambas cosas dentro de una estructura llamada clase. A continua
 **- Objeto**
  Un objeto es una instancia real creada a partir de una clase. Ejemplo: Un coche concreto, como un Seat Ibiza de 2018, es un objeto creado a partir de la clase Coche, es decir, una instancia.
 
-<img src="./img/coche.png" alt="image-20251127105113973" style="zoom:50%;" />
+<img src="./img/coche.png" alt="image-20251121105609040" style="zoom:50%;" />
 
 **- Propiedades**
  Son variables que representan la información que guarda un objeto. Ejemplo: Un coche tiene propiedades como color='rojo' o kilómetros=120000 o velocidad=40km/h.

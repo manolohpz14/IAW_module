@@ -62,6 +62,10 @@ class Persona
 }
 ```
 
+##### This vs self
+
+$this se usa cuando quieres trabajar con un objeto específico. Representa a la instancia actual de la clase, es decir, al objeto que se creó con new. En cambio, self se usa cuando quieres trabajar con algo que pertenece a la clase en general, no a cada objeto. Esto es justo lo que pasa cuando le damos valor en el constructor de la clase a la propiedad estática contador, que necesitamos sí o sí acceder poniendo self.
+
 Con lo anterior, tenemos la plantilla de los objetos que vamos a crear, la idea ahora es ver como creamos los objetos de dicha clase, lo vemos aqui:
 
 ##### **Instanciando objetos**
@@ -138,12 +142,6 @@ echo $persona1->nombre . ", " . $persona1->edad . "\n"; // Carlos, 30
 
 Como vemos al final del script siguen habiendo inconsistencias, como que se pueda cambiar el nombre de la persona (o incluso la edad). Esto se debe a que son propiedades públicas.
 
-##### This vs self
-
-$this se usa cuando quieres trabajar con un objeto específico. Representa a la instancia actual de la clase, es decir, al objeto que se creó con new. En cambio, self se usa cuando quieres trabajar con algo que pertenece a la clase en general, no a cada objeto. 
-
-
-
 #### 1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento
 
 En este último ejemplo, rizamos un poco más el rizo, lo que vemos ahora es encapsulación. Es decir, vamos a arreglar lo anterior. Para ello, no expondremos directamente al público las propiedades "edad" y "nombre" si no que estas se podrán editar u obtener únicamente a través de getters y setters.
@@ -155,6 +153,7 @@ Cuando un getter o un setter es privado, no puede ser accedido desde una instanc
 
 ```php
 <?php
+declare(strict_types=1);
 class Persona
 {
     // ahora todas las propiedades son privadas
@@ -168,12 +167,7 @@ class Persona
         $this->setEdad($edad);
         self::$contador++;
     }
-
-    public function getNombre(): string
-    {
-        return $this->nombre;
-    }
-
+    public function getNombre(): string {return $this->nombre;}
     private function setNombre(string $nombre): void
     {
         if (empty($nombre)) {
@@ -181,12 +175,7 @@ class Persona
         }
         $this->nombre = $nombre;
     }
-
-    public function getEdad(): int
-    {
-        return $this->edad;
-    }
-
+    public function getEdad(): int {return $this->edad;}
     private function setEdad(int $edad): void
     {
         if ($edad < 0) {
@@ -194,11 +183,7 @@ class Persona
         }
         $this->edad = $edad;
     }
-
-    public static function getContador(): int
-    {
-        return self::$contador;
-    }
+    public static function getContador(): int {return self::$contador;}
 }
 
 $persona1 = new Persona("Carlos", 30);
@@ -206,6 +191,45 @@ $persona2 = new Persona("Ana", 25);
 $persona3 = new Persona("Luis", 40);
 echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
 ```
+
+Ojo, si ponemos  declare(strict_types=1); como en lo anterior, es conveniente tener un control de errores correcto. (Algo tal que así para cada función)
+
+```php
+<?php
+private function setEdad(int $edad): void {
+    try {
+        if ($edad < 0) {
+            throw new Exception("La edad no puede ser negativa.");
+        }
+        $this->edad = $edad;
+    } 
+    catch (Error $e) {
+        echo "Error general: " . $e->getMessage();
+    }
+}
+```
+
+recordad esto:
+
+```makefile
+Throwable
+├── Exception
+└── Error
+    ├── TypeError
+    ├── ParseError
+    ├── ValueError
+    └── ...
+```
+
+Por último, si hubiéramos querido, a la clase anterior lo podríamos haber añadido algún método público para que, por ejemplo, una persona pueda cumplir años:
+
+```php
+public function addAge(): int {
+    this->edad+=1;
+}
+```
+
+De esta forma, cualquier instancia puede cumplir años sin problema.
 
 #### Práctica PT1. Clase básica con propiedades públicas 
 
@@ -221,11 +245,10 @@ echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
 
 - Un constructor que reciba los valores de marca, modelo y velocidad inicial.
 
-  
 
 **Se pide:**
 
-- Crear tres objetos tipo Coche, mostrar sus propiedades, mostrar el contador de coches, modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) y modificar “a mano” la propiedad estática.
+- Crear tres objetos tipo Coche, mostrar sus propiedades sobre las instancias, mostrar el contador de coches sobre la case, modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) y modificar “a mano” la propiedad estática.
 
 #### Práctica PT2. Clase básica con propiedades públicas 
 
@@ -235,8 +258,9 @@ echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
   - marca (string)
   - modelo (string)
   - velocidad(int)
+  - pintura(string)
 - La propiedad estática contador será privada y tendrá un getter (getContador) para ver su valor.
-- En el constructor, asigna marca y modelo usando setters (definidos más abajo) y no directamente en el constructor.
+- En el constructor, asigna marca, modelo y pintura usando setters (definidos más abajo) y no directamente en el constructor.
 - La velocidad inicial debe ser siempre 0, independientemente de lo que se pase y se pondrá así en el constructor.
 - Crea getters para ver los valores de las tres propiedades mencionadas
 
@@ -245,11 +269,13 @@ echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
 - No pueden estar vacíos y deben ser cadenas de texto.
 - Además, un coche no puede cambair de marca y modelo luego deben ser setter privados y no se pueden acceder desde fuera.
 
--Crear el metodo velocidad (addVelocidad) que suma o resta velocidad a un coche:
+-Reglas del setter de pintura (setPintura):
+
+- Un coche podrá cambiar de pintura luego puede ser público
+
+-Crear el método velocidad (addVelocidad) que suma o resta velocidad a un coche:
 
 - La velocidad resultante no puede ser negativa y no puede superar los 250 km/h
-
-  
 
 **Se pide:**
 
@@ -257,7 +283,7 @@ echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
 
   Intenta modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) ¿Qué pasa?
 
-  Usar el méotodo addVelocidad para añadir 10km/h de velocidad.
+  Usar el método addVelocidad para añadir 10km/h de velocidad y cambiar la pintura al coche, que solo aceptara los colores rojo, verde, azul o negro.
 
 ### 2-Instalación de mySQL, creación de usuarios y privilegios
 
@@ -334,7 +360,15 @@ $db   = getenv("DB_NAME");
 $user = getenv("DB_USER");
 $pass = getenv("DB_PASS");
 
-$conn = new mysqli($host, $user, $pass, $db);
+try{
+    $pdo = new PDO($dsn, $user, $pass, [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, asociativo
+            PDO::ATTR_EMULATE_PREPARES => false 
+        ]);
+} catch (PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
+}
 
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
@@ -349,6 +383,90 @@ if (!$email || !$pass_input) {
 }
 ```
 
+###### **Documentación oficial de conexión de PDO:**
+
+-  https://www.php.net/manual/en/pdo.connections.php
+
+Según la documentación oficial, el constructor de PDO recibe:
+
+1. DSN: cadena de conexión (driver + host + dbname + charset, etc.)
+2. Usuario
+3. Contraseña
+4. Opciones (un array asociativo de atributos)
+
+Los tres primeros puntos, son evidentes, saltemos al 4º, en específico, nos vamos al array asociativo:
+
+#### 3.1 Opciones del array asociativo al conectar a PDO
+
+https://www.php.net/manual/en/pdo.constants.php
+
+##### **1. `PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION`**
+
+En la documentación oficial se dice:*"PDO::ATTR_ERRMODE: Sets the error reporting mode."* Los modos posibles más comunes son los siguiente
+
+- `PDO::ERRMODE_SILENT` (modo silencioso — por defecto)
+- `PDO::ERRMODE_WARNING`
+- `PDO::ERRMODE_EXCEPTION`
+
+La que hemos escogido le dice a PDO que arroje excepciones (`PDOException`) cuando ocurra un error, en lugar de:
+
+- guardar el error internamente (modo silencioso), o
+- emitir warnings.
+
+Esto hace más fácil manejar errores y deputar
+
+
+
+##### **2. `PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC`**
+
+En la documentación oficial se dice: *"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."*
+
+Modos posibles:
+
+- `PDO::FETCH_ASSOC` (solo arrays asociativos)
+- `PDO::FETCH_NUM`
+- `PDO::FETCH_BOTH` (por defecto)
+- `PDO::FETCH_OBJ`, etc.
+
+PDO te devuelve por defecto dos copias del mismo dato al hacer:
+
+```php
+<?php
+$stmt->fetch();
+
+```
+
+Es decir, vemos algo como
+
+```
+[
+    0        => "Juan",
+    "nombre" => "Juan"
+]
+```
+
+La opcion que hemos escogido establece que cada vez que hagas: el resultado tendrá solo claves asociativas (`$fila['nombre']`), no índice numérico.
+
+
+
+##### **3. `PDO::ATTR_EMULATE_PREPARES => false`**
+
+En la documentación oficial se dice: *"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."*
+
+Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Es como elegir que la persona que haga la tarea. Por ejemplo, si haces una consulta como:
+
+```php
+<?php
+$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+$stmt->execute([$email]);
+```
+
+Si la emulación está activada, PDO toma ese `?`, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, **PHP hace el trabajo**.Pero si usas prepared statements nativos, PDO envía la consulta con el `?` tal cual, y luego manda el valor del email por separado. En ese caso, es **MySQL quien prepara la consulta y la ejecuta de forma segura**,
+
+
+
+#### 3.2 Variable de entorno
+
 Hasta aquí, todo entendible. Para la conexión a la BD no queremos exponer que en el script se vea el valor de user ni el valor de pass, es por eso que se recogen desde variables de entorno (un fichero donde estas variables están definidas de forma que nadie pordrá verlas)
 
 En concreto, estas variables las ponéis en:
@@ -362,73 +480,72 @@ Seguimos rellenando el script con la parte de la consulta:
 
 ```php
 $sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$email]);
+$userData = $stmt->fetch();
 ```
 
-¿Qué singifica?
+¿Qué singifica todo el bloque anterior? Vamos por partes
+
+###### 3.2.1 Consulta
 
 ```php
 $sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
 ```
 
-El `?` es un hueco en donde luego vamos a poner el valor del email del usuario. No lo ponemos directamente en el string. Lo vamos a mandar aparte, de forma segura.
+El ? es un hueco en donde luego vamos a poner el valor del email del usuario. No lo ponemos directamente en el string. Lo vamos a mandar aparte, de forma segura.
+
+###### 3.2.2 Preparar la consulta
 
 ```php
-$stmt = $conn->prepare($sql);
+$stmt = $pdo->prepare($sql);
 ```
 
-- `$conn`: es la conexión a MySQL (`new mysqli(...)`).
-- `prepare()`: es un método que le dice a MySQL: Aquí tienes una consulta con huecos (`?`), prepárala porque luego te mandaré los valores.
-- Devuelve un objeto de tipo `mysqli_stmt` (statement = sentencia preparada). Ese objeto lo guardamos en la variable `$stmt`.
+- `$conn`: es la conexión a MySQL (`new PDO(...)`).
+- `prepare()`: método de la clase PDO que devuelve un objeto del tipo PDOStatement, que es la clase de PDO para manejar sentencias preparadas.
+- `execute([$email])`: envía el valor del email
 
-Si fallara algo, $stmt  sería `false`. En código se comprueba:
+###### 3.2.3 Dando valores a la consulta
 
-```php
-if (!$stmt) {
-    die("Error al preparar: " . $conn->error);
-}
-```
+https://www.php.net/manual/en/pdo.prepared-statements.php
 
 Por último, falta dar valor a `?`: esto se hace así:
 
 ```bash
-$stmt->bind_param("s", $email);
+$stmt->execute([$email])
 ```
 
-Este es el método que más confunde, así que vamos muy lento: Pega la variable `$email` al `?` que pusimos en la consulta. O sea: el `?` ahora significa “el valor de $email”. Nos falta todavía saber qué significa la "s".
-
- **¿Qué significa `"s"`?** : El primer parámetro "s" indica el tipo de dato del valor que vas a pasar:
-
-- "s"  string (texto)
-- "i" integer (entero / número)
-- "d" double (número decimal)
-- "b"  blob (datos binarios)
-
-En este caso:  `"s"` = le estamos diciendo a MySQL: el hueco `?` va a recibir texto. En el ejemplo (el del POST) siguiente veremos que podemos pasar mas de una cosa y nó solo una al mismo tiempo. Por último, ejecutamos la consulta y obtenemos el resultado:
+Otra forma de hacerlo sería así;
 
 ```php
-$stmt->execute();
-#No tienes que mandar otra vez la consulta ni los valores: ya están “dentro” del $stmt aplicando el método get_result.
-$result = $stmt->get_result();
+<?php
+$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
+
+$stmt->execute([
+    ':email' => $email
+]);
 
 ```
 
-Si quisieramos mandar el resultado al cliente, se lo mandaríamos mediante un array asociativo, usando;
 
-```bash
-$userData = $result->fetch_assoc();
+
+###### 3.2.4 Obtiniendo los valores de la consulta
+
+Por último, veamos como se obtienen los resultados:
+
+```php
+$userData = $stmt->fetch();
 ```
 
-`fetch_assoc()` devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:
+`fetch()` devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:
 
 ```php
 while ($usuario = $result->fetch_assoc()) {
  echo $usuario["nombre"] . "<br>";
 }
 ```
+
+Si no hay más filas, devuelve false. No importa si la tabla tiene 10 filas o 10 millones, siempre estás usando muy poca memoria, porque solo tienes una fila en memoria a la vez.
 
 De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: 
 
@@ -453,58 +570,62 @@ El código completo de (Login.php) queda así:
 
 ```php
 <?php
+header("Content-Type: application/json");
+
 $host = getenv("DB_HOST");
 $db   = getenv("DB_NAME");
 $user = getenv("DB_USER");
 $pass = getenv("DB_PASS");
 
-$conn = new mysqli($host, $user, $pass, $db);
+try {
+    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false
+    ]);
 
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
+    $email = $_POST['email'] ?? null;
+    $pass_input = $_POST['password'] ?? null;
+
+    if (!$email || !$pass_input) {
+        throw new Exception("Faltan datos");
+    }
+
+    $stmt = $pdo->prepare("SELECT id, nombre, email, password FROM usuarios WHERE email = ?");
+    $stmt->execute([$email]);
+    $userData = $stmt->fetch();
+
+    if (!$userData) {
+        throw new Exception("Usuario no encontrado");
+    }
+
+    if (!password_verify($pass_input, $userData['password'])) {
+        throw new Exception("Contraseña incorrecta");
+    }
+
+    unset($userData['password']);
+
+    echo json_encode([
+        "status"  => "success",
+        "message" => "Login exitoso",
+        "data"    => $userData
+    ]);
+
+} catch (PDOException $e) {
+
+    echo json_encode([
+        "status"  => "error",
+        "message" => "Error de base de datos: " . $e->getMessage()
+    ]);
+
+} catch (Throwable $e) {
+
+    echo json_encode([
+        "status"  => "error",
+        "message" => $e->getMessage()
+    ]);
 }
-
-// Recibir datos
-$email = $_POST['email'] ?? null;
-$pass_input = $_POST['password'] ?? null;
-
-if (!$email || !$pass_input) {
-    die("Faltan datos");
-}
-
-$sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
-
-$stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die("Error al preparar: " . $conn->error);
-}
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    die("Usuario no encontrado");
-}
-
-$userData = $result->fetch_assoc();
-
-// Verificar contraseña hasehada, esta función es importantísima ya que mirará la contraseña hasheada de la bd
-if (!password_verify($pass_input, $userData['password'])) {
-    exit("Contraseña incorrecta");
-}
-
-// Si llega aquí, login válido.
-unset($userData['password']);
-
-echo json_encode([
-    "status" => "success",
-    "message" => "Login exitoso",
-    "data" => $userData
-]);
-
-$stmt->close();
-$conn->close();
-?>
 
 ```
 
@@ -516,62 +637,60 @@ Ya sabemos un poco sobre conexión a base de datos según lo visto en el punto a
 <?php
 header("Content-Type: application/json");
 
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
-
 $host = getenv("DB_HOST");
 $db   = getenv("DB_NAME");
 $user = getenv("DB_USER");
 $pass = getenv("DB_PASS");
 
-$conn = new mysqli($host, $user, $pass, $db);
-
-header("Content-Type: application/json");
-
-if ($conn->connect_error) {
-    echo json_encode(["status" => "error", "message" => "Error de conexión"]);
-    exit;
-}
-
-$nombre = $_POST['nombre'] ?? null;
-$email = $_POST['email'] ?? null;
-$pass_input = $_POST['password'] ?? null;
-
-if (!$nombre || !$email || !$pass_input) {
-    echo json_encode(["status" => "error", "message" => "Faltan datos"]);
-    exit;
-}
-
-$hashedPassword = password_hash($pass_input, PASSWORD_DEFAULT);
-
-$sql = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
-
 try {
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $nombre, $email, $hashedPassword);
-    $stmt->execute();
+    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false
+    ]);
+
+    $nombre = $_POST['nombre'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $pass_input = $_POST['password'] ?? null;
+
+    if (!$nombre || !$email || !$pass_input) {
+        throw new Exception("Faltan datos");
+    }
+
+    $hashedPassword = password_hash($pass_input, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO usuarios (nombre, email, password) 
+            VALUES (:nombre, :email, :password)";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':nombre'   => $nombre,
+        ':email'    => $email,
+        ':password' => $hashedPassword
+    ]);
 
     echo json_encode([
         "status" => "success",
         "message" => "Usuario registrado correctamente",
-        "user_id" => $stmt->insert_id
+        "user_id" => $pdo->lastInsertId()
     ]);
 
-} catch (Exception $e) {
+} catch (PDOException $e) {
+
     echo json_encode([
         "status" => "error",
-        "message" => "Error al registrar usuario",
-        "mysql_error" => $conn->error
+        "message" => "Error de base de datos",
+        "mysql_error" => $e->getMessage()
+    ]);
+
+} catch (Throwable $e) {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage() //Ojo a la pedazo de mala práctica
     ]);
 }
-
-if (isset($stmt)) {
-    $stmt->close();
-}
-
-$conn->close();
-?>
 
 ```
 
@@ -590,21 +709,6 @@ obtienes
 1 #metodo de hasehado por defecto. esto no se suele cambiar ni pediré que lo hagáis
 ```
 
-###### Otras cosas importantes
-
-En el (`INSERT`) que acabamos de usar, hacemos un "if" con el execute`if ($stmt->execute())` . Esto no lo hacíamos en el punto 2 de esta práctica cuando veíamos el loggin.
-
-Esto tiene sentido en este caso y no en el del punto anterior porque `execute()` te dice si la consulta se ejecutó correctamente o falló (true o false). En este caso, si no se insertó nada, falla y devuelve false, por tanto, debemos devolver un error.
-
-
-Sin embargo, En el login anterior, se hacía una `SELECT` y no un `INSERT`, y en este caso, `execute()` devuelve true siempre que la consulta haya terminado correctamente, a pesar de que haya devuelto 0 registros, esto pasa porque la consulta es válida aunque NO DEVUELVA RESULTADOS.  Por eso se usa después:
-
-```php
-if ($result->num_rows === 0)
-```
-
-y no el if directamente sobre el método execute.
-
 
 
 ### 5-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)
@@ -620,44 +724,49 @@ $db   = getenv("DB_NAME");
 $user = getenv("DB_USER");
 $pass = getenv("DB_PASS");
 
-$conn = new mysqli($host, $user, $pass, $db);
-
-if ($conn->connect_error) {
-    die(json_encode(["status" => "error", "message" => "Error de conexión: " . $conn->connect_error]));
+try {
+    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false
+    ]);
+} catch (PDOException $e) {
+    http_response_code(500);
+    die(json_encode([
+        "status" => "error",
+        "message" => "Error de conexión",
+        "mysql_error" => $e->getMessage()
+    ]));
 }
-
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     http_response_code(405);
-    die(json_encode(["status" => "error", "message" => "Método no permitido"]));
+    die(json_encode([
+        "status" => "error",
+        "message" => "Método no permitido"
+    ]));
 }
 
-// Consulta
-$sql = "SELECT id, nombre, email FROM usuarios";
+try {
+    $stmt = $pdo->prepare("SELECT id, nombre, email FROM usuarios");
+    $stmt->execute();
+    $usuarios = $stmt->fetchAll();
 
-$stmt = $conn->prepare($sql);
-if (!$stmt) {
-    die(json_encode(["status" => "error", "message" => "Error al preparar consulta: " . $conn->error]));
+    echo json_encode([
+        "status" => "success",
+        "message" => "Usuarios obtenidos correctamente",
+        "data" => $usuarios
+    ]);
+
+} catch (PDOException $e) {
+
+    echo json_encode([
+        "status" => "error",
+        "message" => "Error al obtener usuarios",
+        "mysql_error" => $e->getMessage()  //Ojo a la pedazo de mala práctica
+    ]);
 }
-
-$stmt->execute();
-$result = $stmt->get_result();
-
-$usuarios = [];
-
-while ($row = $result->fetch_assoc()) {
-    $usuarios[] = $row;
-}
-
-echo json_encode([
-    "status" => "success",
-    "message" => "Usuarios obtenidos correctamente",
-    "data" => $usuarios
-]);
-
-$stmt->close();
-$conn->close();
-?>
 
 ```
 
@@ -768,7 +877,7 @@ En las prácticas siguientes veremos como utilzar el PUT y el DELETE de forma pr
 
 1-Realiza la práctica guiada anterior e intenta que por cada usuario que se registre suba una foto del usuario dentro de la carpeta uploads.
 
-2-Crea dos formularios HTML (en peticiones_productos.html) **<u>que NO usarán javascript.</u>** Ambos deberán hacer una petición GET y un POST respectivamente. Usarán boton de tipo submit y la información no se recogerá dinámicamente si no que se hará directamente desde el html.
+2-Crea dos formularios HTML (en peticiones_productos.html) **<u>que NO usarán javascript salvo que sea estrictamente necesario.</u>** Ambos deberán hacer una petición GET y un POST respectivamente. Usarán boton de tipo submit y la información no se recogerá dinámicamente si no que se hará directamente desde el html.
 
 - El POST del formulario html apuntará al script: productos_form.php. Lo que hará este script sera conectarse a la BD para registar un producto junto con su ID en una base de datos llamada productos y una breve descripcion. Deberás crear la tabla productos para ello.
 

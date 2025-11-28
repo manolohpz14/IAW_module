@@ -735,7 +735,7 @@
   <a href="#1-pdoattr_errmode-pdoerrmode_exception" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION
+        *1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`
       
     </span>
   </a>
@@ -1103,7 +1103,7 @@
   <a href="#1-pdoattr_errmode-pdoerrmode_exception" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION
+        *1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`
       
     </span>
   </a>
@@ -1516,7 +1516,7 @@
 </ul>
 <p>-Reglas del setter de pintura (setPintura):</p>
 <ul>
-<li>Un coche podrá cambiar de pintura luego puede ser público</li>
+<li>Un coche podrá cambiar de pintura luego puede ser público (solo aceptara los colores rojo, verde, azul o negro.)</li>
 </ul>
 <p>-Crear el método velocidad (addVelocidad) que suma o resta velocidad a un coche:</p>
 <ul>
@@ -1594,9 +1594,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="p">}</span>
 </code></pre></div>
 <h6 id="documentacion-oficial-de-conexion-de-pdo"><strong>Documentación oficial de conexión de PDO:</strong></h6>
-<ul>
-<li>https://www.php.net/manual/en/pdo.connections.php</li>
-</ul>
+<p>doc oficial: https://www.php.net/manual/en/pdo.connections.php</p>
 <p>Según la documentación oficial, el constructor de PDO recibe:</p>
 <ol>
 <li>DSN: cadena de conexión (driver + host + dbname + charset, etc.)</li>
@@ -1606,8 +1604,8 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </ol>
 <p>Los tres primeros puntos, son evidentes, saltemos al 4º, en específico, nos vamos al array asociativo:</p>
 <h4 id="31-opciones-del-array-asociativo-al-conectar-a-pdo">3.1 Opciones del array asociativo al conectar a PDO</h4>
-<p>https://www.php.net/manual/en/pdo.constants.php</p>
-<h5 id="1-pdoattr_errmode-pdoerrmode_exception"><strong>1. <code>PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION</code></strong></h5>
+<p>doc oficial: https://www.php.net/manual/en/pdo.constants.php</p>
+<h5 id="1-pdoattr_errmode-pdoerrmode_exception">*<em>1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`</em></h5>
 <p>En la documentación oficial se dice:<em>"PDO::ATTR_ERRMODE: Sets the error reporting mode."</em> Los modos posibles más comunes son los siguiente</p>
 <ul>
 <li><code>PDO::ERRMODE_SILENT</code> (modo silencioso — por defecto)</li>
@@ -1620,7 +1618,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li>emitir warnings.</li>
 </ul>
 <p>Esto hace más fácil manejar errores y deputar</p>
-<h5 id="2-pdoattr_default_fetch_mode-pdofetch_assoc"><strong>2. <code>PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC</code></strong></h5>
+<h5 id="2-pdoattr_default_fetch_mode-pdofetch_assoc"><strong>2. PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC</strong></h5>
 <p>En la documentación oficial se dice: <em>"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."</em></p>
 <p>Modos posibles:</p>
 <ul>
@@ -1640,14 +1638,14 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 ]
 </code></pre></div>
 <p>La opcion que hemos escogido establece que cada vez que hagas: el resultado tendrá solo claves asociativas (<code>$fila['nombre']</code>), no índice numérico.</p>
-<h5 id="3-pdoattr_emulate_prepares-false"><strong>3. <code>PDO::ATTR_EMULATE_PREPARES =&gt; false</code></strong></h5>
+<h5 id="3-pdoattr_emulate_prepares-false"><strong>3. PDO::ATTR_EMULATE_PREPARES =&gt; false</strong></h5>
 <p>En la documentación oficial se dice: <em>"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."</em></p>
-<p>Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Es como elegir que la persona que haga la tarea. Por ejemplo, si haces una consulta como:</p>
+<p>Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Por ejemplo, si haces una consulta como:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM usuarios WHERE email = ?&quot;</span><span class="p">);</span>
 <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">([</span><span class="nv">$email</span><span class="p">]);</span>
 </code></pre></div>
-<p>Si la emulación está activada, PDO toma ese <code>?</code>, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, <strong>PHP hace el trabajo</strong>.Pero si usas prepared statements nativos, PDO envía la consulta con el <code>?</code> tal cual, y luego manda el valor del email por separado. En ese caso, es <strong>MySQL quien prepara la consulta y la ejecuta de forma segura</strong>,</p>
+<p>Si la emulación está activada, PDO toma ese <code>?</code>, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, PHP hace el trabajo. Pero si usas prepared statements nativos, PDO envía la consulta con el <code>?</code> tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura,</p>
 <h4 id="32-variable-de-entorno">3.2 Variable de entorno</h4>
 <p>Hasta aquí, todo entendible. Para la conexión a la BD no queremos exponer que en el script se vea el valor de user ni el valor de pass, es por eso que se recogen desde variables de entorno (un fichero donde estas variables están definidas de forma que nadie pordrá verlas)</p>
 <p>En concreto, estas variables las ponéis en:

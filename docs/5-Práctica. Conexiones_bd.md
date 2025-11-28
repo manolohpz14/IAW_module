@@ -383,8 +383,6 @@ if (!$email || !$pass_input) {
 }
 ```
 
-###### **Documentación oficial de conexión de PDO:**
-
 doc oficial: https://www.php.net/manual/en/pdo.connections.php
 
 Según la documentación oficial, el constructor de PDO recibe:
@@ -394,13 +392,22 @@ Según la documentación oficial, el constructor de PDO recibe:
 3. Contraseña
 4. Opciones (un array asociativo de atributos)
 
-Los tres primeros puntos, son evidentes, saltemos al 4º, en específico, nos vamos al array asociativo:
+Hasta aquí, todo entendible. Para la conexión a la BD no queremos exponer que en el script se vea el valor de user ni el valor de pass, es por eso que se recogen desde variables de entorno (un fichero donde estas variables están definidas de forma que nadie pordrá verlas)
+
+En concreto, estas variables las ponéis en:
+/etc/apache2/envvars
+
+y escribís:
+
+![image-20251121180114532](./img/image-20251121180114532.png)
+
+Por tanto, los tres primeros puntos de la conexión, son evidentes con la captura anterior, saltemos al 4º, en específico, nos vamos al array asociativo:
 
 #### 3.1 Opciones del array asociativo al conectar a PDO
 
 doc oficial: https://www.php.net/manual/en/pdo.constants.php
 
-##### **1. PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION`*
+##### 1. PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION`
 
 En la documentación oficial se dice:*"PDO::ATTR_ERRMODE: Sets the error reporting mode."* Los modos posibles más comunes son los siguiente
 
@@ -417,7 +424,7 @@ Esto hace más fácil manejar errores y deputar
 
 
 
-##### **2. PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC**
+##### 2. PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 
 En la documentación oficial se dice: *"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."*
 
@@ -449,7 +456,7 @@ La opcion que hemos escogido establece que cada vez que hagas: el resultado tend
 
 
 
-##### **3. PDO::ATTR_EMULATE_PREPARES => false**
+##### 3. PDO::ATTR_EMULATE_PREPARES => false
 
 En la documentación oficial se dice: *"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."*
 
@@ -465,16 +472,7 @@ Si la emulación está activada, PDO toma ese `?`, lo reemplaza por el valor del
 
 
 
-#### 3.2 Variable de entorno
-
-Hasta aquí, todo entendible. Para la conexión a la BD no queremos exponer que en el script se vea el valor de user ni el valor de pass, es por eso que se recogen desde variables de entorno (un fichero donde estas variables están definidas de forma que nadie pordrá verlas)
-
-En concreto, estas variables las ponéis en:
-/etc/apache2/envvars
-
-y escribís:
-
-![image-20251121180114532](./img/image-20251121180114532.png)
+#### 3.2 Creación de consultas
 
 Seguimos rellenando el script con la parte de la consulta:
 
@@ -540,14 +538,16 @@ $userData = $stmt->fetch();
 `fetch()` devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:
 
 ```php
-while ($usuario = $result->fetch_assoc()) {
+while ($usuario = $stmt->fetch()) {
  echo $usuario["nombre"] . "<br>";
 }
 ```
 
 Si no hay más filas, devuelve false. No importa si la tabla tiene 10 filas o 10 millones, siempre estás usando muy poca memoria, porque solo tienes una fila en memoria a la vez.
 
-De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: 
+De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Si quisieras cargar todas las filas en un array gigante usarías: -> fetchAll
+
+Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: 
 
 | id   | nombre | email                                       |
 | ---- | ------ | ------------------------------------------- |

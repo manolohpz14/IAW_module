@@ -721,10 +721,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-pdoattr_errmode-pdoerrmode_exception" class="md-nav__link">
+  <a href="#311-pdoattr_errmode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`
+        3.1.1. PDO::ATTR_ERRMODE
       
     </span>
   </a>
@@ -732,10 +732,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-pdoattr_default_fetch_mode-pdofetch_assoc" class="md-nav__link">
+  <a href="#312-pdoattr_default_fetch_mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC
+        3.1.2. PDO::ATTR_DEFAULT_FETCH_MODE
       
     </span>
   </a>
@@ -743,10 +743,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-pdoattr_emulate_prepares-false" class="md-nav__link">
+  <a href="#313-pdoattr_emulate_prepares" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. PDO::ATTR_EMULATE_PREPARES =&gt; false
+        3.1.3. PDO::ATTR_EMULATE_PREPARES
       
     </span>
   </a>
@@ -804,10 +804,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#324-obtiniendo-los-valores-de-la-consulta" class="md-nav__link">
+  <a href="#324-obteniendo-los-valores-de-la-consulta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2.4 Obtiniendo los valores de la consulta
+        3.2.4 Obteniendo los valores de la consulta
       
     </span>
   </a>
@@ -1078,10 +1078,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-pdoattr_errmode-pdoerrmode_exception" class="md-nav__link">
+  <a href="#311-pdoattr_errmode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`
+        3.1.1. PDO::ATTR_ERRMODE
       
     </span>
   </a>
@@ -1089,10 +1089,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-pdoattr_default_fetch_mode-pdofetch_assoc" class="md-nav__link">
+  <a href="#312-pdoattr_default_fetch_mode" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC
+        3.1.2. PDO::ATTR_DEFAULT_FETCH_MODE
       
     </span>
   </a>
@@ -1100,10 +1100,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-pdoattr_emulate_prepares-false" class="md-nav__link">
+  <a href="#313-pdoattr_emulate_prepares" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. PDO::ATTR_EMULATE_PREPARES =&gt; false
+        3.1.3. PDO::ATTR_EMULATE_PREPARES
       
     </span>
   </a>
@@ -1161,10 +1161,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#324-obtiniendo-los-valores-de-la-consulta" class="md-nav__link">
+  <a href="#324-obteniendo-los-valores-de-la-consulta" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2.4 Obtiniendo los valores de la consulta
+        3.2.4 Obteniendo los valores de la consulta
       
     </span>
   </a>
@@ -1269,12 +1269,12 @@
 <h2 id="practica-guiada-5-conexiones-a-bd">Práctica Guiada 5. Conexiones a BD</h2>
 <h3 id="1-breve-introduccion-a-la-programacion-orientada-a-objetos-en-php">1-Breve introducción a la programación orientada a objetos en PHP</h3>
 <p>La Programación Orientada a Objetos (POO) es un paradigma de programación , es decir, una forma de organizar y estructurar el código, que se basa en el uso de objetos. Un objeto es una entidad que agrupa datos (propiedades o atributos) y comportamientos (métodos o funciones) que pertenecen a esa entidad. La idea principal es modelar partes del mundo real usando estructuras de código más cercanas a cómo pensamos las cosas.</p>
-<p>Por ejemplo:</p>
+<p>Por ejemplo, imaginemos que queremos modelas a una persona mediante el uso de un objeto:</p>
 <ul>
 <li>Una persona tiene nombre, edad, DNI : son propiedades.</li>
 <li>Una persona camina(), habla(), saluda() : son métodos.</li>
 </ul>
-<p>En POO combinamos ambas cosas dentro de una estructura llamada clase. A continuación vemos las definciones más básicar de la POO que veramos a lo largo de esta práctica.</p>
+<p>Cuando usamos la POO combinamos ambas cosas dentro de una estructura llamada clase. A continuación vemos las definciones más básicas de la POO que veremos a lo largo de esta práctica.</p>
 <p><strong>- Clase</strong>
  Una clase es una <u>plantilla</u> que define cómo serán los objetos creados a partir de ella. Ejemplo: La clase Coche describe qué datos tiene un coche (propiedades) como la marca, el modelo o el año, y qué puede hacer (métodos) como arrancar y frenar.</p>
 <p><strong>- Objeto</strong>
@@ -1286,6 +1286,7 @@
  Son funciones que representan acciones que un objeto puede realizar.  Ejemplo: Un coche puede ejecutar acciones (métodos) como arrancar() o acelerar(), que afectarán a propiedades como la velocidad o los kilómetros.</p>
 <p><strong>- Propiedades estáticas</strong>
  Son propiedades que pertenecen a la clase en general, no a cada objeto. Ejemplo (programado en lo siguiente): La clase Persona podría tener un contador de cuántas personas se han creado en total, independientemente de quiénes sean esas personas.</p>
+<hr />
 <h4 id="11-primer-ejemplo-de-poo-en-php">1.1-Primer ejemplo de POO en PHP.</h4>
 <p>Nombre del script: primera_clase.php</p>
 <p>En este script, vemos el concepto de: Clase, Objeto (Instancia de la clase), Propiedades de un objeto y propiedades estáticas de una clase. </p>
@@ -1335,6 +1336,7 @@
 <span class="k">echo</span> <span class="nx">Persona</span><span class="o">::</span><span class="nv">$contador</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 </code></pre></div>
 <p>Como podemos observar el código anterior tiene ciertos problemas. Se puede instanciar un objeto y posteriormente cambiar las propiedades del objeto sin piedad (como el nombre y la edad), incluso también podría cambiar la propiedad estática de la clase,  propiedad que como hemos comentado antes,  es compartida entre todos los objetos instanciados.</p>
+<hr />
 <h4 id="12-segundo-ejemplo-de-poo-en-php-uso-de-propiedades-privadas">1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.</h4>
 <p>En la segunda versión del código (ver más abajo), haremos que nadie pueda cambiar el valor de la propiedad estática (el número de personas), pasándola a privada. Además, al ser privada, ya nadie podrá acceder a ella haciendo:</p>
 <div class="highlight"><pre><span></span><code><span class="x">Persona::$contador</span>
@@ -1377,6 +1379,7 @@
 <span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">nombre</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span> <span class="c1">// Carlos, 30</span>
 </code></pre></div>
 <p>Como vemos al final del script siguen habiendo inconsistencias, como que se pueda cambiar el nombre de la persona (o incluso la edad). Esto se debe a que son propiedades públicas.</p>
+<hr />
 <h4 id="13-tercer-ejemplo-de-poo-en-php-getters-y-setters-encapsulamiento">1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento</h4>
 <p>En este último ejemplo, rizamos un poco más el rizo, lo que vemos ahora es encapsulación. Es decir, vamos a arreglar lo anterior. Para ello, no expondremos directamente al público las propiedades "edad" y "nombre" si no que estas se podrán editar u obtener únicamente a través de getters y setters.</p>
 <p><strong>- Getters y Setters</strong>
@@ -1450,6 +1453,7 @@
 <span class="x">}</span>
 </code></pre></div>
 <p>De esta forma, cualquier instancia puede cumplir años sin problema.</p>
+<hr />
 <h4 id="practica-pt1-clase-basica-con-propiedades-publicas">Práctica PT1. Clase básica con propiedades públicas</h4>
 <p>-Crea un archivo llamado <strong>coches_1.php</strong>. En este archivo define una clase Coche con:</p>
 <ul>
@@ -1474,6 +1478,7 @@
 <ul>
 <li>Crear tres objetos tipo Coche, mostrar sus propiedades sobre las instancias, mostrar el contador de coches sobre la case, modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) y modificar “a mano” la propiedad estática.</li>
 </ul>
+<hr />
 <h4 id="practica-pt2-clase-basica-con-propiedades-publicas">Práctica PT2. Clase básica con propiedades públicas</h4>
 <p>-Crea un archivo <strong>coches_2.php</strong>. En este archivo define una clase Coche con:</p>
 <ul>
@@ -1506,6 +1511,7 @@
 </ul>
 <p>Intenta modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) ¿Qué pasa?</p>
 <p>Usar el método addVelocidad para añadir 10km/h de velocidad y cambiar la pintura al coche, que solo aceptara los colores rojo, verde, azul o negro.</p>
+<hr />
 <h3 id="2-instalacion-de-mysql-creacion-de-usuarios-y-privilegios">2-Instalación de mySQL, creación de usuarios y privilegios</h3>
 <p>En este apartado vamos a ver cómo podemos conectarnos a bases de datos desde nuestra aplicación.</p>
 <p>En primer lugas, instalamos mysqlserver</p>
@@ -1539,10 +1545,12 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <p>Para aplciar los privilegios anteriores:</p>
 <div class="highlight"><pre><span></span><code>FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
 </code></pre></div>
+<hr />
 <h3 id="3-conexion-a-la-bd-en-un-script-login-de-un-usuario-en-la-bbdd-loginphp">3-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)</h3>
 <p>Vamos a aprovechar el formulario de la pŕactica anterior (este):</p>
 <p><img alt="image-20251121105609040" src="../img/image-20251121105609040.png" /></p>
-<p>y vamos a hacer que dos formularios (dos POST's y un GET quitamos el resto) se conecten a scripts que hagan cosas interesantes. En primer lugar, el primer POST se conecta al primer script, que llamaremos (Login.php) que nos devuelve información del usuario (en el siguiente punto veremos como registar a un usuario), la primera parte del script contendrá esto:</p>
+<p>y vamos a editarlo un poco. Para ello, vamos a dejar solo tres formularios (dos POST's y un GET quitamos el resto) que mandarán peticiones a scripts que hagan cosas interesantes (En el punto 6 tenéis el código html de estos formularios).</p>
+<p>En primer lugar, el primer POST se conecta al primer script, que llamaremos (Login.php) que nos devuelve información del usuario ya registrado en la base de de datos (en el siguiente punto veremos como registar a un usuario. Por facilidad prefiero que veais primero el login), la primera parte del script contendrá esto:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
 <span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>
@@ -1559,10 +1567,6 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
     <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Error de conexión: &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">());</span>
 <span class="p">}</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Error de conexión: &quot;</span> <span class="o">.</span> <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
-<span class="p">}</span>
-
 <span class="c1">// Recibir datos por un formulario (url-enconded)</span>
 <span class="nv">$email</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
 <span class="nv">$pass_input</span> <span class="o">=</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span> <span class="o">??</span> <span class="k">null</span><span class="p">;</span>
@@ -1571,7 +1575,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
     <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Faltan datos&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>doc oficial: https://www.php.net/manual/en/pdo.connections.php</p>
+<p><strong>doc oficial usada</strong>: https://www.php.net/manual/en/pdo.connections.php</p>
 <p>Según la documentación oficial, el constructor de PDO recibe:</p>
 <ol>
 <li>DSN: cadena de conexión (driver + host + dbname + charset, etc.)</li>
@@ -1585,9 +1589,10 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <p>y escribís:</p>
 <p><img alt="image-20251121180114532" src="../img/image-20251121180114532.png" /></p>
 <p>Por tanto, los tres primeros puntos de la conexión, son evidentes con la captura anterior, saltemos al 4º, en específico, nos vamos al array asociativo:</p>
+<hr />
 <h4 id="31-opciones-del-array-asociativo-al-conectar-a-pdo">3.1 Opciones del array asociativo al conectar a PDO</h4>
-<p>doc oficial: https://www.php.net/manual/en/pdo.constants.php</p>
-<h5 id="1-pdoattr_errmode-pdoerrmode_exception">1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`</h5>
+<p><strong>doc oficial usada</strong>: https://www.php.net/manual/en/pdo.constants.php</p>
+<h5 id="311-pdoattr_errmode">3.1.1. PDO::ATTR_ERRMODE</h5>
 <p>En la documentación oficial se dice:<em>"PDO::ATTR_ERRMODE: Sets the error reporting mode."</em> Los modos posibles más comunes son los siguiente</p>
 <ul>
 <li><code>PDO::ERRMODE_SILENT</code> (modo silencioso — por defecto)</li>
@@ -1600,7 +1605,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li>emitir warnings.</li>
 </ul>
 <p>Esto hace más fácil manejar errores y deputar</p>
-<h5 id="2-pdoattr_default_fetch_mode-pdofetch_assoc">2. PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC</h5>
+<h5 id="312-pdoattr_default_fetch_mode">3.1.2. PDO::ATTR_DEFAULT_FETCH_MODE</h5>
 <p>En la documentación oficial se dice: <em>"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."</em></p>
 <p>Modos posibles:</p>
 <ul>
@@ -1620,7 +1625,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 ]
 </code></pre></div>
 <p>La opcion que hemos escogido establece que cada vez que hagas: el resultado tendrá solo claves asociativas (<code>$fila['nombre']</code>), no índice numérico.</p>
-<h5 id="3-pdoattr_emulate_prepares-false">3. PDO::ATTR_EMULATE_PREPARES =&gt; false</h5>
+<h5 id="313-pdoattr_emulate_prepares">3.1.3. PDO::ATTR_EMULATE_PREPARES</h5>
 <p>En la documentación oficial se dice: <em>"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."</em></p>
 <p>Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Por ejemplo, si haces una consulta como:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
@@ -1628,6 +1633,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">([</span><span class="nv">$email</span><span class="p">]);</span>
 </code></pre></div>
 <p>Si la emulación está activada, PDO toma ese <code>?</code>, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, PHP hace el trabajo. Pero si usas prepared statements nativos, PDO envía la consulta con el <code>?</code> tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura,</p>
+<hr />
 <h4 id="32-creacion-de-consultas">3.2 Creación de consultas</h4>
 <p>Seguimos rellenando el script con la parte de la consulta:</p>
 <div class="highlight"><pre><span></span><code><span class="x">$sql = &quot;SELECT id, nombre, email, password FROM usuarios WHERE email = ?&quot;;</span>
@@ -1636,11 +1642,11 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="x">$userData = $stmt-&gt;fetch();</span>
 </code></pre></div>
 <p>¿Qué singifica todo el bloque anterior? Vamos por partes</p>
-<h6 id="321-consulta">3.2.1 Consulta</h6>
+<h5 id="321-consulta">3.2.1 Consulta</h5>
 <div class="highlight"><pre><span></span><code><span class="x">$sql = &quot;SELECT id, nombre, email, password FROM usuarios WHERE email = ?&quot;;</span>
 </code></pre></div>
 <p>El ? es un hueco en donde luego vamos a poner el valor del email del usuario. No lo ponemos directamente en el string. Lo vamos a mandar aparte, de forma segura.</p>
-<h6 id="322-preparar-la-consulta">3.2.2 Preparar la consulta</h6>
+<h5 id="322-preparar-la-consulta">3.2.2 Preparar la consulta</h5>
 <div class="highlight"><pre><span></span><code><span class="x">$stmt = $pdo-&gt;prepare($sql);</span>
 </code></pre></div>
 <ul>
@@ -1648,8 +1654,8 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li><code>prepare()</code>: método de la clase PDO que devuelve un objeto del tipo PDOStatement, que es la clase de PDO para manejar sentencias preparadas.</li>
 <li><code>execute([$email])</code>: envía el valor del email</li>
 </ul>
-<h6 id="323-dando-valores-a-la-consulta">3.2.3 Dando valores a la consulta</h6>
-<p>https://www.php.net/manual/en/pdo.prepared-statements.php</p>
+<h5 id="323-dando-valores-a-la-consulta">3.2.3 Dando valores a la consulta</h5>
+<p><strong>doc oficial usada:</strong> https://www.php.net/manual/en/pdo.prepared-statements.php</p>
 <p>Por último, falta dar valor a <code>?</code>: esto se hace así:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$stmt</span>-&gt;execute<span class="o">([</span><span class="nv">$email</span><span class="o">])</span>
 </code></pre></div>
@@ -1661,7 +1667,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
     <span class="s1">&#39;:email&#39;</span> <span class="o">=&gt;</span> <span class="nv">$email</span>
 <span class="p">]);</span>
 </code></pre></div>
-<h6 id="324-obtiniendo-los-valores-de-la-consulta">3.2.4 Obtiniendo los valores de la consulta</h6>
+<h5 id="324-obteniendo-los-valores-de-la-consulta">3.2.4 Obteniendo los valores de la consulta</h5>
 <p>Por último, veamos como se obtienen los resultados:</p>
 <div class="highlight"><pre><span></span><code><span class="x">$userData = $stmt-&gt;fetch();</span>
 </code></pre></div>
@@ -1670,8 +1676,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="x"> echo $usuario[&quot;nombre&quot;] . &quot;&lt;br&gt;&quot;;</span>
 <span class="x">}</span>
 </code></pre></div>
-<p>Si no hay más filas, devuelve false. No importa si la tabla tiene 10 filas o 10 millones, siempre estás usando muy poca memoria, porque solo tienes una fila en memoria a la vez.</p>
-<p>De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Si quisieras cargar todas las filas en un array gigante usarías: -&gt; fetchAll</p>
+<p>Si no hay más filas, devuelve false. No importa si la tabla tiene 10 filas o 10 millones, siempre estás usando muy poca memoria, porque solo tienes una fila en memoria a la vez. De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Si quisieras cargar todas las filas en un array gigante usarías: -&gt; fetchAll</p>
 <p>Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: </p>
 <table>
 <thead>
@@ -1694,7 +1699,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </tr>
 </tbody>
 </table>
-<p>Al usar $result-&gt;fetch_assoc(), cada llamada se convierte esto en un array asociativo que podremos manejar sin problemas en php (es decir, tendríamos algo tal que así:)</p>
+<p>Al usar $result-&gt;fetch(), sobre la tabla anterior, cada llamada se convierte esto en un array asociativo que podremos manejar sin problemas en php (es decir, tendríamos algo tal que así:)</p>
 <div class="highlight"><pre><span></span><code>[
     &quot;id&quot; =&gt; 5,
     &quot;nombre&quot; =&gt; &quot;Juan&quot;,
@@ -1704,7 +1709,6 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <p>El código completo de (Login.php) queda así:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
-
 <span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
 <span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>
 <span class="nv">$user</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_USER&quot;</span><span class="p">);</span>
@@ -1760,11 +1764,11 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
     <span class="p">]);</span>
 <span class="p">}</span>
 </code></pre></div>
+<hr />
 <h3 id="4-conexion-a-la-bbddpost-registrar-a-un-usuario-para-probar-el-loggin-anterior-registerphp">4-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)</h3>
 <p>Ya sabemos un poco sobre conexión a base de datos según lo visto en el punto anterior. Ahora vamos al revés, os doy el script entero de (Register.php) y lo que haremos será desmenuzar los puntos que no comprendamos.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
-
 <span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
 <span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>
 <span class="nv">$user</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_USER&quot;</span><span class="p">);</span>
@@ -1828,11 +1832,11 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <p>obtienes
 <div class="highlight"><pre><span></span><code><span class="x">1 #metodo de hasehado por defecto. esto no se suele cambiar ni pediré que lo hagáis</span>
 </code></pre></div></p>
+<hr />
 <h3 id="5-conexion-a-la-bbdd-get-que-devuelve-la-info-de-todos-los-usuarios-all_usersphp">5-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)</h3>
 <p>En este caso, no hace falta explciar tanto ya que hemos visto muchas cosas, este formulario es el ejemplo vivo de un get en el que no se envía ninguna información. A continuación os dejo el código. Recordar que en un formulario html que use get, los parámetros se envían por query-param:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
-
 <span class="nv">$host</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_HOST&quot;</span><span class="p">);</span>
 <span class="nv">$db</span>   <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_NAME&quot;</span><span class="p">);</span>
 <span class="nv">$user</span> <span class="o">=</span> <span class="nb">getenv</span><span class="p">(</span><span class="s2">&quot;DB_USER&quot;</span><span class="p">);</span>
@@ -1882,9 +1886,10 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
     <span class="p">]);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Ojo cuidado, una cosa importante es que en este coso tenemos que recorrer fetch_assoc() según lo que explicamos ya en el bloque important del punto 2.</p>
+<p>Ojo cuidado, una cosa importante es que en este coso tenemos que recorrer fetch según lo que explicamos ya en el bloque important del punto 2.</p>
+<hr />
 <h3 id="6-esquema-del-html">6- Esquema del HTML</h3>
-<p>A modo esquematico, el body html hará las peticiones así (el put y el delete siguen haciendo lo que debían hacer en la práctica anterior utilizando los fetch en JS). En primer lugar, el HTML  (El primer POST y el segundo POST) harán las peticiones así:</p>
+<p>A modo esquemático, el body html hará las peticiones así a los dos scripts anteriores será el siguiente:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 
@@ -1976,7 +1981,8 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>En las prácticas siguientes veremos como utilzar el PUT y el DELETE de forma práctica y real, borrando registros de la BD y editando cuestiones de la BD.</p>
+<p>En las prácticas siguientes veremos como utilzar el PUT y el DELETE (desde JS al igual que en la práctica anterior) de forma práctica y real, borrando registros de la BD y editando cuestiones de la BD.</p>
+<hr />
 <h3 id="7-practica"><strong>7- Práctica</strong></h3>
 <p>1-Realiza la práctica guiada anterior e intenta que por cada usuario que se registre suba una foto del usuario dentro de la carpeta uploads.</p>
 <p>2-Crea dos formularios HTML (en peticiones_productos.html) <strong><u>que NO usarán javascript salvo que sea estrictamente necesario.</u></strong> Ambos deberán hacer una petición GET y un POST respectivamente. Usarán boton de tipo submit y la información no se recogerá dinámicamente si no que se hará directamente desde el html.</p>

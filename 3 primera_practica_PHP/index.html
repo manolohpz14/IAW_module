@@ -498,15 +498,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#preambulo-2como-ejecutar-el-codigo-php-instalando-apache" class="md-nav__link">
+  <a href="#preambulo-2-como-ejecutar-el-codigo-php-instalando-apache" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preámbulo 2.Cómo ejecutar el código php instalando apache
+        Preámbulo 2. Cómo ejecutar el código php instalando apache
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Preámbulo 2.Cómo ejecutar el código php instalando apache">
+    <nav class="md-nav" aria-label="Preámbulo 2. Cómo ejecutar el código php instalando apache">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1008,15 +1008,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#preambulo-2como-ejecutar-el-codigo-php-instalando-apache" class="md-nav__link">
+  <a href="#preambulo-2-como-ejecutar-el-codigo-php-instalando-apache" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Preámbulo 2.Cómo ejecutar el código php instalando apache
+        Preámbulo 2. Cómo ejecutar el código php instalando apache
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Preámbulo 2.Cómo ejecutar el código php instalando apache">
+    <nav class="md-nav" aria-label="Preámbulo 2. Cómo ejecutar el código php instalando apache">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1358,7 +1358,7 @@
 <p>Este documento está pensado para que avancéis con calma, son cosas muy sencillas y explciadas muy paso a paso. Cada bloque introduce una idea, muestra un ejemplo breve y termina con práctica guiada. No hay prerequisitos.</p>
 <p>Aunque creáis que no, soy razonable :) y entiendo que docker os puede dar problemas, la práctica, está pensada para hacerla en tiempo de clase y si docker os da problema, llamadme sin miedo, por favor. En principio, los siguientes comandos de docker os deben solventar cualquier tipo de situación, los dejo por aquí y los explico.</p>
 <h3 id="preambulo-1-como-ejecutar-el-codigo-php-con-docker">Preámbulo 1. Cómo ejecutar el código php con docker</h3>
-<p><strong><u>OPCIÓN 1 (DOCKER)</u></strong> Cada vez que abráis vuestro proyecto, os recomiendo ejecutar:</p>
+<p>Cada vez que abráis vuestro proyecto, os recomiendo ejecutar:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>down
 sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build
 </code></pre></div>
@@ -1367,9 +1367,9 @@ sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"
 <div class="highlight"><pre><span></span><code>Error<span class="w"> </span>response<span class="w"> </span>from<span class="w"> </span>daemon:<span class="w"> </span>Conflict.<span class="w"> </span>The<span class="w"> </span>container<span class="w"> </span>name<span class="w"> </span><span class="s2">&quot;/&lt;nombre_del_contenedor&gt;&quot;</span><span class="w"> </span>is<span class="w"> </span>already<span class="w"> </span><span class="k">in</span><span class="w"> </span>use<span class="w"> </span>by<span class="w"> </span>container<span class="w"> </span><span class="s2">&quot;&lt;id_del_contenedor&gt;&quot;</span>.<span class="w"> </span>You<span class="w"> </span>have<span class="w"> </span>to<span class="w"> </span>remove<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>rename<span class="o">)</span><span class="w"> </span>that<span class="w"> </span>container<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>able<span class="w"> </span>to<span class="w"> </span>reuse<span class="w"> </span>that<span class="w"> </span>name.
 </code></pre></div>
 <p>Cuando ejecutáis el docker compose up, se creen tantos contenedores como servicios tenéis definidos sobre dicho archivo. En nuestro caso, se crean tres contenedores, uno de mysql, otro de apache y otro de phpmyadmin. Si alguna vez os sale ese error, tenéis dos opciones:</p>
-<p>1- Matar ese contenedor: primero lo paras (por nombre o por id) y después lo matas:</p>
+<p>1- Matar ese contenedor: primero lo paras (por nombre del servicio o por id del contenedor si sabes mirarlo) y después lo matas:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>stop<span class="w"> </span>container_name<span class="p">|</span>container_id<span class="w"> </span><span class="c1">#lo paro</span>
-sudo<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span>container_name<span class="p">|</span>container_id<span class="w"> </span><span class="c1">#lo paro</span>
+sudo<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </span>container_name<span class="p">|</span>container_id<span class="w"> </span><span class="c1">#lo borro</span>
 </code></pre></div>
 <p>2- Si estás en el mismo proyecto desde el cual creaste los contenedores que quieres matar, bastaría con:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v
@@ -1377,6 +1377,9 @@ sudo<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </s
 <p>Esto cierra todos los contenedores creados en el docker-compose, ojo, debes tener definido un docker compose, si no, no irá</p>
 <p>3- Por último, para ver todos los contenedores que está corriendo en tu sistema, podrías hacer:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>docker<span class="w"> </span>ps
+</code></pre></div>
+<p>4- Si nada de lo anterior funciona, buscar el PID del sistema que corre este contenedor y matarlo</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span>PID
 </code></pre></div>
 <p>Esto sólo lo comento porque puede ser útil, no porque os vaya a solucionar nada.</p>
 <h4 id="resumen-ejecutar-el-codigo-php-con-docker">Resumen ejecutar el código php con docker</h4>
@@ -1386,7 +1389,7 @@ sudo<span class="w"> </span>docker<span class="w"> </span>rm<span class="w"> </s
 <li>Es decir, no toques nada de lo que ya hay. cada vez, que hagas un cambio, NO HACE FALTA ejecutar: <code>docker compose up --build</code>  solamente guarda los cambios en el script y después accede a `http://localhost:8080/archivo.php" o al script que quieras ejecutar-</li>
 </ol>
 <hr />
-<h3 id="preambulo-2como-ejecutar-el-codigo-php-instalando-apache">Preámbulo 2.Cómo ejecutar el código php instalando apache</h3>
+<h3 id="preambulo-2-como-ejecutar-el-codigo-php-instalando-apache">Preámbulo 2. Cómo ejecutar el código php instalando apache</h3>
 <p>Si no queréis usar docker, podéis instalar apache en ubuntu 24.04, para ello, ejecutad lo siguiente:</p>
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update
 sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>apache2<span class="w"> </span>php8.3<span class="w"> </span>php8.3-mysql<span class="w"> </span><span class="c1">#instalamos 3 paquetes, apache y lo necesario para correr php junto con mysql (por ahora no usaremos mysql)</span>
@@ -1433,6 +1436,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div class="highlight"><pre><span></span><code>php<span class="w"> </span>script.php
 </code></pre></div>
 <p>Así pruebas la ejecución.</p>
+<hr />
 <h2 id="1-hola-mundo">1. “Hola, mundo”</h2>
 <p><div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="k">echo</span> <span class="s2">&quot;Hola, mundo desde PHP&quot;</span><span class="p">;</span>

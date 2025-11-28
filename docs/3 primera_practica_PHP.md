@@ -6,7 +6,7 @@ Aunque creáis que no, soy razonable :) y entiendo que docker os puede dar probl
 
 ### Preámbulo 1. Cómo ejecutar el código php con docker
 
-**<u>OPCIÓN 1 (DOCKER)</u>** Cada vez que abráis vuestro proyecto, os recomiendo ejecutar:
+Cada vez que abráis vuestro proyecto, os recomiendo ejecutar:
 
 ```bash
 sudo docker compose down
@@ -23,11 +23,11 @@ Error response from daemon: Conflict. The container name "/<nombre_del_contenedo
 
 Cuando ejecutáis el docker compose up, se creen tantos contenedores como servicios tenéis definidos sobre dicho archivo. En nuestro caso, se crean tres contenedores, uno de mysql, otro de apache y otro de phpmyadmin. Si alguna vez os sale ese error, tenéis dos opciones:
 
-1- Matar ese contenedor: primero lo paras (por nombre o por id) y después lo matas:
+1- Matar ese contenedor: primero lo paras (por nombre del servicio o por id del contenedor si sabes mirarlo) y después lo matas:
 
 ```bash
 sudo docker stop container_name|container_id #lo paro
-sudo docker rm container_name|container_id #lo paro
+sudo docker rm container_name|container_id #lo borro
 ```
 
 2- Si estás en el mismo proyecto desde el cual creaste los contenedores que quieres matar, bastaría con:
@@ -44,6 +44,12 @@ Esto cierra todos los contenedores creados en el docker-compose, ojo, debes tene
 sudo docker ps
 ```
 
+4- Si nada de lo anterior funciona, buscar el PID del sistema que corre este contenedor y matarlo
+
+```bash
+sudo kill -9 PID
+```
+
 Esto sólo lo comento porque puede ser útil, no porque os vaya a solucionar nada.
 
 #### Resumen ejecutar el código php con docker
@@ -54,7 +60,7 @@ Esto sólo lo comento porque puede ser útil, no porque os vaya a solucionar nad
 
 ---
 
-### Preámbulo 2.Cómo ejecutar el código php instalando apache
+### Preámbulo 2. Cómo ejecutar el código php instalando apache
 
 Si no queréis usar docker, podéis instalar apache en ubuntu 24.04, para ello, ejecutad lo siguiente:
 
@@ -128,7 +134,7 @@ php script.php
 
 Así pruebas la ejecución.
 
-
+----
 
 ## 1. “Hola, mundo”
 

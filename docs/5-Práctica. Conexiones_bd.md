@@ -4,12 +4,12 @@
 
 La Programación Orientada a Objetos (POO) es un paradigma de programación , es decir, una forma de organizar y estructurar el código, que se basa en el uso de objetos. Un objeto es una entidad que agrupa datos (propiedades o atributos) y comportamientos (métodos o funciones) que pertenecen a esa entidad. La idea principal es modelar partes del mundo real usando estructuras de código más cercanas a cómo pensamos las cosas.
 
-Por ejemplo:
+Por ejemplo, imaginemos que queremos modelas a una persona mediante el uso de un objeto:
 
 - Una persona tiene nombre, edad, DNI : son propiedades.
 - Una persona camina(), habla(), saluda() : son métodos.
 
-En POO combinamos ambas cosas dentro de una estructura llamada clase. A continuación vemos las definciones más básicar de la POO que veramos a lo largo de esta práctica.
+Cuando usamos la POO combinamos ambas cosas dentro de una estructura llamada clase. A continuación vemos las definciones más básicas de la POO que veremos a lo largo de esta práctica.
 
 **- Clase**
  Una clase es una <u>plantilla</u> que define cómo serán los objetos creados a partir de ella. Ejemplo: La clase Coche describe qué datos tiene un coche (propiedades) como la marca, el modelo o el año, y qué puede hacer (métodos) como arrancar y frenar.
@@ -28,7 +28,7 @@ En POO combinamos ambas cosas dentro de una estructura llamada clase. A continua
 **- Propiedades estáticas**
  Son propiedades que pertenecen a la clase en general, no a cada objeto. Ejemplo (programado en lo siguiente): La clase Persona podría tener un contador de cuántas personas se han creado en total, independientemente de quiénes sean esas personas.
 
-
+---
 
 #### 1.1-Primer ejemplo de POO en PHP.
 
@@ -91,6 +91,8 @@ echo Persona::$contador . "\n";
 
 Como podemos observar el código anterior tiene ciertos problemas. Se puede instanciar un objeto y posteriormente cambiar las propiedades del objeto sin piedad (como el nombre y la edad), incluso también podría cambiar la propiedad estática de la clase,  propiedad que como hemos comentado antes,  es compartida entre todos los objetos instanciados.
 
+---
+
 #### 1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.
 
 En la segunda versión del código (ver más abajo), haremos que nadie pueda cambiar el valor de la propiedad estática (el número de personas), pasándola a privada. Además, al ser privada, ya nadie podrá acceder a ella haciendo:
@@ -141,6 +143,8 @@ echo $persona1->nombre . ", " . $persona1->edad . "\n"; // Carlos, 30
 ```
 
 Como vemos al final del script siguen habiendo inconsistencias, como que se pueda cambiar el nombre de la persona (o incluso la edad). Esto se debe a que son propiedades públicas.
+
+---
 
 #### 1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento
 
@@ -231,6 +235,8 @@ public function addAge(): int {
 
 De esta forma, cualquier instancia puede cumplir años sin problema.
 
+---
+
 #### Práctica PT1. Clase básica con propiedades públicas 
 
 -Crea un archivo llamado **coches_1.php**. En este archivo define una clase Coche con:
@@ -249,6 +255,8 @@ De esta forma, cualquier instancia puede cumplir años sin problema.
 **Se pide:**
 
 - Crear tres objetos tipo Coche, mostrar sus propiedades sobre las instancias, mostrar el contador de coches sobre la case, modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) y modificar “a mano” la propiedad estática.
+
+---
 
 #### Práctica PT2. Clase básica con propiedades públicas 
 
@@ -284,6 +292,8 @@ De esta forma, cualquier instancia puede cumplir años sin problema.
   Intenta modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) ¿Qué pasa?
 
   Usar el método addVelocidad para añadir 10km/h de velocidad y cambiar la pintura al coche, que solo aceptara los colores rojo, verde, azul o negro.
+
+---
 
 ### 2-Instalación de mySQL, creación de usuarios y privilegios
 
@@ -345,13 +355,17 @@ Para aplciar los privilegios anteriores:
 FLUSH PRIVILEGES;
 ```
 
+---
+
 ### 3-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)
 
 Vamos a aprovechar el formulario de la pŕactica anterior (este):
 
 ![image-20251121105609040](./img/image-20251121105609040.png)
 
-y vamos a hacer que dos formularios (dos POST's y un GET quitamos el resto) se conecten a scripts que hagan cosas interesantes. En primer lugar, el primer POST se conecta al primer script, que llamaremos (Login.php) que nos devuelve información del usuario (en el siguiente punto veremos como registar a un usuario), la primera parte del script contendrá esto:
+y vamos a editarlo un poco. Para ello, vamos a dejar solo tres formularios (dos POST's y un GET quitamos el resto) que mandarán peticiones a scripts que hagan cosas interesantes (En el punto 6 tenéis el código html de estos formularios).
+
+En primer lugar, el primer POST se conecta al primer script, que llamaremos (Login.php) que nos devuelve información del usuario ya registrado en la base de de datos (en el siguiente punto veremos como registar a un usuario. Por facilidad prefiero que veais primero el login), la primera parte del script contendrá esto:
 
 ```php
 <?php
@@ -370,10 +384,6 @@ try{
     die("Error de conexión: " . $e->getMessage());
 }
 
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
-
 // Recibir datos por un formulario (url-enconded)
 $email = $_POST['email'] ?? null;
 $pass_input = $_POST['password'] ?? null;
@@ -383,7 +393,7 @@ if (!$email || !$pass_input) {
 }
 ```
 
-doc oficial: https://www.php.net/manual/en/pdo.connections.php
+**doc oficial usada**: https://www.php.net/manual/en/pdo.connections.php
 
 Según la documentación oficial, el constructor de PDO recibe:
 
@@ -403,11 +413,13 @@ y escribís:
 
 Por tanto, los tres primeros puntos de la conexión, son evidentes con la captura anterior, saltemos al 4º, en específico, nos vamos al array asociativo:
 
+---
+
 #### 3.1 Opciones del array asociativo al conectar a PDO
 
-doc oficial: https://www.php.net/manual/en/pdo.constants.php
+**doc oficial usada**: https://www.php.net/manual/en/pdo.constants.php
 
-##### 1. PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION`
+##### 3.1.1. PDO::ATTR_ERRMODE
 
 En la documentación oficial se dice:*"PDO::ATTR_ERRMODE: Sets the error reporting mode."* Los modos posibles más comunes son los siguiente
 
@@ -422,9 +434,7 @@ La que hemos escogido le dice a PDO que arroje excepciones (`PDOException`) cuan
 
 Esto hace más fácil manejar errores y deputar
 
-
-
-##### 2. PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+##### 3.1.2. PDO::ATTR_DEFAULT_FETCH_MODE 
 
 En la documentación oficial se dice: *"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."*
 
@@ -440,7 +450,6 @@ PDO te devuelve por defecto dos copias del mismo dato al hacer:
 ```php
 <?php
 $stmt->fetch();
-
 ```
 
 Es decir, vemos algo como
@@ -454,9 +463,7 @@ Es decir, vemos algo como
 
 La opcion que hemos escogido establece que cada vez que hagas: el resultado tendrá solo claves asociativas (`$fila['nombre']`), no índice numérico.
 
-
-
-##### 3. PDO::ATTR_EMULATE_PREPARES => false
+##### 3.1.3. PDO::ATTR_EMULATE_PREPARES
 
 En la documentación oficial se dice: *"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."*
 
@@ -470,7 +477,7 @@ $stmt->execute([$email]);
 
 Si la emulación está activada, PDO toma ese `?`, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, PHP hace el trabajo. Pero si usas prepared statements nativos, PDO envía la consulta con el `?` tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura,
 
-
+---
 
 #### 3.2 Creación de consultas
 
@@ -485,7 +492,7 @@ $userData = $stmt->fetch();
 
 ¿Qué singifica todo el bloque anterior? Vamos por partes
 
-###### 3.2.1 Consulta
+##### 3.2.1 Consulta
 
 ```php
 $sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
@@ -493,7 +500,7 @@ $sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
 
 El ? es un hueco en donde luego vamos a poner el valor del email del usuario. No lo ponemos directamente en el string. Lo vamos a mandar aparte, de forma segura.
 
-###### 3.2.2 Preparar la consulta
+##### 3.2.2 Preparar la consulta
 
 ```php
 $stmt = $pdo->prepare($sql);
@@ -503,9 +510,9 @@ $stmt = $pdo->prepare($sql);
 - `prepare()`: método de la clase PDO que devuelve un objeto del tipo PDOStatement, que es la clase de PDO para manejar sentencias preparadas.
 - `execute([$email])`: envía el valor del email
 
-###### 3.2.3 Dando valores a la consulta
+##### 3.2.3 Dando valores a la consulta
 
-https://www.php.net/manual/en/pdo.prepared-statements.php
+**doc oficial usada:** https://www.php.net/manual/en/pdo.prepared-statements.php
 
 Por último, falta dar valor a `?`: esto se hace así:
 
@@ -525,9 +532,7 @@ $stmt->execute([
 
 ```
 
-
-
-###### 3.2.4 Obtiniendo los valores de la consulta
+##### 3.2.4 Obteniendo los valores de la consulta
 
 Por último, veamos como se obtienen los resultados:
 
@@ -543,9 +548,7 @@ while ($usuario = $stmt->fetch()) {
 }
 ```
 
-Si no hay más filas, devuelve false. No importa si la tabla tiene 10 filas o 10 millones, siempre estás usando muy poca memoria, porque solo tienes una fila en memoria a la vez.
-
-De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Si quisieras cargar todas las filas en un array gigante usarías: -> fetchAll
+Si no hay más filas, devuelve false. No importa si la tabla tiene 10 filas o 10 millones, siempre estás usando muy poca memoria, porque solo tienes una fila en memoria a la vez. De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Si quisieras cargar todas las filas en un array gigante usarías: -> fetchAll
 
 Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: 
 
@@ -554,7 +557,7 @@ Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejem
 | 5    | Juan   | [Juan@mail.com](mailto:test@mail.com)<br /> |
 | 7    | Pepa   | [Pepa@mail.com](mailto:test@mail.com)<br /> |
 
-Al usar $result->fetch_assoc(), cada llamada se convierte esto en un array asociativo que podremos manejar sin problemas en php (es decir, tendríamos algo tal que así:)
+Al usar $result->fetch(), sobre la tabla anterior, cada llamada se convierte esto en un array asociativo que podremos manejar sin problemas en php (es decir, tendríamos algo tal que así:)
 
 ```text
 [
@@ -562,7 +565,6 @@ Al usar $result->fetch_assoc(), cada llamada se convierte esto en un array asoci
     "nombre" => "Juan",
     "email" => "test@mail.com"
 ]
-
 ```
 
 
@@ -571,7 +573,6 @@ El código completo de (Login.php) queda así:
 ```php
 <?php
 header("Content-Type: application/json");
-
 $host = getenv("DB_HOST");
 $db   = getenv("DB_NAME");
 $user = getenv("DB_USER");
@@ -626,8 +627,9 @@ try {
         "message" => $e->getMessage()
     ]);
 }
-
 ```
+
+---
 
 ### 4-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)
 
@@ -636,7 +638,6 @@ Ya sabemos un poco sobre conexión a base de datos según lo visto en el punto a
 ```php
 <?php
 header("Content-Type: application/json");
-
 $host = getenv("DB_HOST");
 $db   = getenv("DB_NAME");
 $user = getenv("DB_USER");
@@ -691,7 +692,6 @@ try {
         "message" => $e->getMessage() //Ojo a la pedazo de mala práctica
     ]);
 }
-
 ```
 
 Vamos la cosas que todavía pueden resultar confusas porque no se han visto antes;
@@ -709,7 +709,7 @@ obtienes
 1 #metodo de hasehado por defecto. esto no se suele cambiar ni pediré que lo hagáis
 ```
 
-
+---
 
 ### 5-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)
 
@@ -718,7 +718,6 @@ En este caso, no hace falta explciar tanto ya que hemos visto muchas cosas, este
 ```php
 <?php
 header("Content-Type: application/json");
-
 $host = getenv("DB_HOST");
 $db   = getenv("DB_NAME");
 $user = getenv("DB_USER");
@@ -767,16 +766,15 @@ try {
         "mysql_error" => $e->getMessage()  //Ojo a la pedazo de mala práctica
     ]);
 }
-
 ```
 
-Ojo cuidado, una cosa importante es que en este coso tenemos que recorrer fetch_assoc() según lo que explicamos ya en el bloque important del punto 2.
+Ojo cuidado, una cosa importante es que en este coso tenemos que recorrer fetch según lo que explicamos ya en el bloque important del punto 2.
 
-
+---
 
 ### 6- Esquema del HTML
 
-A modo esquematico, el body html hará las peticiones así (el put y el delete siguen haciendo lo que debían hacer en la práctica anterior utilizando los fetch en JS). En primer lugar, el HTML  (El primer POST y el segundo POST) harán las peticiones así:
+A modo esquemático, el body html hará las peticiones así a los dos scripts anteriores será el siguiente:
 
 ```html
 <!DOCTYPE html>
@@ -871,7 +869,9 @@ A modo esquematico, el body html hará las peticiones así (el put y el delete s
 </html>
 ```
 
-En las prácticas siguientes veremos como utilzar el PUT y el DELETE de forma práctica y real, borrando registros de la BD y editando cuestiones de la BD.
+En las prácticas siguientes veremos como utilzar el PUT y el DELETE (desde JS al igual que en la práctica anterior) de forma práctica y real, borrando registros de la BD y editando cuestiones de la BD.
+
+---
 
 ### **7- Práctica**
 

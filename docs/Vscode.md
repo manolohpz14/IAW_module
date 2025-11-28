@@ -26,7 +26,7 @@
 
 ------
 
-## PANEL LATERAL (EXPLORER Y SECCIONES)**
+## PANEL LATERAL (EXPLORER Y SECCIONES)
 
 ### **Abrir / Cerrar panel lateral**
 

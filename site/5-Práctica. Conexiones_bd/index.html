@@ -1424,19 +1424,18 @@
 <span class="nv">$persona3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
 <span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">getNombre</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">getEdad</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 </code></pre></div>
-<p>Ojo, si ponemos  declare(strict_types=1); como en lo anterior, es conveniente tener un control de errores correcto. (Algo tal que así para cada función)</p>
+<p>Ojo, si ponemos  declare (strict_types=1); como en lo anterior, es conveniente tener un control de errores correcto.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-<span class="k">private</span> <span class="k">function</span> <span class="nf">setEdad</span><span class="p">(</span><span class="nx">int</span> <span class="nv">$edad</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nv">$edad</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">Exception</span><span class="p">(</span><span class="s2">&quot;La edad no puede ser negativa.&quot;</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">edad</span> <span class="o">=</span> <span class="nv">$edad</span><span class="p">;</span>
-    <span class="p">}</span> 
-    <span class="k">catch</span> <span class="p">(</span><span class="nx">Error</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">echo</span> <span class="s2">&quot;Error general: &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
-    <span class="p">}</span>
+<span class="k">try</span> <span class="p">{</span>
+    <span class="nv">$persona1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Carlos&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+    <span class="nv">$persona2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Ana&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+    <span class="nv">$persona3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Persona</span><span class="p">(</span><span class="s2">&quot;Luis&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">);</span> 
 <span class="p">}</span>
+<span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">&quot;Error al crear persona: &quot;</span> <span class="o">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">echo</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">getNombre</span><span class="p">()</span> <span class="o">.</span> <span class="s2">&quot;, &quot;</span> <span class="o">.</span> <span class="nv">$persona1</span><span class="o">-&gt;</span><span class="na">getEdad</span><span class="p">();</span>
 </code></pre></div>
 <p>recordad esto:</p>
 <div class="highlight"><pre><span></span><code><span class="err">Throwable</span>
@@ -1449,7 +1448,7 @@
 </code></pre></div>
 <p>Por último, si hubiéramos querido, a la clase anterior lo podríamos haber añadido algún método público para que, por ejemplo, una persona pueda cumplir años:</p>
 <div class="highlight"><pre><span></span><code><span class="x">public function addAge(): int {</span>
-<span class="x">    this-&gt;edad+=1;</span>
+<span class="x">    $this-&gt;edad+=1;</span>
 <span class="x">}</span>
 </code></pre></div>
 <p>De esta forma, cualquier instancia puede cumplir años sin problema.</p>

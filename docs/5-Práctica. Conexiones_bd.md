@@ -248,7 +248,7 @@ De esta forma, cualquier instancia puede cumplir años sin problema.
   
 - Una propiedad estática pública llamada contador, que registre cuántos coches se han creado.
 
-- Un constructor que reciba los valores de marca, modelo y velocidad inicial.
+- Un constructor que reciba los valores de marca, modelo y velocidad inicial y los inicialice
 
 
 **Se pide:**

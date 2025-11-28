@@ -709,17 +709,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#documentacion-oficial-de-conexion-de-pdo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentación oficial de conexión de PDO:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#31-opciones-del-array-asociativo-al-conectar-a-pdo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -735,7 +724,7 @@
   <a href="#1-pdoattr_errmode-pdoerrmode_exception" class="md-nav__link">
     <span class="md-ellipsis">
       
-        *1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`
+        1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`
       
     </span>
   </a>
@@ -770,15 +759,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-variable-de-entorno" class="md-nav__link">
+  <a href="#32-creacion-de-consultas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 Variable de entorno
+        3.2 Creación de consultas
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3.2 Variable de entorno">
+    <nav class="md-nav" aria-label="3.2 Creación de consultas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1077,17 +1066,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#documentacion-oficial-de-conexion-de-pdo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Documentación oficial de conexión de PDO:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#31-opciones-del-array-asociativo-al-conectar-a-pdo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1103,7 +1081,7 @@
   <a href="#1-pdoattr_errmode-pdoerrmode_exception" class="md-nav__link">
     <span class="md-ellipsis">
       
-        *1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`
+        1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`
       
     </span>
   </a>
@@ -1138,15 +1116,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-variable-de-entorno" class="md-nav__link">
+  <a href="#32-creacion-de-consultas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3.2 Variable de entorno
+        3.2 Creación de consultas
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3.2 Variable de entorno">
+    <nav class="md-nav" aria-label="3.2 Creación de consultas">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1593,7 +1571,6 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
     <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Faltan datos&quot;</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<h6 id="documentacion-oficial-de-conexion-de-pdo"><strong>Documentación oficial de conexión de PDO:</strong></h6>
 <p>doc oficial: https://www.php.net/manual/en/pdo.connections.php</p>
 <p>Según la documentación oficial, el constructor de PDO recibe:</p>
 <ol>
@@ -1602,10 +1579,15 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li>Contraseña</li>
 <li>Opciones (un array asociativo de atributos)</li>
 </ol>
-<p>Los tres primeros puntos, son evidentes, saltemos al 4º, en específico, nos vamos al array asociativo:</p>
+<p>Hasta aquí, todo entendible. Para la conexión a la BD no queremos exponer que en el script se vea el valor de user ni el valor de pass, es por eso que se recogen desde variables de entorno (un fichero donde estas variables están definidas de forma que nadie pordrá verlas)</p>
+<p>En concreto, estas variables las ponéis en:
+/etc/apache2/envvars</p>
+<p>y escribís:</p>
+<p><img alt="image-20251121180114532" src="../img/image-20251121180114532.png" /></p>
+<p>Por tanto, los tres primeros puntos de la conexión, son evidentes con la captura anterior, saltemos al 4º, en específico, nos vamos al array asociativo:</p>
 <h4 id="31-opciones-del-array-asociativo-al-conectar-a-pdo">3.1 Opciones del array asociativo al conectar a PDO</h4>
 <p>doc oficial: https://www.php.net/manual/en/pdo.constants.php</p>
-<h5 id="1-pdoattr_errmode-pdoerrmode_exception">*<em>1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`</em></h5>
+<h5 id="1-pdoattr_errmode-pdoerrmode_exception">1. PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION`</h5>
 <p>En la documentación oficial se dice:<em>"PDO::ATTR_ERRMODE: Sets the error reporting mode."</em> Los modos posibles más comunes son los siguiente</p>
 <ul>
 <li><code>PDO::ERRMODE_SILENT</code> (modo silencioso — por defecto)</li>
@@ -1618,7 +1600,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li>emitir warnings.</li>
 </ul>
 <p>Esto hace más fácil manejar errores y deputar</p>
-<h5 id="2-pdoattr_default_fetch_mode-pdofetch_assoc"><strong>2. PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC</strong></h5>
+<h5 id="2-pdoattr_default_fetch_mode-pdofetch_assoc">2. PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC</h5>
 <p>En la documentación oficial se dice: <em>"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."</em></p>
 <p>Modos posibles:</p>
 <ul>
@@ -1638,7 +1620,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 ]
 </code></pre></div>
 <p>La opcion que hemos escogido establece que cada vez que hagas: el resultado tendrá solo claves asociativas (<code>$fila['nombre']</code>), no índice numérico.</p>
-<h5 id="3-pdoattr_emulate_prepares-false"><strong>3. PDO::ATTR_EMULATE_PREPARES =&gt; false</strong></h5>
+<h5 id="3-pdoattr_emulate_prepares-false">3. PDO::ATTR_EMULATE_PREPARES =&gt; false</h5>
 <p>En la documentación oficial se dice: <em>"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."</em></p>
 <p>Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Por ejemplo, si haces una consulta como:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
@@ -1646,12 +1628,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">([</span><span class="nv">$email</span><span class="p">]);</span>
 </code></pre></div>
 <p>Si la emulación está activada, PDO toma ese <code>?</code>, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, PHP hace el trabajo. Pero si usas prepared statements nativos, PDO envía la consulta con el <code>?</code> tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura,</p>
-<h4 id="32-variable-de-entorno">3.2 Variable de entorno</h4>
-<p>Hasta aquí, todo entendible. Para la conexión a la BD no queremos exponer que en el script se vea el valor de user ni el valor de pass, es por eso que se recogen desde variables de entorno (un fichero donde estas variables están definidas de forma que nadie pordrá verlas)</p>
-<p>En concreto, estas variables las ponéis en:
-/etc/apache2/envvars</p>
-<p>y escribís:</p>
-<p><img alt="image-20251121180114532" src="../img/image-20251121180114532.png" /></p>
+<h4 id="32-creacion-de-consultas">3.2 Creación de consultas</h4>
 <p>Seguimos rellenando el script con la parte de la consulta:</p>
 <div class="highlight"><pre><span></span><code><span class="x">$sql = &quot;SELECT id, nombre, email, password FROM usuarios WHERE email = ?&quot;;</span>
 <span class="x">$stmt = $pdo-&gt;prepare($sql);</span>
@@ -1689,12 +1666,13 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div class="highlight"><pre><span></span><code><span class="x">$userData = $stmt-&gt;fetch();</span>
 </code></pre></div>
 <p><code>fetch()</code> devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:</p>
-<div class="highlight"><pre><span></span><code><span class="x">while ($usuario = $result-&gt;fetch_assoc()) {</span>
+<div class="highlight"><pre><span></span><code><span class="x">while ($usuario = $stmt-&gt;fetch()) {</span>
 <span class="x"> echo $usuario[&quot;nombre&quot;] . &quot;&lt;br&gt;&quot;;</span>
 <span class="x">}</span>
 </code></pre></div>
 <p>Si no hay más filas, devuelve false. No importa si la tabla tiene 10 filas o 10 millones, siempre estás usando muy poca memoria, porque solo tienes una fila en memoria a la vez.</p>
-<p>De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: </p>
+<p>De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Si quisieras cargar todas las filas en un array gigante usarías: -&gt; fetchAll</p>
+<p>Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: </p>
 <table>
 <thead>
 <tr>

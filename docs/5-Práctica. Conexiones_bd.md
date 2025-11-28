@@ -271,7 +271,7 @@ De esta forma, cualquier instancia puede cumplir años sin problema.
 
 -Reglas del setter de pintura (setPintura):
 
-- Un coche podrá cambiar de pintura luego puede ser público
+- Un coche podrá cambiar de pintura luego puede ser público (solo aceptara los colores rojo, verde, azul o negro.)
 
 -Crear el método velocidad (addVelocidad) que suma o resta velocidad a un coche:
 
@@ -385,7 +385,7 @@ if (!$email || !$pass_input) {
 
 ###### **Documentación oficial de conexión de PDO:**
 
--  https://www.php.net/manual/en/pdo.connections.php
+doc oficial: https://www.php.net/manual/en/pdo.connections.php
 
 Según la documentación oficial, el constructor de PDO recibe:
 
@@ -398,9 +398,9 @@ Los tres primeros puntos, son evidentes, saltemos al 4º, en específico, nos va
 
 #### 3.1 Opciones del array asociativo al conectar a PDO
 
-https://www.php.net/manual/en/pdo.constants.php
+doc oficial: https://www.php.net/manual/en/pdo.constants.php
 
-##### **1. `PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION`**
+##### **1. PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION`*
 
 En la documentación oficial se dice:*"PDO::ATTR_ERRMODE: Sets the error reporting mode."* Los modos posibles más comunes son los siguiente
 
@@ -417,7 +417,7 @@ Esto hace más fácil manejar errores y deputar
 
 
 
-##### **2. `PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC`**
+##### **2. PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC**
 
 En la documentación oficial se dice: *"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."*
 
@@ -449,11 +449,11 @@ La opcion que hemos escogido establece que cada vez que hagas: el resultado tend
 
 
 
-##### **3. `PDO::ATTR_EMULATE_PREPARES => false`**
+##### **3. PDO::ATTR_EMULATE_PREPARES => false**
 
 En la documentación oficial se dice: *"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."*
 
-Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Es como elegir que la persona que haga la tarea. Por ejemplo, si haces una consulta como:
+Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Por ejemplo, si haces una consulta como:
 
 ```php
 <?php
@@ -461,7 +461,7 @@ $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
 $stmt->execute([$email]);
 ```
 
-Si la emulación está activada, PDO toma ese `?`, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, **PHP hace el trabajo**.Pero si usas prepared statements nativos, PDO envía la consulta con el `?` tal cual, y luego manda el valor del email por separado. En ese caso, es **MySQL quien prepara la consulta y la ejecuta de forma segura**,
+Si la emulación está activada, PDO toma ese `?`, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, PHP hace el trabajo. Pero si usas prepared statements nativos, PDO envía la consulta con el `?` tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura,
 
 
 

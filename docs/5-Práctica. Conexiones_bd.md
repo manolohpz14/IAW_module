@@ -196,21 +196,20 @@ $persona3 = new Persona("Luis", 40);
 echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
 ```
 
-Ojo, si ponemos  declare(strict_types=1); como en lo anterior, es conveniente tener un control de errores correcto. (Algo tal que así para cada función)
+Ojo, si ponemos  declare (strict_types=1); como en lo anterior, es conveniente tener un control de errores correcto.
 
 ```php
 <?php
-private function setEdad(int $edad): void {
-    try {
-        if ($edad < 0) {
-            throw new Exception("La edad no puede ser negativa.");
-        }
-        $this->edad = $edad;
-    } 
-    catch (Error $e) {
-        echo "Error general: " . $e->getMessage();
-    }
+try {
+    $persona1 = new Persona("Carlos", 30);
+    $persona2 = new Persona("Ana", 25);
+    $persona3 = new Persona("Luis", -40); 
 }
+catch (Exception $e) {
+    echo "Error al crear persona: " . $e->getMessage();
+}
+
+echo $persona1->getNombre() . ", " . $persona1->getEdad();
 ```
 
 recordad esto:
@@ -229,7 +228,7 @@ Por último, si hubiéramos querido, a la clase anterior lo podríamos haber añ
 
 ```php
 public function addAge(): int {
-    this->edad+=1;
+    $this->edad+=1;
 }
 ```
 

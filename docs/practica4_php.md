@@ -751,9 +751,21 @@ if ($metodo === "GET") {
 ```
 
 ### Práctica (index.php)
-Ejecuta el código anterior con GET POST PUT y DELETE mediante postman y haz capturas de pantalla, prueba a enviar información a ver si la recibe correctamente. Importa que envíes información o da igual la info que envíes (por ejemplo en un post) .
+Ejecuta el código anterior con GET POST PUT y DELETE mediante postman y haz capturas de pantalla, prueba a enviar información a ver si la recibe correctamente. ¿Importa que envíes información o da igual la info qué envíes (por ejemplo en un post)?
 
-Después de hacer las peticiones con postman, elabora un formulario llamdo "formulario.html" que mediante 4 formularios html's (dentro de formulario.html) haga las peticiones al script anterior con GET POST PUT Y DELETE, (resuelto en el siguiente script.) Qué problema encuentras con PUT Y DELETE? (Pues que no deja como action en el HTML)
+
+
+Después de hacer las peticiones con postman, elabora un formulario llamdo "formulario.html" que mediante 4 formularios html's (dentro de formulario.html) haga las peticiones al script anterior con GET POST PUT Y DELETE, (resuelto en el siguiente script html con JS.) Qué problema encuentras con PUT Y DELETE? (Pues que no deja como action en el HTML)
+
+Estos serían los dos formularios HTML
+
+![image-20251204132019495](./img/image-20251204132019495.png)
+
+Estos serían los dos formularios hechos con JavaScript
+
+![image-20251204132114379](./img/image-20251204132114379.png)
+
+Esto sería el código que resuelve la práctica de los 4 formularios GET POST PUT DELETE.
 
 ```html
 <!DOCTYPE html>

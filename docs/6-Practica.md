@@ -1,433 +1,27 @@
-### 3-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)
 
-Vamos a aprovechar el formulario de la pŕactica anterior (este):
 
-![image-20251121105609040](/home/manolo/Escritorio/IAW/materia/docs/img/image-20251121105609040.png)
+## Práctica Guiada 6. Conexiones a BD
 
-y vamos a editarlo un poco. Para ello, vamos a dejar solo tres formularios (dos POST's y un GET quitamos el resto) que mandarán peticiones a scripts que hagan cosas interesantes (En el punto 6 tenéis el código html de estos formularios).
+Lo nuevo de esta práctica es que implementaremos los métodos DELETE y PUT para borrar info de la base de datos, al mismo tiempo usaremos cookies y haremos redirecciones.
 
-En primer lugar, el primer POST se conecta al primer script, que llamaremos (Login.php) que nos devuelve información del usuario ya registrado en la base de de datos (en el siguiente punto veremos como registar a un usuario. Por facilidad prefiero que veais primero el login), la primera parte del script contendrá esto:
+En primer lugar querremos una página de incio llamada (inicioIAW.html) donde podamos acceder a una hipotética página web de nuestro módulo. Este html tendrá dos formularios. Uno para registrarnos y otro, para iniciar sesión.
 
-```php
-<?php
-$host = getenv("DB_HOST");
-$db   = getenv("DB_NAME");
-$user = getenv("DB_USER");
-$pass = getenv("DB_PASS");
+![image-20251204132803044](/home/manolo/.config/Typora/typora-user-images/image-20251204132803044.png)
 
-try{
-    $pdo = new PDO($dsn, $user, $pass, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, asociativo
-            PDO::ATTR_EMULATE_PREPARES => false 
-        ]);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
-}
+## 1-HTML de login_register.html (form anterior)
 
-// Recibir datos por un formulario (url-enconded)
-$email = $_POST['email'] ?? null;
-$pass_input = $_POST['password'] ?? null;
-
-if (!$email || !$pass_input) {
-    die("Faltan datos");
-}
-```
-
-**doc oficial usada**: https://www.php.net/manual/en/pdo.connections.php
-
-Según la documentación oficial, el constructor de PDO recibe:
-
-1. DSN: cadena de conexión (driver + host + dbname + charset, etc.)
-2. Usuario
-3. Contraseña
-4. Opciones (un array asociativo de atributos)
-
-Hasta aquí, todo entendible. Para la conexión a la BD no queremos exponer que en el script se vea el valor de user ni el valor de pass, es por eso que se recogen desde variables de entorno (un fichero donde estas variables están definidas de forma que nadie pordrá verlas)
-
-En concreto, estas variables las ponéis en:
-/etc/apache2/envvars
-
-y escribís:
-
-![image-20251121180114532](/home/manolo/Escritorio/IAW/materia/docs/img/image-20251121180114532.png)
-
-Por tanto, los tres primeros puntos de la conexión, son evidentes con la captura anterior, saltemos al 4º, en específico, nos vamos al array asociativo:
-
----
-
-#### 3.1 Opciones del array asociativo al conectar a PDO
-
-**doc oficial usada**: https://www.php.net/manual/en/pdo.constants.php
-
-##### 3.1.1. PDO::ATTR_ERRMODE
-
-En la documentación oficial se dice:*"PDO::ATTR_ERRMODE: Sets the error reporting mode."* Los modos posibles más comunes son los siguiente
-
-- `PDO::ERRMODE_SILENT` (modo silencioso — por defecto)
-- `PDO::ERRMODE_WARNING`
-- `PDO::ERRMODE_EXCEPTION`
-
-La que hemos escogido le dice a PDO que arroje excepciones (`PDOException`) cuando ocurra un error, en lugar de:
-
-- guardar el error internamente (modo silencioso), o
-- emitir warnings.
-
-Esto hace más fácil manejar errores y deputar
-
-##### 3.1.2. PDO::ATTR_DEFAULT_FETCH_MODE 
-
-En la documentación oficial se dice: *"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."*
-
-Modos posibles:
-
-- `PDO::FETCH_ASSOC` (solo arrays asociativos)
-- `PDO::FETCH_NUM`
-- `PDO::FETCH_BOTH` (por defecto)
-- `PDO::FETCH_OBJ`, etc.
-
-PDO te devuelve por defecto dos copias del mismo dato al hacer:
-
-```php
-<?php
-$stmt->fetch();
-```
-
-Es decir, vemos algo como
-
-```
-[
-    0        => "Juan",
-    "nombre" => "Juan"
-]
-```
-
-La opcion que hemos escogido establece que cada vez que hagas: el resultado tendrá solo claves asociativas (`$fila['nombre']`), no índice numérico.
-
-##### 3.1.3. PDO::ATTR_EMULATE_PREPARES
-
-En la documentación oficial se dice: *"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."*
-
-Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Por ejemplo, si haces una consulta como:
-
-```php
-<?php
-$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
-$stmt->execute([$email]);
-```
-
-Si la emulación está activada, PDO toma ese `?`, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, PHP hace el trabajo. Pero si usas prepared statements nativos, PDO envía la consulta con el `?` tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura,
-
----
-
-#### 3.2 Creación de consultas
-
-Seguimos rellenando el script con la parte de la consulta:
-
-```php
-$sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
-$stmt = $pdo->prepare($sql);
-$stmt->execute([$email]);
-$userData = $stmt->fetch();
-```
-
-¿Qué singifica todo el bloque anterior? Vamos por partes
-
-##### 3.2.1 Consulta
-
-```php
-$sql = "SELECT id, nombre, email, password FROM usuarios WHERE email = ?";
-```
-
-El ? es un hueco en donde luego vamos a poner el valor del email del usuario. No lo ponemos directamente en el string. Lo vamos a mandar aparte, de forma segura.
-
-##### 3.2.2 Preparar la consulta
-
-```php
-$stmt = $pdo->prepare($sql);
-```
-
-- `$conn`: es la conexión a MySQL (`new PDO(...)`).
-- `prepare()`: método de la clase PDO que devuelve un objeto del tipo PDOStatement, que es la clase de PDO para manejar sentencias preparadas.
-- `execute([$email])`: envía el valor del email
-
-##### 3.2.3 Dando valores a la consulta
-
-**doc oficial usada:** https://www.php.net/manual/en/pdo.prepared-statements.php
-
-Por último, falta dar valor a `?`: esto se hace así:
-
-```bash
-$stmt->execute([$email])
-```
-
-Otra forma de hacerlo sería así;
-
-```php
-<?php
-$stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-
-$stmt->execute([
-    ':email' => $email
-]);
-
-```
-
-##### 3.2.4 Obteniendo los valores de la consulta
-
-Por último, veamos como se obtienen los resultados:
-
-```php
-$userData = $stmt->fetch();
-```
-
-`fetch()` devuelve UN array asociativo POR LLAMADA, es decir, si el resultado tuviera más de una fila, tendríamos que hacer algo así:
-
-```php
-while ($usuario = $stmt->fetch()) {
- echo $usuario["nombre"] . "<br>";
-}
-```
-
-Si no hay más filas, devuelve false. No importa si la tabla tiene 10 filas o 10 millones, siempre estás usando muy poca memoria, porque solo tienes una fila en memoria a la vez. De esta forma, en casa iteración obtengo una fila distinta, cosa que no es necesaria en este caso. Si quisieras cargar todas las filas en un array gigante usarías: -> fetchAll
-
-Por ejemplificar lo que se obtiene en cada llamada podemos ver el siguiente ejemplo, donde en la tabla de usuarios sólo hay: 
-
-| id   | nombre | email                                       |
-| ---- | ------ | ------------------------------------------- |
-| 5    | Juan   | [Juan@mail.com](mailto:test@mail.com)<br /> |
-| 7    | Pepa   | [Pepa@mail.com](mailto:test@mail.com)<br /> |
-
-Al usar $result->fetch(), sobre la tabla anterior, cada llamada se convierte esto en un array asociativo que podremos manejar sin problemas en php (es decir, tendríamos algo tal que así:)
-
-```text
-[
-    "id" => 5,
-    "nombre" => "Juan",
-    "email" => "test@mail.com"
-]
-```
-
-
-El código completo de (Login.php) queda así:
-
-```php
-<?php
-header("Content-Type: application/json");
-$host = getenv("DB_HOST");
-$db   = getenv("DB_NAME");
-$user = getenv("DB_USER");
-$pass = getenv("DB_PASS");
-
-try {
-    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
-    $pdo = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES   => false
-    ]);
-
-    $email = $_POST['email'] ?? null;
-    $pass_input = $_POST['password'] ?? null;
-
-    if (!$email || !$pass_input) {
-        throw new Exception("Faltan datos");
-    }
-
-    $stmt = $pdo->prepare("SELECT id, nombre, email, password FROM usuarios WHERE email = ?");
-    $stmt->execute([$email]);
-    $userData = $stmt->fetch();
-
-    if (!$userData) {
-        throw new Exception("Usuario no encontrado");
-    }
-
-    if (!password_verify($pass_input, $userData['password'])) {
-        throw new Exception("Contraseña incorrecta");
-    }
-
-    unset($userData['password']);
-
-    echo json_encode([
-        "status"  => "success",
-        "message" => "Login exitoso",
-        "data"    => $userData
-    ]);
-
-} catch (PDOException $e) {
-
-    echo json_encode([
-        "status"  => "error",
-        "message" => "Error de base de datos: " . $e->getMessage()
-    ]);
-
-} catch (Throwable $e) {
-
-    echo json_encode([
-        "status"  => "error",
-        "message" => $e->getMessage()
-    ]);
-}
-```
-
----
-
-### 4-Conexión a la BBDD.POST. Registrar a un usuario para probar el loggin anterior. (Register.php)
-
-Ya sabemos un poco sobre conexión a base de datos según lo visto en el punto anterior. Ahora vamos al revés, os doy el script entero de (Register.php) y lo que haremos será desmenuzar los puntos que no comprendamos.
-
-```php
-<?php
-header("Content-Type: application/json");
-$host = getenv("DB_HOST");
-$db   = getenv("DB_NAME");
-$user = getenv("DB_USER");
-$pass = getenv("DB_PASS");
-
-try {
-    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
-    $pdo = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false
-    ]);
-
-    $nombre = $_POST['nombre'] ?? null;
-    $email = $_POST['email'] ?? null;
-    $pass_input = $_POST['password'] ?? null;
-
-    if (!$nombre || !$email || !$pass_input) {
-        throw new Exception("Faltan datos");
-    }
-
-    $hashedPassword = password_hash($pass_input, PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO usuarios (nombre, email, password) 
-            VALUES (:nombre, :email, :password)";
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':nombre'   => $nombre,
-        ':email'    => $email,
-        ':password' => $hashedPassword
-    ]);
-
-    echo json_encode([
-        "status" => "success",
-        "message" => "Usuario registrado correctamente",
-        "user_id" => $pdo->lastInsertId()
-    ]);
-
-} catch (PDOException $e) {
-
-    echo json_encode([
-        "status" => "error",
-        "message" => "Error de base de datos",
-        "mysql_error" => $e->getMessage()
-    ]);
-
-} catch (Throwable $e) {
-
-    echo json_encode([
-        "status" => "error",
-        "message" => $e->getMessage() //Ojo a la pedazo de mala práctica
-    ]);
-}
-```
-
-Vamos la cosas que todavía pueden resultar confusas porque no se han visto antes;
-
-###### ¿Qué es PASSWORD_DEFAULT?
-
-Es una constante predefinida por PHP cuyo valor es un número entero que identifica el algoritmo de hasehado de contraseña. No lo ves como texto porque PHP ya lo interpreta. si haces:
-
-```php
-echo PASSWORD_DEFAULT;
-```
-
-obtienes
-
-```php
-1 #metodo de hasehado por defecto. esto no se suele cambiar ni pediré que lo hagáis
-```
-
----
-
-### 5-Conexión a la BBDD. GET que devuelve la info de todos los usuarios. (All_users.php)
-
-En este caso, no hace falta explicar tanto ya que hemos visto muchas cosas, este formulario es el ejemplo vivo de un get en el que no se envía ninguna información desde el cliente (obviamente si desde el servidor). A continuación os dejo el código. 
-Recordar que en un formulario html que use get, los parámetros se envían por query-param:
-
-```php
-<?php
-header("Content-Type: application/json");
-$host = getenv("DB_HOST");
-$db   = getenv("DB_NAME");
-$user = getenv("DB_USER");
-$pass = getenv("DB_PASS");
-
-try {
-    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
-    $pdo = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false
-    ]);
-} catch (PDOException $e) {
-    http_response_code(500);
-    die(json_encode([
-        "status" => "error",
-        "message" => "Error de conexión",
-        "mysql_error" => $e->getMessage()
-    ]));
-}
-
-if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-    http_response_code(405);
-    die(json_encode([
-        "status" => "error",
-        "message" => "Método no permitido"
-    ]));
-}
-
-try {
-    $stmt = $pdo->prepare("SELECT id, nombre, email FROM usuarios");
-    $stmt->execute();
-    $usuarios = $stmt->fetchAll();
-
-    echo json_encode([
-        "status" => "success",
-        "message" => "Usuarios obtenidos correctamente",
-        "data" => $usuarios
-    ]);
-
-} catch (PDOException $e) {
-
-    echo json_encode([
-        "status" => "error",
-        "message" => "Error al obtener usuarios",
-        "mysql_error" => $e->getMessage()  //Ojo a la pedazo de mala práctica
-    ]);
-}
-```
-
----
-
-### 1- Esquema del HTML de la práctica anterior
-
-La práctica anterior terminó con tres formularios HTML (Código del Punto 6)
-
-Estos tres formularios hacían peticiones a tres scripts de php (uno con un verbo POST, para registrar usuario, otro con un verbo POST para hacer un login del usuario y otro con un GET para recoger en un array todos los usuarios de la base de datos)
-
-A lo largo de esta práctica, vamos a dividir esos HTML's en dos páginas distintas. En la primera página, tendremos el típico (inicio de sesión/ register)  de cualquier página web. Algo más o menos así:
+el html de los dos formularios (foto anterior), es este:
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
     <style>
         body {
             display: flex;
@@ -481,6 +75,8 @@ A lo largo de esta práctica, vamos a dividir esos HTML's en dos páginas distin
         }
     </style>
 
+
+
 </head>
 
 
@@ -513,21 +109,159 @@ A lo largo de esta práctica, vamos a dividir esos HTML's en dos páginas distin
 </html>
 ```
 
-Aprovecho para recordar que esos dos formularios HTML usan por defecto url-encoded (y que no es el estándar de las API's REST). Si quisiéramos que estos formularios enviaran un JSON, necesitaríamos hacer un fetch, al igual que en el punto 8 de la práctica 4. De todas formas, lo dejamos así ya que funciona a la perfección.
+Observamos que cada formulario hace peticiones a scripts php distintos:
+
+![image-20251204133333891](/home/manolo/.config/Typora/typora-user-images/image-20251204133333891.png)
+
+- Visto esto, el de register_IAW.php es igual que en la práctica anterior, así que nos olvidamos de él ya que no hay nada nuevo.
+
+- El script de login_IAW.php es un poco distinto, ya que si inicias sesión correctamente no te manda un json felicitandote, si no que te redirige de verdad a otro HTML donde puedes cambiar tu contraseña o borrar tu cuenta. Además, inserta dos cookies en tu navegador a las que nadie pordrá acceder nunca, solo el servidor de tu página web. Estas cookies serán la cookie de la contraseña en texto plano (recuerdo que en la BD la contraseña se haseha) y la otra cookie será el email de la persona que inicia sesión.
+
+dejo por aquí solo el script login_IAW.php ya que el otro es igual que en la práctica anterior:
+
+## 2-Script login_IAW.php
+
+```php
+<?php
+header("Content-Type: application/json");
+
+$host = getenv("DB_HOST");
+$db = getenv("DB_NAME");
+$user = getenv("DB_USER");
+$pass = getenv("DB_PASS");
+
+try {
+    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false
+    ]);
+
+    $email = $_POST['email'] ?? null;
+    $pass_input = $_POST['password'] ?? null;
+
+    if (!$email || !$pass_input) {
+        throw new Exception("Faltan datos");
+    }
+
+    $stmt = $pdo->prepare("SELECT id, nombre, email, password FROM usuarios WHERE email = ?");
+    $stmt->execute([$email]);
+    $userData = $stmt->fetch();
+
+    if (!$userData) {
+        throw new Exception("Usuario no encontrado");
+    }
+
+    if (!password_verify($pass_input, $userData['password'])) {
+        throw new Exception("Contraseña incorrecta");
+    }
+
+    setcookie(
+        "clave_plana",                  // Nombre
+        $pass_input,                    // Valor (contraseña a pelo)
+        [
+            "expires" => time() + 3600,   // 1 hora
+            "path" => "/",
+            // "secure"   => true,         // Activar sólo en HTTPS
+            "httponly" => true,            // NO accesible desde JavaScript
+            "samesite" => "strict"         //La cookie solo se envia a paginar del mismo domino
+        ]
+    );
+
+    setcookie(
+        "email",                  // Nombre
+        $email,                    // Valor (contraseña a pelo)
+        [
+            "expires" => time() + 3600,   // 1 hora
+            "path" => "/",
+            // "secure"   => true,         // Activar sólo en HTTPS
+            "httponly" => true,            // NO accesible desde JavaScript
+            "samesite" => "strict"         //La cookie solo se envia a paginar del mismo domino
+        ]
+    );
+
+    // Redirigir a la página de inicio
+    header("Location: inicioIAW.html");
+    exit;
+
+} catch (Throwable $e) {
+
+    header("Content-Type: application/json");
+
+    echo json_encode([
+        "status" => "error",
+        "message" => $e->getMessage()
+    ]);
+}
+
+```
+
+La parte importante es que con
+
+```php
+<?php
+// Redirigir a la página de inicio
+header("Location: inicioIAW.html")
+```
+
+Inserto un header en la respuesta del servidor al cliente (response). Este header permitirá al cliente hacer la redirección al nuevo HTML y se hace automáticamente así ya que el formulario de incio es de tipo submit luego sigue redirecciones (el siguiente fragmente de código es de la parte de HTML que posee `login_register.html` del punto anterior).
+
+```html
+<form action="Login.php" method="POST">
+    <h2>Inicia sesión en la pagina web</h2>
+    <input type="text" name="email" placeholder="email">
+    <input type="password" name="password" placeholder="Contraseña">
+    <button type="submit">Enviar</button>
+</form>
+```
+
+Otra parte importante es que insertamos cookies:
+
+```php
+<?php
+    setcookie(
+        "clave_plana",                  // Nombre
+        $pass_input,                    // Valor (contraseña a pelo)
+        [
+            "expires" => time() + 3600,   // 1 hora
+            "path" => "/",
+            // "secure"   => true,         // Activar sólo en HTTPS
+            "httponly" => true,            // NO accesible desde JavaScript
+            "samesite" => "strict"         //La cookie solo se envia a paginar del mismo domino
+        ]
+    );
+
+    setcookie(
+        "email",                  // Nombre
+        $email,                    // Valor (contraseña a pelo)
+        [
+            "expires" => time() + 3600,   // 1 hora
+            "path" => "/",
+            // "secure"   => true,         // Activar sólo en HTTPS
+            "httponly" => true,            // NO accesible desde JavaScript
+            "samesite" => "strict"         //La cookie solo se envia a paginar del mismo domino
+        ]
+    );
+```
+
+donde httponly nos permite que la cookie no sea accesible desde javascript y solo viaje por http al servidor y con samesite strict nos aseguramos que no se envíe a otros servidores que no sean el nuestro.
 
 
 
+## 3-HTML inicio_IAW.html
 
+Si iniciamos sesión correctamente, entonces se nos redirige al HTML (inicio_IAW.HTML) y además se nos insertan las cookies anteriores. Mostramos captura de ambas cosas:
 
+La imagen muestra el HTML que te aparece una vez inicias sesión
 
+![image-20251204134707751](/home/manolo/.config/Typora/typora-user-images/image-20251204134707751.png)
 
-Cuando iniciemos sesión con un usuario (y únicamente en ese caso). El usuario será redigido a otro html, donde podrá hacer tres cosas.
+Lo siguiente sería la captura de las cookies en el navegador:
 
--Borrar su usuario (DELETE)
+![image-20251204134922756](/home/manolo/.config/Typora/typora-user-images/image-20251204134922756.png)
 
--Cambiar su contraseña (PUT)
-
--Ver a todos los usuarios registrados (GET)
+dejo aquí el código HTML de inicio_IAW.html
 
 ```html
 <!DOCTYPE html>
@@ -542,13 +276,22 @@ Cuando iniciemos sesión con un usuario (y únicamente en ese caso). El usuario 
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            height: 95vh;
         }
+
+        h1 {
+            text-align: center;
+        }
+
 
         .contenedor {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10vh;
         }
 
         .carta {
@@ -559,79 +302,439 @@ Cuando iniciemos sesión con un usuario (y únicamente en ese caso). El usuario 
             padding: 1rem;
             background-color: rgb(222, 255, 252);
             max-width: 320px;
+            margin-right: 1rem;
         }
 
         form {
+            margin-top: 0.5rem;
             display: flex;
             flex-direction: column;
-            margin-top: 0.5rem;
+            text-align: left;
 
         }
+
         input {
-            max-width:2,5rem;
+            max-width: 2, 5rem;
             margin: 0px auto;
-            margin-top:0.5rem;
+            margin-top: 0.5rem;
         }
 
         button {
-            max-width:2,5rem;
+            max-width: 2, 5rem;
             margin: 0px auto;
-            margin-top:0.5rem;
+            margin-top: 0.5rem;
         }
     </style>
 
+    <script>
+        async function fetch_put() {
+            let carta = document.querySelector(".carta_put");
+            let div_put = document.querySelector(".resultado_put");
+            let boton_put = document.querySelector("#button_put");
+
+            let input_pass = document.querySelector('input[name="password"]');
+            let input_pass2 = document.querySelector('input[name="password_repeated"]');
 
 
+            if (div_put.innerHTML !== "") {
+                div_put.innerHTML = "";
+                boton_put.innerHTML = "Cambiar contraseña";
+                input_pass.disabled = false;
+                input_pass2.disabled = false;
+                boton_put.disabled = false;
+
+                return;
+            }
+
+            let password = input_pass.value;
+            let password_repeated = input_pass2.value;
+
+            try {
+
+                input_pass.disabled = true;
+                input_pass2.disabled = true;
+                boton_put.disabled = true;
+
+                const response = await fetch("change_password.php", {
+                    method: "PUT",
+                    headers: { 
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "password": password,
+                        "password_repeated": password_repeated
+                    })
+                });
+
+                const data = await response.json();
+                div_put.innerHTML = data.message;
+
+                if (data.status === "success") {
+                    boton_put.innerHTML = "Contraseña actualizada";
+                } else {
+                    boton_put.innerHTML = "Volver a intentar";
+                    input_pass.disabled = false;
+                    input_pass2.disabled = false;
+                    boton_put.disabled = false;
+                }
+
+                carta.style.height = carta.scrollHeight + "px";
+
+            } catch (error) {
+                div_put.innerHTML = "Error inesperado";
+                boton_put.innerHTML = "Volver a intentar";
+                input_pass.disabled = false;
+                input_pass2.disabled = false;
+                boton_put.disabled = false;
+
+                console.error(error);
+            }
+        }
+
+        async function fetch_delete() {
+
+            let div_delete = document.querySelector(".resultado_delete");
+            let boton_delete = document.querySelector("#button_delete");
+
+            if (div_delete.innerHTML !== "") {
+                div_delete.innerHTML = "";
+                boton_delete.innerHTML = "Borrar";
+                return;
+            }
+
+            try {
+                const response = await fetch("delete_user.php", {
+                    method: "DELETE",
+                    redirect: "follow"
+                });
+
+                if (response.redirected) {
+                    alert("Usuario borrado");
+                    window.location.href = response.url;
+                    return;
+                }
+
+                // CASO 2: NO HAY REDIRECCIÓN → error JSON
+                const data = await response.json();
+                div_delete.innerHTML = data.message;
+                boton_delete.innerHTML = "Volver a intentar borrado";
+
+            } catch (error) {
+                console.error("Error:", error);
+                div_delete.innerHTML = "Error inesperado";
+            }
+        }
+
+    </script>
 </head>
 
-
 <body>
+    <h1 style="color:green">Sesión iniciada correctamente. Elige qué quieres hacer con el usuario</h1>
     <div class="contenedor">
-
-        <div class="carta">
-            <form action="Login.php" method="POST">
-                <h2>Esto sería un primer POST de login</h2>
-                <input type="text" name="email" placeholder="email">
+        <div class="carta_delete carta">
+            <form>
+                <h2>Borra tu usuario de la base de datos</h2>
+                <button id="button_delete" type="button" onclick="fetch_delete()">Enviar</button>
+            </form>
+            <div class="resultado_delete"></div>
+        </div>
+        
+        <div class="carta_put carta">
+            <form>
+                <h2>Cambia la contraseña del usuario</h2>
                 <input type="password" name="password" placeholder="Contraseña">
-                <button type="submit">Enviar</button>
+                <input type="password" name="password_repeated" placeholder="Repite la contraseña">
+                <button id="button_put" type="button" onclick="fetch_put()">Enviar </button>
             </form>
+            <div class="resultado_put"></div>
         </div>
-
-        <div class="carta">
-            <form action="Register.php" method="POST" enctype="multipart/form-data">
-                <h2>Esto sería un POST de register</h2>
-                <input type="text" name="nombre" placeholder="Nombre">
-                <input type="text" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Contraseña">
-                <input type="file" name="foto">
-                <button type="submit">Enviar </button>
-            </form>
-        </div>
-
-
-        <div class="carta">
-            <form action="All_users.php" method="GET">
-                <h2>Esto sería un GET de todos los usuarios</h2>
-                <button type="submit">Enviar </button>
-            </form>
-        </div>
-
+    </div>
 
 </body>
 
 </html>
 ```
 
-En las prácticas siguientes veremos como utilzar el PUT y el DELETE (desde JS al igual que en la práctica anterior) de forma práctica y real, borrando registros de la BD y editando cuestiones de la BD.
+Además vemos también que cada formulario hace dos peticiones:
 
----
+-El primero, hace la petición con javascript a **fetch_delete()** que a su vez, ejecuta el script **delete_user.php**
 
-### **7- Práctica**
+-El segundo, hace la petición con javascript a **fetch_put()** que a su vez, ejecuta el script **change_password.php**
 
-1-Realiza la práctica guiada anterior e intenta que por cada usuario que se registre suba una foto del usuario dentro de la carpeta uploads.
+Ambas funciones están en Inicio_IAW.html, que son las que hacen las peticiones a los scripts via JS y no via form HTML. Además, ninguna de estas peticiones envía body, veremos esto después.
 
-2-Crea dos formularios HTML (en peticiones_productos.html) **<u>que NO usarán javascript salvo que sea estrictamente necesario.</u>** Ambos deberán hacer una petición GET y un POST respectivamente. Usarán boton de tipo submit y la información no se recogerá dinámicamente si no que se hará directamente desde el html.
+Veamos cada uno de estos scripts para ver como manejan las solicitudes del cliente:
 
-- El POST del formulario html apuntará al script: productos_form.php. Lo que hará este script sera conectarse a la BD para registar un producto junto con su ID en una base de datos llamada productos y una breve descripcion. Deberás crear la tabla productos para ello.
+## 4-Script delete_user.php
 
-- El GET recogerá la información de un producto en específico (quey -param), en este caso, no será un json si no que el script "info_productos.php" deberá devolver un echo con la información entera del producto.
+El objetivo es borrar el usuario de la persona que ha iniciado sesión. Reconocerá quién ha iniciado sesión ya que la contraseña y el usuario estarán en las cookies. El código es el siguiente:
+
+```php
+<?php
+
+// No enviar output antes de cookies o header()
+
+$host = getenv("DB_HOST");
+$db   = getenv("DB_NAME");
+$user = getenv("DB_USER");
+$pass = getenv("DB_PASS");
+
+try {
+    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false
+    ]);
+
+    if (!isset($_COOKIE["email"])) {
+        throw new Exception("No hay cookie de email.");
+    }
+    if (!isset($_COOKIE["clave_plana"])) {
+        throw new Exception("No hay cookie de contraseña.");
+    }
+
+    $email_cookie = $_COOKIE["email"];
+    $pass_cookie  = $_COOKIE["clave_plana"];
+
+    // BUSCAR USUARIO EN BD
+    // --------------------------------------------------------------------------
+
+    $stmt = $pdo->prepare("SELECT id, email, password FROM usuarios WHERE email = ?");
+    $stmt->execute([$email_cookie]);
+    $userData = $stmt->fetch();
+
+    if (!$userData) {
+        throw new Exception("El usuario no existe en la BD.");
+    }
+
+    //VALIDAR CONTRASEÑA CON LA COOKIE
+    // --------------------------------------------------------------------------
+
+    if (!password_verify($pass_cookie, $userData["password"])) {
+        throw new Exception("Contraseña incorrecta o cookie inválida.");
+    }
+
+    //BORRAR FOTOS USARIO
+
+    $rutaCarpetaUsuario = __DIR__ . "/uploads/" . $email_cookie;
+
+    // Función para borrar una carpeta completa
+    function borrarCarpetaCompleta($ruta) {
+        if (!is_dir($ruta)) return;
+
+        $archivos = array_diff(scandir($ruta), ['.', '..']);
+        foreach ($archivos as $archivo) {
+            $rutaCompleta = $ruta . "/" . $archivo;
+            if (is_dir($rutaCompleta)) {
+                borrarCarpetaCompleta($rutaCompleta);
+            } else {
+                unlink($rutaCompleta); //comando para borrar un archivo
+            }
+        }
+        rmdir($ruta);
+    }
+
+    borrarCarpetaCompleta($rutaCarpetaUsuario);
+
+    //BORRAR USUARIO
+    // --------------------------------------------------------------------------
+
+    $stmt_del = $pdo->prepare("DELETE FROM usuarios WHERE id = ?");
+    $stmt_del->execute([$userData["id"]]);
+
+    //BORRAR COOKIES DE EMAIL Y CONTRASEÑA
+    // --------------------------------------------------------------------------
+
+    setcookie("email", "", [
+        "expires"  => time() - 3600,
+        "path"     => "/",
+        "httponly" => true,
+        "samesite" => "Strict"
+    ]);
+
+    setcookie("clave_plana", "", [
+        "expires"  => time() - 3600,
+        "path"     => "/",
+        "httponly" => true,
+        "samesite" => "Strict"
+    ]);
+
+    // REDIRIGIR A FORMULARIO DE LOGIN
+    // --------------------------------------------------------------------------
+
+    header("Location: login_register.html");
+    exit;
+
+} catch (Throwable $e) {
+
+    // Si hay error → JSON
+    header("Content-Type: application/json");
+
+    echo json_encode([
+        "status"  => "error",
+        "message" => $e->getMessage()
+    ]);
+}
+
+```
+
+Una vez borrado el usuario, redirige a login_register.html y además, quita las cookies. Otra cosa importante es que el cliente debe aceptar esta redirección de forma manuan, ya que en este caso las peticiones no han sido via formulario de html si no vía fetch JavaScript. Esto se hace en este cacho de código de la función `fetch_put`del html `inicio_IAW.html`:
+
+```php
+try {
+    const response = await fetch("delete_user.php", {
+        method: "DELETE",
+    });
+
+    if (response.redirected) {
+        alert("Usuario borrado");
+        window.location.href = response.url;
+        return;
+    }
+
+    const data = await response.json();
+    div_delete.innerHTML = data.message;
+    boton_delete.innerHTML = "Volver a intentar borrado";
+
+}
+```
+
+
+
+## 5-Script change_password.php
+
+El objetivo es cambiar la contraseña de la persona que ha iniciado sesión. Reconocerá quién ha iniciado sesión ya que la contraseña y el usuario estarán en las cookies. El código es el siguiente:
+
+```php
+<?php
+header("Content-Type: application/json");
+
+// Conexión a la BD
+$host = getenv("DB_HOST");
+$db   = getenv("DB_NAME");
+$user = getenv("DB_USER");
+$pass = getenv("DB_PASS");
+
+try {
+    $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false
+    ]);
+
+
+    // 1. VALIDAR COOKIES
+    // ------------------------------------------------------------
+    if (!isset($_COOKIE["email"])) {
+        throw new Exception("No hay cookie de email.");
+    }
+    if (!isset($_COOKIE["clave_plana"])) {
+        throw new Exception("No hay cookie de contraseña.");
+    }
+
+    $email_cookie = $_COOKIE["email"];
+    $pass_cookie  = $_COOKIE["clave_plana"];
+
+
+    // 2. LEER JSON DEL CLIENTE
+    // ------------------------------------------------------------
+    $json_raw = file_get_contents("php://input");
+    $data = json_decode($json_raw, true);
+
+    if (!$data) {
+        throw new Exception("JSON inválido.");
+    }
+
+    $new_pass  = $data["password"] ?? null;
+    $new_pass2 = $data["password_repeated"] ?? null;
+
+    if (!$new_pass || !$new_pass2) {
+        throw new Exception("Faltan contraseñas.");
+    }
+
+    // 3. COMPROBAR QUE LAS CONTRASEÑAS COINCIDEN
+    // ------------------------------------------------------------
+    if ($new_pass !== $new_pass2) {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Las contraseñas no coinciden."
+        ]);
+        exit;
+    }
+
+    // 4. VALIDAR USUARIO Y CONTRASEÑA ACTUAL
+    // ------------------------------------------------------------
+    $stmt = $pdo->prepare("SELECT id, email, password FROM usuarios WHERE email = ?");
+    $stmt->execute([$email_cookie]);
+    $userData = $stmt->fetch();
+
+    if (!$userData) {
+        throw new Exception("Usuario no existe.");
+    }
+
+    if (!password_verify($pass_cookie, $userData["password"])) {
+        throw new Exception("La contraseña actual no es válida.");
+    }
+
+    // 5. ACTUALIZAR CONTRASEÑA EN LA BD
+    // ------------------------------------------------------------
+    $hashedNewPassword = password_hash($new_pass, PASSWORD_DEFAULT);
+
+    $stmt_update = $pdo->prepare("UPDATE usuarios SET password = ? WHERE id = ?");
+    $stmt_update->execute([$hashedNewPassword, $userData["id"]]);
+
+ 
+    // 6. ACTUALIZAR COOKIE DE CONTRASEÑA
+    // ------------------------------------------------------------
+    setcookie("clave_plana", $new_pass, [
+        "expires"  => time() + 3600,
+        "path"     => "/",
+        "httponly" => true,
+        "samesite" => "Strict"
+    ]);
+
+
+    // 7. RESPUESTA ÉXITO
+    // ------------------------------------------------------------
+    echo json_encode([
+        "status" => "success",
+        "message" => "Contraseña actualizada correctamente."
+    ]);
+
+} catch (Throwable $e) {
+
+    echo json_encode([
+        "status"  => "error",
+        "message" => $e->getMessage()
+    ]);
+}
+
+```
+
+Hace un control de errores para comprobar que coincidan, si no coincidiesen, mandaría al cliente un JSON diciendo que no coinciden, que se recoge en Inicio_IAW.html así:
+
+```js
+const data = await response.json();
+div_put.innerHTML = data.message;
+
+if (data.status === "success") { //Vemos si el código de respuesta es OK
+    boton_put.innerHTML = "Contraseña actualizada";
+} else {
+    boton_put.innerHTML = "Volver a intentar";
+    input_pass.disabled = false;
+    input_pass2.disabled = false;
+    boton_put.disabled = false;
+}
+```
+
+
+
+## 6-Práctica
+
+Copiando y entendiendo los scripts anteriores haz capturas del siguiente proceso:
+
+ crea un usuario, logueate con él, cambia la contraseña, vuelve al inicio de sesión y comprueba que la contraseña funciona y por último borra el usuario.
+
+¿Qué pasa con la carpeta la imagen del usuario una vez se elimina su cuenta?

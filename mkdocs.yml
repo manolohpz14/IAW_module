@@ -15,7 +15,7 @@ nav:
       
   - Tema 3. Acceso a bases de datos desde lenguajes de entorno servidor. Uso de frameworks PHP:
       - Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5: 5-Práctica. Conexiones_bd.md
-  
+      - Borrar y cambiar registros de la BD. Uso de cookies. Practica 6: 6-Practica.md
 
 markdown_extensions:
   - admonition

@@ -875,7 +875,11 @@ En las prácticas siguientes veremos como utilzar el PUT y el DELETE (desde JS a
 
 1-Realiza la práctica guiada anterior e intenta que por cada usuario que se registre suba una foto del usuario dentro de la carpeta uploads.
 
+![image-20251204132607438](./img/image-20251204132607438.png)
+
 2-Crea dos formularios HTML (en peticiones_productos.html) **<u>que NO usarán javascript salvo que sea estrictamente necesario.</u>** Ambos deberán hacer una petición GET y un POST respectivamente. Usarán boton de tipo submit y la información no se recogerá dinámicamente si no que se hará directamente desde el html.
+
+![image-20251204132623154](./img/image-20251204132623154.png)
 
 - El POST del formulario html apuntará al script: productos_form.php. Lo que hará este script sera conectarse a la BD para registar un producto junto con su ID en una base de datos llamada productos y una breve descripcion. Deberás crear la tabla productos para ello.
 

@@ -6,7 +6,7 @@ Lo nuevo de esta práctica es que implementaremos los métodos DELETE y PUT para
 
 En primer lugar querremos una página de incio llamada (inicioIAW.html) donde podamos acceder a una hipotética página web de nuestro módulo. Este html tendrá dos formularios. Uno para registrarnos y otro, para iniciar sesión.
 
-![image-20251204132803044](/home/manolo/.config/Typora/typora-user-images/image-20251204132803044.png)
+![image-20251204132803044](./img/image-20251204132803044.png)
 
 ## 1-HTML de login_register.html (form anterior)
 
@@ -111,7 +111,7 @@ el html de los dos formularios (foto anterior), es este:
 
 Observamos que cada formulario hace peticiones a scripts php distintos:
 
-![image-20251204133333891](/home/manolo/.config/Typora/typora-user-images/image-20251204133333891.png)
+![image-20251204133333891](./img/image-20251204133333891.png)
 
 - Visto esto, el de register_IAW.php es igual que en la práctica anterior, así que nos olvidamos de él ya que no hay nada nuevo.
 
@@ -255,11 +255,11 @@ Si iniciamos sesión correctamente, entonces se nos redirige al HTML (inicio_IAW
 
 La imagen muestra el HTML que te aparece una vez inicias sesión
 
-![image-20251204134707751](/home/manolo/.config/Typora/typora-user-images/image-20251204134707751.png)
+![image-20251204134707751](./img/image-20251204134707751.png)
 
 Lo siguiente sería la captura de las cookies en el navegador:
 
-![image-20251204134922756](/home/manolo/.config/Typora/typora-user-images/image-20251204134922756.png)
+![image-20251204134922756](./img/image-20251204134922756.png)
 
 dejo aquí el código HTML de inicio_IAW.html
 

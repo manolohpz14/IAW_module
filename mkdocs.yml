@@ -6,16 +6,16 @@ nav:
   - Inicio: index.md
   - Tema 1. Introducción a HTTP:
       - Teoría CURL: Teoria CURL.md
-      - CURL y POSTMAN. Practica 1: Práctica 1.md
-      - Introduccion a APACHE e instalacion. Practica 2 : 2 Teoría-Práctica-Guiada.md
+      - Practica 1. CURL y POSTMAN: Práctica 1.md
+      -  Practica 2. Introduccion a APACHE e instalacion : 2 Teoría-Práctica-Guiada.md
 
   - Tema 2. Lenguajes de entorno sevidor PHP:
-      - Sintaxis, ejecución y estructuras de datos. Práctica 3: 3 primera_practica_PHP.md
-      - Métodos avanzados. Peticiones fetch y HTML. Práctica 4: practica4_php.md
+      - Práctica 3. Sintaxis, ejecución y estructuras de datos.: 3 primera_practica_PHP.md
+      - Práctica 4. Métodos avanzados. Peticiones fetch y HTML: practica4_php.md
       
-  - Tema 3. Acceso a bases de datos desde lenguajes de entorno servidor. Uso de frameworks PHP:
-      - Setters y Getters. Conexion a BBDD y manejo de peticiones en entorno servidor. Practica 5: 5-Práctica. Conexiones_bd.md
-      - Borrar y cambiar registros de la BD. Uso de cookies. Practica 6: 6-Practica.md
+  - Tema 3. Acceso a bases de datos desde lenguajes de entorno servidor y uso de frameworks PHP:
+      - Practica 5. Setters y Getters. Conexion BBDD y manejo de peticiones en servidor: 5-Práctica. Conexiones_bd.md
+      -  Practica 6. Borrar y cambiar registros de la BD. Uso básico de cookies.: 6-Practica.md
 
 markdown_extensions:
   - admonition

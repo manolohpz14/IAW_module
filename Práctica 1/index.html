@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#-practica-recuperar-el-muro-maria" class="md-skip">
+        <a href="#practica-recuperar-el-muro-maria" class="md-skip">
           Skip to content
         </a>
       
@@ -914,14 +914,35 @@
 
 
 
-<h1 id="-practica-recuperar-el-muro-maria">-Práctica: <em>Recuperar el Muro María</em></h1>
-<p>Eres un recluta recién graduado del <strong>104º Cuerpo de Entrenamiento</strong>. Tu misión es demostrar tus habilidades técnicas (en Postman o con <code>curl</code>) para unirte a una legión y luchar contra los titanes. Cada endpoint de esta API representa un reto. <strong>Sigue el orden y usa el formato correcto</strong>, o fallarás en la misión. Para poder ejecutar esta práctica necesitas instalar:</p>
+<h1 id="practica-recuperar-el-muro-maria">Práctica: <em>Recuperar el Muro María</em></h1>
+<p>Eres un recluta recién graduado del 104º Cuerpo de Entrenamiento. Tu misión es demostrar tus habilidades técnicas (en Postman o con <code>curl</code>) para unirte a una legión y luchar contra los titanes. Cada endpoint de esta API representa un reto. Sigue el orden y usa el formato correcto, o fallarás en la misión. Para poder ejecutar esta práctica necesitas instalar:</p>
 <ol>
 <li>Docker</li>
 <li>Postman</li>
 <li>Tener el paquete curl instalado en tu distribución debian (por defecto en Ubuntu)</li>
 </ol>
+<p><img alt="image-20251204105728932" src="../img/image-20251204105728932.png" /></p>
+<p>Cuando se establece una conexión HTTP entre servidor y cliente se envían cabeceras (request:petición; response:respuesta)</p>
+<p><img alt="image-20251204110206924" src="../img/image-20251204110206924.png" /></p>
+<p>Estas cabeceras tienen información fundamental, como el tipo de verbo HTTP y el Content-Type (contenido que se envía):</p>
+<p>Verbos HTTP: Get, Post, Put, Delete.</p>
+<p>Asociación de los verbos HTTP con cada "Content-Type" de sus cabeceras, en la siguiente imagen:</p>
+<p>-Los verbos <strong>PUT</strong> (editar info de una BD) ,<strong>POST</strong> (enviar info a una BD) y <strong>DELETE</strong> (Borrar info de una BD) pueden llevar la cabecera <strong>body</strong> en el request. Dentro de este body se envía el contenido de la petición, que podrá ser formateada de las siguiente formas:</p>
+<ul>
+<li><strong>application/json</strong>: tipo de dato más usado en internet a día de hoy debido a las API's REST.</li>
+<li><strong>multipart/form-data</strong>: por defecto lo que envían los formularios HTML con archivos asociados.</li>
+<li>application/x-www-form-urlenconded: por defecto es lo que envían los formularios HTML.</li>
+<li><strong>text/plain</strong>. No tan usado. Lo veremos.</li>
+</ul>
+<p>-El verbo <strong>GET</strong> (recoger info de una BD) no tiene <strong>body</strong>, ya que su principal propósito no es enviar datos, sino recoger datos. Ahora bien, peude ser que queramos que los datos que nos envíe el servidor sean filtrados.  Al no tener body, la única forma de enviar datos (para filtrar la respuesta del servidor) es a través de la URL a la que se hace la petición. Para enviar esta info se podrá mediante:</p>
+<ul>
+<li><strong>Query params</strong></li>
+<li><strong>Route Params</strong></li>
+</ul>
+<p>La siguiente imagen resume lo anterior</p>
+<p><img alt="image-20251204105840786" src="../img/image-20251204105840786.png" /></p>
 <h2 id="parte-1-de-la-practica-postman">Parte 1 de la práctica (POSTMAN)</h2>
+<p>Esta práctica se basa en enviar peticiones HTTP a un servidor ya montado. El servidor sabe qué debe responder en cada momento pero vosotros debéis indicar correctamente el tipo de verbo que envía así como el tipo de dato. Lo haréis indicando el verbo y el Content-type (o incluso contenidos que no van por body si no por URL`s).</p>
 <h3 id="1-registrar-un-recluta">1. Registrar un recluta</h3>
 <p>Verbo:<strong>?¿ </strong>ruta<strong>:<code>/register</code></strong> </p>
 <p>Envia los datos en el body y en JSON. El siguiente ejemplo muestra los datos que debes enviar para que un recluta se pueda alistar.</p>

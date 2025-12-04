@@ -1,12 +1,44 @@
-# -Práctica: *Recuperar el Muro María*
+# Práctica: *Recuperar el Muro María*
 
-Eres un recluta recién graduado del **104º Cuerpo de Entrenamiento**. Tu misión es demostrar tus habilidades técnicas (en Postman o con `curl`) para unirte a una legión y luchar contra los titanes. Cada endpoint de esta API representa un reto. **Sigue el orden y usa el formato correcto**, o fallarás en la misión. Para poder ejecutar esta práctica necesitas instalar:
+Eres un recluta recién graduado del 104º Cuerpo de Entrenamiento. Tu misión es demostrar tus habilidades técnicas (en Postman o con `curl`) para unirte a una legión y luchar contra los titanes. Cada endpoint de esta API representa un reto. Sigue el orden y usa el formato correcto, o fallarás en la misión. Para poder ejecutar esta práctica necesitas instalar:
 
 1. Docker
 2. Postman
 3. Tener el paquete curl instalado en tu distribución debian (por defecto en Ubuntu)
 
+![image-20251204105728932](./img/image-20251204105728932.png)
+
+
+
+Cuando se establece una conexión HTTP entre servidor y cliente se envían cabeceras (request:petición; response:respuesta)
+
+![image-20251204110206924](./img/image-20251204110206924.png)
+
+Estas cabeceras tienen información fundamental, como el tipo de verbo HTTP y el Content-Type (contenido que se envía):
+
+Verbos HTTP: Get, Post, Put, Delete.
+
+Asociación de los verbos HTTP con cada "Content-Type" de sus cabeceras, en la siguiente imagen:
+
+-Los verbos **PUT** (editar info de una BD) ,**POST** (enviar info a una BD) y **DELETE** (Borrar info de una BD) pueden llevar la cabecera **body** en el request. Dentro de este body se envía el contenido de la petición, que podrá ser formateada de las siguiente formas:
+
+- **application/json**: tipo de dato más usado en internet a día de hoy debido a las API's REST.
+- **multipart/form-data**: por defecto lo que envían los formularios HTML con archivos asociados.
+- application/x-www-form-urlenconded: por defecto es lo que envían los formularios HTML.
+- **text/plain**. No tan usado. Lo veremos.
+
+-El verbo **GET** (recoger info de una BD) no tiene **body**, ya que su principal propósito no es enviar datos, sino recoger datos. Ahora bien, peude ser que queramos que los datos que nos envíe el servidor sean filtrados.  Al no tener body, la única forma de enviar datos (para filtrar la respuesta del servidor) es a través de la URL a la que se hace la petición. Para enviar esta info se podrá mediante:
+
+- **Query params**
+- **Route Params**
+
+La siguiente imagen resume lo anterior
+
+![image-20251204105840786](./img/image-20251204105840786.png)
+
 ## Parte 1 de la práctica (POSTMAN)
+
+Esta práctica se basa en enviar peticiones HTTP a un servidor ya montado. El servidor sabe qué debe responder en cada momento pero vosotros debéis indicar correctamente el tipo de verbo que envía así como el tipo de dato. Lo haréis indicando el verbo y el Content-type (o incluso contenidos que no van por body si no por URL`s).
 
 ### 1. Registrar un recluta
 

@@ -1,366 +1,8 @@
-## Práctica Guiada 5. Conexiones a BD
-
-### 1-Breve introducción a la programación orientada a objetos en PHP
-
-La Programación Orientada a Objetos (POO) es un paradigma de programación , es decir, una forma de organizar y estructurar el código, que se basa en el uso de objetos. Un objeto es una entidad que agrupa datos (propiedades o atributos) y comportamientos (métodos o funciones) que pertenecen a esa entidad. La idea principal es modelar partes del mundo real usando estructuras de código más cercanas a cómo pensamos las cosas.
-
-Por ejemplo, imaginemos que queremos modelas a una persona mediante el uso de un objeto:
-
-- Una persona tiene nombre, edad, DNI : son propiedades.
-- Una persona camina(), habla(), saluda() : son métodos.
-
-Cuando usamos la POO combinamos ambas cosas dentro de una estructura llamada clase. A continuación vemos las definciones más básicas de la POO que veremos a lo largo de esta práctica.
-
-**- Clase**
- Una clase es una <u>plantilla</u> que define cómo serán los objetos creados a partir de ella. Ejemplo: La clase Coche describe qué datos tiene un coche (propiedades) como la marca, el modelo o el año, y qué puede hacer (métodos) como arrancar y frenar.
-
-**- Objeto**
- Un objeto es una instancia real creada a partir de una clase. Ejemplo: Un coche concreto, como un Seat Ibiza de 2018, es un objeto creado a partir de la clase Coche, es decir, una instancia.
-
-![image-20251121105609040](./img/coche.png)
-
-**- Propiedades**
- Son variables que representan la información que guarda un objeto. Ejemplo: Un coche tiene propiedades como color='rojo' o kilómetros=120000 o velocidad=40km/h.
-
-**- Métodos**
- Son funciones que representan acciones que un objeto puede realizar.  Ejemplo: Un coche puede ejecutar acciones (métodos) como arrancar() o acelerar(), que afectarán a propiedades como la velocidad o los kilómetros.
-
-**- Propiedades estáticas**
- Son propiedades que pertenecen a la clase en general, no a cada objeto. Ejemplo (programado en lo siguiente): La clase Persona podría tener un contador de cuántas personas se han creado en total, independientemente de quiénes sean esas personas.
-
----
-
-#### 1.1-Primer ejemplo de POO en PHP.
-
-Nombre del script: primera_clase.php
-
-En este script, vemos el concepto de: Clase, Objeto (Instancia de la clase), Propiedades de un objeto y propiedades estáticas de una clase. 
-
-- La pantilla serán las personas. Cada persona tendrá dos propiedades, nombre y edad.
-- Los objetos serán las personas que se crean a partir de la plantilla clase. Al crear una persona deberemos asignar un valor a las propiedades nombre y edad
-- Además, la plantilla (la clase) tendrá una propiedad común a todas las personas, que será el número de personas creadas.
-
-Os recomiendo ejecutar el siguiente código en el intérprete de php. PHP necesita saber qué propiedades tiene la clase antes de crear el objeto. El constructor no crea propiedades, solo les da valores.
-
-```php
-<?php
-class Persona
-{
-    // propiedades de la clase, que se definiran cuando la instanciemos
-    public string $nombre;
-    public int $edad;
-
-    // contador de instancias de objeto, cada vez que creeemos a una persona subiremos en 1
-    public static int $contador = 0;
-
-    public function __construct(string $nombre, int $edad)
-    {
-        $this->nombre = $nombre;
-        $this->edad = $edad;
-        self::$contador++;
-    }
-}
-```
-
-##### This vs self
-
-$this se usa cuando quieres trabajar con un objeto específico. Representa a la instancia actual de la clase, es decir, al objeto que se creó con new. En cambio, self se usa cuando quieres trabajar con algo que pertenece a la clase en general, no a cada objeto. Esto es justo lo que pasa cuando le damos valor en el constructor de la clase a la propiedad estática contador, que necesitamos sí o sí acceder poniendo self.
-
-Con lo anterior, tenemos la plantilla de los objetos que vamos a crear, la idea ahora es ver como creamos los objetos de dicha clase, lo vemos aqui:
-
-##### **Instanciando objetos**
-
-```php
-<?php
-$persona1 = new Persona("Carlos", 30);
-$persona2 = new Persona("Ana", 25);
-$persona3 = new Persona("Luis", 40);
-
-echo $persona1->nombre . ", " . $persona1->edad . "\n";
-echo $persona2->nombre . ", " . $persona2->edad . "\n";
-echo $persona3->nombre . ", " . $persona3->edad . "\n";
-
-echo Persona::$contador  . "\n"; // resultado es 3
-
-$persona1->nombre="Paco";
-echo $persona1->nombre . ", " . $persona1->edad . "\n";
-
-Persona::$contador=28;
-echo Persona::$contador . "\n";
-```
-
-Como podemos observar el código anterior tiene ciertos problemas. Se puede instanciar un objeto y posteriormente cambiar las propiedades del objeto sin piedad (como el nombre y la edad), incluso también podría cambiar la propiedad estática de la clase,  propiedad que como hemos comentado antes,  es compartida entre todos los objetos instanciados.
-
----
-
-#### 1.2-Segundo ejemplo de POO en PHP. Uso de propiedades privadas.
-
-En la segunda versión del código (ver más abajo), haremos que nadie pueda cambiar el valor de la propiedad estática (el número de personas), pasándola a privada. Además, al ser privada, ya nadie podrá acceder a ella haciendo:
-
-```php
-Persona::$contador
-```
-
-y por tanto, la única forma que tendrá un usuario de ver el valor de esta propiedad estática será definiendo una función dentro de la clase que nos otorgue su valor, que se denominará `getter`, ya que nos da el valor de una propiedad (estática en este caso):
-
-```php
-<?php
-class Persona
-{
-    public string $nombre;
-    public int $edad;
-    private static int $contador = 0;
-
-    public function __construct(string $nombre, int $edad)
-    {
-        $this->nombre = $nombre;
-        $this->edad = $edad;
-        self::$contador++;
-    }
-
-    public static function getContador(): int
-    {
-        return self::$contador;
-    }
-}
-
-$persona1 = new Persona("Carlos", 30);
-$persona2 = new Persona("Ana", 25);
-$persona3 = new Persona("Luis", 40);
-
-echo $persona1->nombre . ", " . $persona1->edad . "\n";
-echo $persona2->nombre . ", " . $persona2->edad . "\n";
-echo $persona3->nombre . ", " . $persona3->edad . "\n";
-
-try {echo Persona::$contador . "\n";} //ya no podemos acceder ni editar así, hay que utilizar el getter
-catch (Throwable $e) {echo $e->getMessage() . "\n";}
-echo Persona::getContador() . "\n";
-
-//Por desgracia, podemos cambiar el nombre a Paco, cosa que no deberíamos poder hacer.
-$persona1->nombre="Paco";
-echo $persona1->nombre . ", " . $persona1->edad . "\n"; // Carlos, 30
-
-```
-
-Como vemos al final del script siguen habiendo inconsistencias, como que se pueda cambiar el nombre de la persona (o incluso la edad). Esto se debe a que son propiedades públicas.
-
----
-
-#### 1.3-Tercer ejemplo de POO en PHP. Getters y Setters. Encapsulamiento
-
-En este último ejemplo, rizamos un poco más el rizo, lo que vemos ahora es encapsulación. Es decir, vamos a arreglar lo anterior. Para ello, no expondremos directamente al público las propiedades "edad" y "nombre" si no que estas se podrán editar u obtener únicamente a través de getters y setters.
-
-**- Getters y Setters**
- Son métodos que permiten leer o modificar propiedades privadas de forma controlada. Ejemplo: Para saber la edad de una persona usamos getEdad(), y para cambiarla usamos setEdad(), que comprueba que sea un número válido.
-
-Cuando un getter o un setter es privado, no puede ser accedido desde una instancia, si no que solo se puede acceder desde la propia clase
-
-```php
-<?php
-declare(strict_types=1);
-class Persona
-{
-    // ahora todas las propiedades son privadas
-    private string $nombre;
-    private int $edad;
-    private static int $contador = 0;
-
-    public function __construct(string $nombre, int $edad)
-    {
-        $this->setNombre($nombre);
-        $this->setEdad($edad);
-        self::$contador++;
-    }
-    public function getNombre(): string {return $this->nombre;}
-    private function setNombre(string $nombre): void
-    {
-        if (empty($nombre)) {
-            throw new Exception("El nombre no puede estar vacío.");
-        }
-        $this->nombre = $nombre;
-    }
-    public function getEdad(): int {return $this->edad;}
-    private function setEdad(int $edad): void
-    {
-        if ($edad < 0) {
-            throw new Exception("La edad no puede ser negativa.");
-        }
-        $this->edad = $edad;
-    }
-    public static function getContador(): int {return self::$contador;}
-}
-
-$persona1 = new Persona("Carlos", 30);
-$persona2 = new Persona("Ana", 25);
-$persona3 = new Persona("Luis", 40);
-echo $persona1->getNombre() . ", " . $persona1->getEdad() . "\n";
-```
-
-Ojo, si ponemos  declare (strict_types=1); como en lo anterior, es conveniente tener un control de errores correcto.
-
-```php
-<?php
-try {
-    $persona1 = new Persona("Carlos", 30);
-    $persona2 = new Persona("Ana", 25);
-    $persona3 = new Persona("Luis", -40); 
-}
-catch (Exception $e) {
-    echo "Error al crear persona: " . $e->getMessage();
-}
-
-echo $persona1->getNombre() . ", " . $persona1->getEdad();
-```
-
-recordad esto:
-
-```makefile
-Throwable
-├── Exception
-└── Error
-    ├── TypeError
-    ├── ParseError
-    ├── ValueError
-    └── ...
-```
-
-Por último, si hubiéramos querido, a la clase anterior lo podríamos haber añadido algún método público para que, por ejemplo, una persona pueda cumplir años:
-
-```php
-public function addAge(): int {
-    $this->edad+=1;
-}
-```
-
-De esta forma, cualquier instancia puede cumplir años sin problema.
-
----
-
-#### Práctica PT1. Clase básica con propiedades públicas 
-
--Crea un archivo llamado **coches_1.php**. En este archivo define una clase Coche con:
-
-- Propiedades públicas:
-  
-  - marca (string)
-  - modelo (string)
-  - velocidad (int)
-  
-- Una propiedad estática pública llamada contador, que registre cuántos coches se han creado.
-
-- Un constructor que reciba los valores de marca, modelo y velocidad inicial y los inicialice
-
-
-**Se pide:**
-
-- Crear tres objetos tipo Coche, mostrar sus propiedades sobre las instancias, mostrar el contador de coches sobre la case, modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) y modificar “a mano” la propiedad estática.
-
----
-
-#### Práctica PT2. Clase básica con propiedades públicas 
-
--Crea un archivo **coches_2.php**. En este archivo define una clase Coche con:
-
-- Todas las propiedades serán privadas:
-  - marca (string)
-  - modelo (string)
-  - velocidad(int)
-  - pintura(string)
-- La propiedad estática contador será privada y tendrá un getter (getContador) para ver su valor.
-- En el constructor, asigna marca, modelo y pintura usando setters (definidos más abajo) y no directamente en el constructor.
-- La velocidad inicial debe ser siempre 0, independientemente de lo que se pase y se pondrá así en el constructor.
-- Crea getters para ver los valores de las tres propiedades mencionadas
-
--Reglas del setter de marca y modelo (setModelo, setMarca):
-
-- No pueden estar vacíos y deben ser cadenas de texto.
-- Además, un coche no puede cambair de marca y modelo luego deben ser setter privados y no se pueden acceder desde fuera.
-
--Reglas del setter de pintura (setPintura):
-
-- Un coche podrá cambiar de pintura luego puede ser público (solo aceptara los colores rojo, verde, azul o negro.)
-
--Crear el método velocidad (addVelocidad) que suma o resta velocidad a un coche:
-
-- La velocidad resultante no puede ser negativa y no puede superar los 250 km/h
-
-**Se pide:**
-
-- Crear tres objetos tipo Coche, mostrar sus propiedades con los getters, mostrar el contador de coches con su getter.
-
-  Intenta modificar “a mano” alguna propiedad pública (por ejemplo cambiar la marca o la velocidad) ¿Qué pasa?
-
-  Usar el método addVelocidad para añadir 10km/h de velocidad y cambiar la pintura al coche, que solo aceptara los colores rojo, verde, azul o negro.
-
----
-
-### 2-Instalación de mySQL, creación de usuarios y privilegios
-
-En este apartado vamos a ver cómo podemos conectarnos a bases de datos desde nuestra aplicación.
-
-En primer lugas, instalamos mysqlserver
-
-```bash
-sudo apt update
-sudo apt install mysql-server
-```
-
-Una vez instalado, abrelo como root:
-
-```bash
-sudo mysql -u root
-```
-
-Crea una BD
-
-```bash
-CREATE DATABASE testdb;
-```
-
-y úsala:
-
-```bash
-USE testdb;
-```
-
-Crea la tabla usuarios
-
-```bash
-CREATE TABLE usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    email VARCHAR(150) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-Después, vamos a crear un usuario con privilegios mínimos, ya que cuando el cliente se conecte a la BD no lo hará desde root. Además, este usuario sólo se podrá conectar desde localhost y nunca de forma remota, es decir, sólo s epodrá conectar desde el servidor, al servidor, lo que significa que sólo lo hará desde los scripts de php (en nuestro caso). Esto dependerá en gran medida de la configuración de nuestro servidor, en este caso, al ser nuestra aplicación monolítica, nos vale.
-
-```bash
-CREATE USER 'www-data'@'localhost' IDENTIFIED BY '123456';
-
-```
-
-Le damos al usuario únicamente privilegios sobre la tabla que queramos, en este caso, la tabla de usuarios
-
-```bash
-GRANT SELECT, INSERT, UPDATE, DELETE ON testdb.usuarios TO 'www-data'@'localhost';
-```
-
-Para aplciar los privilegios anteriores:
-
-```bash
-FLUSH PRIVILEGES;
-```
-
----
-
 ### 3-Conexión a la BD en un script. Login de un usuario en la BBDD (Login.php)
 
 Vamos a aprovechar el formulario de la pŕactica anterior (este):
 
-![image-20251121105609040](./img/image-20251121105609040.png)
+![image-20251121105609040](/home/manolo/Escritorio/IAW/materia/docs/img/image-20251121105609040.png)
 
 y vamos a editarlo un poco. Para ello, vamos a dejar solo tres formularios (dos POST's y un GET quitamos el resto) que mandarán peticiones a scripts que hagan cosas interesantes (En el punto 6 tenéis el código html de estos formularios).
 
@@ -408,7 +50,7 @@ En concreto, estas variables las ponéis en:
 
 y escribís:
 
-![image-20251121180114532](./img/image-20251121180114532.png)
+![image-20251121180114532](/home/manolo/Escritorio/IAW/materia/docs/img/image-20251121180114532.png)
 
 Por tanto, los tres primeros puntos de la conexión, son evidentes con la captura anterior, saltemos al 4º, en específico, nos vamos al array asociativo:
 
@@ -704,6 +346,7 @@ echo PASSWORD_DEFAULT;
 ```
 
 obtienes
+
 ```php
 1 #metodo de hasehado por defecto. esto no se suele cambiar ni pediré que lo hagáis
 ```
@@ -770,9 +413,121 @@ try {
 
 ---
 
-### 6- Esquema del HTML
+### 1- Esquema del HTML de la práctica anterior
 
-A modo esquemático, el body html hará las peticiones así a los tres scripts anteriores será el siguiente:
+La práctica anterior terminó con tres formularios HTML (Código del Punto 6)
+
+Estos tres formularios hacían peticiones a tres scripts de php (uno con un verbo POST, para registrar usuario, otro con un verbo POST para hacer un login del usuario y otro con un GET para recoger en un array todos los usuarios de la base de datos)
+
+A lo largo de esta práctica, vamos a dividir esos HTML's en dos páginas distintas. En la primera página, tendremos el típico (inicio de sesión/ register)  de cualquier página web. Algo más o menos así:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 95vh;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+
+        .contenedor {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10vh;
+        }
+
+        .carta {
+            border: 1px solid rgb(1, 1, 1);
+            text-align: center;
+            margin-top: 1rem;
+            border-radius: 1rem;
+            padding: 1rem;
+            background-color: rgb(222, 255, 252);
+            max-width: 320px;
+            margin-right: 1rem;
+        }
+
+        form {
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+
+        }
+
+        input {
+            max-width: 2, 5rem;
+            margin: 0px auto;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            max-width: 2, 5rem;
+            margin: 0px auto;
+            margin-top: 0.5rem;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <h1>Bienvenido al formulario de Inicio de la pagina WEB de IAW</h1>
+        <div class="contenedor">
+            <div class="carta">
+                <form action="Login.php" method="POST">
+                    <h2>Inicia sesión en la pagina web</h2>
+                    <input type="text" name="email" placeholder="email">
+                    <input type="password" name="password" placeholder="Contraseña">
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+
+            <div class="carta">
+                <form action="Register.php" method="POST" enctype="multipart/form-data">
+                    <h2>Registrate e inserta una imagen</h2>
+                    <input type="text" name="nombre" placeholder="Nombre">
+                    <input type="text" name="email" placeholder="Email">
+                    <input type="password" name="password" placeholder="Contraseña">
+                    <input type="file" name="imagen">
+                    <button type="submit">Enviar </button>
+                </form>
+            </div>
+        </div>
+
+</body>
+
+</html>
+```
+
+Aprovecho para recordar que esos dos formularios HTML usan por defecto url-encoded (y que no es el estándar de las API's REST). Si quisiéramos que estos formularios enviaran un JSON, necesitaríamos hacer un fetch, al igual que en el punto 8 de la práctica 4. De todas formas, lo dejamos así ya que funciona a la perfección.
+
+
+
+
+
+
+
+Cuando iniciemos sesión con un usuario (y únicamente en ese caso). El usuario será redigido a otro html, donde podrá hacer tres cosas.
+
+-Borrar su usuario (DELETE)
+
+-Cambiar su contraseña (PUT)
+
+-Ver a todos los usuarios registrados (GET)
 
 ```html
 <!DOCTYPE html>

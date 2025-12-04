@@ -334,6 +334,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           
@@ -376,6 +378,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -384,34 +388,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#practica" class="md-nav__link">
+  <a href="#1-instalacion-de-apache-descentralizada-con-docker" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Práctica
+        1 Instalacion de Apache descentralizada con Docker
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Práctica">
+    <nav class="md-nav" aria-label="1 Instalacion de Apache descentralizada con Docker">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-instlacion-de-apache-descentralizada-con-docker" class="md-nav__link">
+  <a href="#11-docker-composeyml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1 Instlacion de Apache descentralizada con Docker
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Instlacion de Apache descentralizada con Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-11-docker-composeyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        -1.1 docker-compose.yml:
+        1.1 docker-compose.yml:
       
     </span>
   </a>
@@ -422,8 +414,8 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#2-el-dockerfile" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -433,8 +425,8 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#3-apache000-defaultconf-explicamos-cada-uno-de-ellos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -466,6 +458,73 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3.2 Analizando el 000-default.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-bloque-de-sitio-virtual-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 Bloque de sitio virtual host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-bloque-directory-varwwwhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 Bloque Directory /var/www/html
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-logs-de-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.3 Logs de apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324-restricciones-a-ciertos-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.4 Restricciones a ciertos directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#325-cacheado-de-archivos-dentro-del-bloque-varwwwhtmlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.5 Cacheado de archivos dentro del bloque /var/www/htmlo:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#326-seguridad-con-cabecera-en-el-deafultconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.6 Seguridad con cabecera en el deafult.conf
+      
+    </span>
+  </a>
+  
 </li>
         
       </ul>
@@ -473,7 +532,12 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#4-archivo-htaccess-uso-de-reglas-rewritecond-y-rewriterule" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -486,10 +550,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-la-primera-condicion" class="md-nav__link">
+  <a href="#41-la-primera-rewritecond" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 La primera condición
+        4.1 La primera RewriteCond
       
     </span>
   </a>
@@ -497,22 +561,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-la-segunda-condicion" class="md-nav__link">
+  <a href="#42-la-segunda-rewritecond" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 La segunda condición
+        4.2 La segunda RewriteCond
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.2 La segunda condición">
+    <nav class="md-nav" aria-label="4.2 La segunda RewriteCond">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos" class="md-nav__link">
+  <a href="#43-estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estudio de las Condiciones (RewriteCond) en general, con más ejemplos
+        4.3 Estudio de las Condiciones (RewriteCond) en general, con más ejemplos
       
     </span>
   </a>
@@ -525,22 +589,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-tercera-condicion" class="md-nav__link">
+  <a href="#44-primera-condicion-rewriterule" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 Tercera condición
+        4.4 Primera condición RewriteRule
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.3 Tercera condición">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#estudio-de-las-rewriterule-en-general" class="md-nav__link">
+  <a href="#45-estudio-de-las-rewriterule-en-general" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estudio de las RewriteRule en general
+        4.5 Estudio de las RewriteRule en general
       
     </span>
   </a>
@@ -551,13 +614,8 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#5-algunos-scripts-en-apache-y-su-ejecucion" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -595,8 +653,8 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#6-anexo-cosas-basis-de-regexp-con-algunos-ejemplos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -604,11 +662,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -837,6 +890,8 @@
   
   
   
+    
+  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -845,34 +900,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#practica" class="md-nav__link">
+  <a href="#1-instalacion-de-apache-descentralizada-con-docker" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Práctica
+        1 Instalacion de Apache descentralizada con Docker
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Práctica">
+    <nav class="md-nav" aria-label="1 Instalacion de Apache descentralizada con Docker">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-instlacion-de-apache-descentralizada-con-docker" class="md-nav__link">
+  <a href="#11-docker-composeyml" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1 Instlacion de Apache descentralizada con Docker
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1 Instlacion de Apache descentralizada con Docker">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-11-docker-composeyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        -1.1 docker-compose.yml:
+        1.1 docker-compose.yml:
       
     </span>
   </a>
@@ -883,8 +926,8 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#2-el-dockerfile" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -894,8 +937,8 @@
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#3-apache000-defaultconf-explicamos-cada-uno-de-ellos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -927,6 +970,73 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3.2 Analizando el 000-default.conf">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-bloque-de-sitio-virtual-host" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 Bloque de sitio virtual host
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-bloque-directory-varwwwhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 Bloque Directory /var/www/html
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-logs-de-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.3 Logs de apache
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324-restricciones-a-ciertos-directorios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.4 Restricciones a ciertos directorios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#325-cacheado-de-archivos-dentro-del-bloque-varwwwhtmlo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.5 Cacheado de archivos dentro del bloque /var/www/htmlo:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#326-seguridad-con-cabecera-en-el-deafultconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.6 Seguridad con cabecera en el deafult.conf
+      
+    </span>
+  </a>
+  
 </li>
         
       </ul>
@@ -934,7 +1044,12 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#4-archivo-htaccess-uso-de-reglas-rewritecond-y-rewriterule" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -947,10 +1062,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#41-la-primera-condicion" class="md-nav__link">
+  <a href="#41-la-primera-rewritecond" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.1 La primera condición
+        4.1 La primera RewriteCond
       
     </span>
   </a>
@@ -958,22 +1073,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#42-la-segunda-condicion" class="md-nav__link">
+  <a href="#42-la-segunda-rewritecond" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.2 La segunda condición
+        4.2 La segunda RewriteCond
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.2 La segunda condición">
+    <nav class="md-nav" aria-label="4.2 La segunda RewriteCond">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos" class="md-nav__link">
+  <a href="#43-estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estudio de las Condiciones (RewriteCond) en general, con más ejemplos
+        4.3 Estudio de las Condiciones (RewriteCond) en general, con más ejemplos
       
     </span>
   </a>
@@ -986,22 +1101,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#43-tercera-condicion" class="md-nav__link">
+  <a href="#44-primera-condicion-rewriterule" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4.3 Tercera condición
+        4.4 Primera condición RewriteRule
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4.3 Tercera condición">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#estudio-de-las-rewriterule-en-general" class="md-nav__link">
+  <a href="#45-estudio-de-las-rewriterule-en-general" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Estudio de las RewriteRule en general
+        4.5 Estudio de las RewriteRule en general
       
     </span>
   </a>
@@ -1012,13 +1126,8 @@
     </nav>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#5-algunos-scripts-en-apache-y-su-ejecucion" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1056,8 +1165,8 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#6-anexo-cosas-basis-de-regexp-con-algunos-ejemplos" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1065,11 +1174,6 @@
       
     </span>
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1090,13 +1194,11 @@
 
 
 
-  <h1>Introduccion a APACHE e instalacion. Practica 2</h1>
-
-<h2 id="practica">Práctica</h2>
+<h1 id="practica">Práctica</h1>
 <p>Esta práctica guiada consiste en ejecutar distintos bloques de código y responder a las preguntas que se plantean a lo largo del proceso. Para resolverlas, podéis apoyaros en búsquedas en internet o en herramientas de IA. La idea es que os creeis un proyecto con información que os iré pasando en cada bloque de texto. Para ello, deberás crear una carpeta y seguir las instrucciones aquí especificadas.</p>
 <p>El objetivo es que, a través de estas preguntas y de la ejecución de ejemplos, entendáis mejor cómo montar un servidor en PHP y, al mismo tiempo, adquiráis nociones básicas de Docker y Docker Compose: uso de volúmenes, bind mounts y redes bridge.</p>
 <p>A nivel personal, el objetivo es que vayáis creando vuestro propio proyecto a la vez que leéis y comprendéis la siguiente documentación técnica. Como avanzábamos antes, la primera parte de Docker Compose trata sobre la instalación. No tenéis que saber cómo funciona docker-compose desde un punto de vista demasiado técnico pero sí deberéis saber que existe Docker Hub, de donde salen las imágenes y cuáles suelen ser las claves más comunes en los YAML que permiten la creación de contenedores a partir de docker compose. En cuanto a Apache, veremos una configuración básica con las opciones más usuales.</p>
-<h3 id="1-instlacion-de-apache-descentralizada-con-docker">1 Instlacion de Apache descentralizada con Docker</h3>
+<h2 id="1-instalacion-de-apache-descentralizada-con-docker">1 Instalacion de Apache descentralizada con Docker</h2>
 <p>En esta parte de la práctica vais a montar un entorno similar a XAMPP pero usando Docker y Docker Compose. En lugar de instalar manualmente Apache, MySQL y PHP en vuestro ordenador (como hace XAMPP), levantaréis contenedores que se comunican entre sí para daros el mismo resultado. La estrcutura del proyecto que os debeis crear es la siguiente:</p>
 <div class="highlight"><pre><span></span><code><span class="err">project/</span>
 <span class="err">│──</span><span class="w"> </span><span class="err">docker-compose.yml</span>
@@ -1109,7 +1211,7 @@
 <span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="err">000-default.conf</span>
 </code></pre></div>
 <p>En los puntos que veremos a continuación, os daré el código necesario para la ejecución.</p>
-<h4 id="-11-docker-composeyml">-1.1 docker-compose.yml:</h4>
+<h3 id="11-docker-composeyml">1.1 docker-compose.yml:</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">apache-php</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">php:8.2-apache</span>
@@ -1176,6 +1278,7 @@
 <li>Imagen base: <code>phpmyadmin/phpmyadmin</code>.</li>
 <li>Es un servicio extra para tener una interfaz web de administración de MySQL. En nuestro caso, se accede desde el navegador en <code>http://localhost:8081</code>. No lo veremos por ahora pero ofrece una interfaz grafica más o menos amigable.</li>
 </ol>
+<hr />
 <p>Explicados los tres servicios, la instalación funciona de la siguiente manera. Con el código anterior:</p>
 <ul>
 <li>
@@ -1185,12 +1288,13 @@
 <p>De igual forma, el resto de contenedores correran los programas específicos en los puertos correspondientes.</p>
 </li>
 </ul>
-<p><strong>[PREGUNTA]: ¿En qué puertos internos de los contenedores corren los programas anteriores y a qué puertos del host se mapean?</strong></p>
+<p><strong>[1-PREGUNTA]: ¿En qué puertos internos de los contenedores corren los programas anteriores y a qué puertos del host se mapean?</strong></p>
 <ul>
 <li>Ahora bien, los programas se pueden comunicar entre sí gracias a que docker incluye a cada servicio en una interfaz red bridge que permite la comunicación entre ellos.</li>
 </ul>
-<p><strong>[PREGUNTA]: Imagina que yo instalase los programas independientemente cada uno en mi host, sin usar docker. ¿Qué puertos de qué maquinas utilzarían por defecto? ¿Mediante que interfaz de red se comunicaría unos con otros?</strong></p>
-<p><strong>[Pregunta]: Quiero que expliques que significa esto:</strong></p>
+<hr />
+<p><strong>[2-PREGUNTA]: Imagina que yo instalase los programas independientemente cada uno en mi host, sin usar docker. ¿Qué puertos de qué maquinas utilzarían por defecto? ¿Mediante que interfaz de red se comunicaría unos con otros?</strong></p>
+<p><strong>[3-PREGUNTA]: Quiero que expliques que significa esto:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">apache-php</span><span class="p">:</span>
 <span class="w">   </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">php:8.2-apache</span>
@@ -1205,13 +1309,15 @@
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_data:/var/lib/mysql</span>
 </code></pre></div>
 <p>Todo en docker funciona a través de una "imagen previa".  Una imagen en Docker es como una plantilla o fotografía inmutable que contiene todo lo necesario para ejecutar un programa, es decir, a partir de esa plantilla se puede ejecutar practicamente el servicio que quieras.  Habitualmente, esa plantilla se suele crear a través de un Dockerfile, que es un archivo que contiene las instrucciones de creación de la plantilla. Aunque no es siempre así, el caso más habitual es coger la imagen de Docker Hub, aplicacion web que funciona como repositorio de imagenes para los servicios más populares (como apache). De hecho, incluso en el archivo del Dockerfile, se suele empezar desde una imagen previa que se encontrará en DockerHub.</p>
-<p><strong>[PREGUNTA]: Más abajo, encontrarás el Dockerfile que se usa en esta práctica, ¿qué imagen de DockerHub está utilizando?</strong></p>
+<p><strong>[4-PREGUNTA]: Más abajo, encontrarás el Dockerfile que se usa en esta práctica, ¿qué imagen de DockerHub está utilizando?</strong></p>
 <p>En ejemplo anterior es un caso muy raro, porque parece ser que el servicio se instala a partir de la imagen "php:8.2-apache". Esto no es cierto, porque abajo tenemos un "build", que nos indique que la imagen se construye a partir del docker file (llamado "Dockerfile"), que se encuentra en nuestro directorio actual. En el caso de que tanto image como build estén sobre un mismo "services", image será el nombre que asocia Docker internamente a la imagen.</p>
 <hr />
-<h3 id="2-el-dockerfile">2 El Dockerfile</h3>
+<h2 id="2-el-dockerfile">2 El Dockerfile</h2>
 <p>Lo más importante es que, desde el Dockerfile, cargamos módulos de apache con a2enmod, que utilziaremos más adelante:</p>
 <p><img alt="image-20251017151111330" src="../img/image-20251017151111330.png" /></p>
 <p>En particular, el dockerfile usado en la instalación es el siguiente.</p>
+<p><img alt="image-20251204111145513" src="../img/image-20251204111145513.png" /></p>
+<p>Y esto se hace así en el Dockerfile, donde construimos nuestra imagen de Docker.</p>
 <div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="s">php:8.2-apache</span>
 
 <span class="c"># Instalamos extensiones de PHP para MySQL. docker-php-ext-install es un script que viene incluido en las imágenes oficiales de PHP (como php:8.2-apache).</span>
@@ -1234,17 +1340,18 @@
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>miapp:1.0<span class="w"> </span>.
 </code></pre></div>
 <p>Volviendo al Dockerfile de nuestro proyecto, al principio tenemos: FROM php:8.2-apache. Si esta imagen la hubiera creado yo anteriormente a través de un Dockerfile, docker la sacaría de mi host. En caso de no exister, la saca de Dockerhub. Ese es el flujo normal. En el Dockerfile anterior, utilizamos algunos módulos interesantes para nuestro archivo de configuración (siguiente punto) que cargamos gracias a la funcionalidad docker-php-ext-install de apache. Os hago la siguiente pregunta de la que deberéis busca información.</p>
-<p><strong>[PREGUNTA]:</strong></p>
+<p><strong>[5-PREGUNTA]:</strong></p>
 <ul>
 <li><strong>¿Qué módulos cargamos?</strong></li>
 <li><strong>¿Para qué srive cada uno?</strong></li>
 <li><strong>¿Qué módulo se utilizaría (no está) para capturar y filtrar número de peticiones? (rate limit)</strong>. Si no sabes qué es el rate limit, deberás indicarlo aquí también</li>
 </ul>
 <hr />
-<h3 id="3-apache000-defaultconf-explicamos-cada-uno-de-ellos">3 apache/000-default.conf: (explicamos cada uno de ellos)</h3>
+<h2 id="3-apache000-defaultconf-explicamos-cada-uno-de-ellos">3 apache/000-default.conf: (explicamos cada uno de ellos)</h2>
 <p>El objetivo de lo siguiente es hablar del archivo de configuración inicial de apache y de cada una de sus peculiaridades. Al igual que con la parte anterior de la práctica, os iré haciendo preguntas al respecto de lo que vaya saliendo, poco a poco.</p>
 <p><img alt="image-20251017151010293" src="../img/image-20251017151010293.png" /></p>
-<h4 id="31-el-codigo-del-000-defaultconf">3.1 El código del 000-default.conf</h4>
+<hr />
+<h3 id="31-el-codigo-del-000-defaultconf">3.1 El código del 000-default.conf</h3>
 <div class="highlight"><pre><span></span><code><span class="nf">&lt;VirtualHost *</span><span class="o">:</span>80&gt;
 <span class="w">    </span>ServerAdmin<span class="w"> </span>webmaster@localhost
 <span class="w">    </span>DocumentRoot<span class="w"> </span>/var/www/html
@@ -1287,117 +1394,157 @@
 <span class="w">    </span>CustomLog<span class="w"> </span><span class="si">${</span><span class="nv">APACHE_LOG_DIR</span><span class="si">}</span>/app-access.log<span class="w"> </span>combined
 <span class="err">&lt;/VirtualHost&gt;</span>
 </code></pre></div>
-<h4 id="32-analizando-el-000-defaultconf">3.2 Analizando el 000-default.conf</h4>
+<hr />
+<h3 id="32-analizando-el-000-defaultconf">3.2 Analizando el 000-default.conf</h3>
+<p>Vamos a ver todas las opciones del archivo anterior</p>
+<hr />
+<h4 id="321-bloque-de-sitio-virtual-host">3.2.1 Bloque de sitio virtual host</h4>
+<p>Vemos qué significa esto:</p>
+<div class="highlight"><pre><span></span><code>&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+</code></pre></div>
 <ul>
-<li>
-<p>Empieza con la etiqueta <code>\&lt;VirtualHost *:80&gt;</code> y termina con su cierre  <code>\&lt;/VirtualHost&gt;</code>. Con eso Apache define un  "bloque de sitio” que escucha en el puerto 80 de <em>todas</em> las interfaces (<code>*</code>).  Dentro del contenedor, Apache escucha en el 80; fuera, tú lo ves en <code>http://localhost:8080</code> porque Docker hace el mapeo <code>8080:80</code>. Si algún día tienes más "sitios", puedes crear más bloques <code>VirtualHost</code> (incluso uno por dominio) y diferenciarlos con <code>ServerName</code>.</p>
-<p><strong>[PREGUNTA]: ¿Qué pasa si reutilizo la etiqueta VirtualHost? ¿Podría servir "dos sitios" con reglas distintas?.</strong></p>
-</li>
+<li>Empieza con la etiqueta <code>\&lt;VirtualHost *:80&gt;</code> y termina con su cierre  <code>\&lt;/VirtualHost&gt;</code>. Con eso Apache define un  "bloque de sitio” que escucha en el puerto 80 de <em>todas</em> las interfaces (<code>*</code>).  Dentro del contenedor, Apache escucha en el 80; fuera, tú lo ves en <code>http://localhost:8080</code> porque Docker hace el mapeo <code>8080:80</code>. Si algún día tienes más "sitios", puedes crear más bloques <code>VirtualHost</code> (incluso uno por dominio) y diferenciarlos con <code>ServerName</code>.</li>
+</ul>
+<p><strong>[6-PREGUNTA]: ¿Qué pasa si reutilizo la etiqueta VirtualHost? ¿Podría servir "dos sitios" con reglas distintas?.</strong></p>
+<ul>
 <li>
 <p><code>ServerAdmin webmaster@localhost</code> es solo un correo de contacto que Apache muestra en algunas páginas de error y mete en los logs. No afecta al funcionamiento; puedes poner tu email real o ignorarlo.</p>
 </li>
 <li>
-<p><code>DocumentRoot /var/www/html</code> indica la carpeta pública desde la que Apache sirve archivos. En tu setup, esa ruta está montada desde tu máquina con <code>./www:/var/www/html</code>, así que lo que guardes en <code>./www</code> es lo que ve Apache y lo que se sirve al navegador (Esto es justo lo que vimos ayer en clase metiéndonos dentro del contenedor).  El bloque <code>\&lt;Directory /var/www/html&gt;</code> aplica reglas específicas a esa carpeta:</p>
+<p><code>DocumentRoot /var/www/html</code> indica la carpeta pública desde la que Apache sirve archivos. En tu setup, esa ruta está montada desde tu máquina con <code>./www:/var/www/html</code>, así que lo que guardes en <code>./www</code> es lo que ve Apache y lo que se sirve al navegador (Es decir cuanto tu pongas en el navegador https://midonio/inicio.html) Ese incio.html que se visualizará saldrá de la carpeta /var/www/html.  </p>
 </li>
-<li>
-<p><code>Options -Indexes +FollowSymLinks</code> controla funcionalidades dentro del directorio.</p>
-</li>
-<li>
-<p><code>-Indexes</code> desactiva el listado de directorios. Es más seguro y profesional.</p>
-<p><strong>[PREGUNTA]: Esta explicación puede que no quede muy clara, especifica qué significa con un ejemplo. Lanza tu servidor con esta opción y sin esta y comprueba por ti mismo (adjuntando captura de pantalla) que efectivamente sucede así.</strong></p>
-</li>
-<li>
-<p><code>+FollowSymLinks</code> permite a Apache seguir enlaces simbólicos. Útil si apuntas subcarpetas a otros lugares. Si quieres ser aún más estricto, existe <code>SymLinksIfOwnerMatch</code> (solo sigue el symlink si el propietario coincide), pero <code>FollowSymLinks</code> es lo habitual.</p>
-<p><strong>[PREGUNTA]: Pon ejemplos de qué significa esto definiendo distintos propietarios: Para guiarte un poco, piensa que la carpeta /var/www/privado con propietario manolo  se crea un enlace con /var/www/html/privado. Si alguien accede por red, ¿podría ver el contenido de /var/www/html/privado? Para ello investiga con que usuario se indenficaría dicha persona al entrar a la web e intentar la redirección.</strong></p>
-</li>
-<li>
-<p><code>AllowOverride</code> es otra directiva de Apache que en este caso controla qué directivas están permitidas dentro de un <code>.htaccess</code> (archivo que veremos más tarde). Le estás diciendo a Apache en este caso: “Dentro de esta carpeta, haz caso a los archivos <code>.htaccess</code> que haya”. Significa que Apache permitirá archivos <code>.htaccess</code> en esa carpeta (en este caso:<code>/var/www/html</code>) y en cualquiera de sus subcarpetas (ojo, lo de cualquiera de sus subcarpetas es importante y más tarde veremos porqué, ya que afecta al funcionamiento de un servidor en producción y provoca que, habitualmente, no se cree el archivo .htacess. </p>
-<p>En conclusión: es muy común dejarlo en "All" durante desarrollo y como hemos dicho, en producción, por rendimiento, muchos mueven esas reglas al propio VirtualHost y ponen <code>AllowOverride None</code>. Lo veremos más tarde.</p>
-</li>
-<li>
+</ul>
+<hr />
+<h4 id="322-bloque-directory-varwwwhtml">3.2.2 Bloque Directory /var/www/html</h4>
+<div class="highlight"><pre><span></span><code>&lt;Directory /var/www/html&gt;
+    # Opciones de directorio
+    Options -Indexes +FollowSymLinks
+    AllowOverride All
+    Require all granted
+&lt;/Directory&gt;
+</code></pre></div>
+<p><code>\&lt;Directory /var/www/html&gt;</code> aplica reglas específicas a esa carpeta:<code>Options -Indexes +FollowSymLinks</code> controla funcionalidades dentro del directorio.</p>
+<p><u>Opción 1:</u> <code>-Indexes</code> desactiva el listado de directorios. Es más seguro y profesional.</p>
+<p><strong>[7-PREGUNTA]: Esta explicación puede que no quede muy clara, especifica qué significa con un ejemplo. Lanza tu servidor con esta opción y sin esta y comprueba por ti mismo (adjuntando captura de pantalla) que efectivamente sucede así.</strong></p>
+<p><u>Opción 2:</u> <code>+FollowSymLinks</code> permite a Apache seguir enlaces simbólicos. Útil si apuntas subcarpetas a otros lugares. Si quieres ser aún más estricto, existe <code>SymLinksIfOwnerMatch</code> (solo sigue el symlink si el propietario coincide), pero <code>FollowSymLinks</code> es lo habitual.</p>
+<p><strong>[8-PREGUNTA]: Pon ejemplos de qué significa esto definiendo distintos propietarios: Para guiarte un poco, piensa que la carpeta /var/www/privado con propietario manolo  se crea un enlace con /var/www/html/privado. Si alguien accede por red, ¿podría ver el contenido de /var/www/html/privado? Para ello investiga con que usuario se indenficaría dicha persona al entrar a la web e intentar la redirección.</strong></p>
+<p><code>AllowOverride</code> es otra directiva de Apache que en este caso controla qué directivas están permitidas dentro de un <code>.htaccess</code> (archivo que veremos más tarde). Le estás diciendo a Apache en este caso: “Dentro de esta carpeta, haz caso a los archivos <code>.htaccess</code> que haya”. Significa que Apache permitirá archivos <code>.htaccess</code> en esa carpeta (en este caso:<code>/var/www/html</code>) y en cualquiera de sus subcarpetas (ojo, lo de cualquiera de sus subcarpetas es importante y más tarde veremos porqué, ya que afecta al funcionamiento de un servidor en producción y provoca que, habitualmente, no se cree el archivo .htacess.  En conclusión: es muy común dejarlo en "All" durante desarrollo y como hemos dicho, en producción, por rendimiento, muchos mueven esas reglas al propio VirtualHost y ponen <code>AllowOverride None</code>. Lo veremos más tarde.</p>
 <p><code>Require all granted</code> es la regla de acceso (desde Apache 2.4). Significa “permite acceso a cualquiera”. Si no la pones (o niegas el acceso), podrías ver errores 403 (los códigos de errores los he comentado ya mucho en clase pero los veremos cuando generemos nuestros propios endpoints). Es la forma moderna de los antiguos <code>Allow from all</code>. Ejemplo: solo permitir a la IP <code>192.168.1.100</code> sería de la forma: Require ip 192.168.1.100.</p>
-</li>
-</ul>
-<p><strong>[PREGUNTA]: ¿Cómo se podría negar el acceso a una sola IP a nuestro servidor Apache?</strong></p>
-<p><code>/etc/apache2/envvars</code> lugar físico donde se encuentran las ENV</p>
-<ul>
-<li><code>ErrorLog ${APACHE_LOG_DIR}/app-error.log</code> </li>
-</ul>
-<p><strong>[PREGUNTA]: ¿Qué tipo de errores guarda el log app-error.log?</strong></p>
-<p><strong>[PREGUNTA]: ¿Qué significa ${APACHE_LOG_DIR} y donde se guardan dichas variables?</strong></p>
-<ul>
-<li><code>CustomLog ${APACHE_LOG_DIR}/app-access.log combined</code> </li>
-</ul>
-<p><strong>[PREGUNTA]: Durante las prácticas anteriores, has hecho peticiones http a un servidor. ¿Qué es lo que se vería en este caso en app-access.log y que relacion tiene con la práctica anterior?</strong></p>
-<ul>
-<li><code>&lt;Directory /var/www/html/admin&gt;</code> Tenemos una regla de autenticación sobre este directorio, aunque si os fijáis y tal y como pongo en el comentario encima de la regla, el directorio no existe, aunque no afecta a Apache.</li>
-</ul>
-<p>Lo que has visto en ese bloque de configuración es un ejemplo de autenticación HTTP básica en Apache. Sirve para proteger con usuario y contraseña un directorio concreto, en este caso <code>/var/www/html/admin</code>.</p>
-<ul>
-<li>
-<p>La directiva <code>AuthType Basic</code> indica que se usará el método de autenticación más sencillo, llamado <em>Basic</em>. Este funciona enviando el usuario y la contraseña codificados en base64 (debes saber qué es ya que muchas veces los servidores envía binarios en base64) en cada petición. Por eso, en la práctica, siempre se recomienda usarlo junto con HTTPS para que las credenciales viajen cifradas. </p>
-<p><strong>[PREGUNTA]  Auth Type sirve para proteger recursos. El estandar a día de hoy ha cambiado a JWT. Busca información al respecto sobre qué es. ¿Todo el mundo debe tener derecho a acceder a cualquier endpont?</strong></p>
-</li>
-<li>
-<p><code>AuthName "Zona restringida"</code> define el texto que verá el usuario cuando el navegador muestre la ventana emergente pidiéndole credenciales. No afecta a la seguridad, es simplemente informativo, pero ayuda a diferenciar distintas áreas protegidas de un mismo servidor.</p>
-</li>
-<li>
-<p>La línea <code>AuthUserFile /etc/apache2/.htpasswd</code> indica dónde está guardado el archivo que contiene los usuarios y contraseñas autorizados. E nuestro proyecto no lo tenemos definido porque, de hecho la carpeta /admin no existe. Ese archivo <code>.htpasswd</code> NO debe estar dentro de la carpeta pública del servidor web, porque si no, cualquiera podría descargarlo. En él se almacenan las credenciales en formato cifrado (normalmente con algoritmos como MD5, SHA o bcrypt).</p>
-</li>
-<li>
-<p>Finalmente, <code>Require valid-user</code> define quién puede acceder. En este caso, “valid-user” significa que cualquiera de los usuarios definidos en el archivo <code>.htpasswd</code> podrá entrar. Pero hay otras variantes: se puede especificar <code>Require user juan</code> para permitir solo a un usuario concreto, o <code>Require user juan pedro</code> para permitir únicamente a esos dos. También existe la posibilidad de trabajar con grupos de usuarios, usando <code>Require group admins</code>, donde los grupos se definen en un archivo adicional llamado <code>.htgroup</code>.</p>
-</li>
-<li>
-<p>Vamos con el siguiente cacho de código, que es muy interesante y muy práctico:</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(jpg|jpeg|png|gif|css|js|ico|woff2?)$&quot;</span><span class="err">&gt;</span>
-<span class="w">    </span><span class="err">ExpiresActive</span><span class="w"> </span><span class="err">On</span>
-<span class="w">    </span><span class="err">ExpiresDefault</span><span class="w"> </span><span class="s2">&quot;access plus 1 month&quot;</span>
-<span class="err">&lt;/FilesMatch&gt;</span>
+<p><strong>[9-PREGUNTA]: ¿Cómo se podría negar el acceso a una sola IP a nuestro servidor Apache?</strong></p>
+<hr />
+<h4 id="323-logs-de-apache">3.2.3 Logs de apache</h4>
+<div class="highlight"><pre><span></span><code><span class="x">    ErrorLog ${APACHE_LOG_DIR}/app-error.log</span>
+<span class="x">    CustomLog ${APACHE_LOG_DIR}/app-access.log combined</span>
 </code></pre></div>
-<p>Esto significa: “Aplica las siguientes reglas a todos los archivos cuyo nombre termine en <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>, <code>.gif</code>, <code>.css</code>, <code>.js</code>, <code>.ico</code> o <code>.woff/woff2</code> (fuentes web)”. Es decir, cualquier recurso estático habitual de una web (con estático nos referimos a archivos que sualmente no van a cambiar y que se van a mandar tal cual). Dentro de ese bloque, <code>ExpiresActive On</code> activa el módulo de caducidad de caché. Y <code>ExpiresDefault "access plus 1 month"</code> establece que el navegador puede mantener esos archivos en caché durante un mes a partir del momento en que los descarga. Ojo, el navegador del cliente sería el que cachearía dicha información, evitando así incluso que la petición llegue al servidor. La cuestión aquí es saber cómo se le dice al navegador que cachee dicha petición, eso lo veremos ahora y avanzo que será gracias a las cabeceras http de la respuesta del servidor!</p>
-<p>Con todo esto, si un usuario entra varias veces a tu web, su navegador no volverá a pedir al servidor la imagen del logo, los estilos CSS o el JavaScript en cada carga, sino que reutilizará los que ya descargó hasta que pase un mes. Como es lógico, el resultado es que la web se siente mucho más rápida y consumes menos ancho de banda en el servidor. Lo interesante es que puedes personalizar estas reglas para diferentes tipos de archivo. Por ejemplo:</p>
+<p>${APACHE_LOG_DIR} y  ${APACHE_LOG_DIR} son variables de entorno de apache (la misma en este caso) y se guarda en: <code>/etc/apache2/envvars</code> lugar físico donde se encuentran las ENV</p>
 <ul>
-<li>Para <strong>imágenes y vídeos grandes</strong>, podrías poner más tiempo (Esto no viene en nuestro archivo de configuración): Fijate que la directiva es ExpiresByType </li>
+<li>ErrorLog ${APACHE_LOG_DIR}/app-error.log</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="err">ExpiresByType</span><span class="w"> </span><span class="err">image/jpeg</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
-<span class="err">ExpiresByType</span><span class="w"> </span><span class="err">image/png</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
-<span class="err">ExpiresByType</span><span class="w"> </span><span class="err">video/mp4</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
-</code></pre></div>
+<p><strong>[10-PREGUNTA]: ¿Qué tipo de errores guarda el log app-error.log?</strong></p>
+<p><strong>[11-PREGUNTA]: ¿Qué significa ${APACHE_LOG_DIR} y donde se guardan dichas variables?</strong></p>
 <ul>
-<li>Para <strong>archivos CSS y JS</strong>, quizá prefieras menos tiempo, como una semana, porque podrías actualizarlos con frecuencia durante el desarrollo (Esto no viene en nuestro archivo de configuración):</li>
+<li>CustomLog ${APACHE_LOG_DIR}/app-access.log combined</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="err">Para</span><span class="w"> </span><span class="err">archivos</span><span class="w"> </span><span class="err">CSS</span><span class="w"> </span><span class="err">y</span><span class="w"> </span><span class="err">JS,</span><span class="w"> </span><span class="err">quizá</span><span class="w"> </span><span class="err">prefieras</span><span class="w"> </span><span class="err">menos</span><span class="w"> </span><span class="err">tiempo,</span><span class="w"> </span><span class="err">como</span><span class="w"> </span><span class="err">una</span><span class="w"> </span><span class="err">semana,</span><span class="w"> </span><span class="err">porque</span><span class="w"> </span><span class="err">podrías</span><span class="w"> </span><span class="err">actualizarlos</span><span class="w"> </span><span class="err">con</span><span class="w"> </span><span class="err">frecuencia</span><span class="w"> </span><span class="err">durante</span><span class="w"> </span><span class="err">el</span><span class="w"> </span><span class="err">desarrollo</span>
-</code></pre></div>
-<ul>
-<li>Para <strong>documentos sensibles o que cambian mucho</strong> (como  un endpoint PHP), lo normal es directamente desactivar la caché (Esto no viene en nuestro archivo de configuración): </li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(php)$&quot;</span><span class="err">&gt;</span>
-<span class="w">    </span><span class="err">ExpiresActive</span><span class="w"> </span><span class="err">Off</span>
-<span class="w">    </span><span class="err">Header</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">Cache-Control</span><span class="w"> </span><span class="s2">&quot;no-store, no-cache, must-revalidate&quot;</span>
-<span class="err">&lt;/FilesMatch&gt;</span>
-</code></pre></div>
-<p>Al final lo que hace todo esto visto en los ejemplos anteriores es insertar una cabecera http en la respuesta, algo como esto:</p>
-<div class="highlight"><pre><span></span><code><span class="err">HTTP/1.1</span><span class="w"> </span><span class="err">200</span><span class="w"> </span><span class="err">OK</span>
-<span class="nf">Content-Type</span><span class="o">:</span><span class="w"> </span><span class="n">image</span>/<span class="n">png</span>
-<span class="nf">Content-Length</span><span class="o">:</span><span class="w"> </span>10542
-<span class="nf">Expires</span><span class="o">:</span><span class="w"> </span><span class="n">Wed</span><span class="p">,</span> 09 <span class="n">Nov</span> 2025 10:49:27 <span class="n">GMT</span>
-<span class="nf">Cache-Control</span><span class="o">:</span><span class="w"> </span><span class="n">max</span>-<span class="n">age</span>=2592000
-</code></pre></div>
-<p>El navegador que recibe la respuesta será capaz de cachearla según las opciones propuestas.</p>
-<p><strong>[PREGUNTA]</strong> <strong>¿Cual es la diferencia entre Expires y Cache-Control? Busca las distintas opciones de Cache-Control y qué singifican.</strong></p>
-<p><strong><u>Importantante</u></strong>:</p>
+<p><strong>[12-PREGUNTA]: Durante las prácticas anteriores, has hecho peticiones http a un servidor. ¿Qué es lo que se vería en este caso en app-access.log y que relacion tiene con la práctica anterior?</strong></p>
+<p><strong><u>Importante</u></strong>:</p>
 <p>Dentro del contenedor, esos archivos viven en <code>/var/log/apache2/</code>. Para verlos puedes hacer <code>docker exec -it apache-php bash</code> y luego <code>tail -f /var/log/apache2/app-error.log</code>. Si prefieres tenerlos en tu host, puedes montar un volumen para <code>logs/</code> y así inspeccionarlos con tu editor. Otra opción avanzada es enviar logs a stdout/stderr para leerlos con <code>docker logs</code>, pero con ficheros sueles tener más control y lo recomiendo sobremanera. Los comandos mencionados a ejecutar dentro del contenedor son los siguientes:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>apache-php<span class="w"> </span>bash
 <span class="nb">cd</span><span class="w"> </span>/var/log/apache2
 tail<span class="w"> </span>-f<span class="w"> </span>app-access.log
 </code></pre></div>
-<p><strong>[PREGUNTA]: Ya contesta que era lo que se guardaba en app-access.log, una vez visto esto, y realizado al menos una petición al servidor, metete al contenedor y comprueba qué es lo que se guarda mediante una captura de pantalla</strong></p>
-<ul>
-<li>Sigamos viendo otras partes, como las cabeceras http, que ya hemos visto que pueden ser muy importantes en la interaccion del cliente con el servidor. Ya sabemos que cuando un navegador (cliente) habla con un servidor web, lo hace usando el protocolo HTTP. Cada petición y cada respuesta viaja en forma de texto, con varias líneas de información llamadas cabeceras (headers). </li>
-</ul>
-<p>Estas cabeceras son como <em>metadatos</em>: pequeños mensajes que acompañan a la petición o a la respuesta para dar más contexto sobre qué se envía, cómo debe interpretarse y cómo debe comportarse el navegador o el servidor. En la práctica anterior nos centramos muchísimo en la cabecera "Content-Type", pero lo normal es que haya más cabeceras que se envíen por defecto, por ejemplo, lo siguiente muestras las cabeceras http de una petición (REQUEST):</p>
+<p><strong>[13-PREGUNTA]: Ya contestaste que era lo que se guardaba en app-access.log, una vez visto esto, y realizado al menos una petición al servidor, metete al contenedor y comprueba qué es lo que se guarda mediante una captura de pantalla</strong></p>
+<hr />
+<h4 id="324-restricciones-a-ciertos-directorios">3.2.4 Restricciones a ciertos directorios</h4>
+<div class="highlight"><pre><span></span><code><span class="x">&lt;Directory /var/www/html/admin&gt;</span>
+<span class="x">    AuthType Basic</span>
+<span class="x">    AuthName &quot;Zona restringida&quot;</span>
+<span class="x">    AuthUserFile /etc/apache2/.htpasswd //lugar del server con la contraseña de la carpeta hasheada</span>
+<span class="x">    Require valid-user</span>
+<span class="x">&lt;/Directory&gt;</span>
+</code></pre></div>
+<p><code>&lt;Directory /var/www/html/admin&gt;</code> Tenemos una regla de autenticación sobre este directorio, aunque si os fijáis y tal y como pongo en el comentario encima de la regla, el directorio no existe, aunque no afecta a Apache. Lo que has visto en ese bloque de configuración es un ejemplo de autenticación HTTP básica en Apache. Sirve para proteger con usuario y contraseña un directorio concreto, en este caso <code>/var/www/html/admin</code>.</p>
+<p>1-<u><code>AuthType Basic</code></u> indica que se usará el método de autenticación más sencillo, llamado <em>Basic</em>. Este funciona enviando el usuario y la contraseña codificados en base64 (debes saber qué es ya que muchas veces los servidores envía binarios en base64) en cada petición. Por eso, en la práctica, siempre se recomienda usarlo junto con HTTPS para que las credenciales viajen cifradas. </p>
+<p><strong>[14-PREGUNTA]  Auth Type sirve para proteger recursos. El estandar a día de hoy ha cambiado a JWT. Busca información al respecto sobre qué es. ¿Todo el mundo debe tener derecho a acceder a cualquier endpont?</strong></p>
+<p>2-<u><code>AuthName "Zona restringida"</code></u> define el texto que verá el usuario cuando el navegador muestre la ventana emergente pidiéndole credenciales. No afecta a la seguridad, es simplemente informativo, pero ayuda a diferenciar distintas áreas protegidas de un mismo servidor.</p>
+<p>3- <u><code>AuthUserFile /etc/apache2/.htpasswd</code></u> indica dónde está guardado el archivo que contiene los usuarios y contraseñas autorizados. E nuestro proyecto no lo tenemos definido porque, de hecho la carpeta /admin no existe. Ese archivo <code>.htpasswd</code> NO debe estar dentro de la carpeta pública del servidor web, porque si no, cualquiera podría descargarlo. En él se almacenan las credenciales en formato cifrado (normalmente con algoritmos como MD5, SHA o bcrypt).</p>
+<p>4-<u><code>Require valid-user</code></u> define quién puede acceder. En este caso, “valid-user” significa que cualquiera de los usuarios definidos en el archivo <code>.htpasswd</code> podrá entrar. Pero hay otras variantes: se puede especificar <code>Require user juan</code> para permitir solo a un usuario concreto, o <code>Require user juan pedro</code> para permitir únicamente a esos dos. También existe la posibilidad de trabajar con grupos de usuarios, usando <code>Require group admins</code>, donde los grupos se definen en un archivo adicional llamado <code>.htgroup</code>.</p>
+<hr />
+<h4 id="325-cacheado-de-archivos-dentro-del-bloque-varwwwhtmlo">3.2.5 Cacheado de archivos dentro del bloque /var/www/htmlo:</h4>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(jpg|jpeg|png|gif|css|js|ico|woff2?)$&quot;</span><span class="err">&gt;</span>
+<span class="w">    </span><span class="err">ExpiresActive</span><span class="w"> </span><span class="err">On</span>
+<span class="w">    </span><span class="err">ExpiresDefault</span><span class="w"> </span><span class="s2">&quot;access plus 1 month&quot;</span>
+<span class="err">&lt;/FilesMatch&gt;</span>
+</code></pre></div>
+<p>Esto significa: “Aplica las siguientes reglas a todos los archivos cuyo nombre termine en <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>, <code>.gif</code>, <code>.css</code>, <code>.js</code>, <code>.ico</code> o <code>.woff/woff2</code> (fuentes web)”. Es decir, cualquier recurso estático habitual de una web (con estático nos referimos a archivos que sualmente no van a cambiar y que se van a mandar tal cual). </p>
+<p>Dentro de ese bloque, <code>ExpiresActive On</code> activa el módulo de caducidad de caché. Y <code>ExpiresDefault "access plus 1 month"</code> establece que el navegador DEL CLIENTE puede mantener esos archivos en caché durante un mes a partir del momento en que los descarga (por eso se llama access + 1 año). Ojo, el navegador del cliente sería el que cachearía dicha información, evitando así incluso que la petición llegue al servidor.</p>
+<p>Es importante saber que todo lo que pongamos como "Expire" en apache, se generan las cabeceras http Expires y Cache-Control en la respuesta del servidor. Algo así cuando se accede a un css por primera vez con la regla: <code>ExpiresByType text/css "access plus 1 month"</code></p>
+<div class="highlight"><pre><span></span><code><span class="err">HTTP/1.1</span><span class="w"> </span><span class="err">200</span><span class="w"> </span><span class="err">OK</span>
+<span class="nf">Content-Type</span><span class="o">:</span><span class="w"> </span><span class="n">text</span>/<span class="n">css</span>
+<span class="nf">Cache-Control</span><span class="o">:</span><span class="w"> </span><span class="n">max</span>-<span class="n">age</span>=2592000
+<span class="nf">Expires</span><span class="o">:</span><span class="w"> </span><span class="n">Tue</span><span class="p">,</span> 05 <span class="n">Jan</span> 2026 12:00:00 <span class="n">GMT</span>
+<span class="nf">Content-Length</span><span class="o">:</span><span class="w"> </span>4521
+</code></pre></div>
+<p>De hecho, en este punto utilizaremos dos métodos para cachear:</p>
+<div class="highlight"><pre><span></span><code><span class="err">-ExpiresByType,</span><span class="w"> </span><span class="err">hace</span><span class="w"> </span><span class="err">uso</span><span class="w"> </span><span class="err">del</span><span class="w"> </span><span class="err">módulo</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">apache</span><span class="w"> </span><span class="s2">&quot;mod_expires&quot;</span><span class="err">.</span><span class="w"> </span><span class="err">Toca</span><span class="w"> </span><span class="err">tanto</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">cabecera</span><span class="w"> </span><span class="err">Cache-Control</span><span class="w"> </span><span class="err">como</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">Expires.</span>
+
+<span class="err">-Header</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">Cache-Control,</span><span class="w"> </span><span class="err">hace</span><span class="w"> </span><span class="err">uso</span><span class="w"> </span><span class="err">del</span><span class="w"> </span><span class="err">módulo</span><span class="w"> </span><span class="err">de</span><span class="w"> </span><span class="err">apache</span><span class="w"> </span><span class="s2">&quot;mod_headers&quot;</span><span class="err">.</span><span class="w"> </span><span class="err">En</span><span class="w"> </span><span class="err">este</span><span class="w"> </span><span class="err">caso</span><span class="w"> </span><span class="err">solo</span><span class="w"> </span><span class="err">tocaríamos</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">cabecera</span><span class="w"> </span><span class="s2">&quot;Cache_Control&quot;</span><span class="w"> </span><span class="err">y</span><span class="w"> </span><span class="err">no</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">cabecera</span><span class="w"> </span><span class="s2">&quot;Expires&quot;</span><span class="err">.</span><span class="w"> </span><span class="err">No</span><span class="w"> </span><span class="err">es</span><span class="w"> </span><span class="err">malo</span><span class="w"> </span><span class="err">ya</span><span class="w"> </span><span class="err">que</span><span class="w"> </span><span class="err">la</span><span class="w"> </span><span class="err">cabecera</span><span class="w"> </span><span class="s2">&quot;Expires&quot;</span><span class="w"> </span><span class="err">está</span><span class="w"> </span><span class="err">en</span><span class="w"> </span><span class="err">desuso.</span>
+</code></pre></div>
+<p>De hecho, esto:</p>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(jpg|jpeg|png|gif|css|js|ico|woff2?)$&quot;</span><span class="err">&gt;</span>
+<span class="w">    </span><span class="err">ExpiresActive</span><span class="w"> </span><span class="err">On</span>
+<span class="w">    </span><span class="err">ExpiresDefault</span><span class="w"> </span><span class="s2">&quot;access plus 1 month&quot;</span>
+<span class="err">&lt;/FilesMatch&gt;</span>
+</code></pre></div>
+<p>con "Header set" sería así:</p>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(jpg|jpeg|png|gif|css|js|ico|woff2?)$&quot;</span><span class="err">&gt;</span>
+<span class="w">    </span><span class="err">Header</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">Cache-Control</span><span class="w"> </span><span class="s2">&quot;public, max-age=2592000&quot;</span>
+<span class="err">&lt;/FilesMatch&gt;</span>
+</code></pre></div>
+<p>Como vemos, afecta directamente a la cabecera HTTP, generando esta salida:</p>
+<div class="highlight"><pre><span></span><code><span class="err">HTTP/1.1</span><span class="w"> </span><span class="err">200</span><span class="w"> </span><span class="err">OK</span>
+<span class="nf">Content-Type</span><span class="o">:</span><span class="w"> </span><span class="n">text</span>/<span class="n">css</span>
+<span class="nf">Cache-Control</span><span class="o">:</span><span class="w"> </span><span class="n">max</span>-<span class="n">age</span>=2592000
+<span class="nf">Content-Length</span><span class="o">:</span><span class="w"> </span>4521
+</code></pre></div>
+<p>Con todo esto, si un usuario entra varias veces a tu web, su navegador no volverá a pedir al servidor la imagen del logo, los estilos CSS o el JavaScript en cada carga, sino que reutilizará los que ya descargó hasta que pase un mes. Veamos qué mas reglas podemos definir:</p>
+<p>-Para <strong>imágenes y vídeos grandes</strong>, podrías poner más tiempo (Esto no viene en nuestro archivo de configuración): Fijate que la directiva es ExpiresByType </p>
+<div class="highlight"><pre><span></span><code><span class="err">ExpiresByType</span><span class="w"> </span><span class="err">image/jpeg</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
+<span class="err">ExpiresByType</span><span class="w"> </span><span class="err">image/png</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
+<span class="err">ExpiresByType</span><span class="w"> </span><span class="err">video/mp4</span><span class="w"> </span><span class="s2">&quot;access plus 1 year&quot;</span>
+</code></pre></div>
+<p>-Para <strong>archivos CSS y JS</strong>, quizá prefieras menos tiempo, como una semana, porque podrías actualizarlos con frecuencia durante el desarrollo (Esto no viene en nuestro archivo de configuración pero se podría poniendo):</p>
+<div class="highlight"><pre><span></span><code><span class="err">ExpiresByType</span><span class="w"> </span><span class="err">text/css</span><span class="w"> </span><span class="s2">&quot;access plus 1 week&quot;</span>
+<span class="err">ExpiresByType</span><span class="w"> </span><span class="err">application/javascript</span><span class="w"> </span><span class="s2">&quot;access plus 1 week&quot;</span>
+</code></pre></div>
+<p>-Para <strong>documentos sensibles o que cambian mucho</strong> (como  un endpoint PHP), lo normal es directamente desactivar la caché con el OFF (Esto no viene en nuestro archivo de configuración): </p>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(php)$&quot;</span><span class="err">&gt;</span>
+<span class="w">    </span><span class="err">ExpiresActive</span><span class="w"> </span><span class="err">Off</span>
+<span class="w">    </span><span class="err">Header</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">Cache-Control</span><span class="w"> </span><span class="s2">&quot;no-store, no-cache, must-revalidate&quot;</span>
+<span class="err">&lt;/FilesMatch&gt;</span>
+</code></pre></div>
+<p>"no store" significa que no quieres que nadie cachee la información. "no-cache" significa que si alguien a cacheado, como el navegador, preguntar antes al servidor qué hacer con él. "must-revalidate" significa que si la copia local está expirada o marcada como no válida, el navegador está obligado a revalidarla con el servidor antes de usarla. También tendríamos la opción de hacer esto, que es mucho más común con los archivos php:</p>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;FilesMatch</span><span class="w"> </span><span class="s2">&quot;\.(php)$&quot;</span><span class="err">&gt;</span>
+<span class="w">    </span><span class="err">Header</span><span class="w"> </span><span class="err">set</span><span class="w"> </span><span class="err">Cache-Control</span><span class="w"> </span><span class="s2">&quot;public, no-cache, must-revalidate&quot;</span>
+<span class="err">&lt;/FilesMatch&gt;</span>
+</code></pre></div>
+<p>De forma que el servidor deja al navegador cachear pero este siempre pregunta antes de usar su cache, es decir: si el archivo cambia, lo pide al servidor. Si el archivo no ha cambiado, lo coge de la caché.  El ejemplo anterior generaría la siguiente response.</p>
+<div class="highlight"><pre><span></span><code><span class="err">HTTP/1.1</span><span class="w"> </span><span class="err">200</span><span class="w"> </span><span class="err">OK</span>
+<span class="nf">Date</span><span class="o">:</span><span class="w"> </span><span class="n">Thu</span><span class="p">,</span> 05 <span class="n">Dec</span> 2025 11:32:10 <span class="n">GMT</span>
+<span class="nf">Server</span><span class="o">:</span><span class="w"> </span><span class="n">Apache</span>/2.4.58 (<span class="n">Ubuntu</span>)
+<span class="nf">Content-Type</span><span class="o">:</span><span class="w"> </span><span class="n">text</span>/<span class="n">html</span>; <span class="n">charset</span>=<span class="n">UTF</span>-8
+<span class="nf">Cache-Control</span><span class="o">:</span><span class="w"> </span><span class="n">public</span><span class="p">,</span> <span class="n">no</span>-<span class="n">cache</span><span class="p">,</span> <span class="n">must</span>-<span class="n">revalidate</span>
+<span class="nf">Pragma</span><span class="o">:</span><span class="w"> </span><span class="n">no</span>-<span class="n">cache</span>
+<span class="nf">Expires</span><span class="o">:</span><span class="w"> </span>0
+<span class="nf">Content-Length</span><span class="o">:</span><span class="w"> </span>5120
+</code></pre></div>
+<p>El navegador que recibe la respuesta será capaz de cachearla según las opciones propuestas.</p>
+<p><strong>[15-PREGUNTA]</strong> <strong>¿Cual es la diferencia entre Expires y Cache-Control? Busca las distintas opciones de Cache-Control y qué singifican.</strong></p>
+<hr />
+<h4 id="326-seguridad-con-cabecera-en-el-deafultconf">3.2.6 Seguridad con cabecera en el deafult.conf</h4>
+<p>Sigamos viendo otras partes, como las cabeceras http, que ya hemos visto que pueden ser muy importantes en la interaccion del cliente con el servidor. Ya sabemos que cuando un navegador (cliente) habla con un servidor web, lo hace usando el protocolo HTTP. Cada petición y cada respuesta viaja en forma de texto, con varias líneas de información llamadas cabeceras (headers). </p>
+<p>Estas cabeceras son como <em>metadatos</em>: pequeños mensajes que acompañan a la petición o a la respuesta para dar más contexto sobre qué se envía, cómo debe interpretarse y cómo debe comportarse el navegador o el servidor. En la práctica anterior nos centramos muchísimo en la cabecera "Content-Type" o en la cabercera de "Cache", pero lo normal es que haya más cabeceras que se envíen por defecto, por ejemplo, lo siguiente muestras las cabeceras http de una petición (REQUEST):</p>
 <div class="highlight"><pre><span></span><code><span class="err">GET</span><span class="w"> </span><span class="err">/</span><span class="w"> </span><span class="err">HTTP/1.1</span>
 <span class="nf">Host</span><span class="o">:</span><span class="w"> </span><span class="n">midominio</span>.<span class="n">com</span>
 <span class="nf">User-Agent</span><span class="o">:</span><span class="w"> </span><span class="n">Mozilla</span>/5.0 (<span class="n">Windows</span> <span class="n">NT</span> 10.0; <span class="n">Win</span>64; <span class="n">x</span>64)
@@ -1416,23 +1563,15 @@ tail<span class="w"> </span>-f<span class="w"> </span>app-access.log
 <span class="nf">Content-Security-Policy</span><span class="o">:</span><span class="w"> </span><span class="n">default</span>-<span class="n">src</span> &#39;<span class="n">self</span>&#39;; <span class="n">object</span>-<span class="n">src</span> &#39;<span class="n">none</span>&#39;; <span class="n">base</span>-<span class="n">uri</span> &#39;<span class="n">self</span>&#39;
 </code></pre></div>
 <p>En nuestro codigo de configuración de Apache (en concreto la parte con el comentario # Seguridad con cabeceras) hemos colocado algunas lineas que mucho tienen que ver con las cabeceras.. Las líneas de nuestra configuración de Apache añaden cabeceras HTTP a las respuestas que el servidor envía al navegador. Estas, al igual que la parte del caché vista anteriormente, definirán distintos casos de actuación, aunque en vez de explicaroslas, quiero que busquéis información al respecto y que pongáis ejemplos en la medida de lo posible.</p>
-<ul>
-<li>
-<p><code>X-Content-Type-Options "nosniff"</code> </p>
-<p><strong>[PREGUNTA]: ¿Para qué sirve y qué tiene que ver con los Content-Type estudiados hasta ahora?</strong></p>
-</li>
-<li>
-<p>Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'</p>
-<p><strong>[PREGUNTA]: Aquí os ayudo un poco más ya que pienso que es más complejo:</strong></p>
-<p><strong>La cabecera <code>Content-Security-Policy</code> (CSP) permite al servidor indicar al navegador desde qué orígenes puede cargar recursos como scripts, imágenes o estilos. De esta forma, si en el HTML hay etiquetas que intentan cargar contenido externo no permitido, el navegador lo bloqueará automáticamente. Haciendo uso de la explicación anterior, detalla cómo funciona esta protección con algunos ejemplos además, responde a lo siguiente: qué significa que <code>default-src 'self'</code> solo deje cargar recursos del mismo dominio, qué consigue <code>object-src 'none'</code> al prohibir objetos embebidos, y cómo <code>base-uri 'self'</code> limita el uso de la etiqueta <code>&lt;base&gt;</code> en el documento. Muestra ejemplos de código HTML que serían permitidos y otros que serían bloqueados.</strong></p>
-</li>
-<li>
-<p><code>Referrer-Policy "strict-origin-when-cross-origin"</code></p>
-<p><strong>[PREGUNTA]: ¿Qué es referer en la cabecera y que hace este tipo de política?</strong></p>
-</li>
-</ul>
+<p>-1)<code>X-Content-Type-Options "nosniff"</code> </p>
+<p><strong>[16-PREGUNTA]: ¿Para qué sirve y qué tiene que ver con los Content-Type estudiados hasta ahora?</strong></p>
+<p>-2)<code>Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'</code></p>
+<p><strong>[17-PREGUNTA]: Aquí os ayudo un poco más ya que pienso que es más complejo:</strong></p>
+<p>La cabecera <code>Content-Security-Policy</code> (CSP) permite al servidor indicar al navegador desde qué orígenes puede cargar recursos como scripts, imágenes o estilos. De esta forma, si en el HTML hay etiquetas que intentan cargar contenido externo no permitido, el navegador lo bloqueará automáticamente. Haciendo uso de la explicación anterior, detalla cómo funciona esta protección con algunos ejemplos además, responde a lo siguiente: qué significa que <code>default-src 'self'</code> solo deje cargar recursos del mismo dominio, qué consigue <code>object-src 'none'</code> al prohibir objetos embebidos, y cómo <code>base-uri 'self'</code> limita el uso de la etiqueta <code>&lt;base&gt;</code> en el documento. Muestra ejemplos de código HTML que serían permitidos y otros que serían bloqueados.</p>
+<p>-3)<code>Referrer-Policy "strict-origin-when-cross-origin"</code></p>
+<p><strong>[18-PREGUNTA]: ¿Qué es referer en la cabecera y que hace este tipo de política?</strong></p>
 <hr />
-<h3 id="4-archivo-htaccess-uso-de-reglas-rewritecond-y-rewriterule">4 Archivo <code>.htaccess</code> (uso de reglas RewriteCond y RewriteRule)</h3>
+<h2 id="4-archivo-htaccess-uso-de-reglas-rewritecond-y-rewriterule">4 Archivo <code>.htaccess</code> (uso de reglas RewriteCond y RewriteRule)</h2>
 <p>El archivo <strong><code>.htaccess</code></strong> es un archivo de configuración especial que Apache lee cada vez que recibe una petición dentro de una carpeta concreta (mirar AllowOverride explicado en el archivo de configuración). Su nombre viene de <em>hypertext access</em> y fue creado originalmente para manejar reglas de acceso, aunque hoy en día se usa para muchas otras cosas.  La idea es sencilla: si en tu servidor tienes definido un directorio raíz (por ejemplo <code>/var/www/html</code>), puedes colocar un <code>.htaccess</code> dentro de esa carpeta o en alguna subcarpeta. Como nuestro directorio raíz es <code>var/www/html</code> Apache, cuando sirve un archivo o procesa una URL, busca si en esa ruta de la siguiente forma :</p>
 <ul>
 <li>Imagina que la Carpeta raíz definida es, como en nuestro caso: <code>/var/www/html</code></li>
@@ -1457,7 +1596,8 @@ RewriteCond<span class="w"> </span>%<span class="o">{</span>REQUEST_FILENAME<spa
 RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class="w"> </span><span class="o">[</span>L<span class="o">]</span>
 </code></pre></div>
 <p>Vamos a estudiar las condiciones de este .htaccess, que como es dicho, podrían estar directamente sobre el archivo de configuración de Apache y no necesariamente en el .htaccess</p>
-<h4 id="41-la-primera-condicion">4.1 La primera condición</h4>
+<hr />
+<h3 id="41-la-primera-rewritecond">4.1 La primera RewriteCond</h3>
 <div class="highlight"><pre><span></span><code>RewriteCond<span class="w"> </span>%<span class="o">{</span>REQUEST_FILENAME<span class="o">}</span><span class="w"> </span>!-f
 </code></pre></div>
 <p><code>%{REQUEST_FILENAME}</code>  es la ruta física del archivo que corresponde a la URL pedida.<code>! -f</code>  significa "NO es un archivo normal existente".</p>
@@ -1471,7 +1611,8 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 <p>URL: <code>/api/usuarios</code> , no existe <code>/var/www/html/api/usuarios</code> como archivo : la condición se cumple.</p>
 </li>
 </ul>
-<h4 id="42-la-segunda-condicion">4.2 La segunda condición</h4>
+<hr />
+<h3 id="42-la-segunda-rewritecond">4.2 La segunda RewriteCond</h3>
 <div class="highlight"><pre><span></span><code>RewriteCond<span class="w"> </span>%<span class="o">{</span>REQUEST_FILENAME<span class="o">}</span><span class="w"> </span>!-d
 </code></pre></div>
 <p>Solo se aplicará la regla si la ruta pedida no es un directorio real.</p>
@@ -1487,14 +1628,15 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
    entonces aplicamos la regla final:</li>
 </ul>
 <p>Hemos visto dos ejemplos de <code>RewriteCond</code> pero, en general, las RewriteCond siguen la siguiente estructura. Estudiemos su estructura y veamos más ejemplos.</p>
-<h5 id="estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos">Estudio de las Condiciones (<code>RewriteCond</code>) en general, con más ejemplos</h5>
+<hr />
+<h4 id="43-estudio-de-las-condiciones-rewritecond-en-general-con-mas-ejemplos">4.3 Estudio de las Condiciones (RewriteCond) en general, con más ejemplos</h4>
 <p>Sintaxis general:</p>
 <div class="highlight"><pre><span></span><code>RewriteCond<span class="w"> </span>TESTSTRING<span class="w"> </span>CONDITION
 </code></pre></div>
 <ul>
 <li><strong>TESTSTRING</strong> : es lo que se va a evaluar (ej: <code>%{REQUEST_FILENAME}</code>, <code>%{HTTP_HOST}</code>, <code>%{QUERY_STRING}</code>, etc.).</li>
 </ul>
-<p><strong>[PREGUNTA] ¿QUE OTRAS VARIABLES DE ENTORNO SE GENERAN EN APACHE CUANDO SE RECIBE UNA PETICIÓN HTTP?</strong></p>
+<p><strong>[19-PREGUNTA] ¿QUE OTRAS VARIABLES DE ENTORNO SE GENERAN EN APACHE CUANDO SE RECIBE UNA PETICIÓN HTTP?</strong></p>
 <ul>
 <li><strong>CONDITION</strong> : es la comparación (ej: <code>!-f</code>, regex, strings, etc.). Al final de estos apuntes hay un anexo con regex.</li>
 </ul>
@@ -1543,7 +1685,8 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 </li>
 </ul>
 <p>Ojo, Puedes poner varias <code>RewriteCond</code>: todas deben cumplirse para que se ejecute la regla que viene después. Por último, nos queda desrbir la última linea del htaccess.</p>
-<h4 id="43-tercera-condicion">4.3 Tercera condición</h4>
+<hr />
+<h3 id="44-primera-condicion-rewriterule">4.4 Primera condición RewriteRule</h3>
 <div class="highlight"><pre><span></span><code><span class="err">RewriteRule</span><span class="w"> </span><span class="err">^</span><span class="w"> </span><span class="err">index.php</span><span class="w"> </span><span class="err">[L]</span>
 </code></pre></div>
 <ul>
@@ -1558,13 +1701,14 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 </li>
 </ul>
 <p>Al igual que con las <code>RewriteCond</code> vemos la sintáxsis general de las <code>RewriteRule</code></p>
-<h5 id="estudio-de-las-rewriterule-en-general">Estudio de las <code>RewriteRule</code> en general</h5>
+<hr />
+<h3 id="45-estudio-de-las-rewriterule-en-general">4.5 Estudio de las RewriteRule en general</h3>
 <div class="highlight"><pre><span></span><code>RewriteRule<span class="w"> </span>patrón<span class="w"> </span>destino<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
 </code></pre></div>
 <ul>
 <li><strong>patrón</strong> : es una expresión regular (ver Anexo) que Apache aplica sobre la URL solicitada (normalmente sobre el <code>REQUEST_URI</code> sin el dominio inicial).</li>
 </ul>
-<p><strong>[PREGUNTA] ¿Que es request_URI?</strong></p>
+<p><strong>[20-PREGUNTA] ¿Que es request_URI?</strong></p>
 <ul>
 <li>
 <p><strong>destino</strong> : adónde se debe redirigir o reescribir la petición. Puede ser un archivo local (ej: <code>index.php</code>) o incluso una URL completa (<code>https://otro.com/</code>).</p>
@@ -1573,16 +1717,13 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 <p><strong>[flags]</strong> : opciones que modifican el comportamiento (como <code>L</code>, <code>R</code>, etc.).</p>
 </li>
 </ul>
-<p><strong>[PREGUNTA]: Busca información sobre otro flag que se pudiera añadir e indica qué significaría</strong>.</p>
+<p><strong>[21-PREGUNTA]: Busca información sobre otro flag que se pudiera añadir e indica qué significaría</strong>.</p>
 <hr />
-<h3 id="5-algunos-scripts-en-apache-y-su-ejecucion">5. Algunos Scripts en apache y su ejecución</h3>
-<p>Veamos algunos scripts, que podemos colocar el la carpeta www para que se puedan ejecutar</p>
-<h4 id="51-indexphp-con-conexion-a-mysql-y-dos-endpoints-simples">5.1 index.php con conexión a MySQL y dos endpoints simples</h4>
+<h2 id="5-algunos-scripts-en-apache-y-su-ejecucion">5. Algunos Scripts en apache y su ejecución</h2>
+<p>Veamos algunos scripts, que podemos colocar el la carpeta www para que se puedan ejecutar. Tenéis que tener claro que en el siguiente tema veremos lenguaje php desde el principio para que podáis entender estos end</p>
+<h3 id="51-indexphp-con-conexion-a-mysql-y-dos-endpoints-simples">5.1 index.php con conexión a MySQL y dos endpoints simples</h3>
 <p>Ahora un ejemplo un poco más útil, que prueba la conexión a la base de datos con las credenciales que definiste en las variables de entorno de <code>docker-compose.yml</code> (No tienen porqué ser las mismas que yo puse).</p>
-<p><strong>[PREGUNTA] Esta pregunta es sólo para ver si estáis siguiendo la lectura ya que lo que pregunto a continuación ya ha sido explicado</strong></p>
-<ul>
-<li><strong>¿En qué casos php y bajo qué peticiones del cliente ejecutará index.php APACHE?</strong></li>
-</ul>
+<p><strong>[22-PREGUNTA] Esta pregunta es sólo para ver si estáis siguiendo la lectura ya que lo que pregunto a continuación ya ha sido explicado ¿En qué casos php y bajo qué peticiones del cliente ejecutará index.php APACHE?</strong></p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
@@ -1643,7 +1784,7 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
 </code></pre></div>
 <p>Además, este archivo tiene dos endpoints definidos. Debes de contestar a las siguientes dos preguntas:</p>
-<p><strong>[PREGUNTA]:</strong></p>
+<p><strong>[23- PREGUNTA]:</strong></p>
 <ul>
 <li><strong>¿Cuáles son esos dos endpoints?</strong></li>
 <li><strong>¿Cuál es el flujo que hace Apache desde la petición del cliente hasta que devuelve la respuesta del endpoint? (Mirar .htaccess)</strong></li>
@@ -1651,7 +1792,8 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 <li><strong>¿Qué tipo de "Content-Type" envían ambos al cliente?</strong></li>
 <li><strong>¿Si tuvieras que darle un verbo http, que verbo le darías a cada endpoint anterior? Justifica tu respuesta</strong></li>
 </ul>
-<h4 id="52-productosphp"><strong>5.2 productos.php</strong></h4>
+<hr />
+<h3 id="52-productosphp"><strong>5.2 productos.php</strong></h3>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nb">header</span><span class="p">(</span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="p">);</span>
 
@@ -1722,7 +1864,7 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 
 <span class="nv">$conn</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
 </code></pre></div>
-<p><strong>[PREGUNTA]: Tal y como esta configurado apache, el archivo php anterior representa un endpoint por si mismo.</strong></p>
+<p><strong>[24-PREGUNTA]: Tal y como esta configurado apache, el archivo php anterior representa un endpoint por si mismo.</strong></p>
 <ul>
 <li>
 <p><strong>¿Cómo se hace la petición a ese archivo? ¿Qué tipo de verbo http sería?</strong> </p>
@@ -1734,7 +1876,7 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 <p><strong>Prueba a a hacer una petición con POSTMAN y otra con CURL y adjunta capturas de la respuesta.</strong></p>
 </li>
 </ul>
-<p><strong>[PREGUNTA] En esta práctica habéis configurado manualmente vuestro servidor Apache con <code>000-default.conf</code> y un <code>.htaccess</code> para redirigir (algunas) lURLs a <code>index.php</code>. Todo el control de rutas, autenticación y caché lo habéis hecho directamente en el servidor web.</strong></p>
+<p><strong>[25-PREGUNTA] En esta práctica habéis configurado manualmente vuestro servidor Apache con <code>000-default.conf</code> y un <code>.htaccess</code> para redirigir (algunas) lURLs a <code>index.php</code>. Todo el control de rutas, autenticación y caché lo habéis hecho directamente en el servidor web.</strong></p>
 <ul>
 <li>
 <p><strong>¿Qué cambia cuando usamos un framework como Laravel?</strong></p>
@@ -1749,13 +1891,14 @@ RewriteRule<span class="w"> </span>^<span class="w"> </span>index.php<span class
 <p><strong>¿Por qué creéis que en proyectos grandes se recomienda que Apache solo apunte a <code>public/</code> y que el framework gestione las rutas y la lógica?</strong></p>
 </li>
 </ul>
-<p><strong>[PREGUNTA] A lo largo de la práctica has visto que se ha utilizado la extensión mysqli para hacer querys.</strong></p>
+<p><strong>[26-PREGUNTA] A lo largo de la práctica has visto que se ha utilizado la extensión mysqli para hacer querys.</strong></p>
 <ul>
 <li><strong>¿Qué desventaja tiene esto en un servidor Web real?</strong></li>
 <li><strong>¿Qué es un ORM y que relación tiene con lo anterior?</strong></li>
 <li><strong>¿Qué ventajas ofrecen los ORM que nos proporcionan algunos frameworks como Larabel?</strong></li>
 </ul>
-<h3 id="6-anexo-cosas-basis-de-regexp-con-algunos-ejemplos">6. Anexo (Cosas básis de regexp con algunos ejemplos)</h3>
+<hr />
+<h2 id="6-anexo-cosas-basis-de-regexp-con-algunos-ejemplos">6. Anexo (Cosas básis de regexp con algunos ejemplos)</h2>
 <ul>
 <li><strong>Caracteres literales</strong> : Un string  tal cual. Ej: <code>hola</code> encuentra “hola”.</li>
 <li><strong>Metacaracteres</strong>:</li>

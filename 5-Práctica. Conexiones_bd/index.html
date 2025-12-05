@@ -1626,19 +1626,14 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <ul>
 <li><code>PDO::ERRMODE_SILENT</code> (modo silencioso — por defecto)</li>
 <li><code>PDO::ERRMODE_WARNING</code></li>
-<li><code>PDO::ERRMODE_EXCEPTION</code></li>
+<li><code>PDO::ERRMODE_EXCEPTION</code> (el que estamos utilizando en el script de arriba)</li>
 </ul>
-<p>La que hemos escogido le dice a PDO que arroje excepciones (<code>PDOException</code>) cuando ocurra un error, en lugar de:</p>
-<ul>
-<li>guardar el error internamente (modo silencioso), o</li>
-<li>emitir warnings.</li>
-</ul>
-<p>Esto hace más fácil manejar errores y deputar</p>
+<p>La que hemos escogido le dice a PDO que arroje excepciones (<code>PDOException</code>) cuando ocurra un error, en lugar de guardar el error internamente (modo silencioso) o emitir warnings. Esto hace más fácil manejar errores utilizando bloques try, catch, que de hecho, es lo que heremos en todo los scripts, mirando si hay errores recogiendo PDOException.</p>
 <h5 id="312-pdoattr_default_fetch_mode">3.1.2. PDO::ATTR_DEFAULT_FETCH_MODE</h5>
-<p>En la documentación oficial se dice: <em>"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."</em></p>
+<p>En la documentación oficial del enlace, se dice: <em>"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."</em></p>
 <p>Modos posibles:</p>
 <ul>
-<li><code>PDO::FETCH_ASSOC</code> (solo arrays asociativos)</li>
+<li><code>PDO::FETCH_ASSOC</code> (solo arrays asociativos y el que estamos utilizando al conectar en el script de arriba)</li>
 <li><code>PDO::FETCH_NUM</code></li>
 <li><code>PDO::FETCH_BOTH</code> (por defecto)</li>
 <li><code>PDO::FETCH_OBJ</code>, etc.</li>
@@ -1647,13 +1642,13 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">();</span>
 </code></pre></div>
-<p>Es decir, vemos algo como</p>
+<p>Es decir, vemos algo "duplicado" en el array, algo así:</p>
 <div class="highlight"><pre><span></span><code>[
     0        =&gt; &quot;Juan&quot;,
     &quot;nombre&quot; =&gt; &quot;Juan&quot;
 ]
 </code></pre></div>
-<p>La opcion que hemos escogido establece que cada vez que hagas: el resultado tendrá solo claves asociativas (<code>$fila['nombre']</code>), no índice numérico.</p>
+<p>La opcion que hemos escogido establece que cada vez que hagas fetch(): el resultado tendrá solo claves asociativas (<code>$fila['nombre']</code>), no índice numérico luego no será repititivo</p>
 <h5 id="313-pdoattr_emulate_prepares">3.1.3. PDO::ATTR_EMULATE_PREPARES</h5>
 <p>En la documentación oficial se dice: <em>"PDO::ATTR_EMULATE_PREPARES: Enable or disable emulated prepared statements."</em></p>
 <p>Lo que en realidad estás pidiendo es que el trabajo de preparar la consulta lo haga MySQL directamente, y no PHP. Por ejemplo, si haces una consulta como:</p>
@@ -1661,7 +1656,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM usuarios WHERE email = ?&quot;</span><span class="p">);</span>
 <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">([</span><span class="nv">$email</span><span class="p">]);</span>
 </code></pre></div>
-<p>Si la emulación está activada, PDO toma ese <code>?</code>, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, PHP hace el trabajo. Pero si usas prepared statements nativos, PDO envía la consulta con el <code>?</code> tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura,</p>
+<p>Si la emulación está activada, PDO toma ese <code>?</code>, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. <u>Es decir, PHP hace el trabajo.</u> Pero si usas prepared statements nativos, PDO envía la consulta con el <code>?</code> tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura (no es nuestro caso ya que lo ponemos en false)</p>
 <hr />
 <h4 id="32-creacion-de-consultas">3.2 Creación de consultas</h4>
 <p>Seguimos rellenando el script con la parte de la consulta:</p>
@@ -1679,8 +1674,8 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <div class="highlight"><pre><span></span><code><span class="x">$stmt = $pdo-&gt;prepare($sql);</span>
 </code></pre></div>
 <ul>
-<li><code>$conn</code>: es la conexión a MySQL (<code>new PDO(...)</code>).</li>
-<li><code>prepare()</code>: método de la clase PDO que devuelve un objeto del tipo PDOStatement, que es la clase de PDO para manejar sentencias preparadas.</li>
+<li><code>$conn</code>: es la conexión ya establecidad a MySQL (<code>new PDO(...)</code>).</li>
+<li><code>prepare()</code>: método!!!!! de la clase PDO que devuelve un objeto del tipo <strong>PDOStatement</strong>, que es la clase de PDO para manejar sentencias preparadas.</li>
 <li><code>execute([$email])</code>: envía el valor del email</li>
 </ul>
 <h5 id="323-dando-valores-a-la-consulta">3.2.3 Dando valores a la consulta</h5>

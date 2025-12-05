@@ -424,22 +424,17 @@ En la documentación oficial se dice:*"PDO::ATTR_ERRMODE: Sets the error reporti
 
 - `PDO::ERRMODE_SILENT` (modo silencioso — por defecto)
 - `PDO::ERRMODE_WARNING`
-- `PDO::ERRMODE_EXCEPTION`
+- `PDO::ERRMODE_EXCEPTION` (el que estamos utilizando en el script de arriba)
 
-La que hemos escogido le dice a PDO que arroje excepciones (`PDOException`) cuando ocurra un error, en lugar de:
-
-- guardar el error internamente (modo silencioso), o
-- emitir warnings.
-
-Esto hace más fácil manejar errores y deputar
+La que hemos escogido le dice a PDO que arroje excepciones (`PDOException`) cuando ocurra un error, en lugar de guardar el error internamente (modo silencioso) o emitir warnings. Esto hace más fácil manejar errores utilizando bloques try, catch, que de hecho, es lo que heremos en todo los scripts, mirando si hay errores recogiendo PDOException.
 
 ##### 3.1.2. PDO::ATTR_DEFAULT_FETCH_MODE 
 
-En la documentación oficial se dice: *"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."*
+En la documentación oficial del enlace, se dice: *"PDO::ATTR_DEFAULT_FETCH_MODE: Set default fetch mode for fetch methods."*
 
 Modos posibles:
 
-- `PDO::FETCH_ASSOC` (solo arrays asociativos)
+- `PDO::FETCH_ASSOC` (solo arrays asociativos y el que estamos utilizando al conectar en el script de arriba)
 - `PDO::FETCH_NUM`
 - `PDO::FETCH_BOTH` (por defecto)
 - `PDO::FETCH_OBJ`, etc.
@@ -451,7 +446,7 @@ PDO te devuelve por defecto dos copias del mismo dato al hacer:
 $stmt->fetch();
 ```
 
-Es decir, vemos algo como
+Es decir, vemos algo "duplicado" en el array, algo así:
 
 ```
 [
@@ -460,7 +455,7 @@ Es decir, vemos algo como
 ]
 ```
 
-La opcion que hemos escogido establece que cada vez que hagas: el resultado tendrá solo claves asociativas (`$fila['nombre']`), no índice numérico.
+La opcion que hemos escogido establece que cada vez que hagas fetch(): el resultado tendrá solo claves asociativas (`$fila['nombre']`), no índice numérico luego no será repititivo
 
 ##### 3.1.3. PDO::ATTR_EMULATE_PREPARES
 
@@ -474,7 +469,7 @@ $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
 $stmt->execute([$email]);
 ```
 
-Si la emulación está activada, PDO toma ese `?`, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. Es decir, PHP hace el trabajo. Pero si usas prepared statements nativos, PDO envía la consulta con el `?` tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura,
+Si la emulación está activada, PDO toma ese `?`, lo reemplaza por el valor del email, arma la consulta completa como una cadena de texto y se la manda ya lista a MySQL. <u>Es decir, PHP hace el trabajo.</u> Pero si usas prepared statements nativos, PDO envía la consulta con el `?` tal cual, y luego manda el valor del email por separado. En ese caso, es MySQL quien prepara la consulta y la ejecuta de forma segura (no es nuestro caso ya que lo ponemos en false)
 
 ---
 
@@ -505,8 +500,8 @@ El ? es un hueco en donde luego vamos a poner el valor del email del usuario. No
 $stmt = $pdo->prepare($sql);
 ```
 
-- `$conn`: es la conexión a MySQL (`new PDO(...)`).
-- `prepare()`: método de la clase PDO que devuelve un objeto del tipo PDOStatement, que es la clase de PDO para manejar sentencias preparadas.
+- `$conn`: es la conexión ya establecidad a MySQL (`new PDO(...)`).
+- `prepare()`: método!!!!! de la clase PDO que devuelve un objeto del tipo **PDOStatement**, que es la clase de PDO para manejar sentencias preparadas.
 - `execute([$email])`: envía el valor del email
 
 ##### 3.2.3 Dando valores a la consulta
